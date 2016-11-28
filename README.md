@@ -4,4 +4,4 @@
  
 Lýsing á verk
 
-[and this is a link](http//:www.ru.is)
+[and this is a link](www.ru.is)
