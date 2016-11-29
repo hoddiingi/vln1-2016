@@ -28,3 +28,8 @@ vector<Data> Data::readData()
 
     return readData;
 }
+
+int Data::ifSorting()
+{
+
+}

@@ -7,6 +7,7 @@ class Data
 {
 public:
     Data();
+    int ifSorting();
 
 
     vector<Data> readData;

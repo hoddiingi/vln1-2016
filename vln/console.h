@@ -7,6 +7,7 @@ class Console
 public:
     Console();
     void getInfo();
+    int getSort();
 };
 
 #endif // CONSOLE_H
