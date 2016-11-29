@@ -1,4 +1,7 @@
 #include "person.h"
+#include "domain.h"
+
+
 
 Person::Person()
 {
