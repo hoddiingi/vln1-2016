@@ -13,7 +13,6 @@ public:
     void getInfo();
     int getSort();
     Domain dom;
-    dom.readData();
 };
 
 #endif // CONSOLE_H

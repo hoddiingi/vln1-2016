@@ -41,8 +41,8 @@ void Console::getInfo()
         cout << "Enter year of death, unless N/A: ";
         cin >> death;
 
-        //Person newPerson(name, gender, birth, death);
-
+        Person newPerson(name, gender, birth, death);
+        dom.writeData(newPerson);
     }
     else if (command == "View" || command == "view")
     {
