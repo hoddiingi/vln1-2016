@@ -6,6 +6,9 @@ class Data
 {
 public:
     Data();
+
+private:
+
 };
 
 #endif // DATA_H
