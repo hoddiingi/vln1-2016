@@ -10,7 +10,6 @@ public:
     Data();
 
 
-    vector<Console> readData;
 
 private:
 
