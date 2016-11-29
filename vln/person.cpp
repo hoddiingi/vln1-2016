@@ -4,6 +4,14 @@ Person::Person()
 {
 
 }
+Person::Person(string name, char gender, int birth, int death)
+{
+    _name   = name;
+    _gender = gender;
+    _birth  = birth;
+    _death  = death;
+}
+
 string Person::getName() const
 {
     return _name;
