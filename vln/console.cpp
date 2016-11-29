@@ -1,6 +1,7 @@
 #include "console.h"
 #include <iostream>
 #include <string>
+#include "person.h"
 
 using namespace std;
 
@@ -10,19 +11,48 @@ Console::Console()
 }
 void Console::getInfo()
 {
-    string name;
-    char gender;
-    int birth;
-    int death;
+    string command;
 
-    cout << "Please enter name: ";
-    cin >> name;
-    cout << "Gender (f/m): ";
-    cin >> gender;
-    cout << "Year of birth: ";
-    cin >> birth;
-    cout << "Year of death, enter '0' if N/A: ";
-    cin >> death;
+    cout << "Please enter one of the following commands: " << endl;
+    cout << "Add - for adding scientist to the list" << endl;
+    cout << "View - for viewing the whole list" << endl;
+    cout << "Search - for searching for names in the list" << endl;
+    cout << "Exit - quits" << endl;
+
+    cin >> command;
+
+    do
+    {
+
+    if (command == 'Add' || command == 'add')
+    {
+        string name;
+        char gender;
+        int birth;
+        int death;
+
+        cout << "Enter name of scientist: ";
+        cin >> name;
+        cout << "Gender (f/m): ";
+        cin >> gender;
+        cout << "Enter year of birth: ";
+        cin >> birth;
+        cout << "Enter year of death, unless N/A: ";
+        cin >> death;
+
+        Person newPerson(name, gender, birth, death);
+
+    }
+    else if (command == 'View' || command == 'view')
+    {
+
+    }
+    else if (command == 'Search' || command == 'search')
+    {
+
+    }
+
+    }while(command != 'Exit' || command != 'exit');
 }
 
 int Console::getSort()

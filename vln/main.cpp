@@ -8,7 +8,6 @@ int main()
     Console co;
 
     co.getInfo();
-    co.getSort();
 
     return 0;
 }
