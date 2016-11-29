@@ -2,6 +2,7 @@
 #include <vector>
 #include "person.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -21,5 +22,8 @@ vector<Person> Domain::readData()
 
 void Domain::writeData(Person p)
 {
-    cout << p.getBirth();
+    fstream out;
+    out.open("text.txt", std::ios_base::app);
+    out << "Name: " << p.getName() << endl;
+    out.close();
 }
