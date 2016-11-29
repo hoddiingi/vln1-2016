@@ -6,6 +6,9 @@ class Person
 {
 public:
     Person();
+
+private:
+
 };
 
 #endif // PERSON_H
