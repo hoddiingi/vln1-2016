@@ -6,6 +6,7 @@ class Console
 {
 public:
     Console();
+    void getInfo();
 };
 
 #endif // CONSOLE_H

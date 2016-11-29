@@ -1,12 +1,13 @@
 #include <iostream>
+#include "console.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "hello" << endl;
-    cout << "swag" << endl;
-    cout << "T" << endl;
-    cout << "swag123" << endl;
+    Console co;
+
+    co.getInfo();
+
     return 0;
 }
