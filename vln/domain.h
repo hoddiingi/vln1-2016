@@ -8,6 +8,8 @@ class Domain
 public:
     Domain();
     vector<Person> readData();
+
+
 };
 
 #endif // DOMAIN_H

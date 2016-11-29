@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "person.h"
+#include "domain.h"
 
 using namespace std;
 
