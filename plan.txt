@@ -1,0 +1,17 @@
+git status
+git add .
+git commit -m "added first version of project"
+git push origin master
+git pull 
+
+útfæra alla klasana (byrjun)
+	klasa með vektor 
+	klasa með cout og cin
+	klasi með sorting og searching
+
+getföll/set
+biðja notandanum um inntak
+innlestur í skrá
+útfæra fall sem leitar í listanum
+útfæra fall sem spyr notandan hvernig hann vill raða listanum
+
