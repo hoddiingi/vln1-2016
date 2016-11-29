@@ -8,7 +8,12 @@ class Data
 public:
     Data();
 
+
     vector<Data> readData;
+
+private:
+
+
 };
 
 #endif // DATA_H
