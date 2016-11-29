@@ -8,11 +8,14 @@ class Person
 {
 public:
     Person();
-    Person(string name, char gender, int birth, int death);
     string getName() const;
     char getGender() const;
     int getBirth() const;
     int getDeath() const;
+    void setName(string name);
+    void setGender(char gender);
+    void setBirth(int birth);
+    void setDeath(int death);
 
 private:
     string _name;
