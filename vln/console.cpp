@@ -24,7 +24,7 @@ void Console::getInfo()
     do
     {
 
-    if (command == 'Add' || command == 'add')
+    if (command == "Add" || command == "add")
     {
         string name;
         char gender;
@@ -40,19 +40,19 @@ void Console::getInfo()
         cout << "Enter year of death, unless N/A: ";
         cin >> death;
 
-        Person newPerson(name, gender, birth, death);
+        //Person newPerson(name, gender, birth, death);
 
     }
-    else if (command == 'View' || command == 'view')
+    else if (command == "View" || command == "view")
     {
 
     }
-    else if (command == 'Search' || command == 'search')
+    else if (command == "Search" || command == "search")
     {
 
     }
 
-    }while(command != 'Exit' || command != 'exit');
+    }while(command != "Exit" || command != "exit");
 }
 
 int Console::getSort()
