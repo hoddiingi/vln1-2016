@@ -1,4 +1,6 @@
 #include "data.h"
+#include "console.h"
+#include "person.h"
 #include <fstream>
 #include <vector>
 
@@ -11,20 +13,22 @@ Data::Data()
 
 }
 
-vector<Data> Data::readData()
+vector<Console> Data::readData()
 {
-    vector<Data> readData;
+    vector<Console> readData;
 
-    readData r("Alan Turing", "Male", 1912, 1954);
+    readData.push_back(Console.getInfo());
+
+    //readData r("Alan Turing", "Male", 1912, 1954);
 
     ofstream writeText;
     writeText.open("text.txt")
 
-    readData.push_back(r);
+    //readData.push_back(r);
 
-    writeText << r;
+    //writeText << r;
 
-    writeText.close();
+    //writeText.close();
 
     return readData;
 }
