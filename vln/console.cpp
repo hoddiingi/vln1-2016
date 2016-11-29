@@ -14,6 +14,7 @@ void Console::getInfo()
     char gender;
     int birth;
     int death;
+
     cout << "Please enter name: ";
     cin >> name;
     cout << "Gender (f/m): ";
@@ -32,7 +33,6 @@ int Console::getSort()
     cout << "1 - for alphabetical order" << endl;
     cout << "2 - sort by gender" << endl;
     cout << "3 - sort by age (youngest to oldest)" << endl;
-
     cin >> command;
 
     return command;
