@@ -17,7 +17,7 @@ void Console::getInfo()
     int death;
     cout << "Please enter name: ";
     cin >> name;
-    cout << "Sex: ";
+    cout << "Sex (f/m): ";
     cin >> sex;
     cout << "Year of birth: ";
     cin >> birth;
