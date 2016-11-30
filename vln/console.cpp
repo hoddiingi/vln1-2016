@@ -13,7 +13,6 @@ Console::Console()
 void Console::getInfo()
 {
     string command;
-
     do
     {
     cout << "Please enter one of the following commands: " << endl;
@@ -38,16 +37,26 @@ void Console::getInfo()
             cin >> gender;
             if(!(gender == 'm') && !(gender == 'f'))
                 cout << "Invalid input!" <<endl;
-
         }
-        else if (command == "View" || command == "view")
-        {
+        while((gender != 'f') && (gender != 'm'));
+        cout << "Enter year of birth: ";
+        cin >> birth;
+        cout << "Enter year of death, unless N/A: ";
+        cin >> death;
 
-        }
-        else if (command == "Search" || command == "search")
-        {
+        Person newData(name, gender, birth, death);
+        dat.writeData(newData);
 
-        }
+    }
+    else if (command == "View" || command == "view")
+    {
+
+    }
+    else if (command == "Search" || command == "search")
+    {
+
+    }
+
     }while((command != "Exit") && (command != "exit"));
 }
 
