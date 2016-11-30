@@ -11,7 +11,7 @@ class Console
 public:
     Console();
     void getInfo();
-    int getSort();
+    void getSort();
     Domain dom;
 };
 

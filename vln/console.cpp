@@ -56,15 +56,26 @@ void Console::getInfo()
     }while(command != "Exit" || command != "exit");
 }
 
-int Console::getSort()
+void Console::getSort()
 {
-    int command;
+    int sort;
 
     cout << "Please enter one of the following commands: " << endl;
     cout << "1 - for alphabetical order" << endl;
     cout << "2 - sort by gender" << endl;
     cout << "3 - sort by age (youngest to oldest)" << endl;
-    cin >> command;
+    cin >> sort;
 
-    return command;
+    if(sort == 1)
+    {
+
+    }
+    else if(sort == 2)
+    {
+
+    }
+    else if(sort == 3)
+    {
+
+    }
 }
