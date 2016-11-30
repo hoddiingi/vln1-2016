@@ -13,28 +13,20 @@ Console::Console()
 void Console::getInfo()
 {
     string command;
-<<<<<<< HEAD
 
     do
     {
 
-=======
-    do
-    {
->>>>>>> 888c7ccfc49884cc4dfb3f9426f21de5655fac63
+    cout << "--------------------------------------------" << endl;
     cout << "Please enter one of the following commands: " << endl;
     cout << "Add - for adding scientist to the list" << endl;
     cout << "View - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Exit - quits" << endl;
+    cout << "--------------------------------------------" << endl;
 
     cin >> command;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 888c7ccfc49884cc4dfb3f9426f21de5655fac63
     if (command == "Add" || command == "add")
     {
         string name;
@@ -56,6 +48,7 @@ void Console::getInfo()
         cin >> birth;
         cout << "Enter year of death, unless N/A: ";
         cin >> death;
+        cout << endl;
 
         Person newData(name, gender, birth, death);
         dat.writeData(newData);
