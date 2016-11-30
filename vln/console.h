@@ -13,6 +13,7 @@ public:
     Console();
     void getInfo();
     void getSort();
+    bool validYear(string s);
     Data dat;
 
 private:
