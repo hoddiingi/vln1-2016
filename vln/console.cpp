@@ -13,6 +13,7 @@ Console::Console()
 void Console::getInfo()
 {
     string command;
+<<<<<<< HEAD
 
     do
     {
@@ -48,6 +49,32 @@ void Console::getInfo()
             Person newData(name, gender, birth, death);
             dat.writeData(newData);
 
+=======
+    do
+    {
+    cout << "Please enter one of the following commands: " << endl;
+    cout << "Add - for adding scientist to the list" << endl;
+    cout << "View - for viewing the whole list" << endl;
+    cout << "Search - for searching for names in the list" << endl;
+    cout << "Exit - quits" << endl;
+
+    cin >> command;
+
+    if (command == "Add" || command == "add")
+    {
+        string name;
+        char gender;
+        int birth;
+        int death;
+
+        cout << "Enter name of scientist: ";
+        cin >> name;
+        do{
+            cout << "Gender (f/m): ";
+            cin >> gender;
+            if(!(gender == 'm') && !(gender == 'f'))
+                cout << "Invalid input!" <<endl;
+>>>>>>> 888c7ccfc49884cc4dfb3f9426f21de5655fac63
         }
         else if (command == "View" || command == "view")
         {
