@@ -41,7 +41,7 @@ void Console::getInfo()
         while((gender != 'f') && (gender != 'm'));
         cout << "Enter year of birth: ";
         cin >> birth;
-        cout << "Enter year of death, unless N/A: ";
+        cout << "Enter year of death, if N/A input 0: ";
         cin >> death;
 
         Person newData(name, gender, birth, death);
