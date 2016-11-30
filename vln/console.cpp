@@ -3,6 +3,8 @@
 #include <string>
 #include "person.h"
 #include "data.h"
+#include <cctype>
+#include <ctype.h>
 
 using namespace std;
 
@@ -10,6 +12,14 @@ Console::Console()
 {
 
 }
+bool Console::validYear(string s)
+{
+    for (unsigned int i = 0; i < s.size(); i++)
+        if (!isdigit(s[i]))
+            return 0;
+    return 1;
+}
+
 void Console::getInfo()
 {
     string command;
@@ -32,7 +42,9 @@ void Console::getInfo()
         string name;
         char gender;
         int birth;
-        int death;
+        int death = 0;
+        string birthInput;
+        string deathInput;
 
         cout << "Enter name of scientist: ";
         cin >> name;
@@ -43,11 +55,26 @@ void Console::getInfo()
                 cout << "Invalid input!" <<endl;
         }
         while((gender != 'f') && (gender != 'm'));
-
-        cout << "Enter year of birth: ";
-        cin >> birth;
-        cout << "Enter year of death, if N/A input 0: ";
-        cin >> death;
+        do{
+            cout << "Enter year of birth: ";
+            cin >> birthInput;
+            if(!validYear(birthInput))
+            {
+                cout << "Invalid input!" <<endl;
+            }
+        }
+        while(!validYear(birthInput));
+        birth = atoi(birthInput.c_str());
+        do{
+            cout << "Enter year of death, if N/A input 0: ";
+            cin >> deathInput;
+            if((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"))
+            {
+                cout << "Invalid input!" <<endl;
+            }
+        }
+        while((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"));
+        death = atoi(deathInput.c_str());
         cout << endl;
 
         Person newData(name, gender, birth, death);
