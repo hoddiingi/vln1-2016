@@ -9,6 +9,7 @@ class Data
 public:
     Data();
 
+    void writeData(Person p);
 
 private:
 

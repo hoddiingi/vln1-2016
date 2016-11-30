@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include "person.h"
-#include "domain.h"
+#include "data.h"
 
 using namespace std;
 
@@ -41,8 +41,9 @@ void Console::getInfo()
         cout << "Enter year of death, unless N/A: ";
         cin >> death;
 
-        Person newPerson(name, gender, birth, death);
-        dom.writeData(newPerson);
+        Person newData(name, gender, birth, death);
+        dat.writeData(newData);
+
     }
     else if (command == "View" || command == "view")
     {

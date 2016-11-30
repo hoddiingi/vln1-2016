@@ -20,10 +20,3 @@ vector<Person> Domain::readData()
    return returnData;
 }
 
-void Domain::writeData(Person p)
-{
-    fstream out;
-    out.open("text.txt", std::ios_base::app);
-    out << "Name: " << p.getName() << endl;
-    out.close();
-}

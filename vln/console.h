@@ -1,6 +1,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
-#include "domain.h"
+#include "data.h"
 #include <iostream>
 #include <vector>
 
@@ -12,7 +12,7 @@ public:
     Console();
     void getInfo();
     int getSort();
-    Domain dom;
+    Data dat;
 };
 
 #endif // CONSOLE_H

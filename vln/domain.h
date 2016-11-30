@@ -9,7 +9,6 @@ public:
     Domain();
     vector<Person> readData();
 
-    void writeData(Person p);
 };
 
 #endif // DOMAIN_H
