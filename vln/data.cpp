@@ -20,7 +20,10 @@ void Data::writeData(Person p)
 {
     fstream out;
     out.open("text.txt", std::ios_base::app);
+<<<<<<< HEAD
 
+=======
+>>>>>>> aefaaa881d52d9fd6647a9c18d4b2b333d2fec71
     out << p.getName() << endl;
     out << p.getGender() << endl;
     out << p.getBirth() << endl;
