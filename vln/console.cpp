@@ -13,7 +13,8 @@ Console::Console()
 void Console::getInfo()
 {
     string command;
-
+    do
+    {
     cout << "Please enter one of the following commands: " << endl;
     cout << "Add - for adding scientist to the list" << endl;
     cout << "View - for viewing the whole list" << endl;
@@ -21,9 +22,6 @@ void Console::getInfo()
     cout << "Exit - quits" << endl;
 
     cin >> command;
-
-    do
-    {
 
     if (command == "Add" || command == "add")
     {
@@ -37,6 +35,8 @@ void Console::getInfo()
         do{
             cout << "Gender (f/m): ";
             cin >> gender;
+            if(!(gender == 'm') && !(gender == 'f'))
+                cout << "Invalid input!" <<endl;
         }
         while((gender != 'f') && (gender != 'm'));
         cout << "Enter year of birth: ";
