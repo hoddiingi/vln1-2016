@@ -2,10 +2,6 @@
 #define DATA_H
 #include <vector>
 #include "person.h"
-<<<<<<< HEAD
-
-=======
->>>>>>> abba0accedb7981623994220f7504b07dc75d2ba
 
 class Data
 {
