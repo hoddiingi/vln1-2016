@@ -1,5 +1,4 @@
 #include "data.h"
-
 #include "person.h"
 #include <fstream>
 #include <vector>
@@ -7,16 +6,12 @@
 
 using namespace std;
 
-
-
-
 //read write file
 
 Data::Data()
 {
 
 }
-
 
 void Data::writeData(Person p)
 {
