@@ -49,6 +49,10 @@ void Console::getInfo()
 
         cout << "Enter name of scientist: ";
         cin >> name;
+        if(name == "Conor" || name == "conor")
+           {
+            cout << "Who the fook is that guy!" << endl;
+        }
         do{
             cout << "Gender (f/m): ";
             cin >> gender;

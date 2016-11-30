@@ -1,11 +1,9 @@
 #include "data.h"
-#include "console.h"
-#include "person.h"
-#include "console.h"
+//#include "console.h"
+//#include "person.h"
 #include <fstream>
 #include <vector>
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -14,16 +12,6 @@ using namespace std;
 Data::Data()
 {
 
-}
-
-vector<Person> Data::dataVector()
-{
-    vector<Person> returnData;
-    //fstream in;
-    //in.open("text.txt");
-    //returnData.push_back();
-
-    return returnData;
 }
 
 void Data::writeData(Person p)
@@ -39,7 +27,6 @@ void Data::writeData(Person p)
 
     out.close();
 }
-
 vector<Person> Data::readData()
 {
     vector<Person> vect;
