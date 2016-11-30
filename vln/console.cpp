@@ -14,6 +14,9 @@ void Console::getInfo()
 {
     string command;
 
+    do
+    {
+
     cout << "Please enter one of the following commands: " << endl;
     cout << "Add - for adding scientist to the list" << endl;
     cout << "View - for viewing the whole list" << endl;
@@ -22,8 +25,7 @@ void Console::getInfo()
 
     cin >> command;
 
-    //do
-    //{
+
 
     if (command == "Add" || command == "add")
     {
@@ -54,7 +56,7 @@ void Console::getInfo()
 
     }
 
-    //}while(command != "Exit" || command != "exit");
+    }while(command != "Exit" || command != "exit");
 }
 
 void Console::getSort()
