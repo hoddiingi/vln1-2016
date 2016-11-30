@@ -1,6 +1,7 @@
 #include "console.h"
 #include <iostream>
 #include <string>
+#include <vector>
 #include "person.h"
 #include "data.h"
 #include <cctype>
@@ -37,7 +38,7 @@ void Console::getInfo()
 
     cin >> command;
 
-    if (command == "Add" || command == "add")
+    if ((command == "Add") || (command == "add"))
     {
         string name;
         char gender;
@@ -81,11 +82,19 @@ void Console::getInfo()
         dat.writeData(newData);
 
     }
-    else if (command == "View" || command == "view")
+    else if ((command == "View") || (command == "view"))
     {
+        vector<Person> pers = dat.readData();
 
+        for(unsigned int i = 0; i < pers.size(); i++)
+        {
+            cout << pers[i].getName() << endl;
+            cout << pers[i].getGender() << endl;
+            cout << pers[i].getBirth() << endl;
+            cout << pers[i].getDeath() << endl;
+        }
     }
-    else if (command == "Search" || command == "search")
+    else if ((command == "Search") || (command == "search"))
     {
 
     }
