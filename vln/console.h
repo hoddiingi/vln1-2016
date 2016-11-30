@@ -11,11 +11,7 @@ class Console
 public:
     Console();
     void getInfo();
-<<<<<<< HEAD
-    int getSort();
-=======
     void getSort();
->>>>>>> abba0accedb7981623994220f7504b07dc75d2ba
     Data dat;
 };
 
