@@ -1,14 +1,11 @@
 #include "data.h"
-
 #include "person.h"
+#include "console.h"
 #include <fstream>
 #include <vector>
 #include <iostream>
 
 using namespace std;
-
-
-
 
 //read write file
 
@@ -16,7 +13,6 @@ Data::Data()
 {
 
 }
-
 
 void Data::writeData(Person p)
 {
