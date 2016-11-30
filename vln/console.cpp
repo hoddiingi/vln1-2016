@@ -57,7 +57,15 @@ void Console::getInfo()
     }
     else if (command == "View" || command == "view")
     {
+        vector<Person> pers = dat.readData();
 
+        for(unsigned int i = 0; i < pers.size(); i++)
+        {
+            cout << pers[i].getName() << endl;
+            cout << pers[i].getGender() << endl;
+            cout << pers[i].getBirth() << endl;
+            cout << pers[i].getDeath() << endl;
+        }
     }
     else if (command == "Search" || command == "search")
     {
