@@ -16,19 +16,19 @@ Data::Data()
 
 }
 
-vector<string> Data::dataVector()
+vector<Person> Data::dataVector()
 {
-    vector<string> returnData;
-    fstream in;
-    in.open("text.txt");
-    returnData.push_back();
+    vector<Person> returnData;
+    //fstream in;
+    //in.open("text.txt");
+    //returnData.push_back();
 
     return returnData;
 }
 
 void Data::writeData(Person p)
 {
-    fstream out;
+    ofstream out;
     out.open("text.txt", std::ios_base::app);
 
     out << p.getName() << endl;
@@ -39,8 +39,10 @@ void Data::writeData(Person p)
 
     out.close();
 }
-void readData(Person p)
+
+vector<Person> Data::readData()
 {
+    vector<Person> vect;
     string name;
     char gender;
     int birth;
@@ -56,9 +58,10 @@ void readData(Person p)
     {
         while(in >> name >> gender >> birth >> death)
         {
-
+            Person temp(name, gender, birth, death);
+            vect.push_back(temp);
         }
     }
-
     in.close();
+    return vect;
 }

@@ -10,12 +10,7 @@ public:
     Data();
 
     void writeData(Person p);
-    void readData(Person p);
-    vector<string> dataVector();
-
-
-private:
-
+    vector<Person> readData();
 };
 
 #endif // DATA_H
