@@ -14,49 +14,49 @@ void Console::getInfo()
 {
     string command;
 
-    cout << "Please enter one of the following commands: " << endl;
-    cout << "Add - for adding scientist to the list" << endl;
-    cout << "View - for viewing the whole list" << endl;
-    cout << "Search - for searching for names in the list" << endl;
-    cout << "Exit - quits" << endl;
-
-    cin >> command;
-
     do
     {
+        cout << "Please enter one of the following commands: " << endl;
+        cout << "Add - for adding scientist to the list" << endl;
+        cout << "View - for viewing the whole list" << endl;
+        cout << "Search - for searching for names in the list" << endl;
+        cout << "Exit - quits" << endl;
 
-    if (command == "Add" || command == "add")
-    {
-        string name;
-        char gender;
-        int birth;
-        int death;
+        cin >> command;
 
-        cout << "Enter name of scientist: ";
-        cin >> name;
-        do{
-            cout << "Gender (f/m): ";
-            cin >> gender;
+
+
+        if (command == "Add" || command == "add")
+        {
+            string name;
+            char gender;
+            int birth;
+            int death;
+
+            cout << "Enter name of scientist: ";
+            cin >> name;
+            do{
+                cout << "Gender (f/m): ";
+                cin >> gender;
+            }
+            while((gender != 'f') && (gender != 'm'));
+            cout << "Enter year of birth: ";
+            cin >> birth;
+            cout << "Enter year of death, unless N/A: ";
+            cin >> death;
+
+            Person newData(name, gender, birth, death);
+            dat.writeData(newData);
+
         }
-        while((gender != 'f') && (gender != 'm'));
-        cout << "Enter year of birth: ";
-        cin >> birth;
-        cout << "Enter year of death, unless N/A: ";
-        cin >> death;
+        else if (command == "View" || command == "view")
+        {
 
-        Person newData(name, gender, birth, death);
-        dat.writeData(newData);
+        }
+        else if (command == "Search" || command == "search")
+        {
 
-    }
-    else if (command == "View" || command == "view")
-    {
-
-    }
-    else if (command == "Search" || command == "search")
-    {
-
-    }
-
+        }
     }while((command != "Exit") && (command != "exit"));
 }
 
