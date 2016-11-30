@@ -34,8 +34,11 @@ void Console::getInfo()
 
         cout << "Enter name of scientist: ";
         cin >> name;
-        cout << "Gender (f/m): ";
-        cin >> gender;
+        do{
+            cout << "Gender (f/m): ";
+            cin >> gender;
+        }
+        while((gender != 'f') && (gender != 'm'));
         cout << "Enter year of birth: ";
         cin >> birth;
         cout << "Enter year of death, unless N/A: ";
@@ -54,7 +57,7 @@ void Console::getInfo()
 
     }
 
-    }while(command != "Exit" || command != "exit");
+    }while((command != "Exit") && (command != "exit"));
 }
 
 void Console::getSort()
