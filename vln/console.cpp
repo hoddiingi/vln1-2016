@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include "person.h"
-#include "domain.h"
+#include "data.h"
 
 using namespace std;
 
@@ -41,8 +41,9 @@ void Console::getInfo()
         cout << "Enter year of death, unless N/A: ";
         cin >> death;
 
-        Person newPerson(name, gender, birth, death);
-        dom.writeData(newPerson);
+        Person newData(name, gender, birth, death);
+        dat.writeData(newData);
+
     }
     else if (command == "View" || command == "view")
     {
@@ -56,15 +57,26 @@ void Console::getInfo()
     //}while(command != "Exit" || command != "exit");
 }
 
-int Console::getSort()
+void Console::getSort()
 {
-    int command;
+    int sort;
 
     cout << "Please enter one of the following commands: " << endl;
     cout << "1 - for alphabetical order" << endl;
     cout << "2 - sort by gender" << endl;
     cout << "3 - sort by age (youngest to oldest)" << endl;
-    cin >> command;
+    cin >> sort;
 
-    return command;
+    if(sort == 1)
+    {
+
+    }
+    else if(sort == 2)
+    {
+
+    }
+    else if(sort == 3)
+    {
+
+    }
 }
