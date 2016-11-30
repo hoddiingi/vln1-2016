@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -13,6 +14,16 @@ using namespace std;
 Data::Data()
 {
 
+}
+
+vector<string> Data::dataVector()
+{
+    vector<string> returnData;
+    fstream in;
+    in.open("text.txt");
+    returnData.push_back();
+
+    return returnData;
 }
 
 void Data::writeData(Person p)
