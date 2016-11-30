@@ -13,10 +13,15 @@ Console::Console()
 void Console::getInfo()
 {
     string command;
+<<<<<<< HEAD
 
     do
     {
 
+=======
+    do
+    {
+>>>>>>> 888c7ccfc49884cc4dfb3f9426f21de5655fac63
     cout << "Please enter one of the following commands: " << endl;
     cout << "Add - for adding scientist to the list" << endl;
     cout << "View - for viewing the whole list" << endl;
@@ -25,8 +30,11 @@ void Console::getInfo()
 
     cin >> command;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 888c7ccfc49884cc4dfb3f9426f21de5655fac63
     if (command == "Add" || command == "add")
     {
         string name;
@@ -39,6 +47,8 @@ void Console::getInfo()
         do{
             cout << "Gender (f/m): ";
             cin >> gender;
+            if(!(gender == 'm') && !(gender == 'f'))
+                cout << "Invalid input!" <<endl;
         }
         while((gender != 'f') && (gender != 'm'));
 
