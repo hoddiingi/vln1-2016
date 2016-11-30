@@ -1,6 +1,7 @@
 #include "console.h"
 #include <iostream>
 #include <string>
+#include <vector>
 #include "person.h"
 #include "data.h"
 
@@ -13,13 +14,17 @@ Console::Console()
 void Console::getInfo()
 {
     string command;
+
     do
     {
+
+    cout << "--------------------------------------------" << endl;
     cout << "Please enter one of the following commands: " << endl;
     cout << "Add - for adding scientist to the list" << endl;
     cout << "View - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Exit - quits" << endl;
+    cout << "--------------------------------------------" << endl;
 
     cin >> command;
 
@@ -39,10 +44,12 @@ void Console::getInfo()
                 cout << "Invalid input!" <<endl;
         }
         while((gender != 'f') && (gender != 'm'));
+
         cout << "Enter year of birth: ";
         cin >> birth;
         cout << "Enter year of death, unless N/A: ";
         cin >> death;
+        cout << endl;
 
         Person newData(name, gender, birth, death);
         dat.writeData(newData);
