@@ -22,8 +22,8 @@ void Console::getInfo()
 
     cin >> command;
 
-    do
-    {
+    //do
+    //{
 
     if (command == "Add" || command == "add")
     {
@@ -53,7 +53,7 @@ void Console::getInfo()
 
     }
 
-    }while(command != "Exit" || command != "exit");
+    //}while(command != "Exit" || command != "exit");
 }
 
 int Console::getSort()
