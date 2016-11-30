@@ -69,12 +69,13 @@ void Console::getInfo()
         do{
             cout << "Enter year of death, if N/A input 0: ";
             cin >> deathInput;
-            if((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"))
+            cout << "year" << (deathInput == "0");
+            if((!validYear(deathInput)) || ((atoi(deathInput.c_str()) < birth) && !(deathInput == "0")))
             {
                 cout << "Invalid input!" <<endl;
             }
         }
-        while((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"));
+        while((!validYear(deathInput)) || ((atoi(deathInput.c_str()) < birth) && !(deathInput == "0")));
         death = atoi(deathInput.c_str());
         cout << endl;
 
