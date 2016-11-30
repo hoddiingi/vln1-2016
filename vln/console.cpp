@@ -28,7 +28,7 @@ void Console::getInfo()
 
     cin >> command;
 
-    if (command == "Add" || command == "add")
+    if ((command == "Add") || (command == "add"))
     {
         string name;
         char gender;
@@ -55,7 +55,7 @@ void Console::getInfo()
         dat.writeData(newData);
 
     }
-    else if (command == "View" || command == "view")
+    else if ((command == "View") || (command == "view"))
     {
         vector<Person> pers = dat.readData();
 
@@ -67,7 +67,7 @@ void Console::getInfo()
             cout << pers[i].getDeath() << endl;
         }
     }
-    else if (command == "Search" || command == "search")
+    else if ((command == "Search") || (command == "search"))
     {
 
     }
