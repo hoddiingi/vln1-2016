@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include "person.h"
-#include "data.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -13,6 +13,7 @@ Console::Console()
 }
 void Console::getInfo()
 {
+    _dat.readData();
     string command;
 
     do
@@ -23,6 +24,7 @@ void Console::getInfo()
     cout << "Add - for adding scientist to the list" << endl;
     cout << "View - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
+    cout << "Sort - for sorting" << endl;
     cout << "Exit - quits" << endl;
     cout << "--------------------------------------------" << endl;
 
@@ -52,12 +54,12 @@ void Console::getInfo()
         cout << endl;
 
         Person newData(name, gender, birth, death);
-        dat.writeData(newData);
+        _dat.writeData(newData);
 
     }
     else if ((command == "View") || (command == "view"))
     {
-        vector<Person> pers = dat.readData();
+        vector<Person> pers = _dat.readData();
 
         for(unsigned int i = 0; i < pers.size(); i++)
         {
@@ -71,11 +73,16 @@ void Console::getInfo()
     {
 
     }
+    else if ((command == "Sort") || (command == "sort"))
+    {
+        int sortType = getSort();
+        _dom.sorting(sortType);
+    }
 
     }while((command != "Exit") && (command != "exit"));
 }
 
-void Console::getSort()
+int Console::getSort()
 {
     int sort;
 
@@ -85,16 +92,5 @@ void Console::getSort()
     cout << "3 - sort by age (youngest to oldest)" << endl;
     cin >> sort;
 
-    if(sort == 1)
-    {
-
-    }
-    else if(sort == 2)
-    {
-
-    }
-    else if(sort == 3)
-    {
-
-    }
+    return sort;
 }
