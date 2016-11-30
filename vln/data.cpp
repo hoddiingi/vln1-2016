@@ -38,7 +38,7 @@ vector<Person> Data::readData()
     in.open("text.txt");
     if (in.fail())
     {
-        cout << "Failed to open!";
+        cout << "Failed to open!" << endl;
     }
     else
     {

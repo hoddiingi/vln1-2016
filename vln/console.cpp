@@ -45,7 +45,7 @@ void Console::getInfo()
     if ((command == "Add") || (command == "add"))
     {
         do{
-            string name;
+            std::string name;
             char gender;
             int birth;
             int death = 0;
@@ -54,7 +54,8 @@ void Console::getInfo()
             char status;
 
             cout << "Enter name of scientist: ";
-            cin >> name;
+            cin.ignore();
+            std::getline(std::cin, name);
             do{
                 cout << "Gender (f/m): ";
                 cin >> gender;
