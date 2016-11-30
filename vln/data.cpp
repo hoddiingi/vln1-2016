@@ -1,5 +1,4 @@
 #include "data.h"
-
 #include "console.h"
 #include "person.h"
 #include "console.h"
@@ -20,14 +19,35 @@ void Data::writeData(Person p)
 {
     fstream out;
     out.open("text.txt", std::ios_base::app);
-<<<<<<< HEAD
 
-=======
->>>>>>> aefaaa881d52d9fd6647a9c18d4b2b333d2fec71
     out << p.getName() << endl;
     out << p.getGender() << endl;
     out << p.getBirth() << endl;
     out << p.getDeath() << endl;
     out << endl;
+
     out.close();
+}
+void readData(Person p)
+{
+    string name;
+    char gender;
+    int birth;
+    int death;
+
+    ifstream in;
+    in.open("text.txt");
+    if (in.fail())
+    {
+        cout << "Failed to open!";
+    }
+    else
+    {
+        while(in >> name >> gender >> birth >> death)
+        {
+
+        }
+    }
+
+    in.close();
 }

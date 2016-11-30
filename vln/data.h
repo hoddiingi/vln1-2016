@@ -9,6 +9,7 @@ public:
     Data();
 
     void writeData(Person p);
+    void readData(Person p);
 
 private:
 
