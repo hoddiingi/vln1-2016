@@ -4,6 +4,7 @@
 #include "data.h"
 #include <iostream>
 #include <vector>
+#include "person.h"
 
 using namespace std;
 
@@ -43,6 +44,7 @@ private:
     //Member variables
     Data _dat;
     Domain _dom;
+    Person _p;
     vector<Person> _pers;
 };
 

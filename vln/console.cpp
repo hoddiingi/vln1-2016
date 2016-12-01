@@ -97,7 +97,26 @@ void Console::display()
     cout << "Name" << "\t\t\t\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        cout << _pers[i].getName() << "\t\t\t";
+        //int nameSize = _p.getNameSize();
+        int nameSize = _pers[i].getNameSize();
+
+        if (nameSize >= 0 && nameSize <= 7)
+        {
+            cout << _pers[i].getName() << "\t\t\t\t";
+        }
+        else if (nameSize >= 8  && nameSize <= 15)
+        {
+            cout << _pers[i].getName() << "\t\t\t";
+        }
+        else if (nameSize >= 16  && nameSize <= 23)
+        {
+            cout << _pers[i].getName() << "\t\t";
+        }
+        else if (nameSize >= 24  && nameSize <= 31)
+        {
+            cout << _pers[i].getName() << "\t";
+        }
+
         cout << _pers[i].getGender() << "\t";
         cout <<_pers[i].getBirth() << "\t";
         if(_pers[i].getDeath() == 0)
@@ -107,7 +126,6 @@ void Console::display()
         else
         {
             cout << _pers[i].getDeath() << endl;
-            cout << endl;
         }
     }
 }
