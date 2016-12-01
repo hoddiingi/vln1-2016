@@ -16,8 +16,8 @@ public:
     int getBirth() const;
     int getDeath() const;
     int getNameSize();
-    //Gets private member variables
 
+    //Gets private member variables
 
 private:
     //Member variables
