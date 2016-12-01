@@ -149,20 +149,8 @@ void Console::getInfo()
     }
     else if ((command == "View") || (command == "view"))
     {
-        vector<Person> pers = _dat.readData();
-
-        for(unsigned int i = 0; i < pers.size(); i++)
-        {
-            cout << "Name: " << pers[i].getName() << endl;
-            cout << "Gender: " << pers[i].getGender() << endl;
-            cout << "Born: " << pers[i].getBirth() << endl;
-            cout << "Died: ";
-            if(pers[i].getDeath() == 0)
-                cout << "N/A" << endl;
-            else
-                cout << pers[i].getDeath() << endl;
-            cout << endl;
-        }
+         _pers = _dat.readData();
+         display();
     }
     else if ((command == "Search") || (command == "search"))
     {
@@ -188,4 +176,20 @@ int Console::getSort()
     cin >> sort;
 
     return sort;
+}
+
+void Console::display()
+{
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        cout << "Name: " << _pers[i].getName() << endl;
+        cout << "Gender: " << _pers[i].getGender() << endl;
+        cout << "Born: " << _pers[i].getBirth() << endl;
+        cout << "Died: ";
+        if(_pers[i].getDeath() == 0)
+            cout << "N/A" << endl;
+        else
+            cout << _pers[i].getDeath() << endl;
+        cout << endl;
+    }
 }
