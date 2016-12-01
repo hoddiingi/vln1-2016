@@ -120,12 +120,12 @@ void Console::display()
             cout << _pers[i].getName() << "\t";
         }
 
-        if (_pers[i].getGender() == 'm')
+        if (_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
             cout << "Male" << "\t";
-        else if (_pers[i].getGender() == 'f')
+        else if (_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
             cout << "Female" << "\t";
 
-        cout << _pers[i].getGender() << "\t";
+        cout << _pers[i].getBirth() << "\t";
 
         if(_pers[i].getDeath() == 0)
         {
@@ -186,10 +186,17 @@ void Console::addGender(char& gender)
     do
     {
         cout << "Gender (f/m): ";
-        cin >> gender;
-        if(!(gender == 'm') && !(gender == 'f'))
-            cout << "Invalid input!" << endl;
-    }while((gender != 'f') && (gender != 'm'));
+        std::string genderS;
+        std::getline(std::cin, genderS);
+        if(genderS.length() != 1)
+            cout << "Please only enter f or m." << endl;
+        else
+        {
+            gender = genderS[0];
+            if(!(gender == 'm' || gender == 'M') && !(gender == 'f' || gender == 'F'))
+                cout << "Please only enter f or m." << endl;
+        }
+    }while(!(gender == 'f' || gender == 'F') && !(gender == 'm' || gender == 'M'));
 }
 
 void Console::addBirth(int& birth)
@@ -232,8 +239,12 @@ void Console::addDeath(int& death, int& birth)
                 {
                     cout << "Invalid input!" <<endl;
                 }
+                else if (atoi(deathInput.c_str()) > 2016)
+                {
+                    cout << "So you think you know the future?" << endl;
+                }
             }
-            while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
+            while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth) || (atoi(deathInput.c_str()) > 2016));
             death = atoi(deathInput.c_str());
         }
     cout << endl;
