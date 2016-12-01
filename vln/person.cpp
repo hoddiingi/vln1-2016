@@ -21,30 +21,37 @@ string Person::getName() const
 {
     return _name;
 }
-char Person::getGender() const
-{
-    return _gender;
-}
-int Person::getBirth() const
-{
-    return _birth;
-}
-int Person::getDeath() const
-{
-    return _death;
-}
+
 void Person::setName(string name)
 {
     _name = name;
 }
+
+char Person::getGender() const
+{
+    return _gender;
+}
+
 void Person::setGender(char gender)
 {
     _gender = gender;
 }
+
+int Person::getBirth() const
+{
+    return _birth;
+}
+
 void Person::setBirth(int birth)
 {
     _birth = birth;
 }
+
+int Person::getDeath() const
+{
+    return _death;
+}
+
 void Person::setDeath(int death)
 {
     _death = death;

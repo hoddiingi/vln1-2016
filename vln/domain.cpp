@@ -10,21 +10,20 @@ using namespace std;
 
 struct genderComparison
 {
-  bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
+    bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
 };
 
-
-struct compareAge {
-  bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
+struct compareAge
+{
+    bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
 };
 
-struct compareName {
-
-  bool operator() (Person i,Person j)
-  {
+struct compareName
+{
+    bool operator() (Person i,Person j)
+    {
       return (i.getName()<j.getName());
-  }
-
+    }
 };
 
 Domain::Domain()
@@ -73,4 +72,3 @@ void Domain::ageSort()
         cout << endl;
     }
 }
-
