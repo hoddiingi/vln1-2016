@@ -30,89 +30,38 @@ void Console::getInfo()
 
     do
     {
+        cout << "--------------------------------------------" << endl;
+        cout << "Please enter one of the following commands: " << endl;
+        cout << "Add - for adding scientist to the list" << endl;
+        cout << "View - for viewing the whole list" << endl;
+        cout << "Search - for searching for names in the list" << endl;
+        cout << "Sort - for sorting" << endl;
+        cout << "Exit - quits" << endl;
+        cout << "--------------------------------------------" << endl;
 
-    cout << "--------------------------------------------" << endl;
-    cout << "Please enter one of the following commands: " << endl;
-    cout << "Add - for adding scientist to the list" << endl;
-    cout << "View - for viewing the whole list" << endl;
-    cout << "Search - for searching for names in the list" << endl;
-    cout << "Sort - for sorting" << endl;
-    cout << "Exit - quits" << endl;
-    cout << "--------------------------------------------" << endl;
+        cin >> command;
 
-    cin >> command;
-
-    if ((command == "Add") || (command == "add"))
-    {
-        do{
-            std::string name;
-            char gender;
-            int birth;
-            int death = 0;
-            string birthInput;
-            string deathInput;
-            char status;
-
-            cout << "Enter name of scientist: ";
-            cin.ignore();
-            std::getline(std::cin, name);
-            do{
-                cout << "Gender (f/m): ";
-                cin >> gender;
-                if(!(gender == 'm') && !(gender == 'f'))
-                    cout << "Invalid input!" <<endl;
-            }
-            while((gender != 'f') && (gender != 'm'));
-            do{
-                cout << "Enter year of birth: ";
-                cin >> birthInput;
-                if(!validYear(birthInput))
-                {
-                    cout << "Invalid input!" <<endl;
-                }
-            }
-            while(!validYear(birthInput));
-            birth = atoi(birthInput.c_str());
-            cout << "Is the person alive? (Y/N): ";
-            cin >> status;
-            if(status == 'N' || status == 'n')
-            {
-                do{
-                    cout << "Enter year of death : ";
-                    cin >> deathInput;
-                    if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
-                    {
-                        cout << "Invalid input!" <<endl;
-                    }
-                }
-                while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
-                death = atoi(deathInput.c_str());
-            }
-            cout << endl;
-
-            Person newData(name, gender, birth, death);
-            _dat.writeData(newData);
-            cout << "Add another? (Y/N): ";
-            cin >> anotherOne;
+        if ((command == "Add") || (command == "add"))
+        {
+            add(anotherOne);
         }
-        while(anotherOne == 'y' || anotherOne == 'Y');
 
+        else if ((command == "View") || (command == "view"))
+        {
+             _pers = _dat.readData();
+             display();
+        }
 
-    }
-    else if ((command == "View") || (command == "view"))
-    {
-         _pers = _dat.readData();
-         display();
-    }
-    else if ((command == "Search") || (command == "search"))
-    {
+        else if ((command == "Search") || (command == "search"))
+        {
 
-    }
-    else if ((command == "Sort") || (command == "sort"))
-    {
-        int sortType = getSort();
-        _dom.sorting(sortType);
-    }
+        }
+
+        else if ((command == "Sort") || (command == "sort"))
+        {
+            int sortType = getSort();
+            _dom.sorting(sortType);
+        }
 
     }while((command != "Exit") && (command != "exit"));
 }
@@ -144,4 +93,86 @@ void Console::display()
             cout << _pers[i].getDeath() << endl;
         cout << endl;
     }
+}
+
+void Console::addName(std::string& name)
+{
+    cout << "Enter name of scientist: ";
+    cin.ignore();
+    std::getline(std::cin, name);
+}
+
+void Console::addGender(char& gender)
+{
+    do
+    {
+        cout << "Gender (f/m): ";
+        cin >> gender;
+        if(!(gender == 'm') && !(gender == 'f'))
+            cout << "Invalid input!" <<endl;
+    }while((gender != 'f') && (gender != 'm'));
+}
+
+void Console::addBirth(int& birth)
+{
+    string birthInput;
+    do{
+        cout << "Enter year of birth: ";
+        cin >> birthInput;
+        if(!validYear(birthInput))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }
+    while(!validYear(birthInput));
+    birth = atoi(birthInput.c_str());
+}
+
+void Console::addDeath(int& death, int& birth)
+{
+    string deathInput;
+    char status;
+    cout << "Is the person alive? (Y/N): ";
+    cin >> status;
+    if(status == 'N' || status == 'n')
+    {
+        do{
+            cout << "Enter year of death : ";
+            cin >> deathInput;
+            if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
+            {
+                cout << "Invalid input!" <<endl;
+            }
+        }
+        while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
+        death = atoi(deathInput.c_str());
+    }
+    cout << endl;
+}
+
+void Console::addAnother(char& anotherOne)
+{
+
+    cout << "Add another? (Y/N): ";
+    cin >> anotherOne;
+}
+
+void Console::add(char& anotherOne)
+{
+    do{
+        std::string name;
+        char gender;
+        int birth = 0;
+        int death = 0;
+
+        addName(name);
+        addGender(gender);
+        addBirth(birth);
+        addDeath(death, birth);
+        addAnother(anotherOne);
+
+        Person newData(name, gender, birth, death);
+        _dat.writeData(newData);
+
+    }while(anotherOne == 'y' || anotherOne == 'Y');
 }

@@ -11,6 +11,8 @@ Domain::Domain()
 
 void Domain::sorting(int sort)
 {
+
+
     if(sort == 1)
     {
         cout << "alphabetic";
@@ -25,3 +27,17 @@ void Domain::sorting(int sort)
     }
 }
 
+void Domain::alphabeticSort()
+{
+
+}
+
+void genderSort()
+{
+
+}
+
+void ageSort()
+{
+    //std::sort (_persSort.begin(), myvector.end(), myobject);
+}
