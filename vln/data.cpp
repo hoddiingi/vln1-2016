@@ -1,6 +1,3 @@
-#include "data.h"
-//#include "console.h"
-//#include "person.h"
 #include "person.h"
 #include "data.h"
 #include <fstream>

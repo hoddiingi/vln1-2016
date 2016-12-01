@@ -39,5 +39,5 @@ void genderSort()
 
 void ageSort()
 {
-
+    //std::sort (_persSort.begin(), myvector.end(), myobject);
 }

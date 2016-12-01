@@ -44,13 +44,6 @@ void Console::getInfo()
 
     if ((command == "Add") || (command == "add"))
     {
-        string name;
-        char gender;
-        int birth;
-        int death = 0;
-        string birthInput;
-        string deathInput;
-
         do{
             std::string name;
             char gender;
