@@ -7,6 +7,8 @@ class Domain
 public:
     Domain();
     void sorting(int sort);
+    void alphabeticSort();
+
 
 private:
 };
