@@ -1,7 +1,9 @@
 #ifndef DOMAIN_H
 #define DOMAIN_H
 #include <vector>
-#include "person.h"
+#include "data.h"
+
+
 
 class Domain
 {
