@@ -40,6 +40,8 @@ public:
     //ask the user if he/she wants to add another scientist
     string searchName();
     //ask the user for a name to search for in the file
+    vector<Person> getVector();
+    void displaySearch();
 
 private:
     //Member variables
