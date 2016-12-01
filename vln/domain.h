@@ -2,6 +2,7 @@
 #define DOMAIN_H
 #include <vector>
 #include "data.h"
+#include "person.h"
 
 class Domain
 {
@@ -23,6 +24,7 @@ private:
     //Overload the operator < for ageSorting
     friend bool operator < (const Person& lsh, const Person& rhs);
     //Orverload the operator < for alphabeticSort
+    int findAge(Person& lhs,Person& rhs) const;
 
 };
 

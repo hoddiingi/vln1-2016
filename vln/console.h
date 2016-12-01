@@ -2,6 +2,7 @@
 #define CONSOLE_H
 #include "domain.h"
 #include "data.h"
+#include "person.h"
 #include <iostream>
 #include <vector>
 #include "person.h"

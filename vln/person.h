@@ -14,8 +14,9 @@ public:
     string getName() const;
     char getGender() const;
     int getBirth() const;
-    int getNameSize();
     int getDeath() const;
+    int getNameSize();
+
     //Gets private member variables
 
 private:
@@ -24,6 +25,7 @@ private:
     char _gender;
     int _birth;
     int _death;
+
 };
 
 #endif // PERSON_H
