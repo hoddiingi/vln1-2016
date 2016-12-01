@@ -52,7 +52,6 @@ void Console::getInfo()
         else if ((command == "Sort") || (command == "sort"))
         {
             int sortType = getSort();
-            _dom.sorting(sortType);
             displaySort(sortType);
         }
 
@@ -62,11 +61,11 @@ void Console::getInfo()
 int Console::getSort()
 {
     int sort;
-
+    cout << endl;
     cout << "Please enter one of the following commands: " << endl;
-    cout << "1 - for alphabetical order" << endl;
-    cout << "2 - sort by gender" << endl;
-    cout << "3 - sort by age (youngest to oldest)" << endl;
+    cout << "-------------------------------------------" << endl;
+    cout << "1 - sort by alphabetical order" << endl;
+    cout << "2 - sort by birthyear" << endl;
     cin >> sort;
 
     return sort;
@@ -92,17 +91,36 @@ void Console::displaySort(int& sort)
 
 void Console::display()
 {
+    cout << "Name" << "\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        cout << "Name: " << _pers[i].getName() << endl;
-        cout << "Gender: " << _pers[i].getGender() << endl;
-        cout << "Born: " << _pers[i].getBirth() << endl;
-        cout << "Died: ";
+        cout << _pers[i].getName() << "\t";
+        cout << _pers[i].getGender() << "\t";
+        cout <<_pers[i].getBirth() << "\t";
+        if(_pers[i].getDeath() == 0)
+        {
+            cout << "N/A" << endl;
+        }
+        else
+        {
+            cout << _pers[i].getDeath() << endl;
+            cout << endl;
+        }
+
+
+
+
+
+
+
+        /*cout << _pers[i].getGender() << endl;
+        cout << _pers[i].getBirth() << endl;
+
         if(_pers[i].getDeath() == 0)
             cout << "N/A" << endl;
         else
             cout << _pers[i].getDeath() << endl;
-        cout << endl;
+        cout << endl;*/
     }
 }
 

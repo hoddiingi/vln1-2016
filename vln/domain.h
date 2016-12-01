@@ -9,7 +9,6 @@ class Domain
 {
 public:
     Domain();
-    void sorting(int sort);
     vector<Person> alphabeticSort();
     void genderSort();
     void ageSort();

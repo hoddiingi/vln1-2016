@@ -14,22 +14,6 @@ Domain::Domain()
 
 }
 
-void Domain::sorting(int sort)
-{
-    if(sort == 1)
-    {
-        cout << "alphabetic" << endl;
-    }
-    else if(sort == 2)
-    {
-        cout << "gender" << endl;
-    }
-    else if(sort == 3)
-    {
-        cout << "age" << endl;
-    }
-}
-
 bool agePerson (const Person& lsh, const Person& rhs)
 {
     return (lsh.getBirth() < rhs.getBirth());
