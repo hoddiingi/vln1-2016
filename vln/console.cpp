@@ -46,9 +46,12 @@ void Console::getInfo()
         int death = 0;
         string birthInput;
         string deathInput;
+        char status;
 
         cout << "Enter name of scientist: ";
-        cin >> name;
+        cin >> ws;
+        getline(cin,name);
+
         do{
             cout << "Gender (f/m): ";
             cin >> gender;
@@ -64,19 +67,32 @@ void Console::getInfo()
                 cout << "Invalid input!" <<endl;
             }
         }
+
+
         while(!validYear(birthInput));
+        {
         birth = atoi(birthInput.c_str());
-        do{
-            cout << "Enter year of death, if N/A input 0: ";
-            cin >> deathInput;
-            if((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"))
-            {
-                cout << "Invalid input!" <<endl;
-            }
+        cout << "Is the scientist alive? (Y/N)";
+        cin >> status;
         }
-        while((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"));
+
+        if (status == 'N' || status == 'n')
+        {
+            do{
+                cout << "Enter year of death: ";
+                cin >> deathInput;
+                if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
+                {
+                    cout << "Invalid input!" <<endl;
+                }
+            }while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
+
+        }
+
         death = atoi(deathInput.c_str());
         cout << endl;
+
+
 
         Person newData(name, gender, birth, death);
         dat.writeData(newData);
