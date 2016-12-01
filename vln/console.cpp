@@ -51,6 +51,7 @@ void Console::getInfo()
 
         else if ((command == "Sort") || (command == "sort"))
         {
+            _pers = _dat.readData();
             int sortType = getSort();
             displaySort(sortType);
         }
@@ -79,6 +80,8 @@ int Console::getSort()
 
 void Console::displaySort(int& sort)
 {
+    _dat.readData();
+
     if(sort == 1)
     {
         _dom.alphabeticSort(_pers);
@@ -93,12 +96,37 @@ void Console::displaySort(int& sort)
 
 void Console::display()
 {
-    cout << "Name" << "\t\t\t\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
+    cout << endl;
+    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        cout << _pers[i].getName() << "\t\t\t";
+        //int nameSize = _p.getNameSize();
+        int nameSize = _pers[i].getNameSize();
+
+        if (nameSize >= 0 && nameSize <= 7)
+        {
+            cout << _pers[i].getName() << "\t\t\t\t";
+        }
+        else if (nameSize >= 8  && nameSize <= 15)
+        {
+            cout << _pers[i].getName() << "\t\t\t";
+        }
+        else if (nameSize >= 16  && nameSize <= 23)
+        {
+            cout << _pers[i].getName() << "\t\t";
+        }
+        else if (nameSize >= 24  && nameSize <= 31)
+        {
+            cout << _pers[i].getName() << "\t";
+        }
+
+        if (_pers[i].getGender() == 'm')
+            cout << "Male" << "\t";
+        else if (_pers[i].getGender() == 'f')
+            cout << "Female" << "\t";
+
         cout << _pers[i].getGender() << "\t";
-        cout <<_pers[i].getBirth() << "\t";
+
         if(_pers[i].getDeath() == 0)
         {
             cout << "N/A" << endl;
@@ -106,7 +134,6 @@ void Console::display()
         else
         {
             cout << _pers[i].getDeath() << endl;
-            cout << endl;
         }
     }
 }
@@ -159,7 +186,7 @@ void Console::addGender(char& gender)
         cout << "Gender (f/m): ";
         cin >> gender;
         if(!(gender == 'm') && !(gender == 'f'))
-            cout << "Invalid input!" <<endl;
+            cout << "Invalid input!" << endl;
     }while((gender != 'f') && (gender != 'm'));
 }
 
@@ -173,8 +200,13 @@ void Console::addBirth(int& birth)
         {
             cout << "Invalid input!" <<endl;
         }
+        else if (atoi(birthInput.c_str()) > 2016)
+        {
+            cout << "The scientist is not born yet.." << endl;
+        }
+
     }
-    while(!validYear(birthInput));
+    while(!validYear(birthInput) || atoi(birthInput.c_str()) > 2016);
     birth = atoi(birthInput.c_str());
 }
 
