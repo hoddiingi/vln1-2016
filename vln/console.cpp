@@ -86,10 +86,7 @@ void Console::displaySort(int& sort)
     }
     else if (sort == 3)
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> 70ee6146ac74b59e0eb91d5f5afbbe74a98f8455
     }
 }
 
