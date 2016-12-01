@@ -61,13 +61,19 @@ void Console::getInfo()
 int Console::getSort()
 {
     int sort;
-    cout << endl;
-    cout << "Please enter one of the following commands: " << endl;
-    cout << "-------------------------------------------" << endl;
-    cout << "1 - sort by alphabetical order" << endl;
-    cout << "2 - sort by birthyear" << endl;
-    cin >> sort;
-
+    string sortInput;
+    do
+    {
+        cout << endl;
+        cout << "Please enter one of the following commands: " << endl;
+        cout << "-------------------------------------------" << endl;
+        cout << "1 - sort by alphabetical order" << endl;
+        cout << "2 - sort by year of birth" << endl;
+        cin >> sortInput;
+        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
+            cout << "Invalid input" << endl;
+    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2);
+    sort = atoi(sortInput.c_str());
     return sort;
 }
 
@@ -82,10 +88,6 @@ void Console::displaySort(int& sort)
     {
         _dom.ageSorting(_pers);
         display();
-    }
-    else if (sort == 3)
-    {
-
     }
 }
 
