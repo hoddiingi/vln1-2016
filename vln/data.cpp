@@ -38,19 +38,19 @@ vector<Person> Data::readData()
 
     ifstream in;
     in.open("text.txt");
-    if (in.fail())
+/*    if (in.fail())
     {
         exit(1);
     }
 
     else
-    {
+    {*/
         while(in >> name >> gender >> birth >> death)
         {
             Person temp(name, gender, birth, death);
             vect.push_back(temp);
         }
-    }
+    //}
     in.close();
     return vect;
 }

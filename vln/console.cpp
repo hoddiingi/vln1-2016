@@ -25,7 +25,7 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    _dat.readData();
+    _pers = _dat.readData();
     string command;
     char anotherOne;
 
@@ -76,7 +76,16 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
-        _dom.alphabeticSort();
+        _dom.alphabeticSort(_pers);
+        display();
+    }
+    else if (sort == 2)
+    {
+        _dom.ageSorting(_pers);
+        display();
+    }
+    else if (sort == 3)
+    {
     }
 }
 

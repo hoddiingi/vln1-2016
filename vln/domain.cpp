@@ -5,26 +5,9 @@
 #include <vector>
 #include "data.h"
 #include "person.h"
+#include "console.h"
 
 using namespace std;
-
-struct genderComparison
-{
-    bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
-};
-
-struct compareAge
-{
-    bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
-};
-
-struct compareName
-{
-    bool operator() (Person i,Person j)
-    {
-      return (i.getName()<j.getName());
-    }
-};
 
 Domain::Domain()
 {
@@ -47,28 +30,24 @@ void Domain::sorting(int sort)
     }
 }
 
-vector<Person> Domain::alphabeticSort()
+bool agePerson (const Person& lsh, const Person& rhs)
 {
-    compareName cn;
-    std::sort(_persSort.begin(), _persSort.end(), cn);
-    return _persSort;
+    return (lsh.getBirth() < rhs.getBirth());
 }
 
-void Domain::genderSort()
+void Domain::ageSorting(vector<Person> &ageSort)
 {
-    genderComparison cmp;
-    std::sort (_persSort.begin(), _persSort.end(), cmp);
-
+    std::sort(ageSort.begin(), ageSort.end(), agePerson);
 }
 
-void Domain::ageSort()
+bool nameAlpha (const Person& lhs, const Person& rhs)
 {
-    compareAge cmp;
-    std::sort (_persSort.begin(), _persSort.end(), cmp);
+    return (lhs.getName() < rhs.getName());
+}
 
-    for(unsigned int i = 0; i < _persSort.size(); i++)
-    {
-        cout << "Born: " << _persSort[i].getBirth() << endl;
-        cout << endl;
-    }
+void Domain::alphabeticSort(vector<Person> &alphaSort)
+{
+    std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
+    Console c;
+    c.display();
 }
