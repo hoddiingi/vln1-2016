@@ -1,8 +1,6 @@
 #include "domain.h"
-#include <vector>
-#include "person.h"
 #include <iostream>
-#include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,12 +9,19 @@ Domain::Domain()
 
 }
 
-vector<Person> Domain::readData()
+void Domain::sorting(int sort)
 {
-    vector<Person> returnData;
-    //returnData[Person::getBirth()]
-    //returnData.push_back(Person::getBirth())
-
-   return returnData;
+    if(sort == 1)
+    {
+        cout << "alphabetic";
+    }
+    else if(sort == 2)
+    {
+        cout << "gender";
+    }
+    else if(sort == 3)
+    {
+        cout << "age";
+    }
 }
 

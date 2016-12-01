@@ -1,7 +1,5 @@
-#include "data.h"
-#include "console.h"
 #include "person.h"
-#include "console.h"
+#include "data.h"
 #include <fstream>
 #include <vector>
 #include <iostream>
@@ -12,7 +10,7 @@ using namespace std;
 
 Data::Data()
 {
-
+    _persons = readData();
 }
 
 void Data::writeData(Person p)
@@ -40,7 +38,7 @@ vector<Person> Data::readData()
     in.open("text.txt");
     if (in.fail())
     {
-        cout << "Failed to open!";
+        cout << "Failed to open!" << endl;
     }
     else
     {
