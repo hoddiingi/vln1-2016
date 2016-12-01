@@ -14,10 +14,12 @@ public:
     void getInfo();
     int getSort();
     bool validYear(string s);
+    void display();
 
 private:
     Data _dat;
     Domain _dom;
+    vector<Person> _pers;
 };
 
 #endif // CONSOLE_H
