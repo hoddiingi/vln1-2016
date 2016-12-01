@@ -37,3 +37,7 @@ int Person::getDeath() const
     return _death;
 }
 
+int Person::getNameSize()
+{
+    return _name.size();
+}
