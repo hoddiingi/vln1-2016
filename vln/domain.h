@@ -1,6 +1,7 @@
 #ifndef DOMAIN_H
 #define DOMAIN_H
 #include <vector>
+#include "person.h"
 
 class Domain
 {
@@ -13,6 +14,7 @@ public:
 
 
 private:
+    vector<Person> _persSort;
 };
 
 #endif // DOMAIN_H
