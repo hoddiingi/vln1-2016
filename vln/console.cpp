@@ -106,6 +106,7 @@ void Console::display()
             cout << _pers[i].getDeath() << endl;
             cout << endl;
         }
+        //cout << _pers[i].getNameSize();
     }
 }
 

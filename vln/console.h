@@ -2,6 +2,7 @@
 #define CONSOLE_H
 #include "domain.h"
 #include "data.h"
+#include "person.h"
 #include <iostream>
 #include <vector>
 
@@ -28,6 +29,7 @@ private:
     Data _dat;
     Domain _dom;
     vector<Person> _pers;
+    Person _p;
 };
 
 #endif // CONSOLE_H

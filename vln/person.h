@@ -17,6 +17,7 @@ public:
     void setBirth(int birth);
     int getDeath() const;
     void setDeath(int death);
+    int getNameSize();
 
 private:
     string _name;

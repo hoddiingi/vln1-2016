@@ -56,3 +56,8 @@ void Person::setDeath(int death)
 {
     _death = death;
 }
+
+int Person::getNameSize()
+{
+    return _name.size();
+}
