@@ -48,16 +48,12 @@ void Console::getInfo()
         {
 
         }
-    else if ((command == "Sort") || (command == "sort"))
-    {
-        int sortType = getSort();
-        _dom.sorting(sortType);
-        displaySort(sortType);
-    }
+
         else if ((command == "Sort") || (command == "sort"))
         {
             int sortType = getSort();
             _dom.sorting(sortType);
+            displaySort(sortType);
         }
 
     }while((command != "Exit") && (command != "exit"));
@@ -80,6 +76,7 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
+<<<<<<< HEAD
         _dom.alphabeticSort(_pers);
         display();
     }
@@ -90,6 +87,9 @@ void Console::displaySort(int& sort)
     else if (sort == 3)
     {
 
+=======
+        _dom.alphabeticSort();
+>>>>>>> 6424bf76461b588aa15549c7ff23531a838b98fa
     }
 }
 
@@ -121,6 +121,26 @@ void Console::menu(string& command)
     cout << "--------------------------------------------" << endl;
 
     cin >> command;
+}
+
+void Console::add(char& anotherOne)
+{
+    do{
+        std::string name;
+        char gender;
+        int birth = 0;
+        int death = 0;
+
+        addName(name);
+        addGender(gender);
+        addBirth(birth);
+        addDeath(death, birth);
+        addAnother(anotherOne);
+
+        Person newData(name, gender, birth, death);
+        _dat.writeData(newData);
+
+    }while(anotherOne == 'y' || anotherOne == 'Y');
 }
 
 void Console::addName(std::string& name)
@@ -180,27 +200,6 @@ void Console::addDeath(int& death, int& birth)
 
 void Console::addAnother(char& anotherOne)
 {
-
     cout << "Add another? (Y/N): ";
     cin >> anotherOne;
-}
-
-void Console::add(char& anotherOne)
-{
-    do{
-        std::string name;
-        char gender;
-        int birth = 0;
-        int death = 0;
-
-        addName(name);
-        addGender(gender);
-        addBirth(birth);
-        addDeath(death, birth);
-        addAnother(anotherOne);
-
-        Person newData(name, gender, birth, death);
-        _dat.writeData(newData);
-
-    }while(anotherOne == 'y' || anotherOne == 'Y');
 }
