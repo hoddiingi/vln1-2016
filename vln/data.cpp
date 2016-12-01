@@ -44,6 +44,8 @@ vector<Person> Data::readData()
     {
         while(in >> name >> gender >> birth >> death)
         {
+            cout << "her!! :";
+            //if (getline(std::cin,name)){}
             Person temp(name, gender, birth, death);
             vect.push_back(temp);
         }
