@@ -30,4 +30,26 @@ void Domain::alphabeticSort(vector<Person> &alphaSort)
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
 
+int Domain::findAge(Person& lhs,Person& rhs) const
+{
+    int x;
+    int y;
+    int result;
+    x = lhs.getDeath();
+    y = rhs.getBirth();
+    result = x - y;
+    return result;
+}
+Person Domain::search(vector<Person>& p, string name)
+{
+    Person p1;
 
+    for(unsigned int i = 0; i < p.size(); i++)
+    {
+        if(name == p[i].getName())
+        {
+            return p[i];
+        }
+    }
+    return p1;
+}

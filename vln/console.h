@@ -2,6 +2,7 @@
 #define CONSOLE_H
 #include "domain.h"
 #include "data.h"
+#include "person.h"
 #include <iostream>
 #include <vector>
 #include "person.h"
@@ -39,6 +40,8 @@ public:
     //ask the user if he/she wants to add another scientist
     string searchName();
     //ask the user for a name to search for in the file
+    vector<Person> getVector();
+    void displaySearch();
 
 private:
     //Member variables
