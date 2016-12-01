@@ -16,6 +16,7 @@ public:
     bool validYear(string s);
     void display();
     void menu(string& command);
+    void displaySort(int& sort);
     void addName(string& name);
     void addGender(char& gender);
     void addBirth(int& birth);
