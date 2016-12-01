@@ -5,18 +5,18 @@
 #include <vector>
 #include "data.h"
 #include "person.h"
+#include "console.h"
 
 using namespace std;
 
-struct genderComparison
-{
+/*struct compareGender{
   bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
 };
-
 
 struct compareAge {
   bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
 };
+*/
 
 Domain::Domain()
 {
@@ -27,7 +27,7 @@ void Domain::sorting(int sort)
 {
     if(sort == 1)
     {
-        cout << "alphabetic" << endl;
+        cout << "ANTONalphabetic" << endl;
     }
     else if(sort == 2)
     {
@@ -39,15 +39,23 @@ void Domain::sorting(int sort)
     }
 }
 
-void Domain::alphabeticSort()
+bool nameAlpha (const Person& lhs, const Person& rhs)
 {
-
+    return (lhs.getName() < rhs.getName());
 }
 
-void Domain::genderSort()
+void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
-    genderComparison cmp;
-    std::sort (_persSort.begin(), _persSort.end(), cmp);
+    std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
+    Console c;
+    c.display();
+}
+
+/*vector<Person> Domain::genderSort()
+{
+    compareGender cg;
+    std::sort (_persSort.begin(), _persSort.end(), cg);
+    return _persSort;
 
 }
 
@@ -62,4 +70,4 @@ void Domain::ageSort()
         cout << endl;
     }
 }
-
+*/
