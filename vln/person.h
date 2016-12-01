@@ -8,6 +8,7 @@ class Person
 {
 public:
     Person();
+    //Default constructor
     Person(string name, char gender, int birth, int death);
     string getName() const;
     void setName(string name);
@@ -19,6 +20,7 @@ public:
     void setDeath(int death);
 
 private:
+    //Member variables
     string _name;
     char _gender;
     int _birth;

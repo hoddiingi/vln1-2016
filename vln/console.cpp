@@ -83,19 +83,6 @@ void Console::displaySort(int& sort)
         _dom.ageSorting(_pers);
         display();
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 17fff90abc92633d3b59e6ddc1a99e0614ab7e47
-    else if (sort == 3)
-    {
-
-    }
-<<<<<<< HEAD
-=======
->>>>>>> b00128c39686a15afdedad01ec4befab2af3366d
-=======
->>>>>>> 17fff90abc92633d3b59e6ddc1a99e0614ab7e47
 }
 
 void Console::display()

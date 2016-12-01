@@ -11,6 +11,7 @@ class Console
 {
 public:
     Console();
+    //Default constructor
     bool validYear(string s);
     void getInfo();
     int getSort();
@@ -25,6 +26,7 @@ public:
     void addAnother(char& anotherOne);
 
 private:
+    //Member variables
     Data _dat;
     Domain _dom;
     vector<Person> _pers;

@@ -7,8 +7,6 @@
 
 using namespace std;
 
-//read write file
-
 Data::Data()
 {
     _persons = readData();
@@ -41,7 +39,6 @@ vector<Person> Data::readData()
     {
         cout << "Fail";
     }
-
     else
     {
         while(getline(in, name))
