@@ -15,6 +15,12 @@ public:
     int getSort();
     bool validYear(string s);
     void display();
+    void addName(string& name);
+    void addGender(char& gender);
+    void addBirth(int& birth);
+    void addDeath(int& death, int& birth);
+    void addAnother(char& anotherOne);
+    void add(char& anotherOne);
 
 private:
     Data _dat;
