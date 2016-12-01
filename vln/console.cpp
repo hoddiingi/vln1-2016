@@ -96,7 +96,8 @@ void Console::displaySort(int& sort)
 
 void Console::display()
 {
-    cout << "Name" << "\t\t\t\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
+    cout << endl;
+    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
         //int nameSize = _p.getNameSize();
