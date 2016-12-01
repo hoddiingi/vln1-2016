@@ -72,7 +72,7 @@ int Console::getSort()
         cout << "2 - sort by year of birth" << endl;
         cin >> sortInput;
         if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
-            cout << "Invalid input" << endl;
+            cout << "Invalid input!" << endl;
     }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2);
     sort = atoi(sortInput.c_str());
     return sort;

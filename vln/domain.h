@@ -13,7 +13,7 @@ public:
     //vector<Person> &ageSort - go trough the vector and check age
     void alphabeticSort(vector<Person> &alphaSort);
     //Sort by name
-    //vector<Person> &alphaSort - go trough the vector and check age
+    //vector<Person> &alphaSort - go trough the vector and check name
     void search();
 
 private:
