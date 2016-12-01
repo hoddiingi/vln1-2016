@@ -12,7 +12,6 @@ public:
     void genderSort();
     void ageSort();
 
-
 private:
     vector<Person> _persSort;
 };

@@ -44,21 +44,6 @@ void Console::getInfo()
 
     if ((command == "Add") || (command == "add"))
     {
-<<<<<<< HEAD
-        string name;
-        char gender;
-        int birth;
-        int death = 0;
-        string birthInput;
-        string deathInput;
-        char status;
-
-        cout << "Enter name of scientist: ";
-        cin >> ws;
-        getline(cin,name);
-
-=======
->>>>>>> 2ee6c48899b97e7de3f19d76447e2c9b2eb9c099
         do{
             std::string name;
             char gender;
@@ -77,38 +62,6 @@ void Console::getInfo()
                 if(!(gender == 'm') && !(gender == 'f'))
                     cout << "Invalid input!" <<endl;
             }
-<<<<<<< HEAD
-        }
-
-
-        while(!validYear(birthInput));
-        {
-        birth = atoi(birthInput.c_str());
-        cout << "Is the scientist alive? (Y/N)";
-        cin >> status;
-        }
-
-        if (status == 'N' || status == 'n')
-        {
-            do{
-                cout << "Enter year of death: ";
-                cin >> deathInput;
-                if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
-                {
-                    cout << "Invalid input!" <<endl;
-                }
-            }while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
-
-        }
-
-        death = atoi(deathInput.c_str());
-        cout << endl;
-
-
-
-        Person newData(name, gender, birth, death);
-        dat.writeData(newData);
-=======
             while((gender != 'f') && (gender != 'm'));
             do{
                 cout << "Enter year of birth: ";
@@ -144,7 +97,6 @@ void Console::getInfo()
         }
         while(anotherOne == 'y' || anotherOne == 'Y');
 
->>>>>>> 2ee6c48899b97e7de3f19d76447e2c9b2eb9c099
 
     }
     else if ((command == "View") || (command == "view"))
