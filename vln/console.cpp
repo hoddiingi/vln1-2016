@@ -207,7 +207,7 @@ void Console::addAnother(char& anotherOne)
 string Console::searchName()
 {
     string chosenName;
-    cout << "Who would you like to seach for? "
+    cout << "Who would you like to seach for? ";
     cin >> chosenName;
     return chosenName;
 }

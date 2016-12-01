@@ -35,13 +35,3 @@ void Domain::alphabeticSort(vector<Person> &alphaSort)
     Console c;
     c.display();
 }
-
-void Domain::search()
-{
-    Console c;
-    for(unsigned int i = 0; i < _persSort.size(); i++)
-    {
-        if(c.searchName() == c.getInfo()[i])
-
-    }
-}

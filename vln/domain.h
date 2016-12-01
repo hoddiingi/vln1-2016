@@ -18,7 +18,6 @@ public:
 
 private:
     vector<Person> _persSort;
-    Console _console;
     friend bool operator < (const Person& lsh, const Person& rhs);
     friend bool operator < (const Person& lsh, const Person& rhs);
 
