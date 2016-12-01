@@ -87,10 +87,10 @@ void Console::displaySort(int& sort)
 
 void Console::display()
 {
-    cout << "Name" << "\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
+    cout << "Name" << "\t\t\t\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        cout << _pers[i].getName() << "\t";
+        cout << _pers[i].getName() << "\t\t\t";
         cout << _pers[i].getGender() << "\t";
         cout <<_pers[i].getBirth() << "\t";
         if(_pers[i].getDeath() == 0)
