@@ -9,33 +9,6 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-/*struct compareGender{
-  bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
-};
-
-struct compareAge {
-  bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
-=======
-struct genderComparison
-{
-    bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
-};
-
-struct compareAge
-{
-    bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
-};
-
-struct compareName
-{
-    bool operator() (Person i,Person j)
-    {
-      return (i.getName()<j.getName());
-    }
->>>>>>> 6424bf76461b588aa15549c7ff23531a838b98fa
-};
-*/
 
 Domain::Domain()
 {
@@ -46,7 +19,7 @@ void Domain::sorting(int sort)
 {
     if(sort == 1)
     {
-        cout << "ANTONalphabetic" << endl;
+        cout << "alphabetic" << endl;
     }
     else if(sort == 2)
     {
@@ -58,7 +31,6 @@ void Domain::sorting(int sort)
     }
 }
 
-<<<<<<< HEAD
 bool nameAlpha (const Person& lhs, const Person& rhs)
 {
     return (lhs.getName() < rhs.getName());
@@ -67,37 +39,16 @@ bool nameAlpha (const Person& lhs, const Person& rhs)
 void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
-    Console c;
-    c.display();
-=======
-vector<Person> Domain::alphabeticSort()
-{
-    compareName cn;
-    std::sort(_persSort.begin(), _persSort.end(), cn);
-    return _persSort;
->>>>>>> 6424bf76461b588aa15549c7ff23531a838b98fa
 }
 
-/*vector<Person> Domain::genderSort()
+bool  (const Person& lhs, const Person& rhs)
 {
-    compareGender cg;
-    std::sort (_persSort.begin(), _persSort.end(), cg);
-    return _persSort;
-
+    return (lhs.getName() < rhs.getName());
 }
 
-void Domain::ageSort()
+void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
-    compareAge cmp;
-    std::sort (_persSort.begin(), _persSort.end(), cmp);
-
-    for(unsigned int i = 0; i < _persSort.size(); i++)
-    {
-        cout << "Born: " << _persSort[i].getBirth() << endl;
-        cout << endl;
-    }
+    std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
-<<<<<<< HEAD
+
 */
-=======
->>>>>>> 6424bf76461b588aa15549c7ff23531a838b98fa

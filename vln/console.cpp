@@ -76,7 +76,6 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
-<<<<<<< HEAD
         _dom.alphabeticSort(_pers);
         display();
     }
@@ -87,9 +86,6 @@ void Console::displaySort(int& sort)
     else if (sort == 3)
     {
 
-=======
-        _dom.alphabeticSort();
->>>>>>> 6424bf76461b588aa15549c7ff23531a838b98fa
     }
 }
 
