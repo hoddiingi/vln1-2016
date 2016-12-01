@@ -25,7 +25,7 @@ public:
     //displays the scientists
     void menu(string& command);
     //prints out the menu and ask the user for a choice
-    void add(char& anotherOne);
+    void add(string &anotherOne);
     //adds a new scientist
     void addName(string& name);
     //adds a new scientist's name
@@ -35,7 +35,7 @@ public:
     //adds a new scientist's birth year
     void addDeath(int& death, int& birth);
     //adds a new scientist's year of death if applicable
-    void addAnother(char& anotherOne);
+    void addAnother(string& anotherOne);
     //ask the user if he/she wants to add another scientist
     string searchName();
     //ask the user for a name to search for in the file
