@@ -76,20 +76,16 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
-<<<<<<< HEAD
         _dom.alphabeticSort(_pers);
         display();
     }
     else if (sort == 2)
     {
-
+        _dom.ageSorting(_pers);
+        display();
     }
     else if (sort == 3)
     {
-
-=======
-        _dom.alphabeticSort();
->>>>>>> 6424bf76461b588aa15549c7ff23531a838b98fa
     }
 }
 
