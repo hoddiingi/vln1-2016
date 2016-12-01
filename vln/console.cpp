@@ -56,22 +56,17 @@ void Console::getInfo()
         {
 
         }
-
-<<<<<<< HEAD
-    }
     else if ((command == "Sort") || (command == "sort"))
     {
         int sortType = getSort();
         _dom.sorting(sortType);
         displaySort(sortType);
     }
-=======
         else if ((command == "Sort") || (command == "sort"))
         {
             int sortType = getSort();
             _dom.sorting(sortType);
         }
->>>>>>> e2c3dcb141946fdc315ab122bb149543bfaf3df2
 
     }while((command != "Exit") && (command != "exit"));
 }
