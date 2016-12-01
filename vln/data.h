@@ -9,10 +9,10 @@ public:
     Data();
 
     void writeData(Person p);
-    void readData(Person p);
+    vector<Person> readData();
 
 private:
-
+    vector<Person> _persons;
 };
 
 #endif // DATA_H
