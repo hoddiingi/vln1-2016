@@ -51,6 +51,7 @@ void Console::getInfo()
 
         else if ((command == "Sort") || (command == "sort"))
         {
+            _pers = _dat.readData();
             int sortType = getSort();
             displaySort(sortType);
         }
@@ -80,6 +81,7 @@ int Console::getSort()
 void Console::displaySort(int& sort)
 {
     _dat.readData();
+
     if(sort == 1)
     {
         _dom.alphabeticSort(_pers);
