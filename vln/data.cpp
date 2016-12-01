@@ -23,7 +23,6 @@ void Data::writeData(Person p)
     out << p.getGender() << endl;
     out << p.getBirth() << endl;
     out << p.getDeath() << endl;
-    //out << endl;
 
     out.close();
 }
@@ -47,7 +46,6 @@ vector<Person> Data::readData()
     {
         while(getline(in, name))
         {
-            //getline(in, name);
             getline(in, genderS);
             getline(in, birthS);
             getline(in, deathS);
