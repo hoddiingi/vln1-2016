@@ -7,8 +7,6 @@
 
 using namespace std;
 
-//read write file
-
 Data::Data()
 {
     _persons = readData();
@@ -23,7 +21,6 @@ void Data::writeData(Person p)
     out << p.getGender() << endl;
     out << p.getBirth() << endl;
     out << p.getDeath() << endl;
-    out << endl;
 
     out.close();
 }
@@ -31,26 +28,34 @@ void Data::writeData(Person p)
 vector<Person> Data::readData()
 {
     vector<Person> vect;
-    string name;
-    char gender;
+    string name, genderS, birthS, deathS;
+    const char *gender;
     int birth;
     int death;
 
     ifstream in;
     in.open("text.txt");
-/*    if (in.fail())
-    {
-        exit(1);
-    }
 
+    if (in.fail())
+    {
+        cout << "Fail";
+    }
     else
-    {*/
-        while(in >> name >> gender >> birth >> death)
+    {
+        while(getline(in, name))
         {
-            Person temp(name, gender, birth, death);
+            getline(in, genderS);
+            getline(in, birthS);
+            getline(in, deathS);
+            birth = atoi(birthS.c_str());
+            gender = (genderS.c_str());
+            death = atoi(deathS.c_str());
+            Person temp(name, *gender, birth, death);
             vect.push_back(temp);
         }
-    //}
+    }
     in.close();
     return vect;
 }
+
+
