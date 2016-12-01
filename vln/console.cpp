@@ -113,14 +113,14 @@ void Console::display()
 
 void Console::menu(string& command)
 {
-    cout << "--------------------------------------------" << endl;
-    cout << "Please enter one of the following commands: " << endl;
-    cout << "Add - for adding scientist to the list" << endl;
-    cout << "View - for viewing the whole list" << endl;
+    cout << endl << "--------------------------------------------" << endl;
+    cout << "Please enter one of the following commands: " << endl << endl;
+    cout << "Add    - for adding scientist to the list" << endl;
+    cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
-    cout << "Sort - for sorting" << endl;
-    cout << "Exit - quits" << endl;
-    cout << "--------------------------------------------" << endl;
+    cout << "Sort   - for sorting" << endl;
+    cout << "Exit   - quits" << endl;
+    cout << "--------------------------------------------" << endl << endl;
 
     cin >> command;
 }
@@ -147,7 +147,7 @@ void Console::add(char& anotherOne)
 
 void Console::addName(std::string& name)
 {
-    cout << "Enter name of scientist: ";
+    cout << endl << "Enter name of scientist: ";
     cin.ignore();
     std::getline(std::cin, name);
 }
