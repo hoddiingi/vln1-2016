@@ -9,15 +9,16 @@ class Domain
 {
 public:
     Domain();
-    void sorting(int sort);
     vector<Person> alphabeticSort();
     void genderSort();
     void ageSort();
     void alphabeticSort(vector<Person> &alphaSort);
     void ageSorting(vector<Person> &ageSort);
+    void search();
 
 private:
     vector<Person> _persSort;
+    Console _console;
     friend bool operator < (const Person& lsh, const Person& rhs);
     friend bool operator < (const Person& lsh, const Person& rhs);
 

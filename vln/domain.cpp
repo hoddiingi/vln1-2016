@@ -14,23 +14,6 @@ Domain::Domain()
 
 }
 
-void Domain::sorting(int sort)
-{
-    if(sort == 1)
-    {
-        cout << "alphabetic" << endl;
-    }
-    else if(sort == 2)
-    {
-        cout << "gender" << endl;
-    }
-    else if(sort == 3)
-    {
-        cout << "age" << endl;
-    }
-}
-
-
 bool agePerson (const Person& lsh, const Person& rhs)
 {
     return (lsh.getBirth() < rhs.getBirth());
@@ -51,4 +34,14 @@ void Domain::alphabeticSort(vector<Person> &alphaSort)
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
     Console c;
     c.display();
+}
+
+void Domain::search()
+{
+    Console c;
+    for(unsigned int i = 0; i < _persSort.size(); i++)
+    {
+        if(c.searchName() == c.getInfo()[i])
+
+    }
 }

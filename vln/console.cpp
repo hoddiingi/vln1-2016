@@ -52,7 +52,6 @@ void Console::getInfo()
         else if ((command == "Sort") || (command == "sort"))
         {
             int sortType = getSort();
-            _dom.sorting(sortType);
             displaySort(sortType);
         }
 
@@ -64,9 +63,8 @@ int Console::getSort()
     int sort;
 
     cout << "Please enter one of the following commands: " << endl;
-    cout << "1 - for alphabetical order" << endl;
-    cout << "2 - sort by gender" << endl;
-    cout << "3 - sort by age (youngest to oldest)" << endl;
+    cout << "1 - sort by alphabetical order" << endl;
+    cout << "2 - sort by birthyear" << endl;
     cin >> sort;
 
     return sort;
@@ -83,10 +81,6 @@ void Console::displaySort(int& sort)
     {
         _dom.ageSorting(_pers);
         display();
-    }
-    else if (sort == 3)
-    {
-
     }
 }
 
@@ -199,4 +193,12 @@ void Console::addAnother(char& anotherOne)
 {
     cout << "Add another? (Y/N): ";
     cin >> anotherOne;
+}
+
+string Console::searchName()
+{
+    string chosenName;
+    cout << "Who would you like to seach for? "
+    cin >> chosenName;
+    return chosenName;
 }
