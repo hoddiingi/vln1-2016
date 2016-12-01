@@ -44,7 +44,6 @@ void Console::getInfo()
 
     if ((command == "Add") || (command == "add"))
     {
-<<<<<<< HEAD
         string name;
         char gender;
         int birth;
@@ -52,14 +51,6 @@ void Console::getInfo()
         string birthInput;
         string deathInput;
 
-        cout << "Enter name of scientist: ";
-        cin >> name;
-        if(name == "Conor" || name == "conor")
-           {
-            cout << "Who the fook is that guy!" << endl;
-        }
-=======
->>>>>>> 2ee6c48899b97e7de3f19d76447e2c9b2eb9c099
         do{
             std::string name;
             char gender;
