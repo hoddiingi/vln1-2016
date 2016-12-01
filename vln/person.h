@@ -10,11 +10,12 @@ public:
     Person();
     //Default constructor
     Person(string name, char gender, int birth, int death);
+    //Gives the private member variables the value of these variables
     string getName() const;
     char getGender() const;
     int getBirth() const;
     int getDeath() const;
-
+    //Gets private member variables
 
 private:
     //Member variables
