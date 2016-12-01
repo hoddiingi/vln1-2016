@@ -51,6 +51,7 @@ void Console::getInfo()
 
         else if ((command == "Sort") || (command == "sort"))
         {
+            _pers = _dat.readData();
             int sortType = getSort();
             displaySort(sortType);
         }
@@ -80,6 +81,7 @@ int Console::getSort()
 void Console::displaySort(int& sort)
 {
     _dat.readData();
+
     if(sort == 1)
     {
         _dom.alphabeticSort(_pers);
@@ -94,7 +96,8 @@ void Console::displaySort(int& sort)
 
 void Console::display()
 {
-    cout << "Name" << "\t\t\t\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
+    cout << endl;
+    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
         //int nameSize = _p.getNameSize();
