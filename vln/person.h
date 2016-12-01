@@ -14,6 +14,8 @@ public:
     char getGender() const;
     void setGender(char gender);
     int getBirth() const;
+    int getNameSize();
+
     void setBirth(int birth);
     int getDeath() const;
     void setDeath(int death);
