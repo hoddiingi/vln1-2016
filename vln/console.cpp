@@ -83,10 +83,6 @@ void Console::displaySort(int& sort)
         _dom.ageSorting(_pers);
         display();
     }
-    else if (sort == 3)
-    {
-
-    }
 }
 
 void Console::display()

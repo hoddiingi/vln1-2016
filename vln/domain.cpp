@@ -32,6 +32,4 @@ bool nameAlpha (const Person& lhs, const Person& rhs)
 void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
-    Console c;
-    c.display();
 }
