@@ -61,13 +61,19 @@ void Console::getInfo()
 int Console::getSort()
 {
     int sort;
-    cout << endl;
-    cout << "Please enter one of the following commands: " << endl;
-    cout << "-------------------------------------------" << endl;
-    cout << "1 - sort by alphabetical order" << endl;
-    cout << "2 - sort by birthyear" << endl;
-    cin >> sort;
-
+    string sortInput;
+    do
+    {
+        cout << endl;
+        cout << "Please enter one of the following commands: " << endl;
+        cout << "-------------------------------------------" << endl;
+        cout << "1 - sort by alphabetical order" << endl;
+        cout << "2 - sort by year of birth" << endl;
+        cin >> sortInput;
+        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
+            cout << "Invalid input" << endl;
+    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2);
+    sort = atoi(sortInput.c_str());
     return sort;
 }
 
@@ -125,14 +131,14 @@ void Console::display()
 
 void Console::menu(string& command)
 {
-    cout << "-----------------------------------------------------" << endl;
-    cout << "Please enter one of the following commands: " << endl;
-    cout << "Add - for adding scientist to the list" << endl;
-    cout << "View - for viewing the whole list" << endl;
+    cout << endl << "--------------------------------------------" << endl;
+    cout << "Please enter one of the following commands: " << endl << endl;
+    cout << "Add    - for adding scientist to the list" << endl;
+    cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
-    cout << "Sort - for sorting" << endl;
-    cout << "Exit - quits" << endl;
-    cout << "-----------------------------------------------------" << endl;
+    cout << "Sort   - for sorting" << endl;
+    cout << "Exit   - quits" << endl;
+    cout << "--------------------------------------------" << endl << endl;
 
     cin >> command;
 }
@@ -159,7 +165,7 @@ void Console::add(char& anotherOne)
 
 void Console::addName(std::string& name)
 {
-    cout << "Enter name of scientist: ";
+    cout << endl << "Enter name of scientist: ";
     cin.ignore();
     std::getline(std::cin, name);
 }
@@ -216,4 +222,12 @@ void Console::addAnother(char& anotherOne)
 {
     cout << "Add another? (Y/N): ";
     cin >> anotherOne;
+}
+
+string Console::searchName()
+{
+    string chosenName;
+    cout << "Who would you like to seach for? ";
+    cin >> chosenName;
+    return chosenName;
 }
