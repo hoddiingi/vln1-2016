@@ -125,7 +125,7 @@ void Console::display()
         else if (_pers[i].getGender() == 'f')
             cout << "Female" << "\t";
 
-        cout << _pers[i].getGender() << "\t";
+        cout << _pers[i].getBirth() << "\t";
 
         if(_pers[i].getDeath() == 0)
         {
