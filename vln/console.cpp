@@ -80,7 +80,7 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
-        cout << sort << endl;
+        _dom.alphabeticSort();
     }
 }
 

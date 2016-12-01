@@ -18,6 +18,15 @@ struct compareAge {
   bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
 };
 
+struct compareName {
+
+  bool operator() (Person i,Person j)
+  {
+      return (i.getName()<j.getName());
+  }
+
+};
+
 Domain::Domain()
 {
 
@@ -39,9 +48,11 @@ void Domain::sorting(int sort)
     }
 }
 
-void Domain::alphabeticSort()
+vector<Person> Domain::alphabeticSort()
 {
-
+    compareName cn;
+    std::sort(_persSort.begin(), _persSort.end(), cn);
+    return _persSort;
 }
 
 void Domain::genderSort()
