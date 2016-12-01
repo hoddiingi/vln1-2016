@@ -15,13 +15,9 @@ public:
     char getGender() const;
     int getBirth() const;
     int getDeath() const;
-<<<<<<< HEAD
-    void setDeath(int death);
     int getNameSize();
-
-=======
     //Gets private member variables
->>>>>>> 1bdf41b375845205a3c097a3b9be4808bc1a49a3
+
 
 private:
     //Member variables
