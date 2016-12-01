@@ -79,6 +79,7 @@ int Console::getSort()
 
 void Console::displaySort(int& sort)
 {
+    _dat.readData();
     if(sort == 1)
     {
         _dom.alphabeticSort(_pers);
