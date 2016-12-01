@@ -106,21 +106,6 @@ void Console::display()
             cout << _pers[i].getDeath() << endl;
             cout << endl;
         }
-
-
-
-
-
-
-
-        /*cout << _pers[i].getGender() << endl;
-        cout << _pers[i].getBirth() << endl;
-
-        if(_pers[i].getDeath() == 0)
-            cout << "N/A" << endl;
-        else
-            cout << _pers[i].getDeath() << endl;
-        cout << endl;*/
     }
 }
 
