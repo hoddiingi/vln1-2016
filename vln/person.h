@@ -11,13 +11,10 @@ public:
     //Default constructor
     Person(string name, char gender, int birth, int death);
     string getName() const;
-    void setName(string name);
     char getGender() const;
-    void setGender(char gender);
     int getBirth() const;
-    void setBirth(int birth);
     int getDeath() const;
-    void setDeath(int death);
+
 
 private:
     //Member variables

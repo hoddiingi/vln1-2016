@@ -10,10 +10,12 @@ public:
     //Default constructor
     void ageSorting(vector<Person> &ageSort);
     //Sort by age
-    //@param vector<Person> &ageSort - go trough the vector and check age
+    //vector<Person> &ageSort - go trough the vector and check age
     void alphabeticSort(vector<Person> &alphaSort);
     //Sort by name
-    //@param vector<Person> &alphaSort - go trough the vector and check age
+    //vector<Person> &alphaSort - go trough the vector and check age
+    void search();
+
 private:
     //Member variables
     vector<Person> _persSort;

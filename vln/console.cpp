@@ -199,3 +199,11 @@ void Console::addAnother(char& anotherOne)
     cout << "Add another? (Y/N): ";
     cin >> anotherOne;
 }
+
+string Console::searchName()
+{
+    string chosenName;
+    cout << "Who would you like to seach for? ";
+    cin >> chosenName;
+    return chosenName;
+}

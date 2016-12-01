@@ -35,6 +35,7 @@ vector<Person> Data::readData()
 
     ifstream in;
     in.open("text.txt");
+
     if (in.fail())
     {
         cout << "Fail";
@@ -56,3 +57,5 @@ vector<Person> Data::readData()
     in.close();
     return vect;
 }
+
+

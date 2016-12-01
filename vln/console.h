@@ -24,6 +24,7 @@ public:
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
     void addAnother(char& anotherOne);
+    string searchName();
 
 private:
     //Member variables
