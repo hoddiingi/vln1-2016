@@ -26,6 +26,7 @@ void Console::getInfo()
 {
     _dat.readData();
     string command;
+    char anotherOne;
 
     do
     {
@@ -43,6 +44,7 @@ void Console::getInfo()
 
     if ((command == "Add") || (command == "add"))
     {
+<<<<<<< HEAD
         string name;
         char gender;
         int birth;
@@ -56,37 +58,61 @@ void Console::getInfo()
            {
             cout << "Who the fook is that guy!" << endl;
         }
+=======
+>>>>>>> 2ee6c48899b97e7de3f19d76447e2c9b2eb9c099
         do{
-            cout << "Gender (f/m): ";
-            cin >> gender;
-            if(!(gender == 'm') && !(gender == 'f'))
-                cout << "Invalid input!" <<endl;
-        }
-        while((gender != 'f') && (gender != 'm'));
-        do{
-            cout << "Enter year of birth: ";
-            cin >> birthInput;
-            if(!validYear(birthInput))
-            {
-                cout << "Invalid input!" <<endl;
-            }
-        }
-        while(!validYear(birthInput));
-        birth = atoi(birthInput.c_str());
-        do{
-            cout << "Enter year of death, if N/A input 0: ";
-            cin >> deathInput;
-            if((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"))
-            {
-                cout << "Invalid input!" <<endl;
-            }
-        }
-        while((!validYear(deathInput)) || (atoi(deathInput.c_str()) > birth) || !(deathInput == "0"));
-        death = atoi(deathInput.c_str());
-        cout << endl;
+            std::string name;
+            char gender;
+            int birth;
+            int death = 0;
+            string birthInput;
+            string deathInput;
+            char status;
 
-        Person newData(name, gender, birth, death);
-        _dat.writeData(newData);
+            cout << "Enter name of scientist: ";
+            cin.ignore();
+            std::getline(std::cin, name);
+            do{
+                cout << "Gender (f/m): ";
+                cin >> gender;
+                if(!(gender == 'm') && !(gender == 'f'))
+                    cout << "Invalid input!" <<endl;
+            }
+            while((gender != 'f') && (gender != 'm'));
+            do{
+                cout << "Enter year of birth: ";
+                cin >> birthInput;
+                if(!validYear(birthInput))
+                {
+                    cout << "Invalid input!" <<endl;
+                }
+            }
+            while(!validYear(birthInput));
+            birth = atoi(birthInput.c_str());
+            cout << "Is the person alive? (Y/N): ";
+            cin >> status;
+            if(status == 'N' || status == 'n')
+            {
+                do{
+                    cout << "Enter year of death : ";
+                    cin >> deathInput;
+                    if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
+                    {
+                        cout << "Invalid input!" <<endl;
+                    }
+                }
+                while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
+                death = atoi(deathInput.c_str());
+            }
+            cout << endl;
+
+            Person newData(name, gender, birth, death);
+            _dat.writeData(newData);
+            cout << "Add another? (Y/N): ";
+            cin >> anotherOne;
+        }
+        while(anotherOne == 'y' || anotherOne == 'Y');
+
 
     }
     else if ((command == "View") || (command == "view"))
@@ -95,10 +121,15 @@ void Console::getInfo()
 
         for(unsigned int i = 0; i < pers.size(); i++)
         {
-            cout << pers[i].getName() << endl;
-            cout << pers[i].getGender() << endl;
-            cout << pers[i].getBirth() << endl;
-            cout << pers[i].getDeath() << endl;
+            cout << "Name: " << pers[i].getName() << endl;
+            cout << "Gender: " << pers[i].getGender() << endl;
+            cout << "Born: " << pers[i].getBirth() << endl;
+            cout << "Died: ";
+            if(pers[i].getDeath() == 0)
+                cout << "N/A" << endl;
+            else
+                cout << pers[i].getDeath() << endl;
+            cout << endl;
         }
     }
     else if ((command == "Search") || (command == "search"))
