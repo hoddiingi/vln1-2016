@@ -51,6 +51,7 @@ void Console::getInfo()
 
         else if ((command == "Sort") || (command == "sort"))
         {
+            _pers = _dat.readData();
             int sortType = getSort();
             displaySort(sortType);
         }

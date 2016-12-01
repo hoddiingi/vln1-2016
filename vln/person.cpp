@@ -42,7 +42,4 @@ int Person::getNameSize()
     return _name.size();
 }
 
-int Person::getNameSize()
-{
-    return _name.size();
-}
+

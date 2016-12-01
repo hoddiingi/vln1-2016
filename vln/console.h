@@ -47,7 +47,6 @@ private:
     Domain _dom;
     Person _p;
     vector<Person> _pers;
-    Person _p;
 };
 
 #endif // CONSOLE_H
