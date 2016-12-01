@@ -11,18 +11,18 @@ class Console
 {
 public:
     Console();
+    bool validYear(string s);
     void getInfo();
     int getSort();
-    bool validYear(string s);
+    void displaySort(int& sort);
     void display();
     void menu(string& command);
-    void displaySort(int& sort);
+    void add(char& anotherOne);
     void addName(string& name);
     void addGender(char& gender);
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
     void addAnother(char& anotherOne);
-    void add(char& anotherOne);
 
 private:
     Data _dat;

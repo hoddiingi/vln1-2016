@@ -25,7 +25,7 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    _dat.readData();
+    _pers = _dat.readData();
     string command;
     char anotherOne;
 
@@ -48,16 +48,11 @@ void Console::getInfo()
         {
 
         }
-    else if ((command == "Sort") || (command == "sort"))
-    {
-        int sortType = getSort();
-        _dom.sorting(sortType);
-        displaySort(sortType);
-    }
+
         else if ((command == "Sort") || (command == "sort"))
         {
             int sortType = getSort();
-            _dom.sorting(sortType);
+            displaySort(sortType);
         }
 
     }while((command != "Exit") && (command != "exit"));
@@ -68,9 +63,8 @@ int Console::getSort()
     int sort;
 
     cout << "Please enter one of the following commands: " << endl;
-    cout << "1 - for alphabetical order" << endl;
-    cout << "2 - sort by gender" << endl;
-    cout << "3 - sort by age (youngest to oldest)" << endl;
+    cout << "1 - sort by alphabetical order" << endl;
+    cout << "2 - sort by birthyear" << endl;
     cin >> sort;
 
     return sort;
@@ -80,7 +74,13 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
-        cout << sort << endl;
+        _dom.alphabeticSort(_pers);
+        display();
+    }
+    else if (sort == 2)
+    {
+        _dom.ageSorting(_pers);
+        display();
     }
 }
 
@@ -112,6 +112,26 @@ void Console::menu(string& command)
     cout << "--------------------------------------------" << endl;
 
     cin >> command;
+}
+
+void Console::add(char& anotherOne)
+{
+    do{
+        std::string name;
+        char gender;
+        int birth = 0;
+        int death = 0;
+
+        addName(name);
+        addGender(gender);
+        addBirth(birth);
+        addDeath(death, birth);
+        addAnother(anotherOne);
+
+        Person newData(name, gender, birth, death);
+        _dat.writeData(newData);
+
+    }while(anotherOne == 'y' || anotherOne == 'Y');
 }
 
 void Console::addName(std::string& name)
@@ -171,27 +191,6 @@ void Console::addDeath(int& death, int& birth)
 
 void Console::addAnother(char& anotherOne)
 {
-
     cout << "Add another? (Y/N): ";
     cin >> anotherOne;
-}
-
-void Console::add(char& anotherOne)
-{
-    do{
-        std::string name;
-        char gender;
-        int birth = 0;
-        int death = 0;
-
-        addName(name);
-        addGender(gender);
-        addBirth(birth);
-        addDeath(death, birth);
-        addAnother(anotherOne);
-
-        Person newData(name, gender, birth, death);
-        _dat.writeData(newData);
-
-    }while(anotherOne == 'y' || anotherOne == 'Y');
 }

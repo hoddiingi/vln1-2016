@@ -45,9 +45,9 @@ vector<Person> Data::readData()
 
     else
     {
-        while(in.good())
+        while(getline(in, name))
         {
-            getline(in, name);
+            //getline(in, name);
             getline(in, genderS);
             getline(in, birthS);
             getline(in, deathS);
