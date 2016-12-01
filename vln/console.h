@@ -15,6 +15,7 @@ public:
     int getSort();
     bool validYear(string s);
     void display();
+    void displaySort(int& sort);
     void addName(string& name);
     void addGender(char& gender);
     void addBirth(int& birth);

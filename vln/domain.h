@@ -1,7 +1,9 @@
 #ifndef DOMAIN_H
 #define DOMAIN_H
 #include <vector>
-#include "person.h"
+#include "data.h"
+
+
 
 class Domain
 {
@@ -11,7 +13,6 @@ public:
     void alphabeticSort();
     void genderSort();
     void ageSort();
-
 
 private:
     vector<Person> _persSort;

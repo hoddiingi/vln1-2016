@@ -56,7 +56,12 @@ void Console::getInfo()
         {
 
         }
-
+    else if ((command == "Sort") || (command == "sort"))
+    {
+        int sortType = getSort();
+        _dom.sorting(sortType);
+        displaySort(sortType);
+    }
         else if ((command == "Sort") || (command == "sort"))
         {
             int sortType = getSort();
@@ -77,6 +82,14 @@ int Console::getSort()
     cin >> sort;
 
     return sort;
+}
+
+void Console::displaySort(int& sort)
+{
+    if(sort == 1)
+    {
+        cout << sort << endl;
+    }
 }
 
 void Console::display()

@@ -1,8 +1,22 @@
 #include "domain.h"
+#include "person.h"
 #include <iostream>
 #include <algorithm>
+#include <vector>
+#include "data.h"
+#include "person.h"
 
 using namespace std;
+
+struct genderComparison
+{
+  bool operator() (Person i, Person j) { return (i.getGender()<j.getGender());}
+};
+
+
+struct compareAge {
+  bool operator() (Person i,Person j) { return (i.getBirth()<j.getBirth());}
+};
 
 Domain::Domain()
 {
@@ -11,19 +25,17 @@ Domain::Domain()
 
 void Domain::sorting(int sort)
 {
-
-
     if(sort == 1)
     {
-        cout << "alphabetic";
+        cout << "alphabetic" << endl;
     }
     else if(sort == 2)
     {
-        cout << "gender";
+        cout << "gender" << endl;
     }
     else if(sort == 3)
     {
-        cout << "age";
+        cout << "age" << endl;
     }
 }
 
@@ -32,12 +44,22 @@ void Domain::alphabeticSort()
 
 }
 
-void genderSort()
+void Domain::genderSort()
 {
+    genderComparison cmp;
+    std::sort (_persSort.begin(), _persSort.end(), cmp);
 
 }
 
-void ageSort()
+void Domain::ageSort()
 {
-    //std::sort (_persSort.begin(), myvector.end(), myobject);
+    compareAge cmp;
+    std::sort (_persSort.begin(), _persSort.end(), cmp);
+
+    for(unsigned int i = 0; i < _persSort.size(); i++)
+    {
+        cout << "Born: " << _persSort[i].getBirth() << endl;
+        cout << endl;
+    }
 }
+
