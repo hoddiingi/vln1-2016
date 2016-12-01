@@ -1,6 +1,8 @@
 #include "data.h"
 //#include "console.h"
 //#include "person.h"
+#include "person.h"
+#include "data.h"
 #include <fstream>
 #include <vector>
 #include <iostream>
@@ -11,7 +13,7 @@ using namespace std;
 
 Data::Data()
 {
-
+    _persons = readData();
 }
 
 void Data::writeData(Person p)
