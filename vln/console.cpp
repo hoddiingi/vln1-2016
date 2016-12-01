@@ -14,6 +14,7 @@ Console::Console()
 {
 
 }
+
 bool Console::validYear(string s)
 {
     for (unsigned int i = 0; i < s.size(); i++)
@@ -30,16 +31,7 @@ void Console::getInfo()
 
     do
     {
-        cout << "--------------------------------------------" << endl;
-        cout << "Please enter one of the following commands: " << endl;
-        cout << "Add - for adding scientist to the list" << endl;
-        cout << "View - for viewing the whole list" << endl;
-        cout << "Search - for searching for names in the list" << endl;
-        cout << "Sort - for sorting" << endl;
-        cout << "Exit - quits" << endl;
-        cout << "--------------------------------------------" << endl;
-
-        cin >> command;
+        menu(command);
 
         if ((command == "Add") || (command == "add"))
         {
@@ -88,7 +80,7 @@ void Console::displaySort(int& sort)
 {
     if(sort == 1)
     {
-        cout << sort << endl;
+        _dom.alphabeticSort();
     }
 }
 
@@ -106,6 +98,20 @@ void Console::display()
             cout << _pers[i].getDeath() << endl;
         cout << endl;
     }
+}
+
+void Console::menu(string& command)
+{
+    cout << "--------------------------------------------" << endl;
+    cout << "Please enter one of the following commands: " << endl;
+    cout << "Add - for adding scientist to the list" << endl;
+    cout << "View - for viewing the whole list" << endl;
+    cout << "Search - for searching for names in the list" << endl;
+    cout << "Sort - for sorting" << endl;
+    cout << "Exit - quits" << endl;
+    cout << "--------------------------------------------" << endl;
+
+    cin >> command;
 }
 
 void Console::addName(std::string& name)

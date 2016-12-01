@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -26,6 +27,7 @@ void Data::writeData(Person p)
 
     out.close();
 }
+
 vector<Person> Data::readData()
 {
     vector<Person> vect;
@@ -38,8 +40,9 @@ vector<Person> Data::readData()
     in.open("text.txt");
     if (in.fail())
     {
-        cout << "Failed to open!" << endl;
+        exit(1);
     }
+
     else
     {
         while(in >> name >> gender >> birth >> death)

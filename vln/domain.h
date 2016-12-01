@@ -10,7 +10,7 @@ class Domain
 public:
     Domain();
     void sorting(int sort);
-    void alphabeticSort();
+    vector<Person> alphabeticSort();
     void genderSort();
     void ageSort();
 
