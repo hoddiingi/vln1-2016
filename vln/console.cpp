@@ -46,7 +46,7 @@ void Console::getInfo()
 
         else if ((command == "Search") || (command == "search"))
         {
-
+            displaySearch();
         }
 
         else if ((command == "Sort") || (command == "sort"))
@@ -212,4 +212,18 @@ string Console::searchName()
     cout << "Who would you like to seach for? ";
     cin >> chosenName;
     return chosenName;
+}
+
+vector<Person> Console::getVector()
+{
+    return _pers;
+}
+
+void Console::displaySearch()
+{
+    string name = searchName();
+    cout << _dom.search(_pers, name).getName() << endl;
+    cout << _dom.search(_pers, name).getGender() << endl;
+    cout << _dom.search(_pers, name).getBirth() << endl;
+    cout << _dom.search(_pers, name).getDeath() << endl;
 }

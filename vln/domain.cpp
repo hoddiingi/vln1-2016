@@ -30,4 +30,16 @@ void Domain::alphabeticSort(vector<Person> &alphaSort)
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
 
+Person Domain::search(vector<Person>& p, string name)
+{
+    Person p1;
 
+    for(unsigned int i = 0; i < p.size(); i++)
+    {
+        if(name == p[i].getName())
+        {
+            return p[i];
+        }
+    }
+    return p1;
+}

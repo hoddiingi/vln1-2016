@@ -14,11 +14,11 @@ public:
     void alphabeticSort(vector<Person> &alphaSort);
     //Sort by name
     //vector<Person> &alphaSort - go trough the vector and check age
-    void search();
+    Person search(vector<Person>& p, string name);
 
 private:
     //Member variables
-    vector<Person> _persSort;
+    //vector<Person> _persSort;
     friend bool operator < (const Person& lsh, const Person& rhs);
     //Overload the operator < for ageSorting
     friend bool operator < (const Person& lsh, const Person& rhs);
