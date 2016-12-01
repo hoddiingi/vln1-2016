@@ -112,6 +112,7 @@ void Console::getInfo()
     {
         int sortType = getSort();
         _dom.sorting(sortType);
+        displaySort(sortType);
     }
 
     }while((command != "Exit") && (command != "exit"));
@@ -128,6 +129,14 @@ int Console::getSort()
     cin >> sort;
 
     return sort;
+}
+
+void Console::displaySort(int& sort)
+{
+    if(sort == 1)
+    {
+        cout << sort << endl;
+    }
 }
 
 void Console::display()

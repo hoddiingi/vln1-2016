@@ -15,6 +15,7 @@ public:
     int getSort();
     bool validYear(string s);
     void display();
+    void displaySort(int& sort);
 
 private:
     Data _dat;
