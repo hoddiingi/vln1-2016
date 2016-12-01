@@ -94,6 +94,7 @@ void Console::displaySort(int& sort)
 void Console::display()
 {
     cout << "Name" << "\t\t\t\t" << "Gender" << "\t" << "Born" << "\t" << "Died" << endl;
+    cout << "=====================================================================" <<endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
         cout << _pers[i].getName() << "\t\t\t";
@@ -106,9 +107,9 @@ void Console::display()
         else
         {
             cout << _pers[i].getDeath() << endl;
-            cout << endl;
+ //           cout << endl;
         }
-    }
+    }cout <<endl;
 }
 
 void Console::menu(string& command)
