@@ -8,6 +8,8 @@ public:
     Domain();
     void sorting(int sort);
     void alphabeticSort();
+    void genderSort();
+    void ageSort();
 
 
 private:

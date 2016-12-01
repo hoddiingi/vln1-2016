@@ -25,3 +25,17 @@ void Domain::sorting(int sort)
     }
 }
 
+void Domain::alphabeticSort()
+{
+
+}
+
+void genderSort()
+{
+
+}
+
+void ageSort()
+{
+
+}
