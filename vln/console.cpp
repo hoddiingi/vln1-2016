@@ -97,10 +97,10 @@ void Console::displaySort(int& sort)
 void Console::display()
 {
     cout << endl;
-    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" << endl;
+    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        //int nameSize = _p.getNameSize();
+
         int nameSize = _pers[i].getNameSize();
 
         if (nameSize >= 0 && nameSize <= 7)
@@ -120,6 +120,13 @@ void Console::display()
             cout << _pers[i].getName() << "\t";
         }
 
+        if (_pers[i].getGender() == 'm')
+             cout << "Male" << "\t";
+        else if (_pers[i].getGender() == 'f')
+            cout << "Female" << "\t";
+
+        cout <<_pers[i].getBirth() << "\t";
+
         if (_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
             cout << "Male" << "\t";
         else if (_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
@@ -129,16 +136,22 @@ void Console::display()
 
         if(_pers[i].getDeath() == 0)
         {
-            cout << "N/A" << endl;
+            cout << "N/A" << "\t";
         }
         else
         {
-            cout << _pers[i].getDeath() << endl;
+            cout << _pers[i].getDeath() << "\t";
         }
 
-    }cout << endl;
+        cout << _dom.findAge(_pers[i]) << endl;
 
+    }
+         cout << endl;
 }
+
+
+
+
 
 void Console::menu(string& command)
 {
