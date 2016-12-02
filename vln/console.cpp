@@ -120,13 +120,6 @@ void Console::display()
             cout << _pers[i].getName() << "\t";
         }
 
-        if (_pers[i].getGender() == 'm')
-             cout << "Male" << "\t";
-        else if (_pers[i].getGender() == 'f')
-            cout << "Female" << "\t";
-
-        cout <<_pers[i].getBirth() << "\t";
-
         if (_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
             cout << "Male" << "\t";
         else if (_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
