@@ -58,10 +58,17 @@ Person Domain::search(vector<Person>& p, string name)
 
     for(unsigned int i = 0; i < p.size(); i++)
     {
-        if(name == p[i].getName())
+        string nameFind;
+        nameFind = p[i].getName();
+        std::size_t found = nameFind.find(name);
+        if (found!=std::string::npos)
+             return p[i];
+
+
+       /* if(name == p[i].getName())
         {
             return p[i];
-        }
+        }*/
     }
     return p1;
 }
