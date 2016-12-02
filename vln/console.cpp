@@ -27,7 +27,7 @@ void Console::getInfo()
 {
     _pers = _dat.readData();
     string command;
-    char anotherOne;
+    string anotherOne;
 
     do
     {
@@ -120,12 +120,12 @@ void Console::display()
             cout << _pers[i].getName() << "\t";
         }
 
-        if (_pers[i].getGender() == 'm')
+        if (_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
             cout << "Male" << "\t";
-        else if (_pers[i].getGender() == 'f')
+        else if (_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
             cout << "Female" << "\t";
 
-        cout << _pers[i].getGender() << "\t";
+        cout << _pers[i].getBirth() << "\t";
 
         if(_pers[i].getDeath() == 0)
         {
@@ -135,8 +135,9 @@ void Console::display()
         {
             cout << _pers[i].getDeath() << endl;
         }
-        //cout << _pers[i].getNameSize();
-    }
+
+    }cout << endl;
+
 }
 
 void Console::menu(string& command)
@@ -153,7 +154,7 @@ void Console::menu(string& command)
     cin >> command;
 }
 
-void Console::add(char& anotherOne)
+void Console::add(string& anotherOne)
 {
     do{
         std::string name;
@@ -170,7 +171,7 @@ void Console::add(char& anotherOne)
         Person newData(name, gender, birth, death);
         _dat.writeData(newData);
 
-    }while(anotherOne == 'y' || anotherOne == 'Y');
+    }while(anotherOne == "y" || anotherOne == "Y");
 }
 
 void Console::addName(std::string& name)
@@ -185,10 +186,17 @@ void Console::addGender(char& gender)
     do
     {
         cout << "Gender (f/m): ";
-        cin >> gender;
-        if(!(gender == 'm') && !(gender == 'f'))
-            cout << "Invalid input!" << endl;
-    }while((gender != 'f') && (gender != 'm'));
+        std::string genderS;
+        std::getline(std::cin, genderS);
+        if(genderS.length() != 1)
+            cout << "Please only enter f or m." << endl;
+        else
+        {
+            gender = genderS[0];
+            if(!(gender == 'm' || gender == 'M') && !(gender == 'f' || gender == 'F'))
+                cout << "Please only enter f or m." << endl;
+        }
+    }while(!(gender == 'f' || gender == 'F') && !(gender == 'm' || gender == 'M'));
 }
 
 void Console::addBirth(int& birth)
@@ -214,29 +222,45 @@ void Console::addBirth(int& birth)
 void Console::addDeath(int& death, int& birth)
 {
     string deathInput;
-    char status;
-    cout << "Is the person alive? (Y/N): ";
-    cin >> status;
-    if(status == 'N' || status == 'n')
+    string status;
+    do
     {
-        do{
-            cout << "Enter year of death : ";
-            cin >> deathInput;
-            if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
+        cout << "Is the person alive? (Y/N): ";
+        cin >> status;
+        if(!(status == "N" || status == "n") && !(status == "Y" || status == "y"))
+            cout << "Invalid Input!";
+        if(status == "N" || status == "n")
+        {
+            do
             {
-                cout << "Invalid input!" <<endl;
+                cout << "Enter year of death : ";
+                cin >> deathInput;
+                if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
+                {
+                    cout << "Invalid input!" <<endl;
+                }
+                else if (atoi(deathInput.c_str()) > 2016)
+                {
+                    cout << "So you think you know the future?" << endl;
+                }
             }
+            while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth) || (atoi(deathInput.c_str()) > 2016));
+            death = atoi(deathInput.c_str());
         }
-        while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth));
-        death = atoi(deathInput.c_str());
-    }
     cout << endl;
+    }
+    while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
-
-void Console::addAnother(char& anotherOne)
+void Console::addAnother(string &anotherOne)
 {
-    cout << "Add another? (Y/N): ";
-    cin >> anotherOne;
+    do
+    {
+        cout << "Add another? (Y/N): ";
+        cin >> anotherOne;
+        if(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"))
+            cout << "Invalid Input!" <<endl;
+    }
+    while(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"));
 }
 
 string Console::searchName()
