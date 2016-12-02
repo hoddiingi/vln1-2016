@@ -11,7 +11,6 @@ Data::Data()
 {
     _persons = readData();
 }
-
 void Data::writeData(Person p)
 {
     ofstream out;
@@ -24,7 +23,6 @@ void Data::writeData(Person p)
 
     out.close();
 }
-
 vector<Person> Data::readData()
 {
     vector<Person> vect;
@@ -58,4 +56,7 @@ vector<Person> Data::readData()
 
     return vect;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 635fd2b6e6a22288bb6c761142e45cd3edcf83e5
