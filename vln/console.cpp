@@ -295,7 +295,7 @@ void Console::addDeath(int& death, int& birth)
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 
-void Console::addAnother(string &anotherOne)
+void Console::addAnother(string& anotherOne)
 {
     do
     {
