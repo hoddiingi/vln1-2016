@@ -13,11 +13,7 @@ Domain::Domain()
 
 }
 
-<<<<<<< HEAD
 bool agePerson (const Person& lsh, const Person& rhs) // sort by birthyear
-=======
-bool agePerson(const Person& lsh, const Person& rhs)
->>>>>>> e90097149426c5627fcef28f740eaef2df76f91c
 {
     return (lsh.getBirth() < rhs.getBirth());
 }

@@ -322,11 +322,9 @@ void Console::displaySearch()
 {
     _pers = _dat.readData();
     string name = searchName();
-<<<<<<< HEAD
-=======
+
     vector<Person> k = _dom.search(_pers, name);
 
->>>>>>> e90097149426c5627fcef28f740eaef2df76f91c
     cout << endl;
     cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << "\t" << endl;
 
