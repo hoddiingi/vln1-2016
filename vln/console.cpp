@@ -55,6 +55,10 @@ void Console::getInfo()
             int sortType = getSort();
             displaySort(sortType);
         }
+        else
+        {
+            cout << endl << "Invalid input! Please enter a valid command:" << endl;
+        }
 
     }while((command != "Exit") && (command != "exit"));
 }
