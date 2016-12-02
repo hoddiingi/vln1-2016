@@ -56,9 +56,5 @@ vector<Person> Data::readData()
     }
     in.close();
 
-    //cout << vect[1].getNameSize();
-
     return vect;
 }
-
-

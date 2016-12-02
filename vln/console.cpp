@@ -142,10 +142,6 @@ void Console::display()
          cout << endl;
 }
 
-
-
-
-
 void Console::menu(string& command)
 {
     cout << endl << "--------------------------------------------" << endl;
@@ -272,14 +268,9 @@ void Console::addAnother(string &anotherOne)
 string Console::searchName()
 {
     string chosenName;
-    cout << "Who would you like to seach for? ";
+    cout << "Who would you like to search for? ";
     cin >> chosenName;
     return chosenName;
-}
-
-vector<Person> Console::getVector()
-{
-    return _pers;
 }
 
 void Console::displaySearch()
