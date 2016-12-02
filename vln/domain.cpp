@@ -12,22 +12,27 @@ Domain::Domain()
 {
 
 }
+
 bool agePerson (const Person& lsh, const Person& rhs)
 {
     return (lsh.getBirth() < rhs.getBirth());
 }
+
 void Domain::ageSorting(vector<Person> &ageSort)
 {
     std::sort(ageSort.begin(), ageSort.end(), agePerson);
 }
+
 bool nameAlpha (const Person& lhs, const Person& rhs)
 {
     return (lhs.getName() < rhs.getName());
 }
+
 void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
+
 int Domain::findAge(Person& sciAge) const
 {
     int x;
@@ -48,7 +53,7 @@ int Domain::findAge(Person& sciAge) const
     resultDead = x - y;
     return resultDead;
     }
- }
+}
 
 vector<Person> Domain::search(vector<Person>& p, string name)
 {
