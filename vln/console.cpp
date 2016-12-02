@@ -14,6 +14,7 @@ Console::Console()
 {
 
 }
+
 bool Console::validName(string n)
 {
     for (unsigned int i = 0; i < n.size(); i++)
@@ -21,6 +22,7 @@ bool Console::validName(string n)
             return 0;
     return 1;
 }
+
 bool Console::validYear(string s)
 {
     for (unsigned int i = 0; i < s.size(); i++)
@@ -28,6 +30,7 @@ bool Console::validYear(string s)
             return 0;
     return 1;
 }
+
 void Console::getInfo()
 {
     _pers = _dat.readData();
@@ -63,6 +66,7 @@ void Console::getInfo()
         }
     }while((command != "Exit") && (command != "exit"));
 }
+
 int Console::getSort()
 {
     int sort;
@@ -81,6 +85,7 @@ int Console::getSort()
     sort = atoi(sortInput.c_str());
     return sort;
 }
+
 void Console::displaySort(int& sort)
 {
     _dat.readData();
@@ -96,6 +101,7 @@ void Console::displaySort(int& sort)
         display();
     }
 }
+
 void Console::display()
 {
     cout << endl;
@@ -139,6 +145,7 @@ void Console::display()
     }
     cout << endl;
 }
+
 void Console::menu(string& command)
 {
     cout << endl << "--------------------------------------------" << endl;
@@ -152,6 +159,7 @@ void Console::menu(string& command)
 
     cin >> command;
 }
+
 void Console::add(string& anotherOne)
 {
     do
@@ -172,6 +180,7 @@ void Console::add(string& anotherOne)
 
     }while(anotherOne == "y" || anotherOne == "Y");
 }
+
 void Console::addName(std::string& name)
 {
     do
@@ -186,6 +195,7 @@ void Console::addName(std::string& name)
         }
     }while(!validName(name));
 }
+
 void Console::addGender(char& gender)
 {
     do
@@ -196,7 +206,6 @@ void Console::addGender(char& gender)
 
         if(genderS.length() != 1)
             cout << "Please only enter f or m." << endl;
-
         else
         {
             gender = genderS[0];
@@ -205,6 +214,7 @@ void Console::addGender(char& gender)
         }
     }while(!(gender == 'f' || gender == 'F') && !(gender == 'm' || gender == 'M'));
 }
+
 void Console::addBirth(int& birth)
 {
     string birthInput;
@@ -223,6 +233,7 @@ void Console::addBirth(int& birth)
     }while(!validYear(birthInput) || atoi(birthInput.c_str()) > 2016);
     birth = atoi(birthInput.c_str());
 }
+
 void Console::addDeath(int& death, int& birth)
 {
     string deathInput;
@@ -254,6 +265,7 @@ void Console::addDeath(int& death, int& birth)
         cout << endl;
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
+
 void Console::addAnother(string &anotherOne)
 {
     do
@@ -264,6 +276,7 @@ void Console::addAnother(string &anotherOne)
             cout << "Invalid Input!" <<endl;
     }while(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"));
 }
+
 string Console::searchName()
 {
     string chosenName;
@@ -271,53 +284,54 @@ string Console::searchName()
     cin >> chosenName;
     return chosenName;
 }
+
 void Console::displaySearch()
 {
+    _pers = _dat.readData();
     string name = searchName();
     cout << endl;
 
     cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << "\t" << endl;
     vector<Person> k = _dom.search(_pers, name);
-        for(unsigned int i = 0; i < k.size(); i++)
+
+    for(unsigned int i = 0; i < k.size(); i++)
+    {
+        int nameSize = k[i].getNameSize();
+
+        if (nameSize >= 0 && nameSize <= 7)
         {
-            int nameSize = k[i].getNameSize();
-
-            if (nameSize >= 0 && nameSize <= 7)
-            {
-                cout << k[i].getName() << "\t\t\t\t";
-            }
-            else if (nameSize >= 8  && nameSize <= 15)
-            {
-                cout << k[i].getName() << "\t\t\t";
-            }
-            else if (nameSize >= 16  && nameSize <= 23)
-            {
-                cout << k[i].getName() << "\t\t";
-            }
-            else if (nameSize >= 24  && nameSize <= 31)
-            {
-                cout << k[i].getName() << "\t";
-            }
-
-            if (k[i].getGender() == 'm' || k[i].getGender() == 'M')
-            {
-                cout << "Male" << "\t";
-            }
-            else if (k[i].getGender() == 'f' || k[i].getGender() == 'F')
-            {
-                cout << "Female" << "\t";
-            }
-
-            cout << k[i].getBirth() << "\t";
-
-            if(k[i].getDeath() == 0)
-            {
-                cout << "N/A" << "\t";
-            }
-            else
-            {
-                cout << k[i].getDeath() << "\t";
-            }
-            cout << _dom.findAge(_pers[i]) << endl;
+            cout << k[i].getName() << "\t\t\t\t";
         }
+        else if (nameSize >= 8  && nameSize <= 15)
+        {
+            cout << k[i].getName() << "\t\t\t";
+        }
+        else if (nameSize >= 16  && nameSize <= 23)
+        {
+            cout << k[i].getName() << "\t\t";
+        }
+        else if (nameSize >= 24  && nameSize <= 31)
+        {
+            cout << k[i].getName() << "\t";
+        }
+        if (k[i].getGender() == 'm' || k[i].getGender() == 'M')
+        {
+            cout << "Male" << "\t";
+        }
+        else if (k[i].getGender() == 'f' || k[i].getGender() == 'F')
+        {
+            cout << "Female" << "\t";
+        }
+        cout << k[i].getBirth() << "\t";
+
+        if(k[i].getDeath() == 0)
+        {
+            cout << "N/A" << "\t";
+        }
+        else
+        {
+            cout << k[i].getDeath() << "\t";
+        }
+        cout << _dom.findAge(_pers[i]) << endl;
+    }
 }
