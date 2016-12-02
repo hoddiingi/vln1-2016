@@ -15,16 +15,13 @@ public:
     int getDeath() const;
     void setDeath(int death);
     int getNameSize();
-
-
-
+    //Gets private member variables
 
 private:
     string _name;
     char _gender;
     int _birth;
     int _death;
-
 };
 
 #endif // PERSON_H

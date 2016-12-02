@@ -14,7 +14,6 @@ Console::Console()
 {
 
 }
-
 bool Console::validName(string n)
 {
     for (unsigned int i = 0; i < n.size(); i++)
@@ -22,7 +21,6 @@ bool Console::validName(string n)
             return 0;
     return 1;
 }
-
 bool Console::validYear(string s)
 {
     for (unsigned int i = 0; i < s.size(); i++)
@@ -30,7 +28,6 @@ bool Console::validYear(string s)
             return 0;
     return 1;
 }
-
 void Console::getInfo()
 {
     _pers = _dat.readData();
@@ -45,18 +42,15 @@ void Console::getInfo()
         {
             add(anotherOne);
         }
-
         else if ((command == "View") || (command == "view"))
         {
-             _pers = _dat.readData();
-             display();
+            _pers = _dat.readData();
+            display();
         }
-
         else if ((command == "Search") || (command == "search"))
         {
             displaySearch();
         }
-
         else if ((command == "Sort") || (command == "sort"))
         {
             _pers = _dat.readData();
@@ -67,10 +61,8 @@ void Console::getInfo()
         {
             cout << endl << "Invalid input! Please enter a valid command:" << endl;
         }
-
     }while((command != "Exit") && (command != "exit"));
 }
-
 int Console::getSort()
 {
     int sort;
@@ -84,12 +76,11 @@ int Console::getSort()
         cout << "2 - sort by year of birth" << endl;
         cin >> sortInput;
         if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
-            cout << "Invalid input" << endl;
+            cout << "Invalid input!" << endl;
     }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2);
     sort = atoi(sortInput.c_str());
     return sort;
 }
-
 void Console::displaySort(int& sort)
 {
     _dat.readData();
@@ -105,14 +96,12 @@ void Console::displaySort(int& sort)
         display();
     }
 }
-
 void Console::display()
 {
     cout << endl;
     cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << endl;
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-
         int nameSize = _pers[i].getNameSize();
 
         if (nameSize >= 0 && nameSize <= 7)
@@ -131,7 +120,6 @@ void Console::display()
         {
             cout << _pers[i].getName() << "\t";
         }
-
         if (_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
             cout << "Male" << "\t";
         else if (_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
@@ -146,18 +134,11 @@ void Console::display()
         else
         {
             cout << _pers[i].getDeath() << "\t";
-        }
-
+        }  
         cout << _dom.findAge(_pers[i]) << endl;
-
     }
-         cout << endl;
+    cout << endl;
 }
-
-
-
-
-
 void Console::menu(string& command)
 {
     cout << endl << "--------------------------------------------" << endl;
@@ -171,10 +152,10 @@ void Console::menu(string& command)
 
     cin >> command;
 }
-
 void Console::add(string& anotherOne)
 {
-    do{
+    do
+    {
         std::string name;
         char gender;
         int birth = 0;
@@ -191,18 +172,18 @@ void Console::add(string& anotherOne)
 
     }while(anotherOne == "y" || anotherOne == "Y");
 }
-
 void Console::addName(std::string& name)
 {
-    do{
-
+    do
+    {
         cout << endl << "Enter name of scientist: ";
         cin.ignore();
         std::getline(std::cin, name);
-            if(!validName(name))
-            {
-                cout << "Name can not include digits!" << endl;
-            }
+
+        if(!validName(name))
+        {
+            cout << "Name can not include digits!" << endl;
+        }
     }while(!validName(name));
 }
 void Console::addGender(char& gender)
@@ -212,8 +193,10 @@ void Console::addGender(char& gender)
         cout << "Gender (f/m): ";
         std::string genderS;
         std::getline(std::cin, genderS);
+
         if(genderS.length() != 1)
             cout << "Please only enter f or m." << endl;
+
         else
         {
             gender = genderS[0];
@@ -222,11 +205,11 @@ void Console::addGender(char& gender)
         }
     }while(!(gender == 'f' || gender == 'F') && !(gender == 'm' || gender == 'M'));
 }
-
 void Console::addBirth(int& birth)
 {
     string birthInput;
-    do{
+    do
+    {
         cout << "Enter year of birth: ";
         cin >> birthInput;
         if(!validYear(birthInput))
@@ -237,16 +220,14 @@ void Console::addBirth(int& birth)
         {
             cout << "The scientist is not born yet.." << endl;
         }
-
-    }
-    while(!validYear(birthInput) || atoi(birthInput.c_str()) > 2016);
+    }while(!validYear(birthInput) || atoi(birthInput.c_str()) > 2016);
     birth = atoi(birthInput.c_str());
 }
-
 void Console::addDeath(int& death, int& birth)
 {
     string deathInput;
     string status;
+
     do
     {
         cout << "Is the person alive? (Y/N): ";
@@ -262,18 +243,16 @@ void Console::addDeath(int& death, int& birth)
                 if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
                 {
                     cout << "Invalid input!" <<endl;
-                }
+                } 
                 else if (atoi(deathInput.c_str()) > 2016)
                 {
                     cout << "So you think you know the future?" << endl;
-                }
-            }
-            while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth) || (atoi(deathInput.c_str()) > 2016));
+                } 
+            }while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth) || (atoi(deathInput.c_str()) > 2016));
             death = atoi(deathInput.c_str());
         }
-    cout << endl;
-    }
-    while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
+        cout << endl;
+    }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 void Console::addAnother(string &anotherOne)
 {
@@ -283,10 +262,8 @@ void Console::addAnother(string &anotherOne)
         cin >> anotherOne;
         if(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"))
             cout << "Invalid Input!" <<endl;
-    }
-    while(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"));
+    }while(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"));
 }
-
 string Console::searchName()
 {
     string chosenName;
@@ -294,12 +271,6 @@ string Console::searchName()
     cin >> chosenName;
     return chosenName;
 }
-
-vector<Person> Console::getVector()
-{
-    return _pers;
-}
-
 void Console::displaySearch()
 {
     string name = searchName();
