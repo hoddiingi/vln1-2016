@@ -15,6 +15,14 @@ Console::Console()
 
 }
 
+bool Console::validName(string n)
+{
+    for (unsigned int i = 0; i < n.size(); i++)
+        if (isdigit(n[i]))
+            return 0;
+    return 1;
+}
+
 bool Console::validYear(string s)
 {
     for (unsigned int i = 0; i < s.size(); i++)
@@ -54,6 +62,10 @@ void Console::getInfo()
             _pers = _dat.readData();
             int sortType = getSort();
             displaySort(sortType);
+        }
+        else
+        {
+            cout << endl << "Invalid input! Please enter a valid command:" << endl;
         }
 
     }while((command != "Exit") && (command != "exit"));
@@ -182,11 +194,17 @@ void Console::add(string& anotherOne)
 
 void Console::addName(std::string& name)
 {
-    cout << endl << "Enter name of scientist: ";
-    cin.ignore();
-    std::getline(std::cin, name);
-}
+    do{
 
+        cout << endl << "Enter name of scientist: ";
+        cin.ignore();
+        std::getline(std::cin, name);
+            if(!validName(name))
+            {
+                cout << "Name can not include digits!" << endl;
+            }
+    }while(!validName(name));
+}
 void Console::addGender(char& gender)
 {
     do
