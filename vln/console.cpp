@@ -290,7 +290,7 @@ void Console::addAnother(string &anotherOne)
 string Console::searchName()
 {
     string chosenName;
-    cout << "Who would you like to seach for? ";
+    cout << "Who would you like to search for? ";
     cin >> chosenName;
     return chosenName;
 }
@@ -303,8 +303,52 @@ vector<Person> Console::getVector()
 void Console::displaySearch()
 {
     string name = searchName();
-    cout << _dom.search(_pers, name).getName() << endl;
-    cout << _dom.search(_pers, name).getGender() << endl;
-    cout << _dom.search(_pers, name).getBirth() << endl;
-    cout << _dom.search(_pers, name).getDeath() << endl;
+    cout << endl;
+    /*cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << endl;
+    cout << _dom.search(_pers, name).getName() << "\t\t\t\t";
+    cout << _dom.search(_pers, name).getGender() << "\t";
+    cout << _dom.search(_pers, name).getBirth() << "\t";
+    cout << _dom.search(_pers, name).getDeath() << "\t"; */
+
+    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << endl;
+
+
+        int nameSize = _dom.search(_pers, name).getNameSize();
+
+        if (nameSize >= 0 && nameSize <= 7)
+        {
+            cout << _dom.search(_pers, name).getName() << "\t\t\t\t";
+        }
+        else if (nameSize >= 8  && nameSize <= 15)
+        {
+            cout << _dom.search(_pers, name).getName() << "\t\t\t";
+        }
+        else if (nameSize >= 16  && nameSize <= 23)
+        {
+            cout << _dom.search(_pers, name).getName() << "\t\t";
+        }
+        else if (nameSize >= 24  && nameSize <= 31)
+        {
+            cout << _dom.search(_pers, name).getName() << "\t";
+        }
+
+        if (_dom.search(_pers, name).getGender() == 'm' || _dom.search(_pers, name).getGender() == 'M')
+        {
+            cout << "Male" << "\t";
+        }
+        else if (_dom.search(_pers, name).getGender() == 'f' || _dom.search(_pers, name).getGender() == 'F')
+        {
+            cout << "Female" << "\t";
+        }
+
+        cout << _dom.search(_pers, name).getBirth() << "\t";
+
+        if(_dom.search(_pers, name).getDeath() == 0)
+        {
+            cout << "N/A" << "\t";
+        }
+        else
+        {
+            cout << _dom.search(_pers, name).getDeath() << "\t";
+        }
 }
