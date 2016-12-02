@@ -74,10 +74,11 @@ int Console::getSort()
     do
     {
         cout << endl;
-        cout << "Please enter one of the following commands: " << endl;
         cout << "-------------------------------------------" << endl;
+        cout << "Please enter one of the following commands: " << endl << endl;
         cout << "1 - sort by alphabetical order" << endl;
         cout << "2 - sort by year of birth" << endl;
+        cout << "-------------------------------------------" << endl << endl;
         cin >> sortInput;
         if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
             cout << "Invalid input!" << endl;
@@ -143,7 +144,7 @@ void Console::display()
         }  
         cout << _dom.findAge(_pers[i]) << endl;
     }
-    cout << endl;
+
 }
 
 void Console::menu(string& command)
