@@ -60,7 +60,9 @@ void Console::getInfo()
             int sortType = getSort();
             displaySort(sortType);
         }
-        else
+        else if ((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
+                  (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
+                  (command != "Exit") && (command != "exit"))
         {
             cout << endl << "Invalid input! Please enter a valid command:" << endl;
         }
