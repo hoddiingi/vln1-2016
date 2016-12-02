@@ -10,7 +10,7 @@ public:
     Domain();
     void ageSorting(vector<Person> &ageSort);
     void alphabeticSort(vector<Person> &alphaSort);
-    Person search(vector<Person>& p, string name);
+    vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
 
 private:

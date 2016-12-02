@@ -52,24 +52,37 @@ int Domain::findAge(Person& sciAge) const
     }
  }
 
-Person Domain::search(vector<Person>& p, string name)
+vector<Person> Domain::search(vector<Person>& p, string name)
 {
     Person p1;
+    vector<Person> results;
 
     for(unsigned int i = 0; i < p.size(); i++)
     {
         string nameFind;
+        char genderFind;
+        int birthFind;
+        int deathFind;
         nameFind = p[i].getName();
         std::size_t found = nameFind.find(name);
         if (found!=std::string::npos)
-             return p[i];
-
-
-       /* if(name == p[i].getName())
         {
-            return p[i];
-        }*/
+            p[i].getName();
+            genderFind = p[i].getGender();
+            birthFind = p[i].getBirth();
+            deathFind = p[i].getDeath();
+            Person p2(nameFind, genderFind, birthFind, deathFind);
+            results.push_back(p2);
+
+
+        }
+
     }
-    return p1;
+
+  /* for(unsigned int i = 0; i < results.size(); i++)
+   cout << "viddi ad testa: " << results[i].getName() << endl;
+    int fle;
+   cin >> fle;*/
+    return results;
 }
 
