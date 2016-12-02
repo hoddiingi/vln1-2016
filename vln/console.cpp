@@ -120,21 +120,19 @@ void Console::display()
             cout << _pers[i].getName() << "\t";
         }
 
-<<<<<<< HEAD
         if (_pers[i].getGender() == 'm')
              cout << "Male" << "\t";
         else if (_pers[i].getGender() == 'f')
             cout << "Female" << "\t";
 
         cout <<_pers[i].getBirth() << "\t";
-=======
+
         if (_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
             cout << "Male" << "\t";
         else if (_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
             cout << "Female" << "\t";
 
         cout << _pers[i].getBirth() << "\t";
->>>>>>> 5f6554b81ccaec67d504e6be03a2d2a394f96023
 
         if(_pers[i].getDeath() == 0)
         {
@@ -145,15 +143,15 @@ void Console::display()
             cout << _pers[i].getDeath() << "\t";
         }
 
-<<<<<<< HEAD
         cout << _dom.findAge(_pers[i]) << endl;
 
     }
-=======
-    }cout << endl;
-
->>>>>>> 5f6554b81ccaec67d504e6be03a2d2a394f96023
+         cout << endl;
 }
+
+
+
+
 
 void Console::menu(string& command)
 {
