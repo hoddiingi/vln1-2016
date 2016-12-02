@@ -32,7 +32,7 @@ void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
-/*
+
 bool sortAge (const Domain& lsh, const Domain& rhs) //sort by age
 {
     return (lsh.findAge() < rhs.findAge());
@@ -41,7 +41,7 @@ bool sortAge (const Domain& lsh, const Domain& rhs) //sort by age
 void Domain::sortingAge(vector<Person> &ageSort) //sort by age
 {
     std::sort(ageSort.begin(), ageSort.end(), sortAge);
-}*/
+}
 
 int Domain::findAge(Person& sciAge) const
 {
