@@ -8,10 +8,17 @@ class Domain
 {
 public:
     Domain();
+<<<<<<< HEAD
     void ageSorting(vector<Person> &ageSort);
     void alphabeticSort(vector<Person> &alphaSort);
     void sortingAge(vector<Person> &ageSort);
     //Sort by name
+=======
+    void ageSorting(vector<Person>& ageSort);
+    void alphabeticSort(vector<Person>& alphaSort);
+    void sortingAge(vector<Person>& ageSort);
+    //Sorting functions
+>>>>>>> 67e20dc4f881e0301f12139181ee820013f2157d
     void search();
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
@@ -19,7 +26,6 @@ public:
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);
     friend bool operator < (const Person& lsh, const Person& rhs);
-    friend bool operator < (const Domain& lsh, const Domain& rhs);
 };
 
 #endif // DOMAIN_H
