@@ -311,6 +311,7 @@ void Console::addAnother(string &anotherOne)
 
 string Console::searchName()
 {
+    _dat.readData();
     string chosenName;
     cout << "Who would you like to search for? ";
     cin >> chosenName;
@@ -321,6 +322,7 @@ void Console::displaySearch()
 {
     _pers = _dat.readData();
     string name = searchName();
+
     vector<Person> k = _dom.search(_pers, name);
 
     cout << endl;
