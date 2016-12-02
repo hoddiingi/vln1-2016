@@ -17,7 +17,6 @@ public:
     int findAge(Person& sciAge) const;
 
 private:
-
     friend bool operator < (const Person& lsh, const Person& rhs);
     friend bool operator < (const Person& lsh, const Person& rhs);
 

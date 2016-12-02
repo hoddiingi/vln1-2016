@@ -13,7 +13,6 @@ public:
 
 
 private:
-
     vector<Person> _persons;
 };
 
