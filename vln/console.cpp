@@ -83,8 +83,7 @@ int Console::getSort()
     string sortInput;
     do
     {
-        cout << endl;
-        cout << "-------------------------------------------"  << endl;
+        cout << endl << "-------------------------------------------"  << endl;
         cout << "Please enter one of the following commands: " << endl << endl;
         cout << "1 - sort by alphabetical order" << endl;
         cout << "2 - sort by year of birth" << endl;
@@ -119,8 +118,7 @@ void Console::displaySort(int& sort)
 
 void Console::display()
 {
-    cout << endl;
-    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << endl;
+    cout  << endl << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:" << endl;
 
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
@@ -144,17 +142,17 @@ void Console::display()
         }
         if(_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
         {
-            cout << "Male" << "\t";
+            cout << "Male\t";
         }
         else if(_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
         {
-            cout << "Female" << "\t";
+            cout << "Female\t";
         }
         cout << _pers[i].getBirth() << "\t";
 
         if(_pers[i].getDeath() == 0)
         {
-            cout << "N/A" << "\t";
+            cout << "N/A\t";
         }
         else
         {
@@ -239,6 +237,7 @@ void Console::addGender(char& gender)
 void Console::addBirth(int& birth)
 {
     string birthInput;
+
     do
     {
         cout << "Enter year of birth: ";
@@ -313,7 +312,7 @@ string Console::searchName()
 {
     _dat.readData();
     string chosenName;
-    cout << "Who would you like to search for? ";
+    cout << endl << "Who would you like to search for? (Case sensitive) ";
     cin >> chosenName;
     return chosenName;
 }
@@ -326,7 +325,7 @@ void Console::displaySearch()
     vector<Person> k = _dom.search(_pers, name);
 
     cout << endl;
-    cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << "\t" << endl;
+    cout << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:\t" << endl;
 
     for(unsigned int i = 0; i < k.size(); i++)
     {
@@ -350,17 +349,17 @@ void Console::displaySearch()
         }
         if(k[i].getGender() == 'm' || k[i].getGender() == 'M')
         {
-            cout << "Male" << "\t";
+            cout << "Male\t";
         }
         else if(k[i].getGender() == 'f' || k[i].getGender() == 'F')
         {
-            cout << "Female" << "\t";
+            cout << "Female\t";
         }
         cout << k[i].getBirth() << "\t";
 
         if(k[i].getDeath() == 0)
         {
-            cout << "N/A" << "\t";
+            cout << "N/A\t";
         }
         else
         {
