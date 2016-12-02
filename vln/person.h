@@ -13,9 +13,16 @@ public:
     char getGender() const;
     int getBirth() const;
     int getDeath() const;
+<<<<<<< HEAD
     void setDeath(int death);
     int getNameSize();
 
+=======
+    int getNameSize();
+
+    //Gets private member variables
+
+>>>>>>> 5f6554b81ccaec67d504e6be03a2d2a394f96023
 private:
     string _name;
     char _gender;
