@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <vector>
 #include "data.h"
-#include "person.h"
 #include "console.h"
 
 using namespace std;
@@ -29,16 +28,30 @@ void Domain::alphabeticSort(vector<Person> &alphaSort)
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
-int Domain::findAge(Person& lhs,Person& rhs) const
+
+
+int Domain::findAge(Person& sciAge) const
 {
     int x;
     int y;
-    int result;
-    x = lhs.getDeath();
-    y = rhs.getBirth();
-    result = x - y;
-    return result;
-}
+    int resultDead;
+    int resultAlive;
+    const int currentYear = 2016;
+    x = sciAge.getDeath();
+    y = sciAge.getBirth();
+
+    if(x == 0)
+    {
+        resultAlive = currentYear - y;
+        return resultAlive;
+    }
+    else
+    {
+    resultDead = x - y;
+    return resultDead;
+    }
+ }
+
 Person Domain::search(vector<Person>& p, string name)
 {
     Person p1;
@@ -52,3 +65,4 @@ Person Domain::search(vector<Person>& p, string name)
     }
     return p1;
 }
+
