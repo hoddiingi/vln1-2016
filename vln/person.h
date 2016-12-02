@@ -17,6 +17,10 @@ public:
     int getDeath() const;
     int getNameSize();
     //Gets private member variables
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc6a91516f039861e83afdf0e5689ab8c5a8b61a
 
 private:
     //Member variables

@@ -40,6 +40,10 @@ int Domain::findAge(Person& lhs,Person& rhs) const
     result = x - y;
     return result;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc6a91516f039861e83afdf0e5689ab8c5a8b61a
 Person Domain::search(vector<Person>& p, string name)
 {
     Person p1;
