@@ -19,7 +19,6 @@ public:
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);
     friend bool operator < (const Person& lsh, const Person& rhs);
-
 };
 
 #endif // DOMAIN_H

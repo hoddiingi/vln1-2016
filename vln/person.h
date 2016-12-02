@@ -22,7 +22,6 @@ private:
     char _gender;
     int _birth;
     int _death;
-
 };
 
 #endif // PERSON_H

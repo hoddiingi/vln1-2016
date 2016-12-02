@@ -32,9 +32,7 @@ public:
     //adds a new scientist's year of death if applicable
     void addAnother(string& anotherOne);
     //ask the user if he/she wants to add another scientist
-
     string searchName();
-    vector<Person> getVector();
     void displaySearch();
 
 private:
