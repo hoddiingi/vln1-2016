@@ -283,7 +283,7 @@ void Console::addAnother(string &anotherOne)
 string Console::searchName()
 {
     string chosenName;
-    cout << "Who would you like to search for? ";
+    cout << endl << "Who would you like to search for? (Case sensitive) ";
     cin >> chosenName;
     return chosenName;
 }
