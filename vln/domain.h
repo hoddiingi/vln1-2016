@@ -8,10 +8,10 @@ class Domain
 {
 public:
     Domain();
-    void ageSorting(vector<Person> &ageSort);
-    void alphabeticSort(vector<Person> &alphaSort);
-    //Sort by name
-    //vector<Person> &alphaSort - go trough the vector and check name
+    void ageSorting(vector<Person>& ageSort);
+    void alphabeticSort(vector<Person>& alphaSort);
+    void sortingAge(vector<Person>& ageSort);
+    //Sorting functions
     void search();
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;

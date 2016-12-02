@@ -11,7 +11,7 @@ Person::Person()
 
 Person::Person(string name, char gender, int birth, int death)
 {
-    _name = name;
+    _name   = name;
     _gender = gender;
     _birth  = birth;
     _death  = death;
