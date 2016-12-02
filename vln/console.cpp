@@ -266,6 +266,7 @@ void Console::addAnother(string &anotherOne)
 }
 string Console::searchName()
 {
+    _dat.readData();
     string chosenName;
     cout << "Who would you like to search for? ";
     cin >> chosenName;
@@ -275,7 +276,6 @@ void Console::displaySearch()
 {
     string name = searchName();
     cout << endl;
-
     cout << "NAME:" << "\t\t\t\t" << "GENDER:" << "\t" << "BORN:" << "\t" << "DIED:" <<  "\t" << "AGE:" << "\t" << endl;
     vector<Person> k = _dom.search(_pers, name);
         for(unsigned int i = 0; i < k.size(); i++)
