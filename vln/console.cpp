@@ -364,6 +364,6 @@ void Console::displaySearch()
         {
             cout << k[i].getDeath() << "\t";
         }
-        cout << _dom.findAge(_pers[i]) << endl;
+        cout << _dom.findAge(k[i]) << endl;
     }
 }
