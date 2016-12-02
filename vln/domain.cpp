@@ -67,6 +67,7 @@ vector<Person> Domain::search(vector<Person>& p, string name)
         int deathFind;
         nameFind = p[i].getName();
         std::size_t found = nameFind.find(name);
+
         if (found!=std::string::npos)
         {
             p[i].getName();
