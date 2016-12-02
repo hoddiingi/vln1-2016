@@ -38,7 +38,7 @@ vector<Person> Data::readData()
 
     if (in.fail())
     {
-        cout << "Fail";
+        exit(1);
     }
     else
     {
