@@ -3,6 +3,7 @@
 #include "domain.h"
 #include "data.h"
 #include "person.h"
+#include "computer.h"
 #include <iostream>
 #include <vector>
 
@@ -46,7 +47,9 @@ private:
     Data _dat;
     Domain _dom;
     Person _p;
+    Computer _c;
     vector<Person> _pers;
+    vector<Computer> _comp;
 };
 
 #endif // CONSOLE_H

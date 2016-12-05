@@ -24,6 +24,25 @@ void Data::writeData(Person p)
 
     out.close();
 }
+void Data::writeCompData(Computer c)
+{
+    ofstream out;
+    out.open("text.txt", std::ios_base::app);
+
+    out << c.getName() << endl;
+    out << c.getYear() << endl;
+    out << c.getType() << endl;
+    out << c.getBuilt() << endl;
+
+    out.close();
+}
+
+vector<Computer> Data::readCompData()
+{
+    vector<Computer> vect2;
+    return vect2;
+
+}
 
 vector<Person> Data::readData()
 {

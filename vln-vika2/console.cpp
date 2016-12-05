@@ -7,6 +7,7 @@
 #include "data.h"
 #include <cctype>
 #include <ctype.h>
+#include "computer.h"
 
 using namespace std;
 
@@ -218,7 +219,16 @@ void Console::add(string& anotherOne)
     }
     else if(choice == 2)
     {
-        cout << "Computer" << endl;
+        std::string computerName;
+        int year = 0;
+        string type;
+        char built;
+
+        addComputerName(computerName);
+        addYear(year);
+        addBuilt(built);
+        addType(type);
+
     }
 }
 
