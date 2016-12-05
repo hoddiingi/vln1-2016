@@ -13,6 +13,7 @@ class Console
 public:
     Console();
     bool validName(string n);
+    bool validComputerName(string n);
     bool validYear(string s);
     void getInfo();
     int getSort();

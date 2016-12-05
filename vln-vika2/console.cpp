@@ -27,6 +27,17 @@ bool Console::validName(string n)
     return 1;
 }
 
+bool Console::validComputerName(string n)
+{
+
+    if (n == "")
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
 bool Console::validYear(string s)
 {
     for (unsigned int i = 0; i < s.size(); i++)
@@ -307,9 +318,19 @@ void Console::addDeath(int& death, int& birth)
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 
-void addComputerName(string& computerName)
+void Console::addComputerName(string& computerName)
 {
+    do
+    {
+        cout << endl << "Enter name of computer: ";
+        cin.ignore();
+        std::getline(std::cin, computerName);
 
+        if(!validComputerName(computerName))
+        {
+            cout << "Name can not be empty" << endl;
+        }
+    }while(!validComputerName(computerName));
 }
 
 void addYear(int& year)
