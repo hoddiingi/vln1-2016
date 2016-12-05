@@ -307,6 +307,26 @@ void Console::addDeath(int& death, int& birth)
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 
+void addComputerName(string& computerName)
+{
+
+}
+
+void addYear(int& year)
+{
+
+}
+
+void addBuilt(char& built)
+{
+
+}
+
+void addType(string& type)
+{
+
+}
+
 void Console::addAnother(string& anotherOne)
 {
     do
