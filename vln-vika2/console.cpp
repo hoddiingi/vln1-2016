@@ -322,9 +322,18 @@ void addBuilt(char& built)
 
 }
 
-void addType(string& type)
+void Console::addType(string& type)
 {
-
+    string cpuType;
+    do
+    {
+        cout << "Enter the type of computer: " << endl;
+        cin >> cpuType;
+        if(!validName(cpuType))
+        {
+            cout << "Invalid input!" << endl;
+        }
+    }while(!validName(cpuType));
 }
 
 void Console::addAnother(string& anotherOne)
