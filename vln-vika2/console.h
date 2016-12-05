@@ -42,6 +42,7 @@ public:
     //ask the user if he/she wants to add another scientist
     string searchName();
     void displaySearch();
+    Console(const QString& path);
 
 private:
     //Member variables
@@ -51,7 +52,7 @@ private:
     Computer _c;
     vector<Person> _pers;
     vector<Computer> _comp;
-
+    QSqlDatabase vika2;
 };
 
 #endif // CONSOLE_H
