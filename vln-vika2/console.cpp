@@ -334,9 +334,25 @@ void Console::addYear(int& year)
     year = atoi(yearInput.c_str());
 }
 
-void addBuilt(char& built)
+void Console::addBuilt(char& built)
 {
+    do
+    {
+        cout << "Built (Y/N): ";
+        std::string builtS;
+        std::getline(std::cin, builtS);
 
+        if(builtS.length() != 1)
+            cout << "Please only enter Y or N." << endl;
+        else
+        {
+            built = builtS[0];
+            if(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'))
+            {
+                cout << "Please only enter Y or N." << endl;
+            }
+        }
+    }while(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'));
 }
 
 void addType(string& type)
