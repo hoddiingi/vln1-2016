@@ -3,7 +3,6 @@
 #include "data.h"
 #include <string>
 
-
 Person::Person()
 {
 

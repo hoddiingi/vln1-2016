@@ -27,6 +27,17 @@ bool Console::validName(string n)
     return 1;
 }
 
+bool Console::validComputerName(string n)
+{
+
+    if (n == "")
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
 bool Console::validYear(string s)
 {
     for (unsigned int i = 0; i < s.size(); i++)
@@ -307,19 +318,62 @@ void Console::addDeath(int& death, int& birth)
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 
-void addComputerName(string& computerName)
+void Console::addComputerName(string& computerName)
 {
+    do
+    {
+        cout << endl << "Enter name of computer: ";
+        cin.ignore();
+        std::getline(std::cin, computerName);
 
+        if(!validComputerName(computerName))
+        {
+            cout << "Name can not be empty" << endl;
+        }
+    }while(!validComputerName(computerName));
 }
 
-void addYear(int& year)
+void Console::addYear(int& year)
 {
+    string yearInput;
 
+    do
+    {
+        cout << "Enter the year the computer was built: ";
+        cin  >> yearInput;
+
+        if(!validYear(yearInput))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+        else if(atoi(yearInput.c_str()) > 2016)
+        {
+            cout << "The computer hasn't been built yet.." << endl;
+        }
+    }while(!validYear(yearInput) || atoi(yearInput.c_str()) > 2016);
+
+    year = atoi(yearInput.c_str());
 }
 
-void addBuilt(char& built)
+void Console::addBuilt(char& built)
 {
+    do
+    {
+        cout << "Built (Y/N): ";
+        std::string builtS;
+        std::getline(std::cin, builtS);
 
+        if(builtS.length() != 1)
+            cout << "Please only enter Y or N." << endl;
+        else
+        {
+            built = builtS[0];
+            if(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'))
+            {
+                cout << "Please only enter Y or N." << endl;
+            }
+        }
+    }while(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'));
 }
 
 void Console::addType(string& type)
