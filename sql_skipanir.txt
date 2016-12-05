@@ -1,0 +1,72 @@
+sql
+===========================================================
+codd rules
+
+SQL support functions
+
+SELECT 
+	SELECT * FROM Students s
+		Sýnir alla í Students töflunni
+
+WHERE
+	SELECT * FROM Students s
+	WHERE s.age>30
+		sýnir alla í Students töflunni
+		sem eru yfir 30 ára
+
+INSERT 
+	INSERT INTO Students (Name, Age, Email) VALUES ("Siggi", 22, "siggi@ru.is)
+		bætir við línu í töfluna með upplýsingum um Sigga
+
+SUM
+	SELECT SUM(s.Age) FROM Students s
+		skilar samanlögðum aldri alla í töflunni
+
+AVG
+	SELECT AVG(s.Age) FROM Students s
+		skilar meðal aldri alla í töflunni 
+
+COUNT	
+	SELECT COUNT(s.Name) FROM Students s
+		skilar fjölda raða í Name dálkinum
+
+MIN/MAX
+	SELECT MIN(s.Age) FROM Students s
+		skilar lægsta aldri í töflunni
+	SELECT MAX(s.Age) FROM Students s
+		skilar hæsta aldri í töflunni
+
+UPDATE
+	UPDATE Students SET Age=27 WHERE ID=4
+		uppfærir aldur á manneskju með ID 4
+	UPDATE Students SET Age=27, Name="Auður Reynisdóttir" WHERE ID=4
+		uppfærir aldur og nafn á manneskju með ID 4
+
+JOIN 
+	SELECT s.Name, Age, Email, c.Name FROM Students s
+		sýnir nafn, aldur og email úr Students töflunni
+		og Nafn úr Courses töflunni
+	INNER JOIN Courses c
+		INNER notað til að undanskilja ef eitthvað tilvik er með NULL
+	ON s.CourseID=c.ID
+		Tengir saman CourseID úr Students og ID úr Courses
+	
+	LEFT JOIN
+		velur allar færslur s.CourseID úr A hvort sem þær hafa c.ID eða NULL
+
+UNION
+	SELECT s.ID, s.Name, s.Email FROM Students s
+	UNION
+		þurfa að vera líkar töflur, td. jafnmargir dálkar
+	SELECT t.ID, t.TeacherName, t.EmailAddres FROM Teachers t
+		sameinar í eina töflu þessa dálka úr báðum töflum
+
+	SELECT s.ID, s.Name, s.Email, 1 AS Type FROM Students s
+		1 AS Type
+		Addar inn nýjum dálki sem heitir type og setur 1 í hann
+		fyrir alla úr Students töflunni
+	UNION
+	SELECT t.ID, t.TeacherName, t.EmailAddres, 2 AS Type FROM Teachers t
+		2 AS Type
+		setur 2 í Type dálkinn fyrir alla úr Teachers töflunni
+
