@@ -8,6 +8,7 @@ class Domain
 {
 public:
     Domain();
+
     void ageSorting(vector<Person>& ageSort);
     void alphabeticSort(vector<Person>& alphaSort);
     void sortingAge(vector<Person>& ageSort);
