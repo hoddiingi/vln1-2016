@@ -179,23 +179,36 @@ void Console::menu(string& command)
 
 void Console::add(string& anotherOne)
 {
-    do
+    int choice;
+
+    cout << "Enter 1 to add a scientist" << endl;
+    cout << "Enter 2 to add a computer" << endl;
+    cin >> choice;
+
+    if(choice == 1)
     {
-        std::string name;
-        char gender;
-        int birth = 0;
-        int death = 0;
+        do
+        {
+            std::string name;
+            char gender;
+            int birth = 0;
+            int death = 0;
 
-        addName(name);
-        addGender(gender);
-        addBirth(birth);
-        addDeath(death, birth);
-        addAnother(anotherOne);
+            addName(name);
+            addGender(gender);
+            addBirth(birth);
+            addDeath(death, birth);
+            addAnother(anotherOne);
 
-        Person newData(name, gender, birth, death);
-        _dat.writeData(newData);
+            Person newData(name, gender, birth, death);
+            _dat.writeData(newData);
 
-    }while(anotherOne == "y" || anotherOne == "Y");
+        }while(anotherOne == "y" || anotherOne == "Y");
+    }
+    else if(choice == 2)
+    {
+        cout << "Computer" << endl;
+    }
 }
 
 void Console::addName(std::string& name)
@@ -292,6 +305,26 @@ void Console::addDeath(int& death, int& birth)
         cout << endl;
 
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
+}
+
+void addComputerName(string& computerName)
+{
+
+}
+
+void addYear(int& year)
+{
+
+}
+
+void addBuilt(char& built)
+{
+
+}
+
+void addType(string& type)
+{
+
 }
 
 void Console::addAnother(string& anotherOne)

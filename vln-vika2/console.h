@@ -27,6 +27,12 @@ public:
     void addGender(char& gender);
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
+
+    void addComputerName(string& computerName);
+    void addYear(int& year);
+    void addBuilt(char& built);
+    void addType(string& type);
+
     void addAnother(char& anotherOne);
     //adds a new scientist's year of death if applicable
     void addAnother(string& anotherOne);
