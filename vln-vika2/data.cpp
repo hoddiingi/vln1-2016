@@ -77,3 +77,18 @@ vector<Person> Data::readData()
 
     return vect;
 }
+
+Data::Data(const QString& path)
+{
+   vika2 = QSqlDatabase::addDatabase("QSQLITE");
+   vika2.setDatabaseName(path);
+
+   if (!vika2.open())
+   {
+      qDebug() << "Error: connection with database fail";
+   }
+   else
+   {
+      qDebug() << "Database: connection ok";
+   }
+}
