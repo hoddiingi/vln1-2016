@@ -219,15 +219,21 @@ void Console::add(string& anotherOne)
     }
     else if(choice == 2)
     {
-        std::string computerName;
-        int year = 0;
-        string type;
-        char built;
+        do
+        {
+            std::string computerName;
+            int year = 0;
+            string type;
+            char built;
 
-        addComputerName(computerName);
-        addYear(year);
-        addBuilt(built);
-        addType(type);
+            addComputerName(computerName);
+            addYear(year);
+            addType(type);
+            addBuilt(built);
+
+            Computer newDataComp(computerName, year, type, built);
+            _dat.writeCompData(newDataComp);
+        }while(anotherOne == "y" || anotherOne == "Y");
 
     }
 }
@@ -391,14 +397,14 @@ void Console::addType(string& type)
     string cpuType;
     do
     {
-        cout << "Enter the type of computer: " << endl;
+        cout << "Enter the type of computer: ";
         cin >> cpuType;
         cpuType = type;
-        if(!validName(type) || !validComputerName(type))
+        if(!validName(type) && !validComputerName(type))
         {
             cout << "Type cannot be empty or contain digits! " << endl;
         }
-    }while(!validName(type) || !validComputerName(type));
+    }while(!validName(type) && !validComputerName(type));
 }
 
 void Console::addAnother(string& anotherOne)
