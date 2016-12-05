@@ -10,7 +10,7 @@ using namespace std;
 
 Domain::Domain()
 {
-asdf
+
 }
 
 bool agePerson (const Person& lsh, const Person& rhs) // sort by birthyear
