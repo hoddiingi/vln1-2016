@@ -312,9 +312,26 @@ void addComputerName(string& computerName)
 
 }
 
-void addYear(int& year)
+void Console::addYear(int& year)
 {
+    string yearInput;
 
+    do
+    {
+        cout << "Enter the year the computer was built: ";
+        cin  >> yearInput;
+
+        if(!validYear(yearInput))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+        else if(atoi(yearInput.c_str()) > 2016)
+        {
+            cout << "The computer hasn't been built yet.." << endl;
+        }
+    }while(!validYear(yearInput) || atoi(yearInput.c_str()) > 2016);
+
+    year = atoi(yearInput.c_str());
 }
 
 void addBuilt(char& built)
