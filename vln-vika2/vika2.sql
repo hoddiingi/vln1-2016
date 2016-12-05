@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS "Scientists";
+CREATE TABLE "Scientists" ("ID" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "Name" VARCHAR NOT NULL , "Gender" CHAR, "Birth" INTEGER, "Death" INTEGER);
+INSERT INTO "Scientists" VALUES(1,'Jón Jónsson','Male',1990,2020);
