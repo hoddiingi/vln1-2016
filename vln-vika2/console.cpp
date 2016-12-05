@@ -383,11 +383,12 @@ void Console::addType(string& type)
     {
         cout << "Enter the type of computer: " << endl;
         cin >> cpuType;
-        if(!validName(cpuType) || !validComputerName(cpuType))
+        cpuType = type;
+        if(!validName(type) || !validComputerName(type))
         {
             cout << "Type cannot be empty or contain digits! " << endl;
         }
-    }while(!validName(cpuType) || !validComputerName(cpuType));
+    }while(!validName(type) || !validComputerName(type));
 }
 
 void Console::addAnother(string& anotherOne)
