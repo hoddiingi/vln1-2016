@@ -1,6 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <string>
+#include <QtSql>
 
 using namespace std;
 

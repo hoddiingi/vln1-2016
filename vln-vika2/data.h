@@ -2,6 +2,7 @@
 #define DATA_H
 #include <vector>
 #include <string>
+#include <QtSql>
 #include "person.h"
 #include "computer.h"
 
