@@ -20,7 +20,7 @@ public:
 private:
     vector<Person> _persons;
     vector<Computer> _computers;
-    QSqlDatabase data;
+    QSqlDatabase sqlPrufa;
 };
 
 #endif // DATA_H

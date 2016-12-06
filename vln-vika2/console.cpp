@@ -212,7 +212,7 @@ void Console::add(string& anotherOne)
             addDeath(death, birth);
             addAnother(anotherOne);
 
-            Data d("/data.sql");
+            Data d("sqlPrufa.sqlite");
             Person newData(name, gender, birth, death);
             _dat.writeData(newData);
             _dat.addPerson(newData);
