@@ -11,7 +11,7 @@ Data::Data()
 {
     _persons = readData();
 }
-
+/*
 void Data::writeData(Person p)
 {
     ofstream out;
@@ -36,6 +36,7 @@ void Data::writeCompData(Computer c)
 
     out.close();
 }
+*/
 
 vector<Computer> Data::readCompData()
 {
