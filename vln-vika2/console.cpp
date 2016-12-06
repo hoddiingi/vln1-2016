@@ -214,6 +214,7 @@ void Console::add(string& anotherOne)
 
             Person newData(name, gender, birth, death);
             _dat.writeData(newData);
+            _dat.addPerson(newData);
 
         }while(anotherOne == "y" || anotherOne == "Y");
     }

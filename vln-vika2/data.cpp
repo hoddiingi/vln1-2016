@@ -93,3 +93,23 @@ Data::Data(const QString& path)
       qDebug() << "Database: connection ok";
    }
 }
+bool Data::addPerson(Person p)
+{
+   QString name = QString::fromStdString(p.getName());
+   bool success = false;
+   // you should check if args are ok first...
+   QSqlQuery query;
+   query.prepare("INSERT INTO people (name) VALUES (:name)");
+   query.bindValue(":name", name);
+   if(query.exec())
+   {
+       success = true;
+   }
+   else
+   {
+        qDebug() << "addPerson error:  "
+                 << query.lastError();
+   }
+
+   return success;
+}
