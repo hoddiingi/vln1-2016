@@ -1,5 +1,6 @@
 #include <iostream>
 #include "console.h"
+#include <QtSql>
 
 using namespace std;
 

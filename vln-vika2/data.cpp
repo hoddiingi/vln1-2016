@@ -11,7 +11,6 @@ Data::Data()
 {
     _persons = readData();
 }
-
 void Data::writeData(Person p)
 {
     ofstream out;
@@ -23,6 +22,7 @@ void Data::writeData(Person p)
     out << p.getDeath() << endl;
 
     out.close();
+
 }
 void Data::writeCompData(Computer c)
 {
