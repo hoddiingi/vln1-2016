@@ -10,5 +10,6 @@ int main()
 
     co.getInfo();
 
+    co.printAllPersons();
     return 0;
 }

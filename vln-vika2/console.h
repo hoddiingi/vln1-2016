@@ -42,6 +42,8 @@ public:
     //ask the user if he/she wants to add another scientist
     string searchName();
     void displaySearch();
+    void displayComputer();
+    void printAllPersons() const;
 
 
 private:

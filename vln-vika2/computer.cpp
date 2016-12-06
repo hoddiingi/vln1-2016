@@ -32,3 +32,8 @@ char Computer::getBuilt() const
 {
     return _built;
 }
+
+int Computer::getNameSize2()
+{
+    return _name.size();
+}

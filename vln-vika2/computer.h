@@ -14,6 +14,7 @@ public:
     int getYear() const;
     string getType() const;
     char getBuilt() const;
+    int getNameSize2();
 
 
 private:

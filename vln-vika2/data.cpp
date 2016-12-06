@@ -120,14 +120,9 @@ bool Data::addPerson(Person p)
    bool success = false;
    // you should check if args are ok first...
    QSqlQuery query;
-<<<<<<< HEAD
 
-   query.prepare("INSERT INTO People (id, name, gender, birth, death) VALUES (:id, :name, :gender, :birth, :death)");
-   query.bindValue(":id",  2);
-=======
    query.prepare("INSERT INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
    //query.bindValue(":id",  3);
->>>>>>> d2a5dcb48bd6001d5c94fe490c1de4eb4f62c874
    query.bindValue(":name", name);
    query.bindValue(":gender", gender);
    query.bindValue(":birth", birth);

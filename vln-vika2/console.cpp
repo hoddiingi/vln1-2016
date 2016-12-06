@@ -67,8 +67,26 @@ void Console::getInfo()
         }
         else if((command == "View") || (command == "view"))
         {
-            _pers = _dat.readData();
-            display();
+            int viewInput = 0;
+            cout << "------------------------------" << endl;
+            cout << "Please enter one of the following commands:" << endl;
+            cout << "1 - view list of scientists" << endl;
+            cout << "2 - view a list of computers" << endl;
+            cin >> viewInput;
+
+            if (viewInput == 1)
+            {
+                _pers = _dat.readData();
+                //display();
+            }
+            else if (viewInput == 2)
+            {
+                _comp = _dat.readCompData();
+                displayComputer();
+            }
+
+           // _pers = _dat.readData();
+           // display();
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -212,12 +230,10 @@ void Console::add(string& anotherOne)
             addDeath(death, birth);
             addAnother(anotherOne);
 
-
             Data d("sqlPrufa.sqlite");
             Person newData(name, gender, birth, death);
             _dat.writeData(newData);
             _dat.addPerson(newData);
-
 
         }while(anotherOne == "y" || anotherOne == "Y");
     }
@@ -486,3 +502,47 @@ void Console::displaySearch()
     }
 }
 
+void Console::displayComputer()
+{
+    cout  << endl << "COMPUTER NAME:\t\t\t\tYEAR:\tTYPE:\tBUILT:" << endl;
+    cout << "------------------------------------------" << endl;
+
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+        int nameSize = _comp[i].getNameSize2();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << _comp[i].getName() << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << _comp[i].getName() << "\t\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << _comp[i].getName() << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << _comp[i].getName() << "\t";
+        }
+        cout << _comp[i].getYear() << "\t";
+
+        cout << _comp[i].getType() << "\t";
+
+        cout << _comp[i].getBuilt() << "\t";
+    }
+}
+
+void Console::printAllPersons() const
+{
+    qDebug() << "Persons in db:";
+    QSqlQuery query("SELECT * FROM people");
+    int idName = query.record().indexOf("name");
+    while (query.next())
+    {
+        QString name = query.value(idName).toString();
+        qDebug() << "===" << name;
+    }
+}
