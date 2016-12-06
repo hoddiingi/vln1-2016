@@ -17,6 +17,7 @@ public:
 
     Data(const QString& path);
     bool addPerson(Person p);
+    bool addComputer(Computer c);
 private:
     vector<Person> _persons;
     vector<Computer> _computers;

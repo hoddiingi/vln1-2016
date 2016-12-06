@@ -139,3 +139,32 @@ bool Data::addPerson(Person p)
 
    return success;
 }
+bool Data::addComputer(Computer c)
+{
+
+   QString name = QString::fromStdString(c.getName());
+   int year = c.getYear();
+   QString type = QString::fromStdString(c.getType());
+   QString built = QChar(c.getBuilt());
+   bool success = false;
+   // you should check if args are ok first...
+   QSqlQuery query;
+   query.prepare("INSERT INTO Computers (computername, year, type, built) VALUES (:computername, :year, :type, :built)");
+   //query.bindValue(":id",  3);
+   query.bindValue(":computername", name);
+   query.bindValue(":year", year);
+   query.bindValue(":type", type);
+   query.bindValue(":built", built);
+
+   if(query.exec())
+   {
+       success = true;
+   }
+   else
+   {
+        qDebug() << "addPerson error:  "
+                 << query.lastError();
+   }
+
+   return success;
+}
