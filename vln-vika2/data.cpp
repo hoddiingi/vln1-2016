@@ -105,3 +105,29 @@ Data::Data(const QString& path)
       qDebug() << "Database: connection ok";
    }
 }
+bool Data::addPerson(Person p)
+{
+   QString name = QString::fromStdString(p.getName());
+   char gender = p.getGender();
+   int birth = p.getBirth();
+   int death = p.getDeath();
+   bool success = false;
+   // you should check if args are ok first...
+   QSqlQuery query;
+   query.prepare("INSERT INTO people (Name, Gender, Birth, Death) VALUES (:Name, :Gender, :Birth, :Death)");
+   query.bindValue(":Name",  name);
+   query.bindValue(":Gender", gender);
+   query.bindValue(":Birth", birth);
+   query.bindValue(":Death", death);
+   if(query.exec())
+   {
+       success = true;
+   }
+   else
+   {
+        qDebug() << "addPerson error:  "
+                 << query.lastError();
+   }
+
+   return success;
+}
