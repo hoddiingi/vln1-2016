@@ -230,7 +230,12 @@ void Console::add(string& anotherOne)
             addDeath(death, birth);
             addAnother(anotherOne);
 
+<<<<<<< HEAD
             Data d("sqlPrufa.sqlite");
+=======
+
+            //Data d("sqlPrufa.sqlite");
+>>>>>>> f4876d6f610e3e8121300fd9812c3ed13dcdfc43
             Person newData(name, gender, birth, death);
             _dat.writeData(newData);
             _dat.addPerson(newData);
@@ -251,8 +256,10 @@ void Console::add(string& anotherOne)
             addType(type);
             addBuilt(built);
 
+            Data d("sqlPruf.sqlite");
             Computer newDataComp(computerName, year, type, built);
             _dat.writeCompData(newDataComp);
+            _dat.addComputer(newDataComp);
         }while(anotherOne == "y" || anotherOne == "Y");
 
     }
@@ -401,7 +408,6 @@ void Console::addBuilt(char& built)
 
         if(builtS.length() != 1)
             cout << "Please only enter Y or N." << endl;
-        else
         {
             built = builtS[0];
             if(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'))

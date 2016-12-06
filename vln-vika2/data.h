@@ -14,9 +14,12 @@ public:
     vector<Person> readData();
     void writeCompData(Computer c);
     vector<Computer> readCompData();
-
     Data(const QString& path);
     bool addPerson(Person p);
+    bool addComputer(Computer c);
+    void open();
+    void close();
+
 private:
     vector<Person> _persons;
     vector<Computer> _computers;

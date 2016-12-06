@@ -112,6 +112,7 @@ Data::Data(const QString& path)
 }
 bool Data::addPerson(Person p)
 {
+   open();
 
    QString name = QString::fromStdString(p.getName());
    QString gender = QChar(p.getGender());
@@ -119,10 +120,10 @@ bool Data::addPerson(Person p)
    int death = p.getDeath();
    bool success = false;
    // you should check if args are ok first...
+
    QSqlQuery query;
 
    query.prepare("INSERT INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
-   //query.bindValue(":id",  3);
    query.bindValue(":name", name);
    query.bindValue(":gender", gender);
    query.bindValue(":birth", birth);
@@ -137,6 +138,58 @@ bool Data::addPerson(Person p)
         qDebug() << "addPerson error:  "
                  << query.lastError();
    }
+   close();
 
    return success;
+}
+bool Data::addComputer(Computer c)
+{
+
+   QString name = QString::fromStdString(c.getName());
+   int year = c.getYear();
+   QString type = QString::fromStdString(c.getType());
+   QString built = QChar(c.getBuilt());
+   bool success = false;
+   // you should check if args are ok first...
+   QSqlQuery query;
+   query.prepare("INSERT INTO Computers (computername, year, type, built) VALUES (:computername, :year, :type, :built)");
+   //query.bindValue(":id",  3);
+   query.bindValue(":computername", name);
+   query.bindValue(":year", year);
+   query.bindValue(":type", type);
+   query.bindValue(":built", built);
+
+   if(query.exec())
+   {
+       success = true;
+   }
+   else
+   {
+        qDebug() << "addPerson error:  "
+                 << query.lastError();
+   }
+
+   return success;
+}
+
+void Data::open()
+{
+    sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
+    QString sqlPrufaName = "sqlPrufa.sqlite";
+    sqlPrufa.setDatabaseName(sqlPrufaName);
+
+
+    if (!sqlPrufa.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
+}
+
+void Data::close()
+{
+    sqlPrufa.close();
 }
