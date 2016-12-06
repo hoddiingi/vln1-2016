@@ -21,7 +21,7 @@ void Data::writeData(Person p)
     out << p.getBirth() << endl;
     out << p.getDeath() << endl;
 
-    out.close();*/
+    out.close();
 
 
     QString name = QString::fromStdString(p.getName());
@@ -33,7 +33,7 @@ void Data::writeData(Person p)
     QSqlQuery query;
     query.prepare("INSERT INTO people (name) VALUES (name)");
    // query.bindValue("name", name);
-
+*/
 
 }
 void Data::writeCompData(Computer c)
@@ -59,6 +59,7 @@ vector<Computer> Data::readCompData()
 
 vector<Person> Data::readData()
 {
+
     vector<Person> vect;
     string name, genderS, birthS, deathS;
     const char *gender;
@@ -94,7 +95,8 @@ vector<Person> Data::readData()
 Data::Data(const QString& path)
 {
    data = QSqlDatabase::addDatabase("QSQLITE");
-   data.setDatabaseName(path);
+   QString dbName = "test.sqlite";
+   data.setDatabaseName(dbName);
 
    if (!data.open())
    {
@@ -114,11 +116,11 @@ bool Data::addPerson(Person p)
    bool success = false;
    // you should check if args are ok first...
    QSqlQuery query;
-   query.prepare("INSERT INTO people (Name, Gender, Birth, Death) VALUES (:Name, :Gender, :Birth, :Death)");
-   query.bindValue(":Name",  name);
-   query.bindValue(":Gender", gender);
-   query.bindValue(":Birth", birth);
-   query.bindValue(":Death", death);
+   query.prepare("INSERT INTO folk (firstname) VALUES (:Name)");
+   query.bindValue(":Name", name);
+   //query.bindValue(":Gender", gender);
+   //query.bindValue(":Birth", birth);
+   //query.bindValue(":Death", death);
    if(query.exec())
    {
        success = true;
