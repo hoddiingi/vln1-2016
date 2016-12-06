@@ -13,7 +13,7 @@ Data::Data()
 }
 void Data::writeData(Person p)
 {
-    ofstream out;
+   /* ofstream out;
     out.open("text.txt", std::ios_base::app);
 
     out << p.getName() << endl;
@@ -21,7 +21,19 @@ void Data::writeData(Person p)
     out << p.getBirth() << endl;
     out << p.getDeath() << endl;
 
-    out.close();
+    out.close();*/
+
+
+    QString name = QString::fromStdString(p.getName());
+//    QString gender = QString::fromStdString(p.getGender());
+  //  QString birth = QString::fromStdString(p.getBirth());
+    //QString death = QString::fromStdString(p.getDeath());
+
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO people (name) VALUES (name)");
+   // query.bindValue("name", name);
+
 
 }
 void Data::writeCompData(Computer c)
