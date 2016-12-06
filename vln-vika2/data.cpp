@@ -77,3 +77,18 @@ vector<Person> Data::readData()
 
     return vect;
 }
+
+Data::Data(const QString& path)
+{
+   data = QSqlDatabase::addDatabase("QSQLITE");
+   data.setDatabaseName(path);
+
+   if (!data.open())
+   {
+      qDebug() << "Error: connection with database fail";
+   }
+   else
+   {
+      qDebug() << "Database: connection ok";
+   }
+}
