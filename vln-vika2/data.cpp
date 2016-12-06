@@ -11,10 +11,9 @@ Data::Data()
 {
     _persons = readData();
 }
-
 void Data::writeData(Person p)
 {
-    ofstream out;
+   /* ofstream out;
     out.open("text.txt", std::ios_base::app);
 
     out << p.getName() << endl;
@@ -23,6 +22,19 @@ void Data::writeData(Person p)
     out << p.getDeath() << endl;
 
     out.close();
+
+
+    QString name = QString::fromStdString(p.getName());
+//    QString gender = QString::fromStdString(p.getGender());
+  //  QString birth = QString::fromStdString(p.getBirth());
+    //QString death = QString::fromStdString(p.getDeath());
+
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO people (name) VALUES (name)");
+   // query.bindValue("name", name);
+*/
+
 }
 void Data::writeCompData(Computer c)
 {
@@ -47,6 +59,7 @@ vector<Computer> Data::readCompData()
 
 vector<Person> Data::readData()
 {
+
     vector<Person> vect;
     string name, genderS, birthS, deathS;
     const char *gender;
@@ -85,6 +98,7 @@ Data::Data(const QString& path)
    QString sqlPrufaName = "sqlPrufa.sqlite";
    sqlPrufa.setDatabaseName(sqlPrufaName);
 
+
    if (!sqlPrufa.open())
    {
       qDebug() << "Error: connection with database fail";
@@ -104,14 +118,16 @@ bool Data::addPerson(Person p)
    int birth = p.getBirth();
    int death = p.getDeath();
    bool success = false;
-
-
-
    // you should check if args are ok first...
    QSqlQuery query;
+<<<<<<< HEAD
 
    query.prepare("INSERT INTO People (id, name, gender, birth, death) VALUES (:id, :name, :gender, :birth, :death)");
    query.bindValue(":id",  2);
+=======
+   query.prepare("INSERT INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
+   //query.bindValue(":id",  3);
+>>>>>>> d2a5dcb48bd6001d5c94fe490c1de4eb4f62c874
    query.bindValue(":name", name);
    query.bindValue(":gender", gender);
    query.bindValue(":birth", birth);
