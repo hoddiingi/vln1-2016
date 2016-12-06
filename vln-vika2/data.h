@@ -16,7 +16,7 @@ public:
     vector<Computer> readCompData();
 
     Data(const QString& path);
-
+    bool addPerson(Person p);
 private:
     vector<Person> _persons;
     vector<Computer> _computers;

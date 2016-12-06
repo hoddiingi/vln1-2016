@@ -2,6 +2,7 @@
 #define PERSON_H
 #include <string>
 #include <QtSql>
+#include <QDebug>
 
 using namespace std;
 
