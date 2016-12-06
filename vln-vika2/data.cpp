@@ -37,6 +37,7 @@ void Data::writeCompData(Computer c)
     out.close();
 }
 
+
 vector<Computer> Data::readCompData()
 {
     vector<Computer> vect2;

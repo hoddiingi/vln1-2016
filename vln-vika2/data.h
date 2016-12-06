@@ -14,6 +14,7 @@ public:
     vector<Person> readData();
     void writeCompData(Computer c);
     vector<Computer> readCompData();
+
     Data(const QString& path);
 
 private:
