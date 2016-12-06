@@ -94,11 +94,12 @@ vector<Person> Data::readData()
 
 Data::Data(const QString& path)
 {
-   data = QSqlDatabase::addDatabase("QSQLITE");
-   QString dbName = "test.sqlite";
-   data.setDatabaseName(dbName);
+   sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
+   QString sqlPrufaName = "sqlPrufa.sqlite";
+   sqlPrufa.setDatabaseName(sqlPrufaName);
 
-   if (!data.open())
+
+   if (!sqlPrufa.open())
    {
       qDebug() << "Error: connection with database fail";
    }
@@ -106,21 +107,26 @@ Data::Data(const QString& path)
    {
       qDebug() << "Database: connection ok";
    }
+
+
 }
 bool Data::addPerson(Person p)
 {
+
    QString name = QString::fromStdString(p.getName());
-   char gender = p.getGender();
+   QString gender = QChar(p.getGender());
    int birth = p.getBirth();
    int death = p.getDeath();
    bool success = false;
    // you should check if args are ok first...
    QSqlQuery query;
-   query.prepare("INSERT INTO folk (firstname) VALUES (:Name)");
-   query.bindValue(":Name", name);
-   //query.bindValue(":Gender", gender);
-   //query.bindValue(":Birth", birth);
-   //query.bindValue(":Death", death);
+   query.prepare("INSERT INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
+   //query.bindValue(":id",  3);
+   query.bindValue(":name", name);
+   query.bindValue(":gender", gender);
+   query.bindValue(":birth", birth);
+   query.bindValue(":death", death);
+
    if(query.exec())
    {
        success = true;
