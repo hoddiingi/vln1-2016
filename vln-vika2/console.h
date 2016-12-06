@@ -4,6 +4,7 @@
 #include "data.h"
 #include "person.h"
 #include "computer.h"
+#include <QtSql>
 #include <iostream>
 #include <vector>
 
@@ -42,6 +43,7 @@ public:
     string searchName();
     void displaySearch();
 
+
 private:
     //Member variables
     Data _dat;
@@ -50,6 +52,7 @@ private:
     Computer _c;
     vector<Person> _pers;
     vector<Computer> _comp;
+
 };
 
 #endif // CONSOLE_H

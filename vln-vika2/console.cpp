@@ -481,3 +481,4 @@ void Console::displaySearch()
         cout << _dom.findAge(k[i]) << endl;
     }
 }
+

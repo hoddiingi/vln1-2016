@@ -1,6 +1,7 @@
 #ifndef DOMAIN_H
 #define DOMAIN_H
 #include <vector>
+#include <QtSql>
 #include "data.h"
 #include "person.h"
 
