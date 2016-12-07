@@ -93,8 +93,7 @@ bool Domain::addComputer(Computer c)
 {
     return _dat.addComputer(c);
 }
-<<<<<<< HEAD
-=======
+
 void Domain::open()
 {
     _dat.open();
@@ -104,4 +103,3 @@ void Domain::close()
 {
     _dat.close();
 }
->>>>>>> 1cd341dd57d1757d9213c242675c0da8800ac310

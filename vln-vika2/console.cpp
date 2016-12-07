@@ -83,15 +83,10 @@ void Console::getInfo()
             {
                 printAllPersons();
             }
-<<<<<<< HEAD
 
             _pers = _dom.readData();
             display();
 
-=======
-            _pers = _dom.readData();
-            display();
->>>>>>> 1cd341dd57d1757d9213c242675c0da8800ac310
         }
         else if((command == "Search") || (command == "search"))
         {

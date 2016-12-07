@@ -2,7 +2,7 @@
 #include "data.h"
 #include <fstream>
 #include <vector>
-//#include <iostream>
+#include <iostream>
 #include <stdlib.h>
 
 using namespace std;
