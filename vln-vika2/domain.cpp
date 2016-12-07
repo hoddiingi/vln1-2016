@@ -80,3 +80,16 @@ vector<Person> Domain::search(vector<Person>& p, string name)
     }
     return results;
 }
+
+vector<Person> Domain::readData()
+{
+    return _dat.readData();
+}
+bool Domain::addPerson(Person p)
+{
+    return _dat.addPerson(p);
+}
+bool Domain::addComputer(Computer c)
+{
+    return _dat.addComputer(c);
+}
