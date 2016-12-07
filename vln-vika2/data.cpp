@@ -203,3 +203,63 @@ void Data::close()
 {
     sqlPrufa.close();
 }
+
+/*
+bool Data::scientistSearch(const QString &name)
+{
+    open();
+    QSqlQuery query;
+    query.prepare("SELECT name FROM people WHERE name = (:name)");
+    query.bindValue(":name", name);
+
+    if (query.exec())
+    {
+        if (query.next())
+        {
+            close();
+            return true;
+        }
+    }
+    close();
+    return false;
+}
+*/
+
+//Search fyrir SQLite
+vector<Person> Data::searchName(QString &name)
+{
+    open();
+    vector<Person> results;
+    qDebug() << name << endl;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    string nameFind;
+    string genderFind;
+    int birthFind;
+    int deathFind;
+
+    //std::size_t found = nameFind.find(name);
+    QSqlQuery query(sqlPrufa);
+    QString search = "SELECT * FROM people WHERE name = (:name)";
+    query.prepare(search);
+    query.bindValue(":name", name);
+
+    query.exec();
+
+    while(query.next())
+    {
+        qDebug() << "Found" << endl;
+        Person p1;
+        // it exists
+        nameFind = query.value("Name").toString().toStdString();
+        genderFind = query.value("Gender").toString().toStdString();
+        birthFind = query.value("Birth").toInt();
+        deathFind = query.value("Death").toInt();
+        Person p2(nameFind, genderFind, birthFind, deathFind);
+        results.push_back(p2);
+    }
+
+    close();
+    return results;
+}

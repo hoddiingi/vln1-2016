@@ -19,6 +19,7 @@ public:
     bool addComputer(Computer c);
     void open();
     void close();
+    vector<Person> searchName(QString &name);
 
 private:
     vector<Person> _persons;

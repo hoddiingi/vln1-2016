@@ -57,6 +57,7 @@ int Domain::findAge(Person& sciAge) const
 
 vector<Person> Domain::search(vector<Person>& p, string name)
 {
+
     vector<Person> results;
 //Search function, we search from out vector and then put the results in another vector so it shows us all results
     for(unsigned int i = 0; i < p.size(); i++)
@@ -78,40 +79,13 @@ vector<Person> Domain::search(vector<Person>& p, string name)
             results.push_back(p2);
         }
     }
+
     return results;
 }
-/* Search fyrir SQLite
-vector<Person> Domain::search(vector<Person>& p, string name)
+vector<Person> Domain::searchName(QString &name)
 {
-    vector<Person> results;
-//Search function, we search from out vector and then put the results in another vector so it shows us all results
-    for(unsigned int i = 0; i < p.size(); i++)
-    {
-        string nameFind;
-        char genderFind;
-        int birthFind;
-        int deathFind;
-        nameFind = p[i].getName();
-        //std::size_t found = nameFind.find(name);
-        QSqlQuery query;
-        query.prepare("SELECT name FROM people WHERE name = (:name)");
-        query.bindValue(":name", name);
-
-        if (query.exec())
-        {
-           if (query.next())
-           {
-              // it exists
-               p[i].getName();
-               genderFind = p[i].getGender();
-               birthFind = p[i].getBirth();
-               deathFind = p[i].getDeath();
-               Person p2(nameFind, genderFind, birthFind, deathFind);
-               results.push_back(p2);
-           }
-    }
-    return results;
-}*/
+    return _dat.searchName(name);
+}
 
 vector<Person> Domain::readData()
 {

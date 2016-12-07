@@ -453,10 +453,12 @@ string Console::searchName()
 
 void Console::displaySearch()
 {
-    _pers = _dom.readData();
-    string name = searchName();
+    _dom.open();
+    //_pers = _dom.readData();
+    QString name = QString::fromStdString(searchName());
+    vector<Person> k = _dom.searchName(name);
 
-    vector<Person> k = _dom.search(_pers, name);
+    //vector<Person> k = _dom.search(_pers, name);
 
     cout << endl;
     cout << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:\t" << endl;
@@ -501,6 +503,7 @@ void Console::displaySearch()
         }
         cout << _dom.findAge(k[i]) << endl;
     }
+    _dom.close();
 }
 
 void Console::displayComputer()

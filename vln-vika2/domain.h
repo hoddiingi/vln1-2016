@@ -14,6 +14,7 @@ public:
     void sortingAge(vector<Person>& ageSort);
     //Sorting functions
     void search();
+    vector<Person> searchName(QString &name);
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
     /*
