@@ -598,3 +598,4 @@ void Console::printAllPersons()
        qDebug() << birth;
        qDebug() << endl;
     }*/
+
