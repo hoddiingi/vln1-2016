@@ -537,8 +537,6 @@ void Console::displayComputer()
             cout << _comp[i].getType() << "\t";
         }
 
-        cout << _comp[i].getType() << "\t";
-
         cout << _comp[i].getBuilt() << endl;
     }
 }
