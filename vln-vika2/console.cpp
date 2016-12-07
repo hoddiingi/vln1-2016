@@ -87,7 +87,7 @@ void Console::getInfo()
         }
         else if((command == "Search") || (command == "search"))
         {
-            displaySearch();
+            search();
         }
         else if((command == "Sort") || (command == "sort"))
         {
@@ -244,15 +244,11 @@ void Console::add(string& anotherOne)
             addDeath(death, birth);
             addAnother(anotherOne);
 
-
-            //Data d("sqlPrufa.sqlite");
-
             Person newData(name, gender, birth, death);
             //_dat.writeData(newData); //Eyða síðar
             _dom.addPerson(newData);
-
         }while(anotherOne == "y" || anotherOne == "Y");
-    }
+    }   
     else if(choice == 2)
     {
         do
@@ -267,13 +263,10 @@ void Console::add(string& anotherOne)
             addType(type);
             addBuilt(built);
 
-            Data d("sqlPruf.sqlite");
             Computer newDataComp(computerName, year, type, built);
-
             //_dat.writeCompData(newDataComp);
             _dom.addComputer(newDataComp);
         }while(anotherOne == "y" || anotherOne == "Y");
-
     }
 }
 
@@ -301,7 +294,7 @@ void Console::addGender(string &gender)
         std::getline(std::cin, genderS);
 
         if(genderS.length() != 1)
-            cout << "Please only enter f or m." << endl;
+            cout << "Please only enter f or m." << endl;        
         else
         {
             gender = genderS;
@@ -325,7 +318,7 @@ void Console::addBirth(int& birth)
         if(!validYear(birthInput))
         {
             cout << "Invalid input!" <<endl;
-        }
+        }        
         else if(atoi(birthInput.c_str()) > 2016)
         {
             cout << "The scientist is not born yet.." << endl;
@@ -460,23 +453,48 @@ void Console::addAnother(string& anotherOne)
     }while(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"));
 }
 
-string Console::searchName()
+void Console::search()
 {
-    _dom.readData();
+    int choice = 0;
+    cout << "Enter 1 to search for a scientist" << endl;
+    cout << "Enter 2 to search for a computer"  << endl;
+    cin  >> choice;
+
+    if(choice == 1)
+    {
+        displaySearchScientist();
+    }
+    else if(choice == 2)
+    {
+        displaySearchComputer();
+    }
+}
+
+string Console::searchComputer()
+{
+    string computerName;
+    cout << endl << "Name of computer? ";
+    cin.ignore();
+    std::getline(std::cin, computerName);
+    return computerName;
+}
+
+string Console::searchScientist()
+{
+    //_dom.readData();
     string chosenName;
-    cout << endl << "Who would you like to search for? (Case sensitive) ";
-    cin >> chosenName;
+    cout << endl << "Who would you like to search for? ";
+    cin.ignore();
+    std::getline(std::cin, chosenName);
     return chosenName;
 }
 
-void Console::displaySearch()
+void Console::displaySearchScientist()
 {
     _dom.open();
-    //_pers = _dom.readData();
-    QString name = QString::fromStdString(searchName());
-    vector<Person> k = _dom.searchName(name);
 
-    //vector<Person> k = _dom.search(_pers, name);
+    QString name = QString::fromStdString(searchScientist());
+    vector<Person> k = _dom.searchName(name);
 
     cout << endl;
     cout << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:\t" << endl;
@@ -521,7 +539,56 @@ void Console::displaySearch()
         }
         cout << _dom.findAge(k[i]) << endl;
     }
+
+
     _dom.close();
+}
+
+void Console::displaySearchComputer()
+{
+    QString name = QString::fromStdString(searchComputer());
+    vector<Computer> k = _dom.searchComputer(name);
+
+    cout << endl;
+    cout << "NAME:\t\t\t\tYEAR:\tTYPE:\tBUILT:\t" << endl;
+
+    for(unsigned int i = 0; i < k.size(); i++)
+    {
+        int nameSize = k[i].getNameSize2();
+        int typeSize = k[i].getTypeSize();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << k[i].getName() << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << k[i].getName() << "\t\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << k[i].getName() << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << k[i].getName() << "\t";
+        }
+        cout << k[i].getYear() << "\t";
+        if(typeSize >= 0 && typeSize <= 7)
+        {
+            cout << k[i].getType() << "\t\t\t";
+        }
+        else if(typeSize >= 8  && typeSize <= 15)
+        {
+            cout << k[i].getType() << "\t\t";
+        }
+        else if(typeSize >= 16  && typeSize <= 23)
+        {
+            cout << k[i].getType() << "\t";
+        }
+        cout << k[i].getBuilt() << "\t";
+        cout << endl;
+    }
 }
 
 void Console::displayComputer()
@@ -585,6 +652,7 @@ void Console::deleteStuff()
 
     if (input == 1)
     {
+
         cout << "search i vinnslu" << endl;
     }
     else if (input == 2)

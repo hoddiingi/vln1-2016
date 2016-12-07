@@ -10,20 +10,22 @@ class Data
 {
 public:
     Data();
-    void writeData(Person p);
-    vector<Person> readData();
-    void writeCompData(Computer c);
-    vector<Computer> readCompData();
-    Data(const QString& path);
-    bool addPerson(Person p);
-    bool addComputer(Computer c);
-    //bool removePerson(const QString& name);
-    bool removeAllPersons();
-    //bool removeComputer(const QString& name);
-    bool removeAllComputers();
     void open();
     void close();
+    void writeData(Person p);
+    void writeCompData(Computer c);
+    vector<Person> readData();
+    vector<Computer> readCompData();
+    bool addPerson(Person p);
+    bool addComputer(Computer c);
+
+    //bool removePerson(const QString& name);
+    bool removeAllPersons();
+
+    //bool removeComputer(const QString& name);
+    bool removeAllComputers();
     vector<Person> searchName(QString &name);
+    vector<Computer> searchComputer(QString &computerName);
 
 private:
     vector<Person> _persons;

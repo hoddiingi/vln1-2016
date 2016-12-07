@@ -42,8 +42,11 @@ public:
     //adds a new scientist's year of death if applicable
     void addAnother(string& anotherOne);
     //ask the user if he/she wants to add another scientist
-    string searchName();
-    void displaySearch();
+    void search();
+    string searchScientist();
+    string searchComputer();
+    void displaySearchScientist();
+    void displaySearchComputer();
     void displayComputer();
     void printAllPersons();
 

@@ -77,7 +77,7 @@ vector<Person> Domain::search(vector<Person>& p, string name)
 {
 
     vector<Person> results;
-//Search function, we search from out vector and then put the results in another vector so it shows us all results
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
     for(unsigned int i = 0; i < p.size(); i++)
     {
         string nameFind;
@@ -103,6 +103,11 @@ vector<Person> Domain::search(vector<Person>& p, string name)
 vector<Person> Domain::searchName(QString &name)
 {
     return _dat.searchName(name);
+}
+
+vector<Computer> Domain::searchComputer(QString &computerName)
+{
+    return _dat.searchComputer(computerName);
 }
 
 vector<Person> Domain::readData()
