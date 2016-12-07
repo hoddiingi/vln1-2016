@@ -13,7 +13,7 @@ Domain::Domain()
 
 }
 
-bool agePerson (const Person& lsh, const Person& rhs) // sort by birthyear
+/*bool agePerson (const Person& lsh, const Person& rhs) // sort by birthyear
 {
     return (lsh.getBirth() < rhs.getBirth());
 }
@@ -23,15 +23,33 @@ void Domain::ageSorting(vector<Person>& ageSort) //sort by birthyear
     std::sort(ageSort.begin(), ageSort.end(), agePerson);
 }
 
-bool nameAlpha(const Person& lhs, const Person& rhs)
+bool nameAlpha(const Person& lhs, const Person& rhs) //sort by name
 {
     return (lhs.getName() < rhs.getName());
 }
 
-void Domain::alphabeticSort(vector<Person>& alphaSort)
+void Domain::alphabeticSort(vector<Person>& alphaSort) //sort by name
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
 }
+bool maleFemale(const Person& lhs, const Person& rhs) //sort by f/m
+{
+    return (lhs.getGender() < rhs.getGender());
+}
+
+void Domain::maleFemaleSort(vector<Person>& mfsort) //sort by f/m
+{
+    std::sort(mfsort.begin(), mfsort.end(), maleFemale);
+}
+bool deathPerson(const Person& lhs, const Person& rhs) //sort by deathyear
+{
+    return (lhs.getDeath() < rhs.getDeath());
+}
+
+void Domain::deathSorting(vector<Person>& deathSort) //sort by deathyear
+{
+    std::sort(deathSort.begin(), deathSort.end(), deathPerson);
+}*/
 
 int Domain::findAge(Person& sciAge) const
 {
@@ -113,10 +131,34 @@ vector<Person> Domain::search(vector<Person>& p, string name)
     return results;
 }*/
 
-vector<Person> Domain::readData()
+/*vector<Person> Domain::readData()
 {
     return _dat.readData();
+}*/
+vector<Computer> Domain::readCompData(int sortedBy)
+{
+    if(sortedBy == 1)
+        return _dat.readCompDataName();
+    else if(sortedBy == 2)
+        return _dat.readCompDataYear();
+    else if(sortedBy == 3)
+        return _dat.readCompDataType();
+    else if(sortedBy == 4)
+        return _dat.readCompDataBuilt();
 }
+
+vector<Person> Domain::readData(int sortedBy)
+{
+    if(sortedBy == 1)
+        return _dat.readDataName();
+    else if(sortedBy == 2)
+        return _dat.readDataGender();
+    else if(sortedBy == 3)
+        return _dat.readDataBirth();
+    else if(sortedBy == 4)
+        return _dat.readDataDeath();
+}
+
 bool Domain::addPerson(Person p)
 {
     return _dat.addPerson(p);
@@ -134,4 +176,10 @@ void Domain::open()
 void Domain::close()
 {
     _dat.close();
+}
+
+int Domain::sortBy()
+{
+    Console _con;
+    return _con.sortBy();
 }

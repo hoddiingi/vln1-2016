@@ -13,7 +13,15 @@ public:
     void writeData(Person p);
     vector<Person> readData();
     void writeCompData(Computer c);
-    vector<Computer> readCompData();
+    void readCompData();
+    vector<Computer> readCompDataName();
+    vector<Computer> readCompDataYear();
+    vector<Computer> readCompDataType();
+    vector<Computer> readCompDataBuilt();
+    vector<Person> readDataName();
+    vector<Person> readDataGender();
+    vector<Person> readDataBirth();
+    vector<Person> readDataDeath();
     Data(const QString& path);
     bool addPerson(Person p);
     bool addComputer(Computer c);

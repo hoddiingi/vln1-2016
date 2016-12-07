@@ -4,7 +4,7 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-#include "data.h"
+//#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
@@ -53,7 +53,7 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    _pers = _dom.readData();
+    //_pers = _dom.readData();
     string command;
     string anotherOne;
 
@@ -68,7 +68,7 @@ void Console::getInfo()
         else if((command == "View") || (command == "view"))
         {
             int viewInput = 0;
-            cout << "------------------------------" << endl;
+            cout << "--------------------------------------------" << endl;
             cout << "Please enter one of the following commands:" << endl;
             cout << "1 - view list of scientists" << endl;
             cout << "2 - view a list of computers" << endl;
@@ -76,26 +76,27 @@ void Console::getInfo()
 
             if (viewInput == 1)
             {
-                _pers = _dom.readData();
+                int num1 = getSort();
+                _pers = _dom.readData(num1);
                 display();
             }
             else if (viewInput == 2)
             {
-                _comp = _dat.readCompData();
+                int num = sortBy();
+                _comp = _dom.readCompData(num);
                 displayComputer();
             }
-
         }
         else if((command == "Search") || (command == "search"))
         {
             displaySearch();
         }
-        else if((command == "Sort") || (command == "sort"))
+        /*else if((command == "Sort") || (command == "sort"))
         {
             _pers        = _dom.readData();
             int sortType = getSort();
             displaySort(sortType);
-        }
+        }*/
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
                 (command != "Exit") && (command != "exit"))
@@ -103,6 +104,18 @@ void Console::getInfo()
             cout << endl << "Invalid input! Please enter a valid command:" << endl;
         }
     }while((command != "Exit") && (command != "exit"));
+}
+
+int Console::sortBy()
+{
+    int res;
+    cout << "Please enter one of the following commands:" << endl;
+    cout << "1 - view a list of computers by name" << endl;
+    cout << "2 - view a list of computers by year" << endl;
+    cout << "3 - view a list of computers by type" << endl;
+    cout << "4 - view a list of computers by if it was built" << endl;
+    cin >> res;
+    return res;
 }
 
 int Console::getSort()
@@ -115,22 +128,24 @@ int Console::getSort()
         cout << "Please enter one of the following commands: " << endl << endl;
         cout << "1 - sort by alphabetical order" << endl;
         cout << "2 - sort by year of birth" << endl;
+        cout << "3 - sort by gender" << endl;
+        cout << "4 - sort by year of death" << endl;
         cout << "-------------------------------------------"  << endl << endl;
         cin  >> sortInput;
 
-        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
+        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4)
         {
             cout << "Invalid input!" << endl;
         }
-    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2);
+    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4);
 
     sort = atoi(sortInput.c_str());
     return sort;
 }
 
 void Console::displaySort(int& sort)
-{
-    _dom.readData();
+{/*
+    //_dom.readData();
 
     if(sort == 1)
     {
@@ -142,6 +157,16 @@ void Console::displaySort(int& sort)
         _dom.ageSorting(_pers);
         display();
     }
+    else if(sort == 3)
+    {
+        _dom.maleFemaleSort(_pers);
+        display();
+    }
+    else if(sort == 4)
+    {
+        _dom.deathSorting(_pers);
+        display();
+    }*/
 }
 
 void Console::display()
@@ -198,7 +223,7 @@ void Console::menu(string& command)
     cout << "Add    - for adding scientist to the list" << endl;
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
-    cout << "Sort   - for sorting" << endl;
+   // cout << "Sort   - for sorting" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -439,7 +464,7 @@ void Console::addAnother(string& anotherOne)
 
 string Console::searchName()
 {
-    _dom.readData();
+    //_dom.readData();
     string chosenName;
     cout << endl << "Who would you like to search for? (Case sensitive) ";
     cin >> chosenName;
@@ -448,7 +473,7 @@ string Console::searchName()
 
 void Console::displaySearch()
 {
-    _pers = _dom.readData();
+    //_pers = _dom.readData();
     string name = searchName();
 
     vector<Person> k = _dom.search(_pers, name);
@@ -500,8 +525,9 @@ void Console::displaySearch()
 
 void Console::displayComputer()
 {
-    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\t\tBUILT:" << endl;
-    cout << "------------------------------------------" << endl;
+
+    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\t\t\tBUILT:" << endl;
+    cout << "----------------------------------------------------------------------" << endl;
 
     for(unsigned int i = 0; i < _comp.size(); i++)
     {
@@ -530,13 +556,16 @@ void Console::displayComputer()
 
         if(typeSize >= 0 && typeSize <= 7)
         {
-            cout << _comp[i].getType() << "\t\t";
+            cout << _comp[i].getType() << "\t\t\t";
         }
         else if(typeSize >= 8  && typeSize <= 15)
         {
+            cout << _comp[i].getType() << "\t\t";
+        }
+        else if(typeSize >= 16  && typeSize <= 23)
+        {
             cout << _comp[i].getType() << "\t";
         }
-
         cout << _comp[i].getBuilt() << endl;
     }
 }

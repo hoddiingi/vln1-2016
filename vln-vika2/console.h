@@ -44,6 +44,7 @@ public:
     void displaySearch();
     void displayComputer();
     void printAllPersons();
+    int sortBy();
 
 
 private:
