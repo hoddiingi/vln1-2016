@@ -4,7 +4,7 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-//#include "data.h"
+#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
@@ -81,15 +81,10 @@ void Console::getInfo()
             }
             else if (viewInput == 2)
             {
-                //printAllPersons();
+                _comp = _dat.readCompData();
+                displayComputer();
             }
-<<<<<<< HEAD
 
-            _pers = _dom.readData();
-            display();
-
-=======
->>>>>>> a74370d2697855ac0e8de9a49f84973c96c56ac0
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -511,7 +506,7 @@ void Console::displaySearch()
 
 void Console::displayComputer()
 {
-    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\tBUILT:" << endl;
+    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\t\tBUILT:" << endl;
     cout << "------------------------------------------" << endl;
 
     for(unsigned int i = 0; i < _comp.size(); i++)
@@ -534,7 +529,19 @@ void Console::displayComputer()
         {
             cout << _comp[i].getName() << "\t";
         }
+
         cout << _comp[i].getYear() << "\t";
+
+        int typeSize = _comp[i].getTypeSize();
+
+        if(typeSize >= 0 && typeSize <= 7)
+        {
+            cout << _comp[i].getType() << "\t\t";
+        }
+        else if(typeSize >= 8  && typeSize <= 15)
+        {
+            cout << _comp[i].getType() << "\t";
+        }
 
         cout << _comp[i].getType() << "\t";
 

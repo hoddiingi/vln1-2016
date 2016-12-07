@@ -15,6 +15,7 @@ public:
     string getType() const;
     string getBuilt() const;
     int getNameSize2();
+    int getTypeSize();
 
 
 private:
