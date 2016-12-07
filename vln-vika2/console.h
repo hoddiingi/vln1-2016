@@ -33,7 +33,7 @@ public:
 
     void addComputerName(string& computerName);
     void addYear(int& year);
-    void addBuilt(char& built);
+    void addBuilt(string &built);
     void addType(string& type);
 
     void addAnother(char& anotherOne);

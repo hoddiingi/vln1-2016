@@ -5,7 +5,7 @@ Computer::Computer()
 
 }
 
-Computer::Computer(string name, int year, string type, char built)
+Computer::Computer(string name, int year, string type, string built)
 {
     _name = name;
     _year = year;
@@ -28,7 +28,7 @@ string Computer::getType() const
     return _type;
 }
 
-char Computer::getBuilt() const
+string Computer::getBuilt() const
 {
     return _built;
 }
