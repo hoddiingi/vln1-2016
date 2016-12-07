@@ -49,6 +49,7 @@ public:
     void displaySearchComputer();
     void displayComputer();
     void printAllPersons();
+    int sortBy();
 
 
 private:

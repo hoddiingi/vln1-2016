@@ -14,8 +14,20 @@ public:
     void close();
     void writeData(Person p);
     void writeCompData(Computer c);
+
     vector<Person> readData();
-    vector<Computer> readCompData();
+   // vector<Computer> readCompData();
+
+    void readCompData();
+    vector<Computer> readCompDataName();
+    vector<Computer> readCompDataYear();
+    vector<Computer> readCompDataType();
+    vector<Computer> readCompDataBuilt();
+    vector<Person> readDataName();
+    vector<Person> readDataGender();
+    vector<Person> readDataBirth();
+    vector<Person> readDataDeath();
+
     bool addPerson(Person p);
     bool addComputer(Computer c);
 

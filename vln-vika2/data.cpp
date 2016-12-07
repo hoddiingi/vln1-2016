@@ -10,7 +10,7 @@ using namespace std;
 
 Data::Data()
 {
-   // _persons = readData();
+
 }
 
 void Data::open()
@@ -102,29 +102,195 @@ vector<Person> Data::readData()
     return vect;
 }
 
-vector<Computer> Data::readCompData()
+vector<Computer> Data::readCompDataName()
 {
 
     vector<Computer> vect2;
 
     open();
 
-    QSqlQuery query("SELECT * FROM computers");
-        int idCompName = query.record().indexOf("computername");
-        int idYear = query.record().indexOf("year");
-        int idType = query.record().indexOf("type");
-        int idBuilt = query.record().indexOf("built");
-        while (query.next())
-        {
-            string name = query.value(idCompName).toString().toStdString();
-            int year = query.value(idYear).toInt();
-            string type = query.value(idType).toString().toStdString();
-            string built = query.value(idBuilt).toString().toStdString();
-            Computer temp(name, year, type, built);
-            vect2.push_back(temp);
+    QSqlQuery query("SELECT * FROM computers ORDER BY computername COLLATE NOCASE ASC");
+    int idCompName = query.record().indexOf("computername");
+    int idYear = query.record().indexOf("year");
+    int idType = query.record().indexOf("type");
+    int idBuilt = query.record().indexOf("built");
+    while (query.next())
+    {
+        string name = query.value(idCompName).toString().toStdString();
+        int year = query.value(idYear).toInt();
+        string type = query.value(idType).toString().toStdString();
+        string built = query.value(idBuilt).toString().toStdString();
+        Computer temp(name, year, type, built);
+        vect2.push_back(temp);
          }
     close();
     return vect2;
+}
+vector<Computer> Data::readCompDataYear()
+{
+
+    vector<Computer> vect2;
+
+    open();
+
+    QSqlQuery query("SELECT * FROM computers ORDER BY year COLLATE NOCASE ASC");
+    int idCompName = query.record().indexOf("computername");
+    int idYear = query.record().indexOf("year");
+    int idType = query.record().indexOf("type");
+    int idBuilt = query.record().indexOf("built");
+    while (query.next())
+    {
+        string name = query.value(idCompName).toString().toStdString();
+        int year = query.value(idYear).toInt();
+        string type = query.value(idType).toString().toStdString();
+        string built = query.value(idBuilt).toString().toStdString();
+        Computer temp(name, year, type, built);
+        vect2.push_back(temp);
+         }
+    close();
+    return vect2;
+}
+vector<Computer> Data::readCompDataType()
+{
+    vector<Computer> vect2;
+
+    open();
+    QSqlQuery query("SELECT * FROM computers ORDER BY type COLLATE NOCASE ASC");
+    int idCompName = query.record().indexOf("computername");
+    int idYear = query.record().indexOf("year");
+    int idType = query.record().indexOf("type");
+    int idBuilt = query.record().indexOf("built");
+    while (query.next())
+    {
+        string name = query.value(idCompName).toString().toStdString();
+        int year = query.value(idYear).toInt();
+        string type = query.value(idType).toString().toStdString();
+        string built = query.value(idBuilt).toString().toStdString();
+        Computer temp(name, year, type, built);
+        vect2.push_back(temp);
+         }
+    close();
+    return vect2;
+}
+vector<Computer> Data::readCompDataBuilt()
+{
+    vector<Computer> vect2;
+    open();
+    QSqlQuery query("SELECT * FROM computers ORDER BY built COLLATE NOCASE ASC");
+    int idCompName = query.record().indexOf("computername");
+    int idYear = query.record().indexOf("year");
+    int idType = query.record().indexOf("type");
+    int idBuilt = query.record().indexOf("built");
+    while (query.next())
+    {
+        string name = query.value(idCompName).toString().toStdString();
+        int year = query.value(idYear).toInt();
+        string type = query.value(idType).toString().toStdString();
+        string built = query.value(idBuilt).toString().toStdString();
+        Computer temp(name, year, type, built);
+        vect2.push_back(temp);
+         }
+    close();
+    return vect2;
+}
+vector<Person> Data::readDataName()
+{
+
+    vector<Person> vect;
+
+    open();
+
+    QSqlQuery query("SELECT * FROM people ORDER BY name COLLATE NOCASE ASC");
+        int idName = query.record().indexOf("name");
+        int idGender = query.record().indexOf("gender");
+        int idBirth = query.record().indexOf("birth");
+        int idDeath = query.record().indexOf("death");
+        while (query.next())
+        {
+            string name = query.value(idName).toString().toStdString();
+            string gender = query.value(idGender).toString().toStdString();
+            int birth = query.value(idBirth).toInt();
+            int death = query.value(idDeath).toInt();
+            Person temp(name, gender, birth, death);
+            vect.push_back(temp);
+         }
+    close();
+    return vect;
+}
+
+vector<Person> Data::readDataGender()
+{
+
+    vector<Person> vect;
+
+    open();
+
+    QSqlQuery query("SELECT * FROM people ORDER BY gender COLLATE NOCASE ASC");
+        int idName = query.record().indexOf("name");
+        int idGender = query.record().indexOf("gender");
+        int idBirth = query.record().indexOf("birth");
+        int idDeath = query.record().indexOf("death");
+        while (query.next())
+        {
+            string name = query.value(idName).toString().toStdString();
+            string gender = query.value(idGender).toString().toStdString();
+            int birth = query.value(idBirth).toInt();
+            int death = query.value(idDeath).toInt();
+            Person temp(name, gender, birth, death);
+            vect.push_back(temp);
+         }
+    close();
+    return vect;
+}
+
+vector<Person> Data::readDataBirth()
+{
+
+    vector<Person> vect;
+
+    open();
+
+    QSqlQuery query("SELECT * FROM people ORDER BY birth COLLATE NOCASE ASC");
+        int idName = query.record().indexOf("name");
+        int idGender = query.record().indexOf("gender");
+        int idBirth = query.record().indexOf("birth");
+        int idDeath = query.record().indexOf("death");
+        while (query.next())
+        {
+            string name = query.value(idName).toString().toStdString();
+            string gender = query.value(idGender).toString().toStdString();
+            int birth = query.value(idBirth).toInt();
+            int death = query.value(idDeath).toInt();
+            Person temp(name, gender, birth, death);
+            vect.push_back(temp);
+         }
+    close();
+    return vect;
+}
+
+vector<Person> Data::readDataDeath()
+{
+
+    vector<Person> vect;
+
+    open();
+
+    QSqlQuery query("SELECT * FROM people ORDER BY death COLLATE NOCASE ASC");
+        int idName = query.record().indexOf("name");
+        int idGender = query.record().indexOf("gender");
+        int idBirth = query.record().indexOf("birth");
+        int idDeath = query.record().indexOf("death");
+        while (query.next())
+        {
+            string name = query.value(idName).toString().toStdString();
+            string gender = query.value(idGender).toString().toStdString();
+            int birth = query.value(idBirth).toInt();
+            int death = query.value(idDeath).toInt();
+            Person temp(name, gender, birth, death);
+            vect.push_back(temp);
+         }
+    close();
+    return vect;
 }
 
 bool Data::addPerson(Person p)
@@ -294,9 +460,6 @@ vector<Person> Data::searchName(QString &name)
     int birthFind;
     int deathFind;
 
-
-
-    //std::size_t found = nameFind.find(name);
     QSqlQuery query(sqlPrufa);
     QString search = "SELECT * FROM people WHERE name LIKE (:name)";
 
@@ -331,7 +494,6 @@ vector<Computer> Data::searchComputer(QString &computerName)
     string typeFind;
     string builtFind;
 
-    //std::size_t found = nameFind.find(name);
     QSqlQuery query(sqlPrufa);
     QString search = "SELECT * FROM computers WHERE computername LIKE (:computername)";
 

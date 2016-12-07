@@ -13,7 +13,7 @@ Domain::Domain()
 
 }
 
-bool agePerson (const Person& lsh, const Person& rhs) // sort by birthyear
+/*bool agePerson (const Person& lsh, const Person& rhs) // sort by birthyear
 {
     return (lsh.getBirth() < rhs.getBirth());
 }
@@ -49,7 +49,7 @@ bool deathPerson(const Person& lhs, const Person& rhs) //sort by deathyear
 void Domain::deathSorting(vector<Person>& deathSort) //sort by deathyear
 {
     std::sort(deathSort.begin(), deathSort.end(), deathPerson);
-}
+}*/
 
 int Domain::findAge(Person& sciAge) const
 {
@@ -100,6 +100,7 @@ vector<Person> Domain::search(vector<Person>& p, string name)
 
     return results;
 }
+
 vector<Person> Domain::searchName(QString &name)
 {
     return _dat.searchName(name);
@@ -110,10 +111,37 @@ vector<Computer> Domain::searchComputer(QString &computerName)
     return _dat.searchComputer(computerName);
 }
 
+/*
 vector<Person> Domain::readData()
 {
     return _dat.readData();
 }
+*/
+
+vector<Computer> Domain::readCompData(int sortedBy)
+{
+    if(sortedBy == 1)
+        return _dat.readCompDataName();
+    else if(sortedBy == 2)
+        return _dat.readCompDataYear();
+    else if(sortedBy == 3)
+        return _dat.readCompDataType();
+    else if(sortedBy == 4)
+        return _dat.readCompDataBuilt();
+}
+
+vector<Person> Domain::readData(int sortedBy)
+{
+    if(sortedBy == 1)
+        return _dat.readDataName();
+    else if(sortedBy == 2)
+        return _dat.readDataGender();
+    else if(sortedBy == 3)
+        return _dat.readDataBirth();
+    else if(sortedBy == 4)
+        return _dat.readDataDeath();
+}
+
 bool Domain::addPerson(Person p)
 {
     return _dat.addPerson(p);
@@ -132,7 +160,11 @@ void Domain::close()
 {
     _dat.close();
 }
-
+int Domain::sortBy()
+{
+    Console _con;
+    return _con.sortBy();
+}
 bool Domain::removeAllPersons()
 {
     return _dat.removeAllPersons();

@@ -4,7 +4,7 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-#include "data.h"
+//#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
@@ -53,7 +53,7 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    _pers = _dom.readData();
+    //_pers = _dom.readData();
     string command;
     string anotherOne;
 
@@ -76,12 +76,14 @@ void Console::getInfo()
 
             if (viewInput == 1)
             {
-                _pers = _dom.readData();
+                int num1 = getSort();
+                _pers = _dom.readData(num1);
                 display();
             }
             else if (viewInput == 2)
             {
-                _comp = _dat.readCompData();
+                int num = sortBy();
+                _comp = _dom.readCompData(num);
                 displayComputer();
             }
         }
@@ -89,12 +91,12 @@ void Console::getInfo()
         {
             search();
         }
-        else if((command == "Sort") || (command == "sort"))
+        /*else if((command == "Sort") || (command == "sort"))
         {
             _pers        = _dom.readData();
             int sortType = getSort();
             displaySort(sortType);
-        }
+        }*/
         else if ((command == "Remove") || (command == "remove"))
         {
             deleteStuff();
@@ -106,6 +108,18 @@ void Console::getInfo()
             cout << endl << "Invalid input! Please enter a valid command:" << endl;
         }
     }while((command != "Exit") && (command != "exit"));
+}
+
+int Console::sortBy()
+{
+    int res;
+    cout << "Please enter one of the following commands:" << endl;
+    cout << "1 - view a list of computers by name" << endl;
+    cout << "2 - view a list of computers by year" << endl;
+    cout << "3 - view a list of computers by type" << endl;
+    cout << "4 - view a list of computers by if it was built" << endl;
+    cin >> res;
+    return res;
 }
 
 int Console::getSort()
@@ -134,8 +148,8 @@ int Console::getSort()
 }
 
 void Console::displaySort(int& sort)
-{
-    _dom.readData();
+{/*
+    //_dom.readData();
 
     if(sort == 1)
     {
@@ -156,7 +170,7 @@ void Console::displaySort(int& sort)
     {
         _dom.deathSorting(_pers);
         display();
-    }
+    }*/
 }
 
 void Console::display()
@@ -213,7 +227,7 @@ void Console::menu(string& command)
     cout << "Add    - for adding scientist to the list" << endl;
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
-    cout << "Sort   - for sorting" << endl;
+   // cout << "Sort   - for sorting" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
@@ -290,14 +304,12 @@ void Console::addGender(string &gender)
     do
     {
         cout << "Gender (f/m): ";
-        std::string genderS;
-        std::getline(std::cin, genderS);
+        cin >> gender;
 
-        if(genderS.length() != 1)
-            cout << "Please only enter f or m." << endl;        
+        if(gender.length() != 1)
+            cout << "Please only enter f or m." << endl;
         else
         {
-            gender = genderS;
             if(!(gender == "m" || gender == "M") && !(gender == "f" || gender == "F"))
             {
                 cout << "Please only enter f or m." << endl;
@@ -409,13 +421,11 @@ void Console::addBuilt(string& built)
     do
     {
         cout << "Built (Y/N): ";
-        std::string builtS;
-        std::getline(std::cin, builtS);
+        cin >> built;
 
-        if(builtS.length() != 1)
+        if(built.length() != 1)
             cout << "Please only enter Y or N." << endl;
         {
-            built = builtS;
             if(!(built == "y" || built == "Y") && !(built == "n" || built == "N"))
             {
                 cout << "Please only enter Y or N." << endl;
@@ -426,12 +436,10 @@ void Console::addBuilt(string& built)
 
 void Console::addType(string& type)
 {
-    string cpuType;
     do
     {
         cout << "Enter the type of computer: ";
         cin >> type;
-        cpuType = type;
         if(!validName(type) && !validComputerName(type))
         {
             cout << "Type cannot be empty or contain digits! " << endl;
@@ -481,7 +489,6 @@ string Console::searchComputer()
 
 string Console::searchScientist()
 {
-    //_dom.readData();
     string chosenName;
     cout << endl << "Who would you like to search for? ";
     cin.ignore();
