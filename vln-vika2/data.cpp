@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+#include <QSqlQuery>
 
 using namespace std;
 
@@ -322,6 +323,97 @@ bool Data::addComputer(Computer c)
 
    return success;
 }
+/*
+bool Data::removePerson(const QString& name)
+{
+    open();
+    bool success = false;
+
+    if(searchFall(name))
+    {
+        QSqlQuery queryDelete;
+        queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
+        queryDelete.bindValue(":name", name);
+        success = queryDelete.exec();
+
+        if(!success)
+        {
+            qDebug() << "remove person failed: " << queryDelete.lastError();
+        }
+    }
+    else
+    {
+        qDebug() << "remove person failed: person does not exist";
+    }
+    return success;
+    close();
+}*/
+
+bool Data::removeAllPersons()
+{
+    open();
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM people");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    }
+    return success;
+    close();
+}
+
+/*
+bool Data::removeComputer(const QString& name)
+{
+    open();
+    bool success = false;
+
+    if(searchFall(name))
+    {
+        QSqlQuery queryDelete;
+        queryDelete.prepare("DELETE FROM computers WHERE name = (:name)");
+        queryDelete.bindValue(":name", name);
+        success = queryDelete.exec();
+
+        if(!success)
+        {
+            qDebug() << "remove computer failed: " << queryDelete.lastError();
+        }
+    }
+    else
+    {
+        qDebug() << "remove computer failed: computer does not exist";
+    }
+    return success;
+    close();
+}*/
+
+bool Data::removeAllComputers()
+{
+    open();
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM computers");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all computers failed: " << removeQuery.lastError();
+    }
+    return success;
+    close();
+}
 
 void Data::open()
 {
@@ -343,4 +435,64 @@ void Data::open()
 void Data::close()
 {
     sqlPrufa.close();
+}
+
+/*
+bool Data::scientistSearch(const QString &name)
+{
+    open();
+    QSqlQuery query;
+    query.prepare("SELECT name FROM people WHERE name = (:name)");
+    query.bindValue(":name", name);
+
+    if (query.exec())
+    {
+        if (query.next())
+        {
+            close();
+            return true;
+        }
+    }
+    close();
+    return false;
+}
+*/
+
+//Search fyrir SQLite
+vector<Person> Data::searchName(QString &name)
+{
+    open();
+    vector<Person> results;
+    qDebug() << name << endl;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    string nameFind;
+    string genderFind;
+    int birthFind;
+    int deathFind;
+
+    //std::size_t found = nameFind.find(name);
+    QSqlQuery query(sqlPrufa);
+    QString search = "SELECT * FROM people WHERE name = (:name)";
+    query.prepare(search);
+    query.bindValue(":name", name);
+
+    query.exec();
+
+    while(query.next())
+    {
+        qDebug() << "Found" << endl;
+        Person p1;
+        // it exists
+        nameFind = query.value("Name").toString().toStdString();
+        genderFind = query.value("Gender").toString().toStdString();
+        birthFind = query.value("Birth").toInt();
+        deathFind = query.value("Death").toInt();
+        Person p2(nameFind, genderFind, birthFind, deathFind);
+        results.push_back(p2);
+    }
+
+    close();
+    return results;
 }

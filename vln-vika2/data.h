@@ -25,8 +25,13 @@ public:
     Data(const QString& path);
     bool addPerson(Person p);
     bool addComputer(Computer c);
+    //bool removePerson(const QString& name);
+    bool removeAllPersons();
+    //bool removeComputer(const QString& name);
+    bool removeAllComputers();
     void open();
     void close();
+    vector<Person> searchName(QString &name);
 
 private:
     vector<Person> _persons;

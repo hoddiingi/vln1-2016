@@ -18,6 +18,7 @@ public:
     void deathSorting(vector<Person>& deathSort);
     //Sorting functions
     void search();
+    vector<Person> searchName(QString &name);
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
     vector<Person> readData(int sortedBy);
@@ -27,7 +28,8 @@ public:
     void open();
     void close();
     int sortBy();
-
+    bool removeAllPersons();
+    bool removeAllComputers();
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);
