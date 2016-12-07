@@ -153,3 +153,8 @@ void Domain::close()
 {
     _dat.close();
 }
+
+bool Domain::removeAllPersons()
+{
+    return _dat.removeAllPersons();
+}

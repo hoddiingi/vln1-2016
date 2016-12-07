@@ -19,6 +19,8 @@ public:
     bool addComputer(Computer c);
     //bool removePerson(const QString& name);
     bool removeAllPersons();
+    //bool removeComputer(const QString& name);
+    bool removeAllComputers();
     void open();
     void close();
 

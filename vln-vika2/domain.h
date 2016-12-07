@@ -23,6 +23,7 @@ public:
     bool addComputer(Computer c);
     void open();
     void close();
+    bool removeAllPersons();
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);

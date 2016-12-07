@@ -95,6 +95,10 @@ void Console::getInfo()
             int sortType = getSort();
             displaySort(sortType);
         }
+        else if ((command == "Remove") || (command == "remove"))
+        {
+            deletePersons();
+        }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
                 (command != "Exit") && (command != "exit"))
@@ -210,6 +214,7 @@ void Console::menu(string& command)
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Sort   - for sorting" << endl;
+    cout << "Remove - for removing" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -561,4 +566,35 @@ void Console::displayComputer()
         }
         cout << _comp[i].getBuilt() << endl;
     }
+}
+
+void Console::deletePersons()
+{
+
+    int input = 0;
+
+    cout << "1 - remove one person" << endl;
+    cout << "2 - remove all persons" << endl;
+    cout << "3 - remove one computer" << endl;
+    cout << "4 - remove all computers" << endl;
+
+    cin >> input;
+
+    if (input == 1)
+    {
+        cout << "search i vinnslu" << endl;
+    }
+    else if (input == 2)
+    {
+        _dom.removeAllPersons();
+    }
+    else if (input == 3)
+    {
+
+    }
+    else if (input == 4)
+    {
+
+    }
+
 }

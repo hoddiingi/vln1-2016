@@ -208,6 +208,7 @@ bool Data::removePerson(const QString& name)
 
 bool Data::removeAllPersons()
 {
+    open();
     bool success = false;
 
     QSqlQuery removeQuery;
@@ -220,6 +221,49 @@ bool Data::removeAllPersons()
     else
     {
         qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    }
+    return success;
+    close();
+}
+
+/*
+bool Data::removeComputer(const QString& name)
+{
+    bool success = false;
+
+    if(searchFall(name))
+    {
+        QSqlQuery queryDelete;
+        queryDelete.prepare("DELETE FROM computers WHERE name = (:name)");
+        queryDelete.bindValue(":name", name);
+        success = queryDelete.exec();
+
+        if(!success)
+        {
+            qDebug() << "remove computer failed: " << queryDelete.lastError();
+        }
+    }
+    else
+    {
+        qDebug() << "remove computer failed: computer does not exist";
+    }
+    return success;
+}*/
+
+bool Data::removeAllComputers()
+{
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM computers");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all computers failed: " << removeQuery.lastError();
     }
     return success;
 }
