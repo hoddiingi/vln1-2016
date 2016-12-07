@@ -81,7 +81,7 @@ void Console::getInfo()
             }
             else if (viewInput == 2)
             {
-                printAllPersons();
+                //printAllPersons();
             }
 
             _pers = _dom.readData();
@@ -598,4 +598,3 @@ void Console::printAllPersons()
        qDebug() << birth;
        qDebug() << endl;
     }*/
-
