@@ -68,24 +68,31 @@ void Console::getInfo()
         else if((command == "View") || (command == "view"))
         {
             int viewInput = 0;
-            cout << "--------------------------------------------" << endl;
-            cout << "Please enter one of the following commands:" << endl;
-            cout << "1 - view list of scientists" << endl;
-            cout << "2 - view a list of computers" << endl;
-            cin >> viewInput;
+            do
+            {
+                cout << "--------------------------------------------" << endl;
+                cout << "Please enter one of the following commands:" << endl;
+                cout << "1 - view list of scientists" << endl;
+                cout << "2 - view a list of computers" << endl;
+                cin >> viewInput;
 
-            if (viewInput == 1)
-            {
-                int num1 = getSort();
-                _pers = _dom.readData(num1);
-                display();
-            }
-            else if (viewInput == 2)
-            {
-                int num = sortBy();
-                _comp = _dom.readCompData(num);
-                displayComputer();
-            }
+                    if((viewInput != 1) && (viewInput != 2))
+                    {
+                        cout << "Please enter a valid number" << endl;
+                    }
+                    else if (viewInput == 1)
+                    {
+                        int num1 = getSort();
+                        _pers = _dom.readData(num1);
+                        display();
+                    }
+                    else if (viewInput == 2)
+                    {
+                        int num = sortBy();
+                        _comp = _dom.readCompData(num);
+                        displayComputer();
+                    }
+            }while((viewInput != 1) && (viewInput != 2));
         }
         else if((command == "Search") || (command == "search"))
         {

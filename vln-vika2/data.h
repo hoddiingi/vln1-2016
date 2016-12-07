@@ -37,6 +37,9 @@ private:
     vector<Person> _persons;
     vector<Computer> _computers;
     QSqlDatabase sqlPrufa;
+    QSqlDatabase db();
+    QSqlDatabase m_db;
+
 };
 
 #endif // DATA_H

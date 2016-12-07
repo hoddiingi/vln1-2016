@@ -434,8 +434,21 @@ void Data::open()
 
 void Data::close()
 {
-    sqlPrufa.close();
+    QString connection;
+    connection = m_db.connectionName();
+    m_db.close();
+    m_db = QSqlDatabase();
+    m_db.removeDatabase(connection);
+
+
+    //sqlPrufa.close();
 }
+
+QSqlDatabase Data::db()
+{
+    return m_db;
+}
+
 
 /*
 bool Data::scientistSearch(const QString &name)
