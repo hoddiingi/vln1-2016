@@ -7,9 +7,9 @@ using namespace std;
 int main()
 {
     Console co;
-
+    co.printAllPersons();
     co.getInfo();
 
-    co.printAllPersons();
+
     return 0;
 }

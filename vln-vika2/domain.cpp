@@ -1,12 +1,12 @@
 #include "domain.h"
 #include "person.h"
-#include <iostream>
+//#include <iostream>
 #include <algorithm>
 #include <vector>
 #include "data.h"
 #include "console.h"
 
-using namespace std;
+//using namespace std;
 
 Domain::Domain()
 {
@@ -80,3 +80,8 @@ vector<Person> Domain::search(vector<Person>& p, string name)
     }
     return results;
 }
+
+
+
+
+

@@ -230,12 +230,9 @@ void Console::add(string& anotherOne)
             addDeath(death, birth);
             addAnother(anotherOne);
 
-<<<<<<< HEAD
-            Data d("sqlPrufa.sqlite");
-=======
 
             //Data d("sqlPrufa.sqlite");
->>>>>>> f4876d6f610e3e8121300fd9812c3ed13dcdfc43
+
             Person newData(name, gender, birth, death);
             _dat.writeData(newData);
             _dat.addPerson(newData);
@@ -509,7 +506,7 @@ void Console::displaySearch()
 }
 
 void Console::displayComputer()
-{
+{/*
     cout  << endl << "COMPUTER NAME:\t\t\t\tYEAR:\tTYPE:\tBUILT:" << endl;
     cout << "------------------------------------------" << endl;
 
@@ -539,16 +536,64 @@ void Console::displayComputer()
 
         cout << _comp[i].getBuilt() << "\t";
     }
-}
+*/}
 
-void Console::printAllPersons() const
+void Console::printAllPersons()
 {
-    qDebug() << "Persons in db:";
+    _dat.open();
+    cout << "NAME:\t\t\t\tGENDER:\tBIRTH:\tDEATH:" << endl;
     QSqlQuery query("SELECT * FROM people");
     int idName = query.record().indexOf("name");
+    int idGender = query.record().indexOf("gender");
+    int idBirth = query.record().indexOf("birth");
+    int idDeath = query.record().indexOf("death");
     while (query.next())
     {
-        QString name = query.value(idName).toString();
-        qDebug() << "===" << name;
+        string name = query.value(idName).toString().toStdString();
+        /*int nameSize = _c.getNameSize2();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << name << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << name << "\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << name << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << name << "\t";
+        }*/
+
+
+        //QString name = query.value(idName).toString();
+        cout << name << "\t\t\t\t";
+        string gender = query.value(idGender).toString().toStdString();
+        cout << gender << "\t";
+        int birth = query.value(idBirth).toInt();
+        cout << birth << "\t";
+        int death = query.value(idDeath).toInt();
+        cout << death << "\t" << endl;
     }
+    _dat.close();
 }
+
+/*QSqlQuery query("SELECT * FROM people");
+    int idName = query.record().indexOf("name");
+    int idGender = query.record().indexOf("gender");
+    int idBirth = query.record().indexOf("birth");
+    int idDeath = query.record().indexOf("death");
+    while (query.next())
+    {
+       QString name = query.value(idName).toString();
+       qDebug() << name;
+       QString gender = query.value(idGender).toString();
+       qDebug() << gender;
+       int birth = query.value(idBirth).toInt();
+       qDebug() << birth;
+       qDebug() << endl;
+    }*/

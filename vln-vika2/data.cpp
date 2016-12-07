@@ -11,6 +11,7 @@ Data::Data()
 {
     _persons = readData();
 }
+
 void Data::writeData(Person p)
 {
    /* ofstream out;
@@ -36,6 +37,7 @@ void Data::writeData(Person p)
 */
 
 }
+
 void Data::writeCompData(Computer c)
 {
     ofstream out;
@@ -107,9 +109,8 @@ Data::Data(const QString& path)
    {
       qDebug() << "Database: connection ok";
    }
-
-
 }
+
 bool Data::addPerson(Person p)
 {
    open();
@@ -142,6 +143,7 @@ bool Data::addPerson(Person p)
 
    return success;
 }
+
 bool Data::addComputer(Computer c)
 {
 

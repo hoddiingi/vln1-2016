@@ -25,6 +25,7 @@ public:
     void add(char& anotherOne);
     //prints out the menu and ask the user for a choice
     void add(string &anotherOne);
+
     //adds a new scientist
     void addName(string& name);
     void addGender(char& gender);
@@ -43,17 +44,17 @@ public:
     string searchName();
     void displaySearch();
     void displayComputer();
-    void printAllPersons() const;
+    void printAllPersons();
 
 
 private:
     //Member variables
-    Data _dat;
     Domain _dom;
     Person _p;
     Computer _c;
     vector<Person> _pers;
     vector<Computer> _comp;
+    Data _dat; //Þarf að eyða þessu
 
 };
 

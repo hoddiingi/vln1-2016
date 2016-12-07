@@ -16,6 +16,12 @@ public:
     void search();
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
+    /*
+
+      getWriteData
+
+
+     */
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);
