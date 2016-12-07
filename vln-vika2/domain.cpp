@@ -23,14 +23,32 @@ void Domain::ageSorting(vector<Person>& ageSort) //sort by birthyear
     std::sort(ageSort.begin(), ageSort.end(), agePerson);
 }
 
-bool nameAlpha(const Person& lhs, const Person& rhs)
+bool nameAlpha(const Person& lhs, const Person& rhs) //sort by name
 {
     return (lhs.getName() < rhs.getName());
 }
 
-void Domain::alphabeticSort(vector<Person>& alphaSort)
+void Domain::alphabeticSort(vector<Person>& alphaSort) //sort by name
 {
     std::sort(alphaSort.begin(), alphaSort.end(), nameAlpha);
+}
+bool maleFemale(const Person& lhs, const Person& rhs) //sort by f/m
+{
+    return (lhs.getGender() < rhs.getGender());
+}
+
+void Domain::maleFemaleSort(vector<Person>& mfsort) //sort by f/m
+{
+    std::sort(mfsort.begin(), mfsort.end(), maleFemale);
+}
+bool deathPerson(const Person& lhs, const Person& rhs) //sort by deathyear
+{
+    return (lhs.getDeath() < rhs.getDeath());
+}
+
+void Domain::deathSorting(vector<Person>& deathSort) //sort by deathyear
+{
+    std::sort(deathSort.begin(), deathSort.end(), deathPerson);
 }
 
 int Domain::findAge(Person& sciAge) const
@@ -99,6 +117,7 @@ bool Domain::addComputer(Computer c)
 {
     return _dat.addComputer(c);
 }
+
 void Domain::open()
 {
     _dat.open();
@@ -107,4 +126,14 @@ void Domain::open()
 void Domain::close()
 {
     _dat.close();
+}
+
+bool Domain::removeAllPersons()
+{
+    return _dat.removeAllPersons();
+}
+
+bool Domain::removeAllComputers()
+{
+    return _dat.removeAllComputers();
 }

@@ -12,26 +12,26 @@ public:
     void ageSorting(vector<Person>& ageSort);
     void alphabeticSort(vector<Person>& alphaSort);
     void sortingAge(vector<Person>& ageSort);
+    void maleFemaleSort(vector<Person>& mfsort);
+    void deathSorting(vector<Person>& deathSort);
     //Sorting functions
     void search();
     vector<Person> searchName(QString &name);
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
-    /*
-
-      getWriteData
-
-
-     */
     vector<Person> readData();
     bool addPerson(Person p);
     bool addComputer(Computer c);
     void open();
     void close();
+    bool removeAllPersons();
+    bool removeAllComputers();
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);
     friend bool operator < (const Person& lsh, const Person& rhs);
+    friend bool operator < (const Person& lhs, const Person& rhs);
+    friend bool operator < (const Person& lhs, const Person& rhs);
     Data _dat;
 };
 

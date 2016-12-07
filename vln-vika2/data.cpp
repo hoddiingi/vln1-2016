@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+#include <QSqlQuery>
 
 using namespace std;
 
@@ -180,6 +181,97 @@ bool Data::addComputer(Computer c)
    }
 
    return success;
+}
+/*
+bool Data::removePerson(const QString& name)
+{
+    open();
+    bool success = false;
+
+    if(searchFall(name))
+    {
+        QSqlQuery queryDelete;
+        queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
+        queryDelete.bindValue(":name", name);
+        success = queryDelete.exec();
+
+        if(!success)
+        {
+            qDebug() << "remove person failed: " << queryDelete.lastError();
+        }
+    }
+    else
+    {
+        qDebug() << "remove person failed: person does not exist";
+    }
+    return success;
+    close();
+}*/
+
+bool Data::removeAllPersons()
+{
+    open();
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM people");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    }
+    return success;
+    close();
+}
+
+/*
+bool Data::removeComputer(const QString& name)
+{
+    open();
+    bool success = false;
+
+    if(searchFall(name))
+    {
+        QSqlQuery queryDelete;
+        queryDelete.prepare("DELETE FROM computers WHERE name = (:name)");
+        queryDelete.bindValue(":name", name);
+        success = queryDelete.exec();
+
+        if(!success)
+        {
+            qDebug() << "remove computer failed: " << queryDelete.lastError();
+        }
+    }
+    else
+    {
+        qDebug() << "remove computer failed: computer does not exist";
+    }
+    return success;
+    close();
+}*/
+
+bool Data::removeAllComputers()
+{
+    open();
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM computers");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all computers failed: " << removeQuery.lastError();
+    }
+    return success;
+    close();
 }
 
 void Data::open()

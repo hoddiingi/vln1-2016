@@ -31,6 +31,8 @@ public:
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
 
+    void deleteStuff();
+
     void addComputerName(string& computerName);
     void addYear(int& year);
     void addBuilt(string &built);
@@ -49,11 +51,11 @@ public:
 private:
     //Member variables
     Domain _dom;
+    Data _dat;
     Person _p;
     Computer _c;
     vector<Person> _pers;
     vector<Computer> _comp;
-    Data _dat; //Þarf að eyða þessu
 
 };
 
