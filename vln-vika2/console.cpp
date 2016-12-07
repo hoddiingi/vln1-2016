@@ -4,7 +4,7 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-//#include "data.h"
+#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
@@ -84,6 +84,7 @@ void Console::getInfo()
                 _comp = _dat.readCompData();
                 displayComputer();
             }
+
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -499,7 +500,7 @@ void Console::displaySearch()
 
 void Console::displayComputer()
 {
-    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\tBUILT:" << endl;
+    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\t\tBUILT:" << endl;
     cout << "------------------------------------------" << endl;
 
     for(unsigned int i = 0; i < _comp.size(); i++)
@@ -522,7 +523,19 @@ void Console::displayComputer()
         {
             cout << _comp[i].getName() << "\t";
         }
+
         cout << _comp[i].getYear() << "\t";
+
+        int typeSize = _comp[i].getTypeSize();
+
+        if(typeSize >= 0 && typeSize <= 7)
+        {
+            cout << _comp[i].getType() << "\t\t";
+        }
+        else if(typeSize >= 8  && typeSize <= 15)
+        {
+            cout << _comp[i].getType() << "\t";
+        }
 
         cout << _comp[i].getType() << "\t";
 

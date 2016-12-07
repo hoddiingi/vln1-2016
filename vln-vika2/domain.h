@@ -16,15 +16,11 @@ public:
     void search();
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
-    /*
-
-      getWriteData
-
-
-     */
     vector<Person> readData();
     bool addPerson(Person p);
     bool addComputer(Computer c);
+
+
     void open();
     void close();
 

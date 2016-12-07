@@ -125,6 +125,7 @@ bool Domain::addComputer(Computer c)
 {
     return _dat.addComputer(c);
 }
+
 void Domain::open()
 {
     _dat.open();

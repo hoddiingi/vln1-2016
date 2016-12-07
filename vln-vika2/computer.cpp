@@ -37,3 +37,8 @@ int Computer::getNameSize2()
 {
     return _name.size();
 }
+
+int Computer::getTypeSize()
+{
+    return _type.size();
+}
