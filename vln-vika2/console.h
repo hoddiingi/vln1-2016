@@ -1,7 +1,6 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 #include "domain.h"
-//#include "data.h"
 #include "person.h"
 #include "computer.h"
 #include <QtSql>
@@ -49,10 +48,6 @@ public:
 
 private:
     //Member variables
-<<<<<<< HEAD
-=======
-   // Data _dat;
->>>>>>> 917080472a1459a9ef993348dba97ab4c67abe8f
     Domain _dom;
     Person _p;
     Computer _c;
