@@ -17,6 +17,8 @@ public:
     Data(const QString& path);
     bool addPerson(Person p);
     bool addComputer(Computer c);
+    //bool removePerson(const QString& name);
+    bool removeAllPersons();
     void open();
     void close();
 

@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <stdlib.h>
+#include <QSqlQuery>
 
 using namespace std;
 
@@ -180,6 +181,47 @@ bool Data::addComputer(Computer c)
    }
 
    return success;
+}
+/*
+bool Data::removePerson(const QString& name)
+{
+    bool success = false;
+
+    if(searchFall(name))
+    {
+        QSqlQuery queryDelete;
+        queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
+        queryDelete.bindValue(":name", name);
+        success = queryDelete.exec();
+
+        if(!success)
+        {
+            qDebug() << "remove person failed: " << queryDelete.lastError();
+        }
+    }
+    else
+    {
+        qDebug() << "remove person failed: person does not exist";
+    }
+    return success;
+}*/
+
+bool Data::removeAllPersons()
+{
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM people");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    }
+    return success;
 }
 
 void Data::open()

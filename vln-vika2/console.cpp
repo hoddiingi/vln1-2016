@@ -368,6 +368,7 @@ void Console::addDeath(int& death, int& birth)
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 
+
 void Console::addComputerName(string& computerName)
 {
     do
