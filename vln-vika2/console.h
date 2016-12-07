@@ -31,7 +31,7 @@ public:
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
 
-    void deletePersons();
+    void deleteStuff();
 
     void addComputerName(string& computerName);
     void addYear(int& year);

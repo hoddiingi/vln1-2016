@@ -97,7 +97,7 @@ void Console::getInfo()
         }
         else if ((command == "Remove") || (command == "remove"))
         {
-            deletePersons();
+            deleteStuff();
         }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
@@ -568,7 +568,7 @@ void Console::displayComputer()
     }
 }
 
-void Console::deletePersons()
+void Console::deleteStuff()
 {
 
     int input = 0;
@@ -590,11 +590,11 @@ void Console::deletePersons()
     }
     else if (input == 3)
     {
-
+        cout << "Search i vinnslu" << endl;
     }
     else if (input == 4)
     {
-
+        _dom.removeAllComputers();
     }
 
 }

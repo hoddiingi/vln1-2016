@@ -158,3 +158,8 @@ bool Domain::removeAllPersons()
 {
     return _dat.removeAllPersons();
 }
+
+bool Domain::removeAllComputers()
+{
+    return _dat.removeAllComputers();
+}

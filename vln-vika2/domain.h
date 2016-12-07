@@ -24,6 +24,7 @@ public:
     void open();
     void close();
     bool removeAllPersons();
+    bool removeAllComputers();
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);

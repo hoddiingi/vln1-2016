@@ -185,6 +185,7 @@ bool Data::addComputer(Computer c)
 /*
 bool Data::removePerson(const QString& name)
 {
+    open();
     bool success = false;
 
     if(searchFall(name))
@@ -204,6 +205,7 @@ bool Data::removePerson(const QString& name)
         qDebug() << "remove person failed: person does not exist";
     }
     return success;
+    close();
 }*/
 
 bool Data::removeAllPersons()
@@ -229,6 +231,7 @@ bool Data::removeAllPersons()
 /*
 bool Data::removeComputer(const QString& name)
 {
+    open();
     bool success = false;
 
     if(searchFall(name))
@@ -248,10 +251,12 @@ bool Data::removeComputer(const QString& name)
         qDebug() << "remove computer failed: computer does not exist";
     }
     return success;
+    close();
 }*/
 
 bool Data::removeAllComputers()
 {
+    open();
     bool success = false;
 
     QSqlQuery removeQuery;
@@ -266,6 +271,7 @@ bool Data::removeAllComputers()
         qDebug() << "remove all computers failed: " << removeQuery.lastError();
     }
     return success;
+    close();
 }
 
 void Data::open()
