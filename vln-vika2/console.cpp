@@ -115,14 +115,16 @@ int Console::getSort()
         cout << "Please enter one of the following commands: " << endl << endl;
         cout << "1 - sort by alphabetical order" << endl;
         cout << "2 - sort by year of birth" << endl;
+        cout << "3 - sort by gender" << endl;
+        cout << "4 - sort by year of death" << endl;
         cout << "-------------------------------------------"  << endl << endl;
         cin  >> sortInput;
 
-        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2)
+        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4)
         {
             cout << "Invalid input!" << endl;
         }
-    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2);
+    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4);
 
     sort = atoi(sortInput.c_str());
     return sort;
@@ -140,6 +142,16 @@ void Console::displaySort(int& sort)
     else if(sort == 2)
     {
         _dom.ageSorting(_pers);
+        display();
+    }
+    else if(sort == 3)
+    {
+        _dom.maleFemaleSort(_pers);
+        display();
+    }
+    else if(sort == 4)
+    {
+        _dom.deathSorting(_pers);
         display();
     }
 }
@@ -542,9 +554,6 @@ void Console::displayComputer()
         {
             cout << _comp[i].getType() << "\t";
         }
-
-        cout << _comp[i].getType() << "\t";
-
         cout << _comp[i].getBuilt() << endl;
     }
 }
