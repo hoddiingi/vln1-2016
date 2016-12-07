@@ -16,9 +16,23 @@ public:
     void search();
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
+<<<<<<< HEAD
     vector<Person> readData();
     bool addPerson(Person p);
     bool addComputer(Computer c);
+=======
+    /*
+
+      getWriteData
+
+
+     */
+    vector<Person> readData();
+    bool addPerson(Person p);
+    bool addComputer(Computer c);
+    void open();
+    void close();
+>>>>>>> 1cd341dd57d1757d9213c242675c0da8800ac310
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);
