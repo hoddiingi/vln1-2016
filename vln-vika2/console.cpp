@@ -67,7 +67,6 @@ void Console::getInfo()
         }
         else if((command == "View") || (command == "view"))
         {
-<<<<<<< HEAD
             int viewInput = 0;
             cout << "------------------------------" << endl;
             cout << "Please enter one of the following commands:" << endl;
@@ -77,21 +76,17 @@ void Console::getInfo()
 
             if (viewInput == 1)
             {
-                _pers = _dat.readData();
-                //display();
+                _pers = _dom.readData();
+                display();
             }
             else if (viewInput == 2)
             {
-                _comp = _dat.readCompData();
-                displayComputer();
+                printAllPersons();
             }
 
-           // _pers = _dat.readData();
-           // display();
-=======
             _pers = _dom.readData();
             display();
->>>>>>> 917080472a1459a9ef993348dba97ab4c67abe8f
+
         }
         else if((command == "Search") || (command == "search"))
         {
