@@ -27,7 +27,7 @@ public:
 
     //adds a new scientist
     void addName(string& name);
-    void addGender(char& gender);
+    void addGender(string& gender);
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
 

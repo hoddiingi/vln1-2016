@@ -9,7 +9,7 @@ Person::Person()
 
 }
 
-Person::Person(string name, char gender, int birth, int death)
+Person::Person(string name, string gender, int birth, int death)
 {
     _name   = name;
     _gender = gender;
@@ -22,7 +22,7 @@ string Person::getName() const
     return _name;
 }
 
-char Person::getGender() const
+string Person::getGender() const
 {
     return _gender;
 }
