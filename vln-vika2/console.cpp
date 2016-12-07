@@ -280,14 +280,12 @@ void Console::addGender(string &gender)
     do
     {
         cout << "Gender (f/m): ";
-        std::string genderS;
-        std::getline(std::cin, genderS);
+        cin >> gender;
 
-        if(genderS.length() != 1)
+        if(gender.length() != 1)
             cout << "Please only enter f or m." << endl;
         else
         {
-            gender = genderS;
             if(!(gender == "m" || gender == "M") && !(gender == "f" || gender == "F"))
             {
                 cout << "Please only enter f or m." << endl;
@@ -398,13 +396,11 @@ void Console::addBuilt(string& built)
     do
     {
         cout << "Built (Y/N): ";
-        std::string builtS;
-        std::getline(std::cin, builtS);
+        cin >> built;
 
-        if(builtS.length() != 1)
+        if(built.length() != 1)
             cout << "Please only enter Y or N." << endl;
         {
-            built = builtS;
             if(!(built == "y" || built == "Y") && !(built == "n" || built == "N"))
             {
                 cout << "Please only enter Y or N." << endl;
@@ -415,12 +411,10 @@ void Console::addBuilt(string& built)
 
 void Console::addType(string& type)
 {
-    string cpuType;
     do
     {
         cout << "Enter the type of computer: ";
         cin >> type;
-        cpuType = type;
         if(!validName(type) && !validComputerName(type))
         {
             cout << "Type cannot be empty or contain digits! " << endl;
