@@ -170,11 +170,11 @@ void Console::display()
         {
             cout << _pers[i].getName() << "\t";
         }
-        if(_pers[i].getGender() == 'm' || _pers[i].getGender() == 'M')
+        if(_pers[i].getGender() == "m" || _pers[i].getGender() == "M")
         {
             cout << "Male\t";
         }
-        else if(_pers[i].getGender() == 'f' || _pers[i].getGender() == 'F')
+        else if(_pers[i].getGender() == "f" || _pers[i].getGender() == "F")
         {
             cout << "Female\t";
         }
@@ -220,7 +220,7 @@ void Console::add(string& anotherOne)
         do
         {
             std::string name;
-            char gender;
+            string gender;
             int birth = 0;
             int death = 0;
 
@@ -278,7 +278,7 @@ void Console::addName(std::string& name)
     }while(!validName(name));
 }
 
-void Console::addGender(char& gender)
+void Console::addGender(string &gender)
 {
     do
     {
@@ -290,13 +290,13 @@ void Console::addGender(char& gender)
             cout << "Please only enter f or m." << endl;
         else
         {
-            gender = genderS[0];
-            if(!(gender == 'm' || gender == 'M') && !(gender == 'f' || gender == 'F'))
+            gender = genderS;
+            if(!(gender == "m" || gender == "M") && !(gender == "f" || gender == "F"))
             {
                 cout << "Please only enter f or m." << endl;
             }
         }
-    }while(!(gender == 'f' || gender == 'F') && !(gender == 'm' || gender == 'M'));
+    }while(!(gender == "f" || gender == "F") && !(gender == "m" || gender == "M"));
 }
 
 void Console::addBirth(int& birth)
@@ -484,11 +484,11 @@ void Console::displaySearch()
         {
             cout << k[i].getName() << "\t";
         }
-        if(k[i].getGender() == 'm' || k[i].getGender() == 'M')
+        if(k[i].getGender() == "m" || k[i].getGender() == "M")
         {
             cout << "Male\t";
         }
-        else if(k[i].getGender() == 'f' || k[i].getGender() == 'F')
+        else if(k[i].getGender() == "f" || k[i].getGender() == "F")
         {
             cout << "Female\t";
         }

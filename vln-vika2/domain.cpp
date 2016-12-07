@@ -62,7 +62,7 @@ vector<Person> Domain::search(vector<Person>& p, string name)
     for(unsigned int i = 0; i < p.size(); i++)
     {
         string nameFind;
-        char genderFind;
+        string genderFind;
         int birthFind;
         int deathFind;
         nameFind = p[i].getName();

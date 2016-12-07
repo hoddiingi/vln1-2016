@@ -63,34 +63,23 @@ vector<Person> Data::readData()
 {
 
     vector<Person> vect;
-    string name, genderS, birthS, deathS;
-    const char *gender;
-    int birth;
-    int death;
 
-    ifstream in;
-    in.open("text.txt");
+    open();
 
-    if(in.fail())
-    {
-        exit(1);
-    }
-    else
-    {
-        while(getline(in, name))
+    QSqlQuery query("SELECT * FROM people");
+        int idName = query.record().indexOf("name");
+        int idGender = query.record().indexOf("gender");
+        int idBirth = query.record().indexOf("birth");
+        int idDeath = query.record().indexOf("death");
+        while (query.next())
         {
-            getline(in, genderS);
-            getline(in, birthS);
-            getline(in, deathS);
-            birth = atoi(birthS.c_str());
-            gender = (genderS.c_str());
-            death = atoi(deathS.c_str());
-            Person temp(name, *gender, birth, death);
+            string name = query.value(idName).toString().toStdString();
+            string gender = query.value(idGender).toString().toStdString();
+            int birth = query.value(idBirth).toInt();
+            int death = query.value(idDeath).toInt();
+            Person temp(name, gender, birth, death);
             vect.push_back(temp);
-        }
-    }
-    in.close();
-
+         }
     return vect;
 }
 
@@ -116,7 +105,7 @@ bool Data::addPerson(Person p)
    open();
 
    QString name = QString::fromStdString(p.getName());
-   QString gender = QChar(p.getGender());
+   QString gender = QString::fromStdString(p.getGender());
    int birth = p.getBirth();
    int death = p.getDeath();
    bool success = false;

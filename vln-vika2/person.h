@@ -10,9 +10,9 @@ class Person
 {
 public:
     Person();
-    Person(string name, char gender, int birth, int death);
+    Person(string name, string gender, int birth, int death);
     string getName() const;
-    char getGender() const;
+    string getGender() const;
     int getBirth() const;
     int getDeath() const;
     void setDeath(int death);
@@ -21,7 +21,7 @@ public:
 
 private:
     string _name;
-    char _gender;
+    string _gender;
     int _birth;
     int _death;
 };
