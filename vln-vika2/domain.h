@@ -19,6 +19,7 @@ public:
     //Sorting functions
     void search();
     vector<Person> searchName(QString &name);
+    vector<Computer> searchComputer(QString &computerName);
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
     vector<Person> readData(int sortedBy);

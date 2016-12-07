@@ -10,10 +10,32 @@ using namespace std;
 
 Data::Data()
 {
-    //_persons = readData();
+
 }
 
-void Data::writeData(Person p)
+void Data::open()
+{
+    sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
+    QString sqlPrufaName = "sqlPrufa.sqlite";
+    sqlPrufa.setDatabaseName(sqlPrufaName);
+
+    sqlPrufa.open();
+    if (!sqlPrufa.open())
+    {
+       qDebug() << "Error: connection with database fail";
+    }
+    else
+    {
+       qDebug() << "Database: connection ok";
+    }
+}
+
+void Data::close()
+{
+    sqlPrufa.close();
+}
+
+void Data::writeData(Person p)      //eyða?
 {
    /* ofstream out;
     out.open("text.txt", std::ios_base::app);
@@ -27,9 +49,9 @@ void Data::writeData(Person p)
 
 
     QString name = QString::fromStdString(p.getName());
-//    QString gender = QString::fromStdString(p.getGender());
-  //  QString birth = QString::fromStdString(p.getBirth());
-    //QString death = QString::fromStdString(p.getDeath());
+    QString gender = QString::fromStdString(p.getGender());
+    QString birth = QString::fromStdString(p.getBirth());
+    QString death = QString::fromStdString(p.getDeath());
 
 
     QSqlQuery query;
@@ -39,8 +61,9 @@ void Data::writeData(Person p)
 
 }
 
-void Data::writeCompData(Computer c)
+void Data::writeCompData(Computer c)    //eyða?
 {
+    /*
     ofstream out;
     out.open("text.txt", std::ios_base::app);
 
@@ -50,8 +73,34 @@ void Data::writeCompData(Computer c)
     out << c.getBuilt() << endl;
 
     out.close();
+    */
 }
 
+vector<Person> Data::readData()
+{
+    open();
+    vector<Person> vect;
+
+    QSqlQuery query("SELECT * FROM people");
+
+    int idName   = query.record().indexOf("name");
+    int idGender = query.record().indexOf("gender");
+    int idBirth  = query.record().indexOf("birth");
+    int idDeath  = query.record().indexOf("death");
+
+    while (query.next())
+    {
+        string name = query.value(idName).toString().toStdString();
+        string gender = query.value(idGender).toString().toStdString();
+        int birth = query.value(idBirth).toInt();
+        int death = query.value(idDeath).toInt();
+
+        Person temp(name, gender, birth, death);
+        vect.push_back(temp);
+    }
+    close();
+    return vect;
+}
 
 vector<Computer> Data::readCompDataName()
 {
@@ -244,23 +293,6 @@ vector<Person> Data::readDataDeath()
     return vect;
 }
 
-Data::Data(const QString& path)
-{
-   sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
-   QString sqlPrufaName = "sqlPrufa.sqlite";
-   sqlPrufa.setDatabaseName(sqlPrufaName);
-
-
-   if (!sqlPrufa.open())
-   {
-      qDebug() << "Error: connection with database fail";
-   }
-   else
-   {
-      qDebug() << "Database: connection ok";
-   }
-}
-
 bool Data::addPerson(Person p)
 {
    open();
@@ -296,32 +328,32 @@ bool Data::addPerson(Person p)
 
 bool Data::addComputer(Computer c)
 {
+    open();
+    QString name = QString::fromStdString(c.getName());
+    int year = c.getYear();
+    QString type = QString::fromStdString(c.getType());
+    QString built = QString::fromStdString(c.getBuilt());
+    bool success = false;
+    // you should check if args are ok first...
+    QSqlQuery query;
+    query.prepare("INSERT INTO Computers (computername, year, type, built) VALUES (:computername, :year, :type, :built)");
+    //query.bindValue(":id",  3);
+    query.bindValue(":computername", name);
+    query.bindValue(":year", year);
+    query.bindValue(":type", type);
+    query.bindValue(":built", built);
 
-   QString name = QString::fromStdString(c.getName());
-   int year = c.getYear();
-   QString type = QString::fromStdString(c.getType());
-   QString built = QString::fromStdString(c.getBuilt());
-   bool success = false;
-   // you should check if args are ok first...
-   QSqlQuery query;
-   query.prepare("INSERT INTO Computers (computername, year, type, built) VALUES (:computername, :year, :type, :built)");
-   //query.bindValue(":id",  3);
-   query.bindValue(":computername", name);
-   query.bindValue(":year", year);
-   query.bindValue(":type", type);
-   query.bindValue(":built", built);
-
-   if(query.exec())
-   {
-       success = true;
-   }
-   else
-   {
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
         qDebug() << "addPerson error:  "
                  << query.lastError();
-   }
-
-   return success;
+    }
+    close();
+    return success;
 }
 /*
 bool Data::removePerson(const QString& name)
@@ -365,8 +397,8 @@ bool Data::removeAllPersons()
     {
         qDebug() << "remove all persons failed: " << removeQuery.lastError();
     }
-    return success;
     close();
+    return success;
 }
 
 /*
@@ -415,68 +447,11 @@ bool Data::removeAllComputers()
     close();
 }
 
-void Data::open()
-{
-    sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
-    QString sqlPrufaName = "sqlPrufa.sqlite";
-    sqlPrufa.setDatabaseName(sqlPrufaName);
-
-
-    if (!sqlPrufa.open())
-    {
-       qDebug() << "Error: connection with database fail";
-    }
-    else
-    {
-       qDebug() << "Database: connection ok";
-    }
-}
-
-void Data::close()
-{
-    QString connection;
-    connection = m_db.connectionName();
-    m_db.close();
-    m_db = QSqlDatabase();
-    m_db.removeDatabase(connection);
-
-
-    //sqlPrufa.close();
-}
-
-QSqlDatabase Data::db()
-{
-    return m_db;
-}
-
-
-/*
-bool Data::scientistSearch(const QString &name)
-{
-    open();
-    QSqlQuery query;
-    query.prepare("SELECT name FROM people WHERE name = (:name)");
-    query.bindValue(":name", name);
-
-    if (query.exec())
-    {
-        if (query.next())
-        {
-            close();
-            return true;
-        }
-    }
-    close();
-    return false;
-}
-*/
-
 //Search fyrir SQLite
 vector<Person> Data::searchName(QString &name)
 {
     open();
     vector<Person> results;
-    qDebug() << name << endl;
 
     //Search function, we search from out vector and then put the results in another vector so it shows us all results
 
@@ -485,18 +460,15 @@ vector<Person> Data::searchName(QString &name)
     int birthFind;
     int deathFind;
 
-    //std::size_t found = nameFind.find(name);
     QSqlQuery query(sqlPrufa);
-    QString search = "SELECT * FROM people WHERE name = (:name)";
+    QString search = "SELECT * FROM people WHERE name LIKE (:name)";
+
     query.prepare(search);
     query.bindValue(":name", name);
-
     query.exec();
 
     while(query.next())
     {
-        qDebug() << "Found" << endl;
-        Person p1;
         // it exists
         nameFind = query.value("Name").toString().toStdString();
         genderFind = query.value("Gender").toString().toStdString();
@@ -504,6 +476,40 @@ vector<Person> Data::searchName(QString &name)
         deathFind = query.value("Death").toInt();
         Person p2(nameFind, genderFind, birthFind, deathFind);
         results.push_back(p2);
+    }
+
+    close();
+    return results;
+}
+
+vector<Computer> Data::searchComputer(QString &computerName)
+{
+    open();
+    vector<Computer> results;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    string nameFind;
+    int yearFind;
+    string typeFind;
+    string builtFind;
+
+    QSqlQuery query(sqlPrufa);
+    QString search = "SELECT * FROM computers WHERE computername LIKE (:computername)";
+
+    query.prepare(search);
+    query.bindValue(":computername", computerName);
+    query.exec();
+
+    while(query.next())
+    {
+        // it exists
+        nameFind = query.value("computername").toString().toStdString();
+        yearFind = query.value("year").toInt();
+        typeFind = query.value("type").toString().toStdString();
+        builtFind = query.value("built").toString().toStdString();
+        Computer c(nameFind, yearFind, typeFind, builtFind);
+        results.push_back(c);
     }
 
     close();

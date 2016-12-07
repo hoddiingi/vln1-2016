@@ -10,9 +10,14 @@ class Data
 {
 public:
     Data();
+    void open();
+    void close();
     void writeData(Person p);
-    vector<Person> readData();
     void writeCompData(Computer c);
+
+    vector<Person> readData();
+   // vector<Computer> readCompData();
+
     void readCompData();
     vector<Computer> readCompDataName();
     vector<Computer> readCompDataYear();
@@ -22,24 +27,22 @@ public:
     vector<Person> readDataGender();
     vector<Person> readDataBirth();
     vector<Person> readDataDeath();
-    Data(const QString& path);
+
     bool addPerson(Person p);
     bool addComputer(Computer c);
+
     //bool removePerson(const QString& name);
     bool removeAllPersons();
+
     //bool removeComputer(const QString& name);
     bool removeAllComputers();
-    void open();
-    void close();
     vector<Person> searchName(QString &name);
+    vector<Computer> searchComputer(QString &computerName);
 
 private:
     vector<Person> _persons;
     vector<Computer> _computers;
     QSqlDatabase sqlPrufa;
-    QSqlDatabase db();
-    QSqlDatabase m_db;
-
 };
 
 #endif // DATA_H
