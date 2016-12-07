@@ -120,12 +120,21 @@ void Console::getInfo()
 int Console::sortBy()
 {
     int res;
-    cout << "Please enter one of the following commands:" << endl;
-    cout << "1 - view a list of computers by name" << endl;
-    cout << "2 - view a list of computers by year" << endl;
-    cout << "3 - view a list of computers by type" << endl;
-    cout << "4 - view a list of computers by if it was built" << endl;
-    cin >> res;
+    do
+    {
+        cout << endl;
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "1 - view a list of computers by name" << endl;
+        cout << "2 - view a list of computers by year" << endl;
+        cout << "3 - view a list of computers by type" << endl;
+        cout << "4 - view a list of computers by if it was built" << endl;
+        cin >> res;
+
+        if((res != 1) && (res != 2) && (res != 3) && (res != 4))
+        {
+            cout << "Please enter a valid number" << endl;
+        }
+    }while((res != 1) && (res != 2) && (res != 3) && (res != 4));
     return res;
 }
 
@@ -246,49 +255,55 @@ void Console::add(string& anotherOne)
 {
     int choice;
 
-    cout << "Enter 1 to add a scientist" << endl;
-    cout << "Enter 2 to add a computer" << endl;
-    cin >> choice;
-
-    if(choice == 1)
+    do
     {
-        do
+        cout << "Enter 1 to add a scientist" << endl;
+        cout << "Enter 2 to add a computer" << endl;
+        cin >> choice;
+        if((choice != 1) && (choice != 2))
         {
-            std::string name;
-            string gender;
-            int birth = 0;
-            int death = 0;
-
-            addName(name);
-            addGender(gender);
-            addBirth(birth);
-            addDeath(death, birth);
-            addAnother(anotherOne);
-
-            Person newData(name, gender, birth, death);
-            //_dat.writeData(newData); //Eyða síðar
-            _dom.addPerson(newData);
-        }while(anotherOne == "y" || anotherOne == "Y");
-    }   
-    else if(choice == 2)
-    {
-        do
+            cout << "Please enter a valid number" << endl;
+        }
+        else if(choice == 1)
         {
-            std::string computerName;
-            int year = 0;
-            std::string type;
-            string built;
+            do
+            {
+                std::string name;
+                string gender;
+                int birth = 0;
+                int death = 0;
 
-            addComputerName(computerName);
-            addYear(year);
-            addType(type);
-            addBuilt(built);
+                addName(name);
+                addGender(gender);
+                addBirth(birth);
+                addDeath(death, birth);
+                addAnother(anotherOne);
 
-            Computer newDataComp(computerName, year, type, built);
-            //_dat.writeCompData(newDataComp);
-            _dom.addComputer(newDataComp);
-        }while(anotherOne == "y" || anotherOne == "Y");
-    }
+                Person newData(name, gender, birth, death);
+                //_dat.writeData(newData); //Eyða síðar
+                _dom.addPerson(newData);
+            }while(anotherOne == "y" || anotherOne == "Y");
+        }
+        else if(choice == 2)
+        {
+            do
+            {
+                std::string computerName;
+                int year = 0;
+                std::string type;
+                string built;
+
+                addComputerName(computerName);
+                addYear(year);
+                addType(type);
+                addBuilt(built);
+
+                Computer newDataComp(computerName, year, type, built);
+                //_dat.writeCompData(newDataComp);
+                _dom.addComputer(newDataComp);
+            }while(anotherOne == "y" || anotherOne == "Y");
+        }
+    }while((choice != 1) && (choice != 2));
 }
 
 void Console::addName(std::string& name)
@@ -474,15 +489,21 @@ void Console::search()
     cout << "Enter 1 to search for a scientist" << endl;
     cout << "Enter 2 to search for a computer"  << endl;
     cin  >> choice;
-
-    if(choice == 1)
+    do
     {
-        displaySearchScientist();
-    }
-    else if(choice == 2)
-    {
-        displaySearchComputer();
-    }
+        if((choice != 1) && (choice != 2))
+        {
+            cout << "Please enter a valid number" << endl;
+        }
+        else if(choice == 1)
+        {
+            displaySearchScientist();
+        }
+        else if(choice == 2)
+        {
+            displaySearchComputer();
+        }
+    }while((choice != 1) && (choice != 2));
 }
 
 string Console::searchComputer()
@@ -654,32 +675,38 @@ void Console::displayComputer()
 
 void Console::deleteStuff()
 {
-
     int input = 0;
 
-    cout << "1 - remove one person" << endl;
-    cout << "2 - remove all persons" << endl;
-    cout << "3 - remove one computer" << endl;
-    cout << "4 - remove all computers" << endl;
-
-    cin >> input;
-
-    if (input == 1)
+    do
     {
+        cout << "1 - remove one person" << endl;
+        cout << "2 - remove all persons" << endl;
+        cout << "3 - remove one computer" << endl;
+        cout << "4 - remove all computers" << endl;
 
-        cout << "search i vinnslu" << endl;
-    }
-    else if (input == 2)
-    {
-        _dom.removeAllPersons();
-    }
-    else if (input == 3)
-    {
-        cout << "Search i vinnslu" << endl;
-    }
-    else if (input == 4)
-    {
-        _dom.removeAllComputers();
-    }
+        cin >> input;
 
+        if((input != 1) && (input != 2) && (input != 3) && (input != 4))
+        {
+            cout << "Please enter a valid number" << endl;
+        }
+
+        else if (input == 1)
+        {
+
+            cout << "search i vinnslu" << endl;
+        }
+        else if (input == 2)
+        {
+            _dom.removeAllPersons();
+        }
+        else if (input == 3)
+        {
+            cout << "Search i vinnslu" << endl;
+        }
+        else if (input == 4)
+        {
+            _dom.removeAllComputers();
+        }
+    }while((input != 1) && (input != 2) && (input != 3) && (input != 4));
 }

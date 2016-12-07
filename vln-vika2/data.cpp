@@ -443,8 +443,8 @@ bool Data::removeAllComputers()
     {
         qDebug() << "remove all computers failed: " << removeQuery.lastError();
     }
-    return success;
     close();
+    return success;
 }
 
 //Search fyrir SQLite
