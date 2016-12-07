@@ -4,7 +4,7 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-#include "data.h"
+//#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
@@ -53,7 +53,7 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    _pers = _dat.readData();
+    _pers = _dom.readData();
     string command;
     string anotherOne;
 
@@ -67,6 +67,7 @@ void Console::getInfo()
         }
         else if((command == "View") || (command == "view"))
         {
+<<<<<<< HEAD
             int viewInput = 0;
             cout << "------------------------------" << endl;
             cout << "Please enter one of the following commands:" << endl;
@@ -87,6 +88,10 @@ void Console::getInfo()
 
            // _pers = _dat.readData();
            // display();
+=======
+            _pers = _dom.readData();
+            display();
+>>>>>>> 917080472a1459a9ef993348dba97ab4c67abe8f
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -94,7 +99,7 @@ void Console::getInfo()
         }
         else if((command == "Sort") || (command == "sort"))
         {
-            _pers        = _dat.readData();
+            _pers        = _dom.readData();
             int sortType = getSort();
             displaySort(sortType);
         }
@@ -132,7 +137,7 @@ int Console::getSort()
 
 void Console::displaySort(int& sort)
 {
-    _dat.readData();
+    _dom.readData();
 
     if(sort == 1)
     {
@@ -234,8 +239,8 @@ void Console::add(string& anotherOne)
             //Data d("sqlPrufa.sqlite");
 
             Person newData(name, gender, birth, death);
-            _dat.writeData(newData);
-            _dat.addPerson(newData);
+            //_dat.writeData(newData); //Eyða síðar
+            _dom.addPerson(newData);
 
         }while(anotherOne == "y" || anotherOne == "Y");
     }
@@ -255,8 +260,9 @@ void Console::add(string& anotherOne)
 
             Data d("sqlPruf.sqlite");
             Computer newDataComp(computerName, year, type, built);
-            _dat.writeCompData(newDataComp);
-            _dat.addComputer(newDataComp);
+
+            //_dat.writeCompData(newDataComp);
+            _dom.addComputer(newDataComp);
         }while(anotherOne == "y" || anotherOne == "Y");
 
     }
@@ -446,7 +452,7 @@ void Console::addAnother(string& anotherOne)
 
 string Console::searchName()
 {
-    _dat.readData();
+    _dom.readData();
     string chosenName;
     cout << endl << "Who would you like to search for? (Case sensitive) ";
     cin >> chosenName;
@@ -455,7 +461,7 @@ string Console::searchName()
 
 void Console::displaySearch()
 {
-    _pers = _dat.readData();
+    _pers = _dom.readData();
     string name = searchName();
 
     vector<Person> k = _dom.search(_pers, name);
