@@ -9,11 +9,11 @@ class Computer
 {
 public:
     Computer();
-    Computer(string name, int year, string type, char built);
+    Computer(string name, int year, string type, string built);
     string getName() const;
     int getYear() const;
     string getType() const;
-    char getBuilt() const;
+    string getBuilt() const;
     int getNameSize2();
 
 
@@ -21,7 +21,7 @@ private:
     string _name;
     int _year;
     string _type;
-    char _built;
+    string _built;
 
 };
 

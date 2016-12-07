@@ -76,16 +76,14 @@ void Console::getInfo()
 
             if (viewInput == 1)
             {
-                _pers = _dat.readData();
-                //display();
+                _pers = _dom.readData();
+                display();
             }
             else if (viewInput == 2)
             {
                 _comp = _dat.readCompData();
                 displayComputer();
             }
-            _pers = _dom.readData();
-            display();
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -244,8 +242,8 @@ void Console::add(string& anotherOne)
         {
             std::string computerName;
             int year = 0;
-            string type;
-            char built;
+            std::string type;
+            string built;
 
             addComputerName(computerName);
             addYear(year);
@@ -395,7 +393,7 @@ void Console::addYear(int& year)
     year = atoi(yearInput.c_str());
 }
 
-void Console::addBuilt(char& built)
+void Console::addBuilt(string& built)
 {
     do
     {
@@ -406,13 +404,13 @@ void Console::addBuilt(char& built)
         if(builtS.length() != 1)
             cout << "Please only enter Y or N." << endl;
         {
-            built = builtS[0];
-            if(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'))
+            built = builtS;
+            if(!(built == "y" || built == "Y") && !(built == "n" || built == "N"))
             {
                 cout << "Please only enter Y or N." << endl;
             }
         }
-    }while(!(built == 'y' || built == 'Y') && !(built == 'n' || built == 'N'));
+    }while(!(built == "y" || built == "Y") && !(built == "n" || built == "N"));
 }
 
 void Console::addType(string& type)
@@ -421,7 +419,7 @@ void Console::addType(string& type)
     do
     {
         cout << "Enter the type of computer: ";
-        cin >> cpuType;
+        cin >> type;
         cpuType = type;
         if(!validName(type) && !validComputerName(type))
         {
@@ -506,8 +504,8 @@ void Console::displaySearch()
 }
 
 void Console::displayComputer()
-{/*
-    cout  << endl << "COMPUTER NAME:\t\t\t\tYEAR:\tTYPE:\tBUILT:" << endl;
+{
+    cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\tBUILT:" << endl;
     cout << "------------------------------------------" << endl;
 
     for(unsigned int i = 0; i < _comp.size(); i++)
@@ -534,66 +532,6 @@ void Console::displayComputer()
 
         cout << _comp[i].getType() << "\t";
 
-        cout << _comp[i].getBuilt() << "\t";
+        cout << _comp[i].getBuilt() << endl;
     }
-*/}
-
-void Console::printAllPersons()
-{
-    _dom.open();
-    cout << "NAME:\t\t\t\tGENDER:\tBIRTH:\tDEATH:" << endl;
-    QSqlQuery query("SELECT * FROM people");
-    int idName = query.record().indexOf("name");
-    int idGender = query.record().indexOf("gender");
-    int idBirth = query.record().indexOf("birth");
-    int idDeath = query.record().indexOf("death");
-    while (query.next())
-    {
-        string name = query.value(idName).toString().toStdString();
-        /*int nameSize = _c.getNameSize2();
-
-        if(nameSize >= 0 && nameSize <= 7)
-        {
-            cout << name << "\t\t\t\t";
-        }
-        else if(nameSize >= 8  && nameSize <= 15)
-        {
-            cout << name << "\t\t";
-        }
-        else if(nameSize >= 16  && nameSize <= 23)
-        {
-            cout << name << "\t\t";
-        }
-        else if(nameSize >= 24  && nameSize <= 31)
-        {
-            cout << name << "\t";
-        }*/
-
-
-        //QString name = query.value(idName).toString();
-        cout << name << "\t\t\t\t";
-        string gender = query.value(idGender).toString().toStdString();
-        cout << gender << "\t";
-        int birth = query.value(idBirth).toInt();
-        cout << birth << "\t";
-        int death = query.value(idDeath).toInt();
-        cout << death << "\t" << endl;
-    }
-    _dom.close();
 }
-
-/*QSqlQuery query("SELECT * FROM people");
-    int idName = query.record().indexOf("name");
-    int idGender = query.record().indexOf("gender");
-    int idBirth = query.record().indexOf("birth");
-    int idDeath = query.record().indexOf("death");
-    while (query.next())
-    {
-       QString name = query.value(idName).toString();
-       qDebug() << name;
-       QString gender = query.value(idGender).toString();
-       qDebug() << gender;
-       int birth = query.value(idBirth).toInt();
-       qDebug() << birth;
-       qDebug() << endl;
-    }*/

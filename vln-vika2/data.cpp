@@ -54,9 +54,27 @@ void Data::writeCompData(Computer c)
 
 vector<Computer> Data::readCompData()
 {
-    vector<Computer> vect2;
-    return vect2;
 
+    vector<Computer> vect2;
+
+    open();
+
+    QSqlQuery query("SELECT * FROM computers");
+        int idCompName = query.record().indexOf("computername");
+        int idYear = query.record().indexOf("year");
+        int idType = query.record().indexOf("type");
+        int idBuilt = query.record().indexOf("built");
+        while (query.next())
+        {
+            string name = query.value(idCompName).toString().toStdString();
+            int year = query.value(idYear).toInt();
+            string type = query.value(idType).toString().toStdString();
+            string built = query.value(idBuilt).toString().toStdString();
+            Computer temp(name, year, type, built);
+            vect2.push_back(temp);
+         }
+    close();
+    return vect2;
 }
 
 vector<Person> Data::readData()
@@ -80,6 +98,7 @@ vector<Person> Data::readData()
             Person temp(name, gender, birth, death);
             vect.push_back(temp);
          }
+    close();
     return vect;
 }
 
@@ -139,7 +158,7 @@ bool Data::addComputer(Computer c)
    QString name = QString::fromStdString(c.getName());
    int year = c.getYear();
    QString type = QString::fromStdString(c.getType());
-   QString built = QChar(c.getBuilt());
+   QString built = QString::fromStdString(c.getBuilt());
    bool success = false;
    // you should check if args are ok first...
    QSqlQuery query;
