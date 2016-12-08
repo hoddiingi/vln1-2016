@@ -83,25 +83,41 @@ vector<Person> Domain::readData()
 vector<Computer> Domain::readCompData(int sortedBy)
 {
     if(sortedBy == 1)
-        return _dat.readCompDataName();
+        return _dat.readCompDataNameAsc();
     else if(sortedBy == 2)
-        return _dat.readCompDataYear();
+        return _dat.readCompDataNameDesc();
     else if(sortedBy == 3)
-        return _dat.readCompDataType();
+        return _dat.readCompDataYearAsc();
     else if(sortedBy == 4)
-        return _dat.readCompDataBuilt();
+        return _dat.readCompDataYearDesc();
+    else if(sortedBy == 5)
+        return _dat.readCompDataTypeAsc();
+    else if(sortedBy == 6)
+        return _dat.readCompDataTypeDesc();
+    else if(sortedBy == 7)
+        return _dat.readCompDataBuiltAsc();
+    else
+        return _dat.readCompDataBuiltDesc();
 }
 
 vector<Person> Domain::readData(int sortedBy)
 {
     if(sortedBy == 1)
-        return _dat.readDataName();
+        return _dat.readDataNameAsc();
     else if(sortedBy == 2)
-        return _dat.readDataGender();
+        return _dat.readDataNameDesc();
     else if(sortedBy == 3)
-        return _dat.readDataBirth();
+        return _dat.readDataGenderAsc();
     else if(sortedBy == 4)
-        return _dat.readDataDeath();
+        return _dat.readDataGenderDesc();
+    else if(sortedBy == 5)
+        return _dat.readDataBirthAsc();
+    else if(sortedBy == 6)
+        return _dat.readDataBirthDesc();
+    else if(sortedBy == 7)
+        return _dat.readDataDeathAsc();
+    else
+        return _dat.readDataDeathDesc();
 }
 
 bool Domain::addPerson(Person p)
