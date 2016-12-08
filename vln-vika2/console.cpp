@@ -290,11 +290,21 @@ void Console::add(string& anotherOne)
         }
         else if(choice == "3")
         {
+            int personID;
+            int computerID;
             cout << "Connections" << endl;
             //Birta töflu ID og nafn hjá People
+<<<<<<< HEAD
             //Biður um input frá not um ID
             //Birta töflu ID og nafn hjá Computers
             //Biður um input frá not um ID
+=======
+            personID = addPersConnection();
+            //Birta töflu ID og nafn hjá Computers
+            computerID = addCompConnection();
+            //kalla ég í data (dom.addConnections(personID, computerID))
+            _dom.addConnection(personID, computerID);
+>>>>>>> 1740fdf1711f1405e3a7f70788f4f547b7d5417a
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
