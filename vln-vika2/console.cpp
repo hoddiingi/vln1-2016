@@ -243,8 +243,9 @@ void Console::add(string& anotherOne)
         cout << endl;
         cout << "Enter 1 to add a scientist" << endl;
         cout << "Enter 2 to add a computer" << endl;
+        cout << "Enter 3 to add a connection" << endl;
         cin >> choice;
-        if(choice != "1" && choice != "2")
+        if(choice != "1" && choice != "2" && choice != "3")
         {
             cout << "Please enter a valid number" << endl;
         }
@@ -288,7 +289,15 @@ void Console::add(string& anotherOne)
                 _dom.addComputer(newDataComp);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
-    }while(choice != "1" && choice != "2");
+        else if(choice == "3")
+        {
+            cout << "Connections" << endl;
+            //Birta töflu ID og nafn hjá People
+            //Biður um input frá not um ID
+            //Birta töflu ID og nafn hjá Computers
+            //Biður um input frá not um ID
+        }
+    }while(choice != "1" && choice != "2" && choice != "3");
 }
 
 void Console::addName(std::string& name)
