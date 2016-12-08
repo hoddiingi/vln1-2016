@@ -292,27 +292,11 @@ void Console::add(string& anotherOne)
         {
             cout << "Connections" << endl;
             //Birta töflu ID og nafn hjá People
-            addPersConnection();
+            //Biður um input frá not um ID
             //Birta töflu ID og nafn hjá Computers
-            addCompConnection();
+            //Biður um input frá not um ID
         }
     }while(choice != "1" && choice != "2" && choice != "3");
-}
-int Console::addPersConnection()
-{
-    int input;
-    cout << "Enter ID to connect: ";
-    cin >> input;
-
-    return input;
-}
-int Console::addCompConnection()
-{
-    int input;
-    cout << "Enter ID to connect: ";
-    cin >> input;
-
-    return input;
 }
 
 void Console::addName(std::string& name)
