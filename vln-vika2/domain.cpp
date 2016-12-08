@@ -96,7 +96,7 @@ vector<Computer> Domain::readCompData(int sortedBy)
         return _dat.readCompDataTypeDesc();
     else if(sortedBy == 7)
         return _dat.readCompDataBuiltAsc();
-    else if(sortedBy == 8)
+    else
         return _dat.readCompDataBuiltDesc();
 }
 
@@ -116,7 +116,7 @@ vector<Person> Domain::readData(int sortedBy)
         return _dat.readDataBirthDesc();
     else if(sortedBy == 7)
         return _dat.readDataDeathAsc();
-    else if(sortedBy == 8)
+    else
         return _dat.readDataDeathDesc();
 }
 
