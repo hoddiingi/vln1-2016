@@ -82,7 +82,7 @@ void Data::writeCompData(Computer c)    //eyða?
 
 vector<Person> Data::readData()
 {
-    open();
+    //open();
     vector<Person> vect;
 
     QSqlQuery query("SELECT * FROM people");
@@ -102,7 +102,7 @@ vector<Person> Data::readData()
         Person temp(name, gender, birth, death);
         vect.push_back(temp);
     }
-    close();
+    //close();
     return vect;
 }
 
