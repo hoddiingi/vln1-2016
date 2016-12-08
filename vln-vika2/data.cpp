@@ -32,6 +32,10 @@ void Data::open()
 
 void Data::close()
 {
+    sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
+    QString sqlPrufaName = "sqlPrufa.sqlite";
+    sqlPrufa.setDatabaseName(sqlPrufaName);
+
     sqlPrufa.close();
 }
 
@@ -461,10 +465,11 @@ vector<Person> Data::searchName(QString &name)
     int deathFind;
 
     QSqlQuery query(sqlPrufa);
-    QString search = "SELECT * FROM people WHERE name LIKE (:name)";
+
+    QString search = "SELECT * FROM people WHERE name LIKE '%" + name + "%'";
 
     query.prepare(search);
-    query.bindValue(":name", name);
+
     query.exec();
 
     while(query.next())
@@ -478,7 +483,6 @@ vector<Person> Data::searchName(QString &name)
         results.push_back(p2);
     }
 
-    close();
     return results;
 }
 

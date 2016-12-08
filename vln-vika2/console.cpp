@@ -53,7 +53,6 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    //_pers = _dom.readData();
     string command;
     string anotherOne;
 
@@ -498,8 +497,6 @@ string Console::searchScientist()
 
 void Console::displaySearchScientist()
 {
-    _dom.open();
-
     QString name = QString::fromStdString(searchScientist());
     vector<Person> k = _dom.searchName(name);
 
@@ -547,8 +544,6 @@ void Console::displaySearchScientist()
         cout << _dom.findAge(k[i]) << endl;
     }
 
-
-    _dom.close();
 }
 
 void Console::displaySearchComputer()
