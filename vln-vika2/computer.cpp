@@ -22,6 +22,10 @@ Computer::Computer(int id, string name, int year, string type, string built)
     _type  = type;
     _built = built;
 }
+int Computer::getId() const
+{
+    return _id;
+}
 
 string Computer::getName() const
 {

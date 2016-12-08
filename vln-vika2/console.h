@@ -48,6 +48,8 @@ public:
     void displaySearchComputer();
     void displayComputer();
     void printAllPersons();
+    void displayCompIdName();
+    void displaySciIdName();
     int sortBy();
 
 

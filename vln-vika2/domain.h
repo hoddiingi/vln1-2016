@@ -22,7 +22,7 @@ public:
     vector<Computer> searchComputer(QString &computerName);
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
-    vector<Person> readData(int sortedBy);
+    vector<Person> readSciData(int sortedBy);
     vector<Computer> readCompData(int sortedBy);
     bool addPerson(Person p);
     bool addComputer(Computer c);

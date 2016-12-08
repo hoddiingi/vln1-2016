@@ -82,7 +82,7 @@ void Console::getInfo()
                     else if (viewInput == "1")
                     {
                         int num1 = getSort();
-                        _pers = _dom.readData(num1);
+                        _pers = _dom.readSciData(num1);
                         display();
                     }
                     else if (viewInput == "2")
@@ -226,7 +226,6 @@ void Console::menu(string& command)
     cout << "Add    - for adding scientist to the list" << endl;
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
-   // cout << "Sort   - for sorting" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
@@ -292,14 +291,42 @@ void Console::add(string& anotherOne)
         else if(choice == "3")
         {
             cout << "Connections" << endl;
-            //Birta töflu ID og nafn hjá People
+            displaySciIdName();
             //Biður um input frá not um ID
-            //Birta töflu ID og nafn hjá Computers
+            displayCompIdName();
             //Biður um input frá not um ID
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
 
+void Console::displaySciIdName()
+{
+    _pers = _dom.readSciData(1);
+    cout  << endl << "ID:\tNAME: " << endl;
+
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+
+        cout << _pers[i].getId() <<"\t";
+        cout << _pers[i].getName() << endl;
+
+    }
+
+}
+void Console::displayCompIdName()
+{
+    _comp = _dom.readCompData(1);
+    cout  << endl << "ID:\tCOMPUTER NAME: " << endl;
+
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+
+        cout << _comp[i].getId() <<"\t";
+        cout << _comp[i].getName() << endl;
+
+    }
+
+}
 void Console::addName(std::string& name)
 {
     do

@@ -16,6 +16,7 @@ public:
     string getGender() const;
     int getBirth() const;
     int getDeath() const;
+    int getId() const;
     void setDeath(int death);
     int getNameSize();
     //Gets private member variables
