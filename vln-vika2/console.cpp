@@ -302,7 +302,7 @@ void Console::add(string& anotherOne)
 int Console::addPersConnection()
 {
     int input;
-    cout << "Enter ID to connect: ";
+    cout << "Enter scientist ID to connect: ";
     cin >> input;
 
     return input;
@@ -310,7 +310,7 @@ int Console::addPersConnection()
 int Console::addCompConnection()
 {
     int input;
-    cout << "Enter ID to connect: ";
+    cout << "Enter computer ID to connect: ";
     cin >> input;
 
     return input;
