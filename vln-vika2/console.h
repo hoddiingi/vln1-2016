@@ -54,7 +54,6 @@ public:
 private:
     //Member variables
     Domain _dom;
-    Data _dat;
     Person _p;
     Computer _c;
     vector<Person> _pers;

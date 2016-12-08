@@ -4,7 +4,6 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-//#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
