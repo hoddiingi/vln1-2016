@@ -50,6 +50,9 @@ public:
     void printAllPersons();
     int sortBy();
 
+    int addPersConnection();
+    int addCompConnection();
+
 
 private:
     //Member variables
