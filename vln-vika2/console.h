@@ -18,7 +18,6 @@ public:
     bool validYear(string s);
     void getInfo();
     int getSort();
-    void displaySort(int& sort);
     void display();
     void menu(string& command);
     void add(char& anotherOne);
