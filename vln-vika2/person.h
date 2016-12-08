@@ -10,6 +10,7 @@ class Person
 {
 public:
     Person();
+    Person(int id, string name, string gender, int birth, int death);
     Person(string name, string gender, int birth, int death);
     string getName() const;
     string getGender() const;
@@ -20,6 +21,7 @@ public:
     //Gets private member variables
 
 private:
+    int _id;
     string _name;
     string _gender;
     int _birth;

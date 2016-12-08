@@ -32,10 +32,10 @@ void Data::open()
 
 void Data::close()
 {
-    sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
+  /*  sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
     QString sqlPrufaName = "sqlPrufa.sqlite";
     sqlPrufa.setDatabaseName(sqlPrufaName);
-
+*/
     sqlPrufa.close();
 }
 
@@ -46,6 +46,7 @@ vector<Person> Data::readData()
 
     QSqlQuery query("SELECT * FROM people");
 
+    int id       = query.record().indexOf("ID");
     int idName   = query.record().indexOf("name");
     int idGender = query.record().indexOf("gender");
     int idBirth  = query.record().indexOf("birth");
@@ -53,12 +54,13 @@ vector<Person> Data::readData()
 
     while (query.next())
     {
-        string name = query.value(idName).toString().toStdString();
+        int id1       = query.value(id).toInt();
+        string name   = query.value(idName).toString().toStdString();
         string gender = query.value(idGender).toString().toStdString();
-        int birth = query.value(idBirth).toInt();
-        int death = query.value(idDeath).toInt();
+        int birth     = query.value(idBirth).toInt();
+        int death     = query.value(idDeath).toInt();
 
-        Person temp(name, gender, birth, death);
+        Person temp(id1, name, gender, birth, death);
         vect.push_back(temp);
     }
     //close();
@@ -73,17 +75,21 @@ vector<Computer> Data::readCompDataNameAsc()
     open();
 
     QSqlQuery query("SELECT * FROM computers ORDER BY computername COLLATE NOCASE ASC");
+    int id         = query.record().indexOf("ID");
     int idCompName = query.record().indexOf("computername");
-    int idYear = query.record().indexOf("year");
-    int idType = query.record().indexOf("type");
-    int idBuilt = query.record().indexOf("built");
+    int idYear     = query.record().indexOf("year");
+    int idType     = query.record().indexOf("type");
+    int idBuilt    = query.record().indexOf("built");
+
     while (query.next())
     {
-        string name = query.value(idCompName).toString().toStdString();
-        int year = query.value(idYear).toInt();
-        string type = query.value(idType).toString().toStdString();
+        int id1      = query.value(id).toInt();
+        string name  = query.value(idCompName).toString().toStdString();
+        int year     = query.value(idYear).toInt();
+        string type  = query.value(idType).toString().toStdString();
         string built = query.value(idBuilt).toString().toStdString();
-        Computer temp(name, year, type, built);
+
+        Computer temp(id1, name, year, type, built);
         vect2.push_back(temp);
          }
     close();
@@ -317,7 +323,6 @@ vector<Person> Data::readDataGenderAsc()
 
 vector<Person> Data::readDataGenderDesc()
 {
-
     vector<Person> vect;
 
     open();
@@ -645,10 +650,9 @@ vector<Computer> Data::searchComputer(QString &computerName)
     string builtFind;
 
     QSqlQuery query(sqlPrufa);
-    QString search = "SELECT * FROM computers WHERE computername LIKE (:computername)";
+    QString search = "SELECT * FROM computers WHERE computerName LIKE '%" + computerName + "%'";
 
     query.prepare(search);
-    query.bindValue(":computername", computerName);
     query.exec();
 
     while(query.next())
