@@ -37,11 +37,11 @@ public:
     bool addPerson(Person p);
     bool addComputer(Computer c);
 
-    //bool removePerson(const QString& name);
+    bool removePerson(QString &name);
     bool removeAllPersons();
-
-    //bool removeComputer(const QString& name);
+    bool removeComputer(QString &computername);
     bool removeAllComputers();
+
     vector<Person> searchName(QString &name);
     vector<Computer> searchComputer(QString &computerName);
 

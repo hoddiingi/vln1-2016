@@ -41,7 +41,7 @@ void Data::close()
 
 vector<Person> Data::readData()
 {
-    open();
+    //open();
     vector<Person> vect;
 
     QSqlQuery query("SELECT * FROM people");
@@ -61,7 +61,7 @@ vector<Person> Data::readData()
         Person temp(name, gender, birth, death);
         vect.push_back(temp);
     }
-    close();
+    //close();
     return vect;
 }
 
@@ -498,18 +498,20 @@ bool Data::addComputer(Computer c)
     close();
     return success;
 }
-/*
-bool Data::removePerson(const QString& name)
+
+bool Data::removePerson(QString& name)
 {
     open();
     bool success = false;
+    vector<Person> result = searchName(name);
 
-    if(searchFall(name))
+    if(result.size() > 0)
     {
         QSqlQuery queryDelete;
         queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
         queryDelete.bindValue(":name", name);
         success = queryDelete.exec();
+        cout << "Person was removed successfully";
 
         if(!success)
         {
@@ -522,7 +524,7 @@ bool Data::removePerson(const QString& name)
     }
     return success;
     close();
-}*/
+}
 
 bool Data::removeAllPersons()
 {
@@ -544,22 +546,26 @@ bool Data::removeAllPersons()
     return success;
 }
 
-/*
-bool Data::removeComputer(const QString& name)
+bool Data::removeComputer(QString &computername)
 {
     open();
     bool success = false;
+    vector<Computer> result = searchComputer(computername);
 
-    if(searchFall(name))
+    if(result.size() > 0)
     {
         QSqlQuery queryDelete;
-        queryDelete.prepare("DELETE FROM computers WHERE name = (:name)");
-        queryDelete.bindValue(":name", name);
+        queryDelete.prepare("DELETE FROM computers WHERE computername = (:computername)");
+        queryDelete.bindValue(":computername", computername);
         success = queryDelete.exec();
 
         if(!success)
         {
             qDebug() << "remove computer failed: " << queryDelete.lastError();
+        }
+        else if (success)
+        {
+            cout << "Computer was removed successfully";
         }
     }
     else
@@ -568,7 +574,7 @@ bool Data::removeComputer(const QString& name)
     }
     return success;
     close();
-}*/
+}
 
 bool Data::removeAllComputers()
 {
@@ -655,6 +661,5 @@ vector<Computer> Data::searchComputer(QString &computerName)
         results.push_back(c);
     }
 
-    close();
     return results;
 }

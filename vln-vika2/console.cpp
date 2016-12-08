@@ -141,7 +141,7 @@ int Console::sortBy()
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
-    }while((res != 1 && res != 2 && res != 3 && res != 4 && res != 5 && res != 6 && res != 7 && res != 8) || cin.good());
+    }while((res != 1 && res != 2 && res != 3 && res != 4 && res != 5 && res != 6 && res != 7 && res != 8) || !cin.good());
     return res;
 }
 
@@ -501,7 +501,7 @@ void Console::search()
 string Console::searchComputer()
 {
     string computerName;
-    cout << endl << "Name of computer? ";
+    cout << endl << "Name of computer: ";
     cin.ignore();
     std::getline(std::cin, computerName);
     return computerName;
@@ -510,7 +510,7 @@ string Console::searchComputer()
 string Console::searchScientist()
 {
     string chosenName;
-    cout << endl << "Who would you like to search for? ";
+    cout << endl << "Name of scientist: ";
     cin.ignore();
     std::getline(std::cin, chosenName);
     return chosenName;
@@ -683,6 +683,9 @@ void Console::deleteStuff()
         else if (input == 1)
         {
             cout << "search i vinnslu" << endl;
+            QString name = QString::fromStdString(searchScientist());
+            //gera view
+            _dom.removePerson(name);
         }
         else if (input == 2)
         {
@@ -690,7 +693,8 @@ void Console::deleteStuff()
         }
         else if (input == 3)
         {
-            cout << "Search i vinnslu" << endl;
+            QString computer = QString::fromStdString(searchComputer());
+            _dom.removeComputer(computer);
         }
         else if (input == 4)
         {
