@@ -17,14 +17,22 @@ public:
    // vector<Computer> readCompData();
 
     void readCompData();
-    vector<Computer> readCompDataName();
-    vector<Computer> readCompDataYear();
-    vector<Computer> readCompDataType();
-    vector<Computer> readCompDataBuilt();
-    vector<Person> readDataName();
-    vector<Person> readDataGender();
-    vector<Person> readDataBirth();
-    vector<Person> readDataDeath();
+    vector<Computer> readCompDataNameAsc();
+    vector<Computer> readCompDataNameDesc();
+    vector<Computer> readCompDataYearAsc();
+    vector<Computer> readCompDataYearDesc();
+    vector<Computer> readCompDataTypeAsc();
+    vector<Computer> readCompDataTypeDesc();
+    vector<Computer> readCompDataBuiltAsc();
+    vector<Computer> readCompDataBuiltDesc();
+    vector<Person> readDataNameAsc();
+    vector<Person> readDataNameDesc();
+    vector<Person> readDataGenderAsc();
+    vector<Person> readDataGenderDesc();
+    vector<Person> readDataBirthAsc();
+    vector<Person> readDataBirthDesc();
+    vector<Person> readDataDeathAsc();
+    vector<Person> readDataDeathDesc();
 
     bool addPerson(Person p);
     bool addComputer(Computer c);
