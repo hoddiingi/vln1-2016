@@ -461,7 +461,7 @@ vector<Person> Data::searchName(QString &name)
     int deathFind;
 
     QSqlQuery query(sqlPrufa);
-    QString search = "SELECT * FROM people WHERE name LIKE (:name)";
+    QString search = "SELECT * FROM people WHERE name GLOB (:name)*";
 
     query.prepare(search);
     query.bindValue(":name", name);
