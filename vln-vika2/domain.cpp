@@ -159,4 +159,7 @@ bool Domain::removeComputer(QString& computername)
 {
     return _dat.removeComputer(computername);
 }
-
+bool Domain:: addConnection (int personID, int computerID)
+{
+    return _dat.addConnections(personID, computerID);
+}

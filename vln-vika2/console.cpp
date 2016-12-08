@@ -291,11 +291,15 @@ void Console::add(string& anotherOne)
         }
         else if(choice == "3")
         {
+            int personID;
+            int computerID;
             cout << "Connections" << endl;
             //Birta töflu ID og nafn hjá People
-            addPersConnection();
+            personID = addPersConnection();
             //Birta töflu ID og nafn hjá Computers
-            addCompConnection();
+            computerID = addCompConnection();
+            //kalla ég í data (dom.addConnections(personID, computerID))
+            _dom.addConnection(personID, computerID);
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
