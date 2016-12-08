@@ -522,8 +522,9 @@ bool Data::removePerson(QString& name)
     {
         qDebug() << "remove person failed: person does not exist";
     }
-    return success;
     close();
+    return success;
+
 }
 
 bool Data::removeAllPersons()
@@ -572,8 +573,8 @@ bool Data::removeComputer(QString &computername)
     {
         qDebug() << "remove computer failed: computer does not exist";
     }
-    return success;
     close();
+    return success;
 }
 
 bool Data::removeAllComputers()
