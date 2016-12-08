@@ -39,7 +39,7 @@ public:
 
     bool removePerson(QString &name);
     bool removeAllPersons();
-    bool removeComputer(QString &name);
+    bool removeComputer(QString &computername);
     bool removeAllComputers();
 
     vector<Person> searchName(QString &name);

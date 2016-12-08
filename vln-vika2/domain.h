@@ -32,7 +32,7 @@ public:
     bool removeAllPersons();
     bool removeAllComputers();
     bool removePerson(QString& name);
-    bool removeComputer(QString& name);
+    bool removeComputer(QString& computername);
 
 
 

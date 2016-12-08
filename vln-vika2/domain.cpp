@@ -155,8 +155,8 @@ bool Domain::removePerson(QString& name)
 {
     return _dat.removePerson(name);
 }
-bool Domain::removeComputer(QString& name)
+bool Domain::removeComputer(QString& computername)
 {
-    return _dat.removeComputer(name);
+    return _dat.removeComputer(computername);
 }
 

@@ -492,7 +492,7 @@ void Console::search()
 string Console::searchComputer()
 {
     string computerName;
-    cout << endl << "Name of computer? ";
+    cout << endl << "Name of computer: ";
     cin.ignore();
     std::getline(std::cin, computerName);
     return computerName;
@@ -501,7 +501,7 @@ string Console::searchComputer()
 string Console::searchScientist()
 {
     string chosenName;
-    cout << endl << "Who would you like to search for? ";
+    cout << endl << "Name of scientist: ";
     cin.ignore();
     std::getline(std::cin, chosenName);
     return chosenName;
@@ -672,8 +672,9 @@ void Console::deleteStuff()
 
         else if (input == 1)
         {
-            searchScientist();
-            //_dom.removePerson();
+            QString name = QString::fromStdString(searchScientist());
+            //gera view
+            _dom.removePerson(name);
         }
         else if (input == 2)
         {
@@ -681,8 +682,8 @@ void Console::deleteStuff()
         }
         else if (input == 3)
         {
-            searchComputer();
-            //_dom.removeComputer();
+            QString computer = QString::fromStdString(searchComputer());
+            _dom.removeComputer(computer);
         }
         else if (input == 4)
         {

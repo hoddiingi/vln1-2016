@@ -511,6 +511,7 @@ bool Data::removePerson(QString& name)
         queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
         queryDelete.bindValue(":name", name);
         success = queryDelete.exec();
+        cout << "Person was removed successfully";
 
         if(!success)
         {
@@ -545,23 +546,26 @@ bool Data::removeAllPersons()
     return success;
 }
 
-
-bool Data::removeComputer(QString &name)
+bool Data::removeComputer(QString &computername)
 {
     open();
     bool success = false;
-    vector<Computer> result = searchComputer(name);
+    vector<Computer> result = searchComputer(computername);
 
     if(result.size() > 0)
     {
         QSqlQuery queryDelete;
-        queryDelete.prepare("DELETE FROM computers WHERE name = (:name)");
-        queryDelete.bindValue(":name", name);
+        queryDelete.prepare("DELETE FROM computers WHERE computername = (:computername)");
+        queryDelete.bindValue(":computername", computername);
         success = queryDelete.exec();
 
         if(!success)
         {
             qDebug() << "remove computer failed: " << queryDelete.lastError();
+        }
+        else if (success)
+        {
+            cout << "Computer was removed successfully";
         }
     }
     else
@@ -657,6 +661,5 @@ vector<Computer> Data::searchComputer(QString &computerName)
         results.push_back(c);
     }
 
-    close();
     return results;
 }
