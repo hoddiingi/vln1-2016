@@ -665,7 +665,7 @@ void Console::deleteStuff()
         else if (input == 1)
         {
             searchScientist();
-            _dom.removePerson();
+            //_dom.removePerson();
         }
         else if (input == 2)
         {
@@ -674,7 +674,7 @@ void Console::deleteStuff()
         else if (input == 3)
         {
             searchComputer();
-            _dom.removeComputer();
+            //_dom.removeComputer();
         }
         else if (input == 4)
         {
