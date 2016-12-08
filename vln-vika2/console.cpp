@@ -292,7 +292,6 @@ void Console::add(string& anotherOne)
         {
             int personID;
             int computerID;
-            cout << "Connections" << endl;
             //Birta töflu ID og nafn hjá People
 
             personID = addPersConnection();
@@ -686,13 +685,13 @@ void Console::deleteStuff()
         }
         else if (input == "1")
         {
-            cout << "search i vinnslu" << endl;
+            display();
             QString name = QString::fromStdString(searchScientist());
-            //gera view
             _dom.removePerson(name);
         }
         else if (input == "2")
         {
+            
             _dom.removeAllPersons();
         }
         else if (input == "3")

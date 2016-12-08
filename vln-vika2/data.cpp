@@ -477,15 +477,15 @@ bool Data::addPerson(Person p)
 bool Data::addConnections(int personID, int computerID)
 {
     open();
-    int persID = personID;
-    int compID = computerID;
+    //int persID = personID;
+    //int compID = computerID;
     bool success = false;
 
     QSqlQuery query;
 
     query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
-    query.bindValue(":scientistID", persID);
-    query.bindValue(":computerID", compID);
+    query.bindValue(":scientistID", personID);
+    query.bindValue(":computerID", computerID);
 
     if(query.exec())
     {
