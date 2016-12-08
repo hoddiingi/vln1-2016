@@ -162,32 +162,6 @@ int Console::getSort()
     return sort;
 }
 
-void Console::displaySort(int& sort)
-{/*
-    //_dom.readData();
-
-    if(sort == 1)
-    {
-        _dom.alphabeticSort(_pers);
-        display();
-    }
-    else if(sort == 2)
-    {
-        _dom.ageSorting(_pers);
-        display();
-    }
-    else if(sort == 3)
-    {
-        _dom.maleFemaleSort(_pers);
-        display();
-    }
-    else if(sort == 4)
-    {
-        _dom.deathSorting(_pers);
-        display();
-    }*/
-}
-
 void Console::display()
 {
     cout  << endl << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:" << endl;
