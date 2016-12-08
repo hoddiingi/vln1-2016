@@ -31,6 +31,10 @@ public:
     int sortBy();
     bool removeAllPersons();
     bool removeAllComputers();
+    bool removePerson(QString& name);
+    bool removeComputer(QString& name);
+
+
 
 private:
     friend bool operator < (const Person& lsh, const Person& rhs);

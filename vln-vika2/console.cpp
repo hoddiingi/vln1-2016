@@ -695,8 +695,8 @@ void Console::deleteStuff()
 
         else if (input == 1)
         {
-
-            cout << "search i vinnslu" << endl;
+            searchScientist();
+            _dom.removePerson();
         }
         else if (input == 2)
         {
@@ -704,7 +704,8 @@ void Console::deleteStuff()
         }
         else if (input == 3)
         {
-            cout << "Search i vinnslu" << endl;
+            searchComputer();
+            _dom.removeComputer();
         }
         else if (input == 4)
         {

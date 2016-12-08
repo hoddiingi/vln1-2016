@@ -355,13 +355,14 @@ bool Data::addComputer(Computer c)
     close();
     return success;
 }
-/*
-bool Data::removePerson(const QString& name)
+
+bool Data::removePerson(QString& name)
 {
     open();
     bool success = false;
+    vector<Person> result = searchName(name);
 
-    if(searchFall(name))
+    if(result.size() > 0)
     {
         QSqlQuery queryDelete;
         queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
@@ -379,7 +380,7 @@ bool Data::removePerson(const QString& name)
     }
     return success;
     close();
-}*/
+}
 
 bool Data::removeAllPersons()
 {
@@ -401,13 +402,14 @@ bool Data::removeAllPersons()
     return success;
 }
 
-/*
-bool Data::removeComputer(const QString& name)
+
+bool Data::removeComputer(QString &name)
 {
     open();
     bool success = false;
+    vector<Computer> result = searchComputer(name);
 
-    if(searchFall(name))
+    if(result.size() > 0)
     {
         QSqlQuery queryDelete;
         queryDelete.prepare("DELETE FROM computers WHERE name = (:name)");
@@ -425,7 +427,7 @@ bool Data::removeComputer(const QString& name)
     }
     return success;
     close();
-}*/
+}
 
 bool Data::removeAllComputers()
 {

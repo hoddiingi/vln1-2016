@@ -169,8 +169,16 @@ bool Domain::removeAllPersons()
 {
     return _dat.removeAllPersons();
 }
-
 bool Domain::removeAllComputers()
 {
     return _dat.removeAllComputers();
 }
+bool Domain::removePerson(QString& name)
+{
+    return _dat.removePerson(name);
+}
+bool Domain::removeComputer(QString& name)
+{
+    return _dat.removeComputer(name);
+}
+
