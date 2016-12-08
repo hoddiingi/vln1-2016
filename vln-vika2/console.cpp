@@ -53,7 +53,6 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    //_pers = _dom.readData();
     string command;
     string anotherOne;
 
@@ -124,17 +123,21 @@ int Console::sortBy()
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
-        cout << "1 - view a list of computers by name" << endl;
-        cout << "2 - view a list of computers by year" << endl;
-        cout << "3 - view a list of computers by type" << endl;
-        cout << "4 - view a list of computers by if it was built" << endl;
+        cout << "1 - view a list of computers by name - asc" << endl;
+        cout << "2 - view a list of computers by name - desc" << endl;
+        cout << "3 - view a list of computers by year - asc" << endl;
+        cout << "4 - view a list of computers by year - desc" << endl;
+        cout << "5 - view a list of computers by type - asc" << endl;
+        cout << "6 - view a list of computers by type - desc" << endl;
+        cout << "7 - view a list of computers by if it was built - asc" << endl;
+        cout << "8 - view a list of computers by if it was builr - desc" << endl;
         cin >> res;
 
-        if((res != 1) && (res != 2) && (res != 3) && (res != 4))
+        if((res != 1) && (res != 2) && (res != 3) && (res != 4) && (res != 5) && (res != 6) && (res != 7) && (res != 8))
         {
             cout << "Please enter a valid number" << endl;
         }
-    }while((res != 1) && (res != 2) && (res != 3) && (res != 4));
+    }while((res != 1) && (res != 2) && (res != 3) && (res != 4) && (res != 5) && (res != 6) && (res != 7) && (res != 8));
     return res;
 }
 
@@ -146,18 +149,22 @@ int Console::getSort()
     {
         cout << endl << "-------------------------------------------"  << endl;
         cout << "Please enter one of the following commands: " << endl << endl;
-        cout << "1 - sort by alphabetical order" << endl;
-        cout << "2 - sort by year of birth" << endl;
-        cout << "3 - sort by gender" << endl;
-        cout << "4 - sort by year of death" << endl;
+        cout << "1 - sort by alphabetical order - asc" << endl;
+        cout << "2 - sort by alphabetical order - desc" << endl;
+        cout << "3 - sort by gender - asc" << endl;
+        cout << "4 - sort by gender - desc" << endl;
+        cout << "5 - sort by year of birth - asc" << endl;
+        cout << "6 - sort by year of birth - desc" << endl;
+        cout << "7 - sort by year of death - asc" << endl;
+        cout << "8 - sort by year of death - desc" << endl;
         cout << "-------------------------------------------"  << endl << endl;
         cin  >> sortInput;
 
-        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4)
+        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4 && atoi(sortInput.c_str()) != 5 && atoi(sortInput.c_str()) != 6 && atoi(sortInput.c_str()) != 7 && atoi(sortInput.c_str()) != 8)
         {
             cout << "Invalid input!" << endl;
         }
-    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4);
+    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4 && atoi(sortInput.c_str()) != 5 && atoi(sortInput.c_str()) != 6 && atoi(sortInput.c_str()) != 7 && atoi(sortInput.c_str()) != 8);
 
     sort = atoi(sortInput.c_str());
     return sort;
@@ -528,8 +535,6 @@ string Console::searchScientist()
 
 void Console::displaySearchScientist()
 {
-    _dom.open();
-
     QString name = QString::fromStdString(searchScientist());
     vector<Person> k = _dom.searchName(name);
 
@@ -577,8 +582,6 @@ void Console::displaySearchScientist()
         cout << _dom.findAge(k[i]) << endl;
     }
 
-
-    _dom.close();
 }
 
 void Console::displaySearchComputer()
