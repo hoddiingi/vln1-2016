@@ -291,12 +291,32 @@ void Console::add(string& anotherOne)
         else if(choice == "3")
         {
             cout << "Connections" << endl;
+            int personID;
+            int computerID;
             displaySciIdName();
-            //Biður um input frá not um ID
+            personID = addPersConnection();
             displayCompIdName();
-            //Biður um input frá not um ID
+            computerID = addCompConnection();
+            //kalla ég í data (dom.addConnections(personID, computerID))
+            _dom.addConnection(personID, computerID);
         }
     }while(choice != "1" && choice != "2" && choice != "3");
+}
+int Console::addPersConnection()
+{
+    int input;
+    cout << "Enter ID to connect: ";
+    cin >> input;
+
+    return input;
+}
+int Console::addCompConnection()
+{
+    int input;
+    cout << "Enter ID to connect: ";
+    cin >> input;
+
+    return input;
 }
 
 void Console::displaySciIdName()
@@ -710,13 +730,13 @@ void Console::deleteStuff()
         }
         else if (input == "1")
         {
-            cout << "search i vinnslu" << endl;
+            display();
             QString name = QString::fromStdString(searchScientist());
-            //gera view
             _dom.removePerson(name);
         }
         else if (input == "2")
         {
+            
             _dom.removeAllPersons();
         }
         else if (input == "3")

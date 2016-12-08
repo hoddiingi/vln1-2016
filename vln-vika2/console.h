@@ -52,6 +52,9 @@ public:
     void displaySciIdName();
     int sortBy();
 
+    int addPersConnection();
+    int addCompConnection();
+
 
 private:
     //Member variables

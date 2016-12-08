@@ -167,6 +167,32 @@ bool Data::addPerson(Person p)
 
    return success;
 }
+bool Data::addConnections(int personID, int computerID)
+{
+    open();
+    //int persID = personID;
+    //int compID = computerID;
+    bool success = false;
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
+    query.bindValue(":scientistID", personID);
+    query.bindValue(":computerID", computerID);
+
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+         qDebug() << "addConnections error:  "
+                  << query.lastError();
+    }
+
+    close();
+    return success;
+}
 
 bool Data::addComputer(Computer c)
 {
@@ -362,3 +388,4 @@ vector<Computer> Data::searchComputer(QString &computerName)
 
     return results;
 }
+

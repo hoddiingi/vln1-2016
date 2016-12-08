@@ -22,6 +22,7 @@ public:
 
     bool addPerson(Person p);
     bool addComputer(Computer c);
+    bool addConnections(int personID, int computerID);
 
     bool removePerson(QString &name);
     bool removeAllPersons();
