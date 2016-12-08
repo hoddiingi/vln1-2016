@@ -66,7 +66,7 @@ void Console::getInfo()
         }
         else if((command == "View") || (command == "view"))
         {
-            int viewInput = 0;
+            string viewInput;
             do
             {
                 cout << "--------------------------------------------" << endl;
@@ -75,25 +75,23 @@ void Console::getInfo()
                 cout << "2 - view a list of computers" << endl;
                 cin >> viewInput;
 
-                    if((viewInput != 1 && viewInput != 2) || !cin.good())
+                    if((viewInput != "1" && viewInput != "2"))
                     {
                         cout << "Please enter a valid number" << endl;
-                        cin.clear();
-                        cin.ignore(INT_MAX, '\n');
                     }
-                    else if (viewInput == 1)
+                    else if (viewInput == "1")
                     {
                         int num1 = getSort();
                         _pers = _dom.readData(num1);
                         display();
                     }
-                    else if (viewInput == 2)
+                    else if (viewInput == "2")
                     {
                         int num = sortBy();
                         _comp = _dom.readCompData(num);
                         displayComputer();
                     }
-            }while((viewInput != 1 && viewInput != 2) || !cin.good());
+            }while((viewInput != "1" && viewInput != "2"));
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -120,7 +118,8 @@ void Console::getInfo()
 
 int Console::sortBy()
 {
-    int res;
+    string res;
+    int ress;
     do
     {
         cout << endl;
@@ -135,14 +134,15 @@ int Console::sortBy()
         cout << "8 - view a list of computers by if it was builr - desc" << endl;
         cin >> res;
 
-        if((res != 1 && res != 2 && res != 3 && res != 4 && res != 5 && res != 6 && res != 7 && res != 8) || !cin.good())
+        if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
         {
             cout << "Please enter a valid number" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
-    }while((res != 1 && res != 2 && res != 3 && res != 4 && res != 5 && res != 6 && res != 7 && res != 8) || !cin.good());
-    return res;
+    }while(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8");
+    ress = atoi(res.c_str());
+    return ress;
 }
 
 int Console::getSort()
@@ -164,11 +164,11 @@ int Console::getSort()
         cout << "-------------------------------------------"  << endl << endl;
         cin  >> sortInput;
 
-        if(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4 && atoi(sortInput.c_str()) != 5 && atoi(sortInput.c_str()) != 6 && atoi(sortInput.c_str()) != 7 && atoi(sortInput.c_str()) != 8)
+        if(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8")
         {
             cout << "Invalid input!" << endl;
         }
-    }while(atoi(sortInput.c_str()) != 1 && atoi(sortInput.c_str()) != 2 && atoi(sortInput.c_str()) != 3 && atoi(sortInput.c_str()) != 4 && atoi(sortInput.c_str()) != 5 && atoi(sortInput.c_str()) != 6 && atoi(sortInput.c_str()) != 7 && atoi(sortInput.c_str()) != 8);
+    }while(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8");
 
     sort = atoi(sortInput.c_str());
     return sort;
@@ -238,7 +238,7 @@ void Console::menu(string& command)
 
 void Console::add(string& anotherOne)
 {
-    int choice;
+    string choice;
 
     do
     {
@@ -246,13 +246,13 @@ void Console::add(string& anotherOne)
         cout << "Enter 1 to add a scientist" << endl;
         cout << "Enter 2 to add a computer" << endl;
         cin >> choice;
-        if((choice != 1 && choice != 2) || !cin.good())
+        if(choice != "1" && choice != "2")
         {
             cout << "Please enter a valid number" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
-        else if(choice == 1)
+        else if(choice == "1")
         {
             do
             {
@@ -272,7 +272,7 @@ void Console::add(string& anotherOne)
                 _dom.addPerson(newData);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
-        else if(choice == 2)
+        else if(choice == "2")
         {
             do
             {
@@ -292,7 +292,7 @@ void Console::add(string& anotherOne)
                 _dom.addComputer(newDataComp);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
-    }while((choice != 1 && choice != 2) || !cin.good());
+    }while(choice != "1" && choice != "2");
 }
 
 void Console::addName(std::string& name)
@@ -474,28 +474,28 @@ void Console::addAnother(string& anotherOne)
 
 void Console::search()
 {
-    int choice = 0;
+    string choice;
     do
     {
         cout << "Enter 1 to search for a scientist" << endl;
         cout << "Enter 2 to search for a computer"  << endl;
         cin  >> choice;
 
-        if((choice != 1 && choice != 2) || !cin.good())
+        if(choice != "1" && choice != "2")
         {
             cout << "Please enter a valid number" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
-        else if(choice == 1)
+        else if(choice == "1")
         {
             displaySearchScientist();
         }
-        else if(choice == 2)
+        else if(choice == "2")
         {
             displaySearchComputer();
         }
-    }while((choice != 1 && choice != 2) || !cin.good());
+    }while(choice != "1" && choice != "2");
 }
 
 string Console::searchComputer()
@@ -663,7 +663,7 @@ void Console::displayComputer()
 
 void Console::deleteStuff()
 {
-    int input = 0;
+    string input;
 
     do
     {
@@ -674,31 +674,31 @@ void Console::deleteStuff()
 
         cin >> input;
 
-        if((input != 1 && input != 2 && input != 3 && input != 4) || !cin.good())
+        if(input != "1" && input != "2" && input != "3" && input != "4")
         {
             cout << "Please enter a valid number" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
-        else if (input == 1)
+        else if (input == "1")
         {
             cout << "search i vinnslu" << endl;
             QString name = QString::fromStdString(searchScientist());
             //gera view
             _dom.removePerson(name);
         }
-        else if (input == 2)
+        else if (input == "2")
         {
             _dom.removeAllPersons();
         }
-        else if (input == 3)
+        else if (input == "3")
         {
             QString computer = QString::fromStdString(searchComputer());
             _dom.removeComputer(computer);
         }
-        else if (input == 4)
+        else if (input == "4")
         {
             _dom.removeAllComputers();
         }
-    }while((input != 1 && input != 2 && input != 3 && input != 4) || !cin.good());
+    }while(input != "1" && input != "2" && input != "3" && input != "4");
 }
