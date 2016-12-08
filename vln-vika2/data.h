@@ -12,8 +12,6 @@ public:
     Data();
     void open();
     void close();
-    void writeData(Person p);
-    void writeCompData(Computer c);
 
     vector<Person> readData();
    // vector<Computer> readCompData();

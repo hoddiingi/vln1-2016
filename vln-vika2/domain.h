@@ -37,10 +37,6 @@ public:
 
 
 private:
-    friend bool operator < (const Person& lsh, const Person& rhs);
-    friend bool operator < (const Person& lsh, const Person& rhs);
-    friend bool operator < (const Person& lhs, const Person& rhs);
-    friend bool operator < (const Person& lhs, const Person& rhs);
     Data _dat;
   //  Console _con;
 

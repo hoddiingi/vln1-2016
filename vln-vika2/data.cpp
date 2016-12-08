@@ -32,48 +32,11 @@ void Data::open()
 
 void Data::close()
 {
+    sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
+    QString sqlPrufaName = "sqlPrufa.sqlite";
+    sqlPrufa.setDatabaseName(sqlPrufaName);
+
     sqlPrufa.close();
-}
-
-void Data::writeData(Person p)      //eyða?
-{
-   /* ofstream out;
-    out.open("text.txt", std::ios_base::app);
-
-    out << p.getName() << endl;
-    out << p.getGender() << endl;
-    out << p.getBirth() << endl;
-    out << p.getDeath() << endl;
-
-    out.close();
-
-
-    QString name = QString::fromStdString(p.getName());
-    QString gender = QString::fromStdString(p.getGender());
-    QString birth = QString::fromStdString(p.getBirth());
-    QString death = QString::fromStdString(p.getDeath());
-
-
-    QSqlQuery query;
-    query.prepare("INSERT INTO people (name) VALUES (name)");
-   // query.bindValue("name", name);
-*/
-
-}
-
-void Data::writeCompData(Computer c)    //eyða?
-{
-    /*
-    ofstream out;
-    out.open("text.txt", std::ios_base::app);
-
-    out << c.getName() << endl;
-    out << c.getYear() << endl;
-    out << c.getType() << endl;
-    out << c.getBuilt() << endl;
-
-    out.close();
-    */
 }
 
 vector<Person> Data::readData()
@@ -463,10 +426,11 @@ vector<Person> Data::searchName(QString &name)
     int deathFind;
 
     QSqlQuery query(sqlPrufa);
-    QString search = "SELECT * FROM people WHERE name LIKE (:name)";
+
+    QString search = "SELECT * FROM people WHERE name LIKE '%" + name + "%'";
 
     query.prepare(search);
-    query.bindValue(":name", name);
+
     query.exec();
 
     while(query.next())
@@ -480,7 +444,6 @@ vector<Person> Data::searchName(QString &name)
         results.push_back(p2);
     }
 
-    close();
     return results;
 }
 

@@ -53,7 +53,6 @@ bool Console::validYear(string s)
 
 void Console::getInfo()
 {
-    //_pers = _dom.readData();
     string command;
     string anotherOne;
 
@@ -161,32 +160,6 @@ int Console::getSort()
 
     sort = atoi(sortInput.c_str());
     return sort;
-}
-
-void Console::displaySort(int& sort)
-{/*
-    //_dom.readData();
-
-    if(sort == 1)
-    {
-        _dom.alphabeticSort(_pers);
-        display();
-    }
-    else if(sort == 2)
-    {
-        _dom.ageSorting(_pers);
-        display();
-    }
-    else if(sort == 3)
-    {
-        _dom.maleFemaleSort(_pers);
-        display();
-    }
-    else if(sort == 4)
-    {
-        _dom.deathSorting(_pers);
-        display();
-    }*/
 }
 
 void Console::display()
@@ -528,8 +501,6 @@ string Console::searchScientist()
 
 void Console::displaySearchScientist()
 {
-    _dom.open();
-
     QString name = QString::fromStdString(searchScientist());
     vector<Person> k = _dom.searchName(name);
 
@@ -577,8 +548,6 @@ void Console::displaySearchScientist()
         cout << _dom.findAge(k[i]) << endl;
     }
 
-
-    _dom.close();
 }
 
 void Console::displaySearchComputer()
