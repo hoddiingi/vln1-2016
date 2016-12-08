@@ -257,6 +257,7 @@ void Console::add(string& anotherOne)
 
     do
     {
+        cout << endl;
         cout << "Enter 1 to add a scientist" << endl;
         cout << "Enter 2 to add a computer" << endl;
         cin >> choice;
@@ -297,6 +298,7 @@ void Console::add(string& anotherOne)
                 addYear(year);
                 addType(type);
                 addBuilt(built);
+                addAnother(anotherOne);
 
                 Computer newDataComp(computerName, year, type, built);
                 //_dat.writeCompData(newDataComp);
