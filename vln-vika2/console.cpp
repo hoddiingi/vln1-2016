@@ -137,8 +137,6 @@ int Console::sortBy()
         if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
         {
             cout << "Please enter a valid number" << endl;
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
         }
     }while(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8");
     ress = atoi(res.c_str());
@@ -249,8 +247,6 @@ void Console::add(string& anotherOne)
         if(choice != "1" && choice != "2")
         {
             cout << "Please enter a valid number" << endl;
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
         }
         else if(choice == "1")
         {
@@ -484,8 +480,6 @@ void Console::search()
         if(choice != "1" && choice != "2")
         {
             cout << "Please enter a valid number" << endl;
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
         }
         else if(choice == "1")
         {
@@ -677,8 +671,6 @@ void Console::deleteStuff()
         if(input != "1" && input != "2" && input != "3" && input != "4")
         {
             cout << "Please enter a valid number" << endl;
-            cin.clear();
-            cin.ignore(INT_MAX, '\n');
         }
         else if (input == "1")
         {
