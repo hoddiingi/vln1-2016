@@ -17,13 +17,11 @@ public:
     int getNameSize2();
     int getTypeSize();
 
-
 private:
     string _name;
     int _year;
     string _type;
     string _built;
-
 };
 
 #endif // COMPUTER_H
