@@ -293,7 +293,6 @@ void Console::add(string& anotherOne)
         {
             int personID;
             int computerID;
-            cout << "Connections" << endl;
             //Birta töflu ID og nafn hjá People
             personID = addPersConnection();
             //Birta töflu ID og nafn hjá Computers
