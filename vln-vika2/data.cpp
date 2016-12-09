@@ -22,7 +22,7 @@ void Data::open()
     sqlPrufa.open();
     if (!sqlPrufa.open())
     {
-       qDebug() << "Error: connection with database fail";
+       //qDebug() << "Error: connection with database fail";
     }
     else
     {
@@ -165,7 +165,6 @@ bool Data::addPerson(Person p, QSqlError error)
    }
    else
    {
-       // qDebug() << "addPerson error:  " << query.lastError();
         error = query.lastError();
    }
    close();
@@ -194,7 +193,6 @@ bool Data::addComputer(Computer c, QSqlError error)
     }
     else
     {
-        //qDebug() << "addPerson error:  " << query.lastError();
         error = query.lastError();
     }
     close();
@@ -219,7 +217,6 @@ bool Data::addConnections(int personID, int computerID, QSqlError error)
     }
     else
     {
-         //qDebug() << "addConnections error:  " << query.lastError();
         error = query.lastError();
     }
 
@@ -257,7 +254,6 @@ vector<Person> Data::searchName(QString &name)
 
         Person p2(idFind, nameFind, genderFind, birthFind, deathFind);
         results.push_back(p2);
-        qDebug() << p2.getId() << endl;
     }
     close();
 
@@ -304,7 +300,6 @@ bool Data::removePerson(QString& name, QSqlError error)
 
     QSqlQuery removeQuery;
     removeQuery.prepare("DELETE FROM people WHERE name = (:name)");
-    qDebug() << name << endl;
     removeQuery.bindValue(":name", name);
 
 
@@ -313,35 +308,11 @@ bool Data::removePerson(QString& name, QSqlError error)
         success = true;
     }
     else
-    {
-        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    {  
+        error = removeQuery.lastError();
     }
     close();
     return success;
-/*
-    open();
-    bool success = false;
-    vector<Person> result = searchName(name);
-
-    if(result.size() > 0)
-    {
-        QSqlQuery queryDelete;
-        queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
-        queryDelete.bindValue(":name", name);
-        success = queryDelete.exec();
-
-        if(!success)
-        {
-            //qDebug() << "remove person failed: " << queryDelete.lastError();
-            error = queryDelete.lastError();
-        }
-    }
-    else
-    {
-        qDebug() << "remove person failed: person does not exist";
-    }
-    close();
-    return success;*/
 }
 
 bool Data::removeAllPersons(QSqlError error)
@@ -358,7 +329,6 @@ bool Data::removeAllPersons(QSqlError error)
     }
     else
     {
-        //qDebug() << "remove all persons failed: " << removeQuery.lastError();
         error = removeQuery.lastError();
     }
     close();
@@ -372,7 +342,6 @@ bool Data::removeComputer(QString &computername, QSqlError error)
 
     QSqlQuery removeQuery;
     removeQuery.prepare("DELETE FROM computers WHERE ComputerName = (:computername)");
-    qDebug() << computername << endl;
     removeQuery.bindValue(":computername", computername);
 
 
@@ -382,33 +351,10 @@ bool Data::removeComputer(QString &computername, QSqlError error)
     }
     else
     {
-        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+        error = removeQuery.lastError();
     }
     close();
     return success;
-    /*open();
-    bool success = false;
-    vector<Computer> result = searchComputer(computername);
-
-    if(result.size() > 0)
-    {
-        QSqlQuery queryDelete;
-        queryDelete.prepare("DELETE FROM computers WHERE computername = (:computername)");
-        queryDelete.bindValue(":computername", computername);
-        success = queryDelete.exec();
-
-        if(!success)
-        {
-            //qDebug() << "remove computer failed: " << queryDelete.lastError();
-            error = queryDelete.lastError();
-        }
-    }
-    else
-    {
-        qDebug() << "remove computer failed: computer does not exist";
-    }
-    close();
-    return success;*/
 }
 
 bool Data::removeAllComputers(QSqlError error)
@@ -425,13 +371,50 @@ bool Data::removeAllComputers(QSqlError error)
     }
     else
     {
-        //qDebug() << "remove all computers failed: " << removeQuery.lastError();
         error = removeQuery.lastError();
     }
     close();
     return success;
 }
 
+bool Data::removeConnection(QString &sciId, QSqlError error)
+{
+    open();
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM connection WHERE scientistid = (:scientistid)");
+    removeQuery.bindValue(":scientistid", sciId);
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        error = removeQuery.lastError();
+    }
+    close();
+    return success;
+}
+bool Data::removeAllConnections(QSqlError error)
+{
+    open();
+    bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM connections");
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        error = removeQuery.lastError();
+    }
+    close();
+    return success;
+}
 void Data::updateScientistName(QString &name, QString &update)
 {
     open();

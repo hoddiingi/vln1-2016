@@ -347,16 +347,16 @@ void Console::add(string& anotherOne)
 void Console::displayConnections()
 {
     vector<int> j = _dom.readConData();
-    _pers = _dom.readSciData(1);
-    _comp = _dom.readCompData(1);
+    _pers = _dom.readSciData(9);
+    _comp = _dom.readCompData(9);
 
-    cout << "Name" << "\t\t\t\t" << "Computer" << endl;
+    cout << "ID\tName\t\t\t\t" << "ID\tComputer" << endl;
     cout << "--------------------------------------------" << endl;
     for(unsigned int i = 0; i < j.size(); i++)
     {
         vector<Person> test = searchSciId(j[i]);
         vector<Computer> test2 = searchCompId(j[i+1]);
-
+        cout << test[0].getId() << "\t";
         int nameSize = test[0].getNameSize();
 
         if(nameSize >= 0 && nameSize <= 7)
@@ -375,9 +375,7 @@ void Console::displayConnections()
         {
             cout << test[0].getName() << "\t";
         }
-
-        //for(int x = 0; x < test.size(); x++)
-        //cout << test[0].getName() << "\t";
+        cout << test2[0].getId() << "\t";
         cout << test2[0].getName() << endl;
         i++;
     }
@@ -449,7 +447,7 @@ int Console::addCompConnection()
 
 void Console::displaySciIdName()
 {
-    _pers = _dom.readSciData(1);
+    _pers = _dom.readSciData(9);
     cout  << endl << "ID:\tNAME: " << endl;
 
     for(unsigned int i = 0; i < _pers.size(); i++)
@@ -461,7 +459,7 @@ void Console::displaySciIdName()
 
 void Console::displayCompIdName()
 {
-    _comp = _dom.readCompData(1);
+    _comp = _dom.readCompData(9);
     cout  << endl << "ID:\tCOMPUTER NAME: " << endl;
 
     for(unsigned int i = 0; i < _comp.size(); i++)
@@ -679,6 +677,14 @@ string Console::searchComputer()
     return computerName;
 }
 
+string Console::searchConnection()
+{
+    string computerName;
+    cout << endl << "ID number of scientist connected to a computer: ";
+    //cin.ignore();
+    getline(cin, computerName);
+    return computerName;
+}
 string Console::searchScientist()
 {
     string chosenName;
@@ -851,16 +857,18 @@ void Console::deleteStuff()
         cout << "2 - remove all persons" << endl;
         cout << "3 - remove one computer" << endl;
         cout << "4 - remove all computers" << endl;
+        cout << "5 - remove one connection" << endl;
+        cout << "6 - remove all connections" << endl;
 
         getline(cin, input);
 
-        if(input != "1" && input != "2" && input != "3" && input != "4")
+        if(input != "1" && input != "2" && input != "3" && input != "4" && input != "5" && input != "6")
         {
             validInput();
         }
         else if (input == "1")
         {
-            _pers = _dom.readSciData(1);
+            _pers = _dom.readSciData(9);
             display();
             //cin.ignore();
             QString name = QString::fromStdString(searchScientist());
@@ -876,16 +884,19 @@ void Console::deleteStuff()
             QSqlError error;
             if(_dom.removeAllPersons(error) == false)
             {
-                qDebug() << "Add connection error : " << error << endl;
+                qDebug() << "Remove all persons error : " << error << endl;
             }
         }
         else if (input == "3")
         {
-            _comp = _dom.readCompData(1);
+            _comp = _dom.readCompData(9);
             displayComputer();
             QString computer = QString::fromStdString(searchComputer());
             QSqlError error;
-            _dom.removeComputer(computer, error);
+            if(_dom.removeComputer(computer, error))
+            {
+                qDebug() << "Remove computer error : " << error << endl;
+            }
         }
         else if (input == "4")
         {
@@ -895,7 +906,25 @@ void Console::deleteStuff()
                 qDebug() << "Remove All computers error : " << error << endl;
             }
         }
-    }while(input != "1" && input != "2" && input != "3" && input != "4");
+        else if(input == "5")
+        {
+            displayConnections();
+            QString sciId = QString::fromStdString(searchConnection());
+            QSqlError error;
+            if(_dom.removeConnection(sciId, error) == false)
+            {
+                qDebug() << "Remove connection error : " << error << endl;
+            }
+        }
+        else if(input == "6")
+        {
+            QSqlError error;
+            if(_dom.removeAllConnections(error) == false)
+            {
+                qDebug() << "Remove All connections error : " << error << endl;
+            }
+        }
+    }while(input != "1" && input != "2" && input != "3" && input != "4" && input != "5" && input != "6");
 }
 
 string Console::getUpdate()

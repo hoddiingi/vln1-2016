@@ -42,6 +42,8 @@ public:
     bool removeAllComputers(QSqlError error);
     bool removePerson(QString& name, QSqlError error);
     bool removeComputer(QString& computername, QSqlError error);
+    bool removeConnection(QString &sciId, QSqlError error);
+    bool removeAllConnections(QSqlError error);
     bool addConnection(int personID, int computerID, QSqlError error);
 
     void updateScientistName(QString &name, QString &update);

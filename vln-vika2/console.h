@@ -46,6 +46,7 @@ public:
     void search();                              //Checks what the user wants to search for
     string searchScientist();
     string searchComputer();
+    string searchConnection();
     vector<Person> searchSciId(int sciId);
     vector<Computer> searchCompId(int compId);
 

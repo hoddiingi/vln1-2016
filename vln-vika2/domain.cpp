@@ -56,8 +56,10 @@ vector<Computer> Domain::readCompData(int sortedBy)
         return _dat.readCompData("type", false);
     else if(sortedBy == 7)
         return _dat.readCompData("built", true);
-    else
+    else if(sortedBy == 8)
         return _dat.readCompData("built", false);
+    else
+        return _dat.readCompData("ID", true);
 }
 
 vector<Person> Domain::readSciData(int sortedBy)
@@ -76,8 +78,11 @@ vector<Person> Domain::readSciData(int sortedBy)
         return _dat.readSciData("birth", false);
     else if(sortedBy == 7)
         return _dat.readSciData("death", true);
-    else
+    else if(sortedBy == 8)
         return _dat.readSciData("death", false);
+    else
+        return _dat.readSciData("ID", true);
+
 }
 
 vector<int> Domain::readConData()
@@ -115,6 +120,14 @@ bool Domain::removePerson(QString& name, QSqlError error)
 bool Domain::removeComputer(QString& computername, QSqlError error)
 {
     return _dat.removeComputer(computername, error);
+}
+bool Domain::removeConnection(QString &sciId, QSqlError error)
+{
+    return _dat.removeConnection(sciId, error);
+}
+bool Domain::removeAllConnections(QSqlError error)
+{
+    return _dat.removeAllConnections(error);
 }
 bool Domain::addConnection(int personID, int computerID, QSqlError error)
 {
