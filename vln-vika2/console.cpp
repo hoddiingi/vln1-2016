@@ -383,15 +383,22 @@ vector<Computer> Console::searchCompId(int compId)
 
 int Console::addPersConnection()
 {
-    int input;
-    cout << "Enter scientist ID to connect: ";
-    cin >> input;
-
+    string input;
+    do
+    {
+        cout << "Enter scientist ID to connect: ";
+        cin >> input;
+        if(!validYear(input))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }while(validYear(input) == false);
+    int idNumber = atoi(input.c_str());
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        if(input == _pers[i].getId())
+        if(idNumber == _pers[i].getId())
         {
-            return input;
+            return idNumber;
         }
     }
     cout << "ID did not match, try again" << endl;
@@ -400,19 +407,29 @@ int Console::addPersConnection()
 
 int Console::addCompConnection()
 {
-    int input;
-    cout << "Enter computer ID to connect: ";
-    cin >> input;
-
+    string input;
+    //cin >> input;
+    do
+    {
+        cout << "Enter computer ID to connect: ";
+        cin >> input;
+        if(!validYear(input))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }
+    while(validYear(input) == false);
+    int idNumber = atoi(input.c_str());
     for(unsigned int i = 0; i < _comp.size(); i++)
     {
-        if(input == _comp[i].getId())
+        if(idNumber == _comp[i].getId())
         {
-            return input;
+            return idNumber;
         }
     }
     cout << "ID did not match, try again" << endl;
     return addCompConnection();
+
 }
 
 void Console::displaySciIdName()
