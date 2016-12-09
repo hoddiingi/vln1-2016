@@ -19,6 +19,10 @@ public:
     void search();
     vector<Person> searchName(QString &name);
     vector<Computer> searchComputer(QString &computerName);
+    void updateScientistName(QString &name, QString &update);
+    void updateScientistBirth(QString &birth, QString &update);
+    void updateScientistDeath(QString &name, QString &update);
+
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
     vector<Person> readSciData(int sortedBy);
