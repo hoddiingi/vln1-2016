@@ -124,9 +124,15 @@ void Console::getInfo()
             {
                 updateComputer();
             }
+            update();
+        }
+        else if((command == "Game") || (command == "game"))
+        {
+            gameplay();
         }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
-                (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
+                (command != "Search") && (command != "search") && (command != "Remove") && (command != "remove") &&
+                (command != "Update") && (command != "update") && (command != "Game") && (command != "game") &&
                 (command != "Exit") && (command != "exit"))
         {
             cout << "Invalid input! Please enter a valid command:" << endl;
@@ -244,7 +250,8 @@ void Console::menu(string& command)
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
-    cout << "Update - for update" << endl;
+    cout << "Update - for updating information" << endl;
+    cout << "Game - for playing TicTacToe" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -343,17 +350,38 @@ void Console::displayConnections()
     _pers = _dom.readSciData(1);
     _comp = _dom.readCompData(1);
 
-
+    cout << "Name" << "\t\t\t\t" << "Computer" << endl;
+    cout << "--------------------------------------------" << endl;
     for(unsigned int i = 0; i < j.size(); i++)
     {
         vector<Person> test = searchSciId(j[i]);
         vector<Computer> test2 = searchCompId(j[i+1]);
 
+        int nameSize = test[0].getNameSize();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << test[0].getName() << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << test[0].getName() << "\t\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << test[0].getName() << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << test[0].getName() << "\t";
+        }
+
         //for(int x = 0; x < test.size(); x++)
-        cout << test[0].getName() << "\t";
+        //cout << test[0].getName() << "\t";
         cout << test2[0].getName() << endl;
         i++;
     }
+    cout << endl;
 }
 
 vector<Person> Console::searchSciId(int sciId)
@@ -370,15 +398,22 @@ vector<Computer> Console::searchCompId(int compId)
 
 int Console::addPersConnection()
 {
-    int input;
-    cout << "Enter scientist ID to connect: ";
-    cin >> input;
-
+    string input;
+    do
+    {
+        cout << "Enter scientist ID to connect: ";
+        cin >> input;
+        if(!validYear(input))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }while(validYear(input) == false);
+    int idNumber = atoi(input.c_str());
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-        if(input == _pers[i].getId())
+        if(idNumber == _pers[i].getId())
         {
-            return input;
+            return idNumber;
         }
     }
     cout << "ID did not match, try again" << endl;
@@ -387,19 +422,29 @@ int Console::addPersConnection()
 
 int Console::addCompConnection()
 {
-    int input;
-    cout << "Enter computer ID to connect: ";
-    cin >> input;
-
+    string input;
+    //cin >> input;
+    do
+    {
+        cout << "Enter computer ID to connect: ";
+        cin >> input;
+        if(!validYear(input))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }
+    while(validYear(input) == false);
+    int idNumber = atoi(input.c_str());
     for(unsigned int i = 0; i < _comp.size(); i++)
     {
-        if(input == _comp[i].getId())
+        if(idNumber == _comp[i].getId())
         {
-            return input;
+            return idNumber;
         }
     }
     cout << "ID did not match, try again" << endl;
     return addCompConnection();
+
 }
 
 void Console::displaySciIdName()
@@ -1020,4 +1065,220 @@ int Console::updateBy()
     cout << "Enter 2 to search for a computer"  << endl << endl;
     cin >> command;
     return command;
+}
+
+int Console::gameplay()
+{
+    char matrix[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
+    char player = 'X';
+    int n = 0;
+    while(1)
+    {
+        n++;
+        bord(matrix);
+        input(player, matrix);
+        if (winner(matrix) == 'X')
+        {
+            bord(matrix);
+            cout << "Winner is: X" << endl;
+            break;
+        }
+        else if (winner(matrix) == 'O')
+        {
+            bord(matrix);
+            cout << "Winner is: O" << endl;
+            break;
+        }
+        else if (winner(matrix) == '/' && n == 9)
+        {
+            bord(matrix);
+            cout << "Draw!" << endl;
+            break;
+        }
+        changeplayer(player);
+        winner(matrix);
+    }
+    return 0;
+}
+
+void Console::bord(char matrix[3][3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void Console::input(char& player, char matrix[3][3])
+{
+    char a = '0';
+    cout << player <<" position: ";
+    cin >> a;
+    if (a == '1' || a == '2' || a == '3' || a == '4' || a == '5' || a == '6' || a == '7' || a == '8' || a == '9')
+    {
+        if (a == '1')
+            {
+                if (matrix[0][0] == '1')
+                {
+                    matrix[0][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '2')
+            {
+                if (matrix[0][1] == '2')
+                {
+                    matrix[0][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '3')
+            {
+                if (matrix[0][2] == '3')
+                {
+                    matrix[0][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '4')
+            {
+                if (matrix[1][0] == '4')
+                {
+                    matrix[1][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '5')
+            {
+                if (matrix[1][1] == '5')
+                {
+                    matrix[1][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '6')
+            {
+                if (matrix[1][2] == '6')
+                {
+                    matrix[1][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '7')
+            {
+                if (matrix[2][0] == '7')
+                {
+                    matrix[2][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '8')
+            {
+                if (matrix[2][1] == '8')
+                {
+                    matrix[2][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '9')
+            {
+                if (matrix[2][2] == '9')
+                {
+                    matrix[2][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+    }
+    else
+    {
+        cout << "Illegal move!" << endl;
+        input(player, matrix);
+    }
+}
+
+void Console::changeplayer(char& player)
+{
+    if (player == 'X')
+        player = 'O';
+    else
+        player = 'X';
+}
+
+char Console::winner(char matrix[3][3])
+{
+    //Player X
+    if (matrix[0][0] == 'X' && matrix[0][1] == 'X' && matrix[0][2] == 'X')
+        return 'X';
+    if (matrix[1][0] == 'X' && matrix[1][1] == 'X' && matrix[1][2] == 'X')
+        return 'X';
+    if (matrix[2][0] == 'X' && matrix[2][1] == 'X' && matrix[2][2] == 'X')
+        return 'X';
+    if (matrix[0][0] == 'X' && matrix[1][0] == 'X' && matrix[2][0] == 'X')
+        return 'X';
+    if (matrix[0][1] == 'X' && matrix[1][1] == 'X' && matrix[2][1] == 'X')
+        return 'X';
+    if (matrix[0][2] == 'X' && matrix[1][2] == 'X' && matrix[2][2] == 'X')
+        return 'X';
+    if (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X')
+        return 'X';
+    if (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')
+        return 'X';
+    // Player O
+    if (matrix[0][0] == 'O' && matrix[0][1] == 'O' && matrix[0][2] == 'O')
+        return 'O';
+    if (matrix[1][0] == 'O' && matrix[1][1] == 'O' && matrix[1][2] == 'O')
+        return 'O';
+    if (matrix[2][0] == 'O' && matrix[2][1] == 'O' && matrix[2][2] == 'O')
+        return 'O';
+    if (matrix[0][0] == 'O' && matrix[1][0] == 'O' && matrix[2][0] == 'O')
+        return 'O';
+    if (matrix[0][1] == 'O' && matrix[1][1] == 'O' && matrix[2][1] == 'O')
+        return 'O';
+    if (matrix[0][2] == 'O' && matrix[1][2] == 'O' && matrix[2][2] == 'O')
+        return 'O';
+    if (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O')
+        return 'O';
+    if (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')
+        return 'O';
+    return '/';
 }
