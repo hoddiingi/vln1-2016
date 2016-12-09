@@ -484,11 +484,7 @@ vector<Person> Data::searchSciId(int &id)
         Person p2(idFind, nameFind, genderFind, birthFind, deathFind);
         results.push_back(p2);
     }
-<<<<<<< HEAD
-
-=======
     close();
->>>>>>> d83d2c3064649a6f2a152ec25e978e04c7e62e35
     return results;
 }
 

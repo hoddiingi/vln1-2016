@@ -335,17 +335,38 @@ void Console::displayConnections()
     _pers = _dom.readSciData(1);
     _comp = _dom.readCompData(1);
 
-
+    cout << "Name" << "\t\t\t\t" << "Computer" << endl;
+    cout << "--------------------------------------------" << endl;
     for(unsigned int i = 0; i < j.size(); i++)
     {
         vector<Person> test = searchSciId(j[i]);
         vector<Computer> test2 = searchCompId(j[i+1]);
 
+        int nameSize = test[0].getNameSize();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << test[0].getName() << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << test[0].getName() << "\t\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << test[0].getName() << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << test[0].getName() << "\t";
+        }
+
         //for(int x = 0; x < test.size(); x++)
-        cout << test[0].getName() << "\t";
+        //cout << test[0].getName() << "\t";
         cout << test2[0].getName() << endl;
         i++;
     }
+    cout << endl;
 }
 
 vector<Person> Console::searchSciId(int sciId)
@@ -818,16 +839,12 @@ void Console::deleteStuff()
         }
         else if (input == "2")
         {
-<<<<<<< HEAD
-            _dom.removeAllPersons();
-=======
             
             QSqlError error;
             if(_dom.removeAllPersons(error) == false)
             {
                 qDebug() << "Add connection error : " << error << endl;
             }
->>>>>>> d83d2c3064649a6f2a152ec25e978e04c7e62e35
         }
         else if (input == "3")
         {
