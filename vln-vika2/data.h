@@ -37,7 +37,12 @@ public:
 
     void updateScientistName(QString &name, QString &update);   //Updates info
     void updateScientistBirth(QString &name, QString &update);
+    void updateScientistGender(QString &name, QString &update);
     void updateScientistDeath(QString &name, QString &update);
+    void updateComputerName(QString &computerName, QString &update);
+    void updateComputerYear(QString &computerName, QString &update);
+    void updateComputerType(QString &computerName, QString &update);
+    void updateComputerBuilt(QString &computerName, QString &update);
 
 private:
 

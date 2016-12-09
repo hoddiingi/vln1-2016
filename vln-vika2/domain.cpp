@@ -137,11 +137,37 @@ void Domain::updateScientistName(QString &name, QString &update)
 {
     return _dat.updateScientistName(name, update);
 }
-void Domain::updateScientistBirth(QString &birth, QString &update)
+
+void Domain::updateScientistGender(QString &name, QString &update)
 {
-    return _dat.updateScientistBirth(birth, update);
+    return _dat.updateScientistGender(name, update);
+}
+
+void Domain::updateScientistBirth(QString &name, QString &update)
+{
+    return _dat.updateScientistBirth(name, update);
 }
 void Domain::updateScientistDeath(QString &name, QString &update)
 {
     return _dat.updateScientistDeath(name, update);
+}
+
+void Domain::updateComputerName(QString &computerName, QString &update)
+{
+    return _dat.updateComputerName(computerName, update);
+}
+
+void Domain::updateComputerYear(QString &computerName, QString &update)
+{
+    return _dat.updateComputerYear(computerName, update);
+}
+
+void Domain::updateComputerType(QString &computerName, QString &update)
+{
+    return _dat.updateComputerType(computerName, update);
+}
+
+void Domain::updateComputerBuilt(QString &computerName, QString &update)
+{
+    return _dat.updateComputerBuilt(computerName, update);
 }

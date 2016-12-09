@@ -47,8 +47,13 @@ public:
     bool addConnection(int personID, int computerID, QSqlError error);
 
     void updateScientistName(QString &name, QString &update);
-    void updateScientistBirth(QString &birth, QString &update);
+    void updateScientistGender(QString &name, QString &update);
+    void updateScientistBirth(QString &name, QString &update);
     void updateScientistDeath(QString &name, QString &update);
+    void updateComputerName(QString &computerName, QString &update);
+    void updateComputerYear(QString &computerName, QString &update);
+    void updateComputerType(QString &computerName, QString &update);
+    void updateComputerBuilt(QString &computerName, QString &update);
 
 private:
     Data _dat;          //Private member variables
