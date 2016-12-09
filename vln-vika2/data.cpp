@@ -329,7 +329,6 @@ vector<Person> Data::searchName(QString &name)
         Person p2(nameFind, genderFind, birthFind, deathFind);
         results.push_back(p2);
     }
-    close();
 
     return results;
 }

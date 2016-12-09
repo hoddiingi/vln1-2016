@@ -762,7 +762,6 @@ void Console::deleteStuff()
         }
         else if (input == "2")
         {
-            
             _dom.removeAllPersons();
         }
         else if (input == "3")
