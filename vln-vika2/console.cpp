@@ -338,12 +338,9 @@ void Console::add(string& anotherOne)
             cout << "Connections" << endl;
             int personID;
             int computerID;
-<<<<<<< HEAD
             //Birta töflu ID og nafn hjá People
 
-=======
             displaySciIdName();
->>>>>>> 1d04bc5aa46b5d80eaebf948105af68266caf524
             personID = addPersConnection();
             displayCompIdName();
             computerID = addCompConnection();
@@ -352,8 +349,6 @@ void Console::add(string& anotherOne)
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
-<<<<<<< HEAD
-=======
 int Console::addPersConnection()
 {
     int input;
@@ -370,7 +365,6 @@ int Console::addCompConnection()
 
     return input;
 }
->>>>>>> 1d04bc5aa46b5d80eaebf948105af68266caf524
 
 void Console::displaySciIdName()
 {
