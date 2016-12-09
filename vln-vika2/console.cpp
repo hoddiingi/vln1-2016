@@ -116,6 +116,7 @@ void Console::getInfo()
         else if((command == "Update") || (command == "update"))
         {
             update();
+
         }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
@@ -875,26 +876,28 @@ string Console::getUpdate()
 
 string Console::getUpdateName()
 {
+    cin.ignore();
     string update;
     cout << "Enter new name: ";
-    //cin.ignore();
     getline(cin, update);
     return update;
 }
 
 string Console::getUpdateBirth()
 {
+    cin.ignore();
     string update;
     cout << "Enter new year of birth: ";
-    cin >> update;
+    getline(cin, update);
     return update;
 }
 
 string Console::getUpdateDeath()
 {
+    cin.ignore();
     string update;
     cout << "Enter new year of death: ";
-    cin >> update;
+    getline(cin, update);
     return update;
 }
 
@@ -908,11 +911,11 @@ void Console::update()
     cout << "Enter 3 to update year of death" << endl;
     cin >> command;
     cout << endl;
+
     if(command == 1)
     {
         QString newName = QString::fromStdString(getUpdateName());
         _dom.updateScientistName(name, newName);
-
     }
     else if(command == 2)
     {
