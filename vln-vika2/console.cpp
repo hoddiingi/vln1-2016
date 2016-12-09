@@ -708,6 +708,7 @@ void Console::displayComputer()
 
         cout << _comp[i].getYear() << "\t";
 
+
         int typeSize = _comp[i].getTypeSize();
 
         if(typeSize >= 0 && typeSize <= 7)
@@ -722,7 +723,16 @@ void Console::displayComputer()
         {
             cout << _comp[i].getType() << "\t";
         }
-        cout << _comp[i].getBuilt() << endl;
+
+
+        if (_comp[i].getBuilt() == "y"  || _comp[i].getBuilt() == "Y")
+        {
+            cout << "Yes" << endl;
+        }
+        else if (_comp[i].getBuilt() == "n"  || _comp[i].getBuilt() == "N")
+        {
+            cout << "No" << endl;
+        }
     }
 }
 
