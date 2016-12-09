@@ -242,7 +242,7 @@ void Console::menu(string& command)
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Update - for updating information" << endl;
-    cout << "Game - for playing TicTacToe" << endl;
+    cout << "Game   - for playing TicTacToe" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
