@@ -115,6 +115,15 @@ void Console::getInfo()
         }
         else if((command == "Update") || (command == "update"))
         {
+            int input = updateBy();
+            if(input == 1)
+            {
+                update();
+            }
+            else if(input == 2)
+            {
+                updateComputer();
+            }
             update();
         }
         else if((command == "Game") || (command == "game"))
@@ -380,6 +389,7 @@ vector<Person> Console::searchSciId(int sciId)
     int id = sciId;
     return _dom.searchSciId(id);
 }
+
 vector<Computer> Console::searchCompId(int compId)
 {
     int id = compId;
@@ -890,6 +900,7 @@ void Console::deleteStuff()
 
 string Console::getUpdate()
 {
+    cin.ignore();
     string name;
     cout << "Enter full name of scientist you want to update: ";
     getline(cin, name);
@@ -901,6 +912,15 @@ string Console::getUpdateName()
     cin.ignore();
     string update;
     cout << "Enter new name: ";
+    getline(cin, update);
+    return update;
+}
+
+string Console::getUpdateGender()
+{
+    cin.ignore();
+    string update;
+    cout << "Enter new gender: ";
     getline(cin, update);
     return update;
 }
@@ -928,9 +948,11 @@ void Console::update()
     QString name = QString::fromStdString(getUpdate());
     int command;
 
+    cout << endl;
     cout << "Enter 1 to update name" << endl;
-    cout << "Enter 2 to update year of birth" << endl;
-    cout << "Enter 3 to update year of death" << endl;
+    cout << "Enter 2 to update gender" << endl;
+    cout << "Enter 3 to update year of birth" << endl;
+    cout << "Enter 4 to update year of death" << endl;
     cin >> command;
     cout << endl;
 
@@ -941,14 +963,108 @@ void Console::update()
     }
     else if(command == 2)
     {
+        QString newGender = QString::fromStdString(getUpdateGender());
+        _dom.updateScientistGender(name, newGender);
+    }
+    else if(command == 3)
+    {
         QString newBirth = QString::fromStdString(getUpdateBirth());
         _dom.updateScientistBirth(name, newBirth);
     }
-    else if(command == 3)
+    else if(command == 4)
     {
         QString newDeath = QString::fromStdString(getUpdateDeath());
         _dom.updateScientistDeath(name, newDeath);
     }
+}
+
+string Console::getComputerUpdate()
+{
+    cin.ignore();
+    string computerName;
+    cout << "Enter name of computer you want to update: ";
+    getline(cin, computerName);
+    return computerName;
+}
+
+string Console::getUpdateComputerName()
+{
+    cin.ignore();
+    string update;
+    cout << "Enter new name: ";
+    getline(cin, update);
+    return update;
+}
+
+string Console::getUpdateComputerYear()
+{
+    cin.ignore();
+    string update;
+    cout << "Enter new year: ";
+    getline(cin, update);
+    return update;
+}
+
+string Console::getUpdateComputerType()
+{
+    cin.ignore();
+    string update;
+    cout << "Enter new type: ";
+    getline(cin, update);
+    return update;
+}
+
+string Console::getUpdateComputerBuilt()
+{
+    cin.ignore();
+    string update;
+    cout << "Enter if it was built: ";
+    getline(cin, update);
+    return update;
+}
+
+void Console::updateComputer()
+{
+    QString computerName = QString::fromStdString(getComputerUpdate());
+    int command;
+
+    cout << "Enter 1 to update computer name" << endl;
+    cout << "Enter 2 to update year" << endl;
+    cout << "Enter 3 to update type" << endl;
+    cout << "Enter 4 to update built" << endl;
+    cin >> command;
+    cout << endl;
+
+    if(command == 1)
+    {
+        QString newName = QString::fromStdString(getUpdateComputerName());
+        _dom.updateComputerName(computerName, newName);
+    }
+    else if(command == 2)
+    {
+        QString newYear = QString::fromStdString(getUpdateComputerYear());
+        _dom.updateComputerYear(computerName, newYear);
+    }
+    else if(command == 3)
+    {
+        QString newType = QString::fromStdString(getUpdateComputerType());
+        _dom.updateComputerType(computerName, newType);
+    }
+    else if(command == 4)
+    {
+        QString newBuilt = QString::fromStdString(getUpdateComputerBuilt());
+        _dom.updateComputerBuilt(computerName, newBuilt);
+    }
+}
+
+int Console::updateBy()
+{
+    int command;
+
+    cout << "Enter 1 to search for a scientist" << endl;
+    cout << "Enter 2 to search for a computer"  << endl << endl;
+    cin >> command;
+    return command;
 }
 
 int Console::gameplay()

@@ -58,16 +58,24 @@ public:
     void displayCompIdName();
     void displaySciIdName();
 
-    int sortBy();                               //Get input from user to sort
+    int sortBy();                               //Gets input from user to sort
+    int updateBy();                             //Asks user if he wants to update scientists or computers
 
     int addPersConnection();                    //Ask user to add connections by ID
     int addCompConnection();
 
     string getUpdate();                         //Asks the user which scientist he/she wants to update
     string getUpdateName();                     //Asks the user for the new name
+    string getUpdateGender();                   //Asks the user for the new gender
     string getUpdateBirth();                    //Asks the user for the new year of birth
     string getUpdateDeath();                    //Asks the user for the new year of death
     void update();                              //Updates scientist of choice
+    string getComputerUpdate();                 //Asks the user which computer he/she wants to update
+    string getUpdateComputerName();             //Asks the user for the new computer name
+    string getUpdateComputerYear();             //Asks the user for the new year
+    string getUpdateComputerType();             //Asks the user for the new type
+    string getUpdateComputerBuilt();            //Asks the user if it was built
+    void updateComputer();                      //Updates computer of choice
 
 
 
