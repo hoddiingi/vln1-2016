@@ -36,7 +36,6 @@ bool Console::validName(string n)
 
 bool Console::validComputerName(string n)
 {
-
     if (n == "")
     {
         return 0;
@@ -113,6 +112,10 @@ void Console::getInfo()
         else if ((command == "Remove") || (command == "remove"))
         {
             deleteStuff();
+        }
+        else if((command == "Update") || (command == "update"))
+        {
+            update();
         }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
@@ -223,7 +226,6 @@ void Console::display()
         }  
         cout << _dom.findAge(_pers[i]) << endl;
     }
-
 }
 
 void Console::menu(string& command)
@@ -234,6 +236,7 @@ void Console::menu(string& command)
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
+    cout << "Update - for update" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -262,7 +265,7 @@ void Console::add(string& anotherOne)
         {
             do
             {
-                std::string name;
+                string name;
                 string gender;
                 int birth = 0;
                 int death = 0;
@@ -272,6 +275,7 @@ void Console::add(string& anotherOne)
                 addBirth(birth);
                 addDeath(death, birth);
                 addAnother(anotherOne);
+                cin.ignore();
 
                 Person newData(name, gender, birth, death);
                 QSqlError error;
@@ -283,9 +287,9 @@ void Console::add(string& anotherOne)
         {
             do
             {
-                std::string computerName;
+                string computerName;
                 int year = 0;
-                std::string type;
+                string type;
                 string built;
 
                 addComputerName(computerName);
@@ -293,6 +297,7 @@ void Console::add(string& anotherOne)
                 addType(type);
                 addBuilt(built);
                 addAnother(anotherOne);
+                cin.ignore();
 
                 Computer newDataComp(computerName, year, type, built);
                 QSqlError error;
@@ -324,7 +329,6 @@ void Console::add(string& anotherOne)
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
-
 void Console::displayConnections()
 {
     vector<int> j = _dom.readConData();
@@ -332,7 +336,7 @@ void Console::displayConnections()
     _comp = _dom.readCompData(1);
 
 
-    for(int i = 0; i < j.size(); i++)
+    for(unsigned int i = 0; i < j.size(); i++)
     {
         vector<Person> test = searchSciId(j[i]);
         vector<Computer> test2 = searchCompId(j[i+1]);
@@ -341,28 +345,7 @@ void Console::displayConnections()
         cout << test[0].getName() << "\t";
         cout << test2[0].getName() << endl;
         i++;
-
-
     }
-
-
-
-
-        //cout << per << endl;
-
-   /* for(int g = 0; g < j.size();g++)
-    {
-        for(int i = 0; i < _pers.size();i++ )
-            if(_comp[i].getId() == j[i])
-            {
-                cout << _comp[i].getName() << "\t";
-                //cout << _comp[i].getName() << endl;
-                //for(int h = 0; h < _comp.size();h++)
-                  //  if(_comp[h].getId() == j[h])
-                    //    cout << _comp[h].getId();
-            }
-
-    }*/
 }
 
 vector<Person> Console::searchSciId(int sciId)
@@ -382,15 +365,32 @@ int Console::addPersConnection()
     cout << "Enter scientist ID to connect: ";
     cin >> input;
 
-    return input;
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        if(input == _pers[i].getId())
+        {
+            return input;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addPersConnection();
 }
+
 int Console::addCompConnection()
 {
     int input;
     cout << "Enter computer ID to connect: ";
     cin >> input;
 
-    return input;
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+        if(input == _comp[i].getId())
+        {
+            return input;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addCompConnection();
 }
 
 void Console::displaySciIdName()
@@ -400,13 +400,11 @@ void Console::displaySciIdName()
 
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-
         cout << _pers[i].getId() <<"\t";
         cout << _pers[i].getName() << endl;
-
     }
-
 }
+
 void Console::displayCompIdName()
 {
     _comp = _dom.readCompData(1);
@@ -414,20 +412,17 @@ void Console::displayCompIdName()
 
     for(unsigned int i = 0; i < _comp.size(); i++)
     {
-
         cout << _comp[i].getId() <<"\t";
         cout << _comp[i].getName() << endl;
-
     }
-
 }
-void Console::addName(std::string& name)
+
+void Console::addName(string& name)
 {
     do
     {
         cout << endl << "Enter name of scientist: ";
-        cin.ignore();
-        std::getline(std::cin, name);
+        getline(cin, name);
 
         if(!validComputerName(name) || !validName(name))
         {
@@ -520,8 +515,7 @@ void Console::addComputerName(string& computerName)
     do
     {
         cout << endl << "Enter name of computer: ";
-        cin.ignore();
-        std::getline(std::cin, computerName);
+        getline(cin, computerName);
 
         if(!validComputerName(computerName))
         {
@@ -587,6 +581,7 @@ void Console::addAnother(string& anotherOne)
 {
     do
     {
+        cout << endl;
         cout << "Add another? (Y/N): ";
         cin >> anotherOne;
 
@@ -626,7 +621,7 @@ string Console::searchComputer()
     string computerName;
     cout << endl << "Name of computer: ";
     cin.ignore();
-    std::getline(std::cin, computerName);
+    getline(cin, computerName);
     return computerName;
 }
 
@@ -635,7 +630,7 @@ string Console::searchScientist()
     string chosenName;
     cout << endl << "Name of scientist: ";
     cin.ignore();
-    std::getline(std::cin, chosenName);
+    getline(cin, chosenName);
     return chosenName;
 }
 
@@ -687,7 +682,6 @@ void Console::displaySearchScientist()
         }
         cout << _dom.findAge(k[i]) << endl;
     }
-
 }
 
 void Console::displaySearchComputer()
@@ -739,7 +733,6 @@ void Console::displaySearchComputer()
 
 void Console::displayComputer()
 {
-
     cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\t\t\tBUILT:" << endl;
     cout << "----------------------------------------------------------------------" << endl;
 
@@ -766,6 +759,7 @@ void Console::displayComputer()
 
         cout << _comp[i].getYear() << "\t";
 
+
         int typeSize = _comp[i].getTypeSize();
 
         if(typeSize >= 0 && typeSize <= 7)
@@ -780,7 +774,16 @@ void Console::displayComputer()
         {
             cout << _comp[i].getType() << "\t";
         }
-        cout << _comp[i].getBuilt() << endl;
+
+
+        if (_comp[i].getBuilt() == "y"  || _comp[i].getBuilt() == "Y")
+        {
+            cout << "Yes" << endl;
+        }
+        else if (_comp[i].getBuilt() == "n"  || _comp[i].getBuilt() == "N")
+        {
+            cout << "No" << endl;
+        }
     }
 }
 
@@ -838,4 +841,65 @@ void Console::deleteStuff()
             }
         }
     }while(input != "1" && input != "2" && input != "3" && input != "4");
+}
+
+string Console::getUpdate()
+{
+    string name;
+    cout << "Enter full name of scientist you want to update: ";
+    getline(cin, name);
+    return name;
+}
+
+string Console::getUpdateName()
+{
+    string update;
+    cout << "Enter new name: ";
+    cin.ignore();
+    getline(cin, update);
+    return update;
+}
+
+string Console::getUpdateBirth()
+{
+    string update;
+    cout << "Enter new year of birth: ";
+    cin >> update;
+    return update;
+}
+
+string Console::getUpdateDeath()
+{
+    string update;
+    cout << "Enter new year of death: ";
+    cin >> update;
+    return update;
+}
+
+void Console::update()
+{
+    QString name = QString::fromStdString(getUpdate());
+    int command;
+
+    cout << "Enter 1 to update name" << endl;
+    cout << "Enter 2 to update year of birth" << endl;
+    cout << "Enter 3 to update year of death" << endl;
+    cin >> command;
+    cout << endl;
+    if(command == 1)
+    {
+        QString newName = QString::fromStdString(getUpdateName());
+        _dom.updateScientistName(name, newName);
+
+    }
+    else if(command == 2)
+    {
+        QString newBirth = QString::fromStdString(getUpdateBirth());
+        _dom.updateScientistBirth(name, newBirth);
+    }
+    else if(command == 3)
+    {
+        QString newDeath = QString::fromStdString(getUpdateDeath());
+        _dom.updateScientistDeath(name, newDeath);
+    }
 }

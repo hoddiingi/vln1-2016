@@ -11,7 +11,9 @@ public:
     Computer();
     Computer(string name, int year, string type, string built);
     Computer(int id, string name, int year, string type, string built);
-    string getName() const;
+
+
+    string getName() const;                   //Gets private member variables
     int getYear() const;
     string getType() const;
     string getBuilt() const;
@@ -20,7 +22,7 @@ public:
     int getId() const;
 
 private:
-    int _id;
+    int _id;                                  //Private member variables
     string _name;
     int _year;
     string _type;

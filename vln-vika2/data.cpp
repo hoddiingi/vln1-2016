@@ -1,4 +1,3 @@
-
 #include "person.h"
 #include "data.h"
 #include <fstream>
@@ -51,8 +50,6 @@ void Data::close()
     sqlPrufa = QSqlDatabase();
     QSqlDatabase::removeDatabase(connection);
 }
-
-
 vector<Computer> Data::readCompData(string orderBy, bool isAsc)
 {
 
@@ -175,33 +172,6 @@ bool Data::addPerson(Person p, QSqlError error)
 
    return success;
 }
-
-bool Data::addConnections(int personID, int computerID, QSqlError error)
-{
-    open();
-    bool success = false;
-
-    QSqlQuery query;
-
-
-    query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
-    query.bindValue(":scientistID", personID);
-    query.bindValue(":computerID", computerID);
-
-    if(query.exec())
-    {
-        success = true;
-    }
-    else
-    {
-         //qDebug() << "addConnections error:  " << query.lastError();
-        error = query.lastError();
-    }
-
-    close();
-    return success;
-}
-
 bool Data::addComputer(Computer c, QSqlError error)
 {
     open();
@@ -229,6 +199,98 @@ bool Data::addComputer(Computer c, QSqlError error)
     }
     close();
     return success;
+}
+
+bool Data::addConnections(int personID, int computerID, QSqlError error)
+{
+    open();
+    bool success = false;
+
+    QSqlQuery query;
+
+
+    query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
+    query.bindValue(":scientistID", personID);
+    query.bindValue(":computerID", computerID);
+
+    if(query.exec())
+    {
+        success = true;
+    }
+    else
+    {
+         //qDebug() << "addConnections error:  " << query.lastError();
+        error = query.lastError();
+    }
+
+    close();
+    return success;
+}
+vector<Person> Data::searchName(QString &name)
+{
+    open();
+    vector<Person> results;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    string nameFind;
+    string genderFind;
+    int birthFind;
+    int deathFind;
+
+    QSqlQuery query(sqlPrufa);
+
+    QString search = "SELECT * FROM people WHERE name LIKE '%" + name + "%'";
+
+    query.prepare(search);
+
+    query.exec();
+
+    while(query.next())
+    {
+        // it exists
+        nameFind = query.value("Name").toString().toStdString();
+        genderFind = query.value("Gender").toString().toStdString();
+        birthFind = query.value("Birth").toInt();
+        deathFind = query.value("Death").toInt();
+        Person p2(nameFind, genderFind, birthFind, deathFind);
+        results.push_back(p2);
+    }
+    close();
+
+    return results;
+}
+
+vector<Computer> Data::searchComputer(QString &computerName)
+{
+    open();
+    vector<Computer> results;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    string nameFind;
+    int yearFind;
+    string typeFind;
+    string builtFind;
+
+    QSqlQuery query(sqlPrufa);
+    QString search = "SELECT * FROM computers WHERE computerName LIKE '%" + computerName + "%'";
+
+    query.prepare(search);
+    query.exec();
+
+    while(query.next())
+    {
+        // it exists
+        nameFind = query.value("computername").toString().toStdString();
+        yearFind = query.value("year").toInt();
+        typeFind = query.value("type").toString().toStdString();
+        builtFind = query.value("built").toString().toStdString();
+        Computer c(nameFind, yearFind, typeFind, builtFind);
+        results.push_back(c);
+    }
+
+    return results;
 }
 
 bool Data::removePerson(QString& name, QSqlError error)
@@ -303,7 +365,7 @@ bool Data::removeComputer(QString &computername, QSqlError error)
     {
         qDebug() << "remove computer failed: computer does not exist";
     }
-    close();
+    //close();
     return success;
 }
 
@@ -328,41 +390,29 @@ bool Data::removeAllComputers(QSqlError error)
     return success;
 }
 
-//Search fyrir SQLite
-vector<Person> Data::searchName(QString &name)
+void Data::updateScientistName(QString &name, QString &update)
 {
     open();
-    vector<Person> results;
-
-    //Search function, we search from out vector and then put the results in another vector so it shows us all results
-
-    string nameFind;
-    string genderFind;
-    int birthFind;
-    int deathFind;
 
     QSqlQuery query(sqlPrufa);
 
-    QString search = "SELECT * FROM people WHERE name LIKE '%" + name + "%'";
+    query.exec("UPDATE People SET name='" +update+ "'"
+             + "WHERE name='" +name+ "'");
 
-    query.prepare(search);
-
-    query.exec();
-
-    while(query.next())
-    {
-        // it exists
-        nameFind = query.value("Name").toString().toStdString();
-        genderFind = query.value("Gender").toString().toStdString();
-        birthFind = query.value("Birth").toInt();
-        deathFind = query.value("Death").toInt();
-        Person p2(nameFind, genderFind, birthFind, deathFind);
-        results.push_back(p2);
-    }
-
-    return results;
+    close();
 }
 
+void Data::updateScientistBirth(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET birth='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+
+    close();
+}
 vector<Person> Data::searchSciId(int &id)
 {
     open();
@@ -436,35 +486,14 @@ vector<Computer> Data::searchCompId(int &id)
     close();
     return results;
 }
-vector<Computer> Data::searchComputer(QString &computerName)
+void Data::updateScientistDeath(QString &name, QString &update)
 {
     open();
-    vector<Computer> results;
-
-    //Search function, we search from out vector and then put the results in another vector so it shows us all results
-
-    string nameFind;
-    int yearFind;
-    string typeFind;
-    string builtFind;
 
     QSqlQuery query(sqlPrufa);
-    QString search = "SELECT * FROM computers WHERE computerName LIKE '%" + computerName + "%'";
 
-    query.prepare(search);
-    query.exec();
+    query.exec("UPDATE People SET death='" +update+ "'"
+              +"WHERE name='" +name+ "'");
 
-    while(query.next())
-    {
-        // it exists
-        nameFind = query.value("computername").toString().toStdString();
-        yearFind = query.value("year").toInt();
-        typeFind = query.value("type").toString().toStdString();
-        builtFind = query.value("built").toString().toStdString();
-        Computer c(nameFind, yearFind, typeFind, builtFind);
-        results.push_back(c);
-    }
-
-    return results;
+    close();
 }
-

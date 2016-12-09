@@ -2,7 +2,6 @@
 #define DOMAIN_H
 #include <vector>
 #include <QtSql>
-//#include "console.h"
 #include "person.h"
 #include "data.h"
 
@@ -11,37 +10,46 @@ class Domain
 {
 public:
     Domain();
+
+    int findAge(Person& sciAge) const;  //Calculates the age of a scientist
+
+    vector<Person> readSciData(int sortedBy);
+    vector<Computer> readCompData(int sortedBy);
+    vector<int> readConData();
+
+    //We use all these functions to connect from data to console
+
+    bool addPerson(Person p, QSqlError error);
+    bool addComputer(Computer c, QSqlError error);
+    bool addConnection (int personID, int computerID);
+
     void ageSorting(vector<Person>& ageSort);
     void alphabeticSort(vector<Person>& alphaSort);
     void sortingAge(vector<Person>& ageSort);
     void maleFemaleSort(vector<Person>& mfsort);
     void deathSorting(vector<Person>& deathSort);
-    //Sorting functions
-    void search();
+
     vector<Person> searchName(QString &name);
     vector<Computer> searchComputer(QString &computerName);
-    vector<Person> search(vector<Person>& p, string name);
     vector<Person> searchSciId(int &id);
     vector<Computer> searchCompId(int &id);
-    vector<int> readConData();
-    int findAge(Person& sciAge) const;
-    vector<Person> readSciData(int sortedBy);
-    vector<Computer> readCompData(int sortedBy);
-    bool addPerson(Person p, QSqlError error);
-    bool addComputer(Computer c, QSqlError error);
+
     void open();
     void close();
     int sortBy();
+
     bool removeAllPersons(QSqlError error);
     bool removeAllComputers(QSqlError error);
     bool removePerson(QString& name, QSqlError error);
     bool removeComputer(QString& computername, QSqlError error);
-    bool addConnection (int personID, int computerID, QSqlError error);
+    bool addConnection(int personID, int computerID, QSqlError error);
+
+    void updateScientistName(QString &name, QString &update);
+    void updateScientistBirth(QString &birth, QString &update);
+    void updateScientistDeath(QString &name, QString &update);
 
 private:
-    Data _dat;
-    //Console _con;
-
+    Data _dat;          //Private member variables
 };
 
 #endif // DOMAIN_H
