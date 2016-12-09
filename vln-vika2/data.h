@@ -12,6 +12,7 @@ public:
     Data();
     void open();
     void close();
+    void foreignKeys();
 
     vector<Person> readData();
    // vector<Computer> readCompData();

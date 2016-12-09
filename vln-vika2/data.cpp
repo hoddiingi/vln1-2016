@@ -28,14 +28,20 @@ void Data::open()
     {
        qDebug() << "Database: connection ok";
     }
+    foreignKeys();
+
+
 }
+
+void Data::foreignKeys()
+{
+    QSqlQuery query(sqlPrufa);
+    query.exec("PRAGMA foreign_keys=1");
+}
+
 
 void Data::close()
 {
-  /*  sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
-    QString sqlPrufaName = "sqlPrufa.sqlite";
-    sqlPrufa.setDatabaseName(sqlPrufaName);
-*/
     sqlPrufa.close();
 }
 
@@ -175,6 +181,7 @@ bool Data::addConnections(int personID, int computerID)
     bool success = false;
 
     QSqlQuery query;
+
 
     query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
     query.bindValue(":scientistID", personID);
