@@ -308,6 +308,7 @@ void Console::add(string& anotherOne)
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
+
 int Console::addPersConnection()
 {
     int input;
@@ -316,6 +317,7 @@ int Console::addPersConnection()
 
     return input;
 }
+
 int Console::addCompConnection()
 {
     int input;
@@ -339,6 +341,7 @@ void Console::displaySciIdName()
     }
 
 }
+
 void Console::displayCompIdName()
 {
     _comp = _dom.readCompData(1);
@@ -353,6 +356,7 @@ void Console::displayCompIdName()
     }
 
 }
+
 void Console::addName(string& name)
 {
     do
