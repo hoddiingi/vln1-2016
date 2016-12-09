@@ -309,7 +309,7 @@ void Console::add(string& anotherOne)
                 addAnother(anotherOne);
 
                 Person newData(name, gender, birth, death);
-                //_dat.writeData(newData); //Eyða síðar
+                _dat.writeData(newData); //Eyða síðar
                 _dom.addPerson(newData);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
@@ -329,7 +329,7 @@ void Console::add(string& anotherOne)
                 addAnother(anotherOne);
 
                 Computer newDataComp(computerName, year, type, built);
-                //_dat.writeCompData(newDataComp);
+                _dat.writeCompData(newDataComp);
                 _dom.addComputer(newDataComp);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
