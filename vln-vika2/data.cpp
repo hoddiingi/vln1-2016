@@ -33,11 +33,11 @@ void Data::open()
 
 void Data::close()
 {
-  /*  sqlPrufa = QSqlDatabase::addDatabase("QSQLITE");
-    QString sqlPrufaName = "sqlPrufa.sqlite";
-    sqlPrufa.setDatabaseName(sqlPrufaName);
-*/
+    QString connection;
+    connection = sqlPrufa.connectionName();
     sqlPrufa.close();
+    sqlPrufa = QSqlDatabase();
+    QSqlDatabase::removeDatabase(connection);
 }
 
 vector<Person> Data::readData()
