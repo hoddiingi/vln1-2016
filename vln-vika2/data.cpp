@@ -206,7 +206,7 @@ bool Data::addComputer(Computer c)
     // you should check if args are ok first...
     QSqlQuery query;
     query.prepare("INSERT INTO Computers (computername, year, type, built) VALUES (:computername, :year, :type, :built)");
-    //query.bindValue(":id",  3);
+    query.bindValue(":id",  3);
     query.bindValue(":computername", name);
     query.bindValue(":year", year);
     query.bindValue(":type", type);
