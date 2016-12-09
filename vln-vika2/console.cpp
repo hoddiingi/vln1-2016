@@ -113,7 +113,7 @@ void Console::getInfo()
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
                 (command != "Exit") && (command != "exit"))
         {
-            cout << endl << "Invalid input! Please enter a valid command:" << endl;
+            cout << "Invalid input! Please enter a valid command:" << endl;
         }
     }while((command != "Exit") && (command != "exit"));
 }
@@ -133,7 +133,7 @@ int Console::sortBy()
         cout << "5 - view a list of computers by type - asc" << endl;
         cout << "6 - view a list of computers by type - desc" << endl;
         cout << "7 - view a list of computers by if it was built - asc" << endl;
-        cout << "8 - view a list of computers by if it was builr - desc" << endl;
+        cout << "8 - view a list of computers by if it was builr - desc" << endl << endl;
         getline(cin, res);
 
         if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
@@ -535,7 +535,7 @@ void Console::search()
     do
     {
         cout << "Enter 1 to search for a scientist" << endl;
-        cout << "Enter 2 to search for a computer"  << endl;
+        cout << "Enter 2 to search for a computer"  << endl << endl;
         getline(cin, choice);
 
         if(choice != "1" && choice != "2")
