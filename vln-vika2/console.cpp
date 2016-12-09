@@ -22,41 +22,6 @@ void Console::validInput()
     cout << "Numbers cant have space before or after them" << endl << endl;
 }
 
-void Console::removeWhitespace(string& str)
-{
-        cout << "þetta er fall fyrir for loop: " << str << endl;
-    for (size_t i = 0; i < str.length(); i++)
-    {
-        if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
-        {
-            str.erase(i, 1);
-            i--;
-        }
-    }
-    cout << "þetta er fall eftir for loop: " << str << endl;
-}
-
-bool Console::validInput(string& input, int min, int max)
-{
-    //while(true)
-   // {
-        //cout << "Enter a number: ";
-        //string s;
-        //getline(cin,s);
-        char *endp = 0;
-        int ret = strtol(input.c_str(),&endp,10);
-        if(endp!=input.c_str() && !*endp && ret >= min && ret <= max)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        //cout << "Invalid input. Allowed range: " << min << "-" << max <<endl;
-    //}
-}
-
 bool Console::validName(string n)
 {
     for (unsigned int i = 0; i < n.size(); i++)
@@ -139,12 +104,7 @@ void Console::getInfo()
         {
             search();
         }
-        else if((command == "Sort") || (command == "sort"))
-        {
-            _pers        = _dom.readData();
-            int sortType = getSort();
-            displaySort(sortType);
-        }
+
         else if ((command == "Remove") || (command == "remove"))
         {
             deleteStuff();
