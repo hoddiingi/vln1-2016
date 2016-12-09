@@ -2,9 +2,9 @@
 #define DOMAIN_H
 #include <vector>
 #include <QtSql>
+//#include "console.h"
 #include "person.h"
 #include "data.h"
-//#include "console.h"
 
 
 class Domain
@@ -22,7 +22,7 @@ public:
     vector<Computer> searchComputer(QString &computerName);
     vector<Person> search(vector<Person>& p, string name);
     int findAge(Person& sciAge) const;
-    vector<Person> readData(int sortedBy);
+    vector<Person> readSciData(int sortedBy);
     vector<Computer> readCompData(int sortedBy);
     bool addPerson(Person p);
     bool addComputer(Computer c);
@@ -33,12 +33,11 @@ public:
     bool removeAllComputers();
     bool removePerson(QString& name);
     bool removeComputer(QString& computername);
-
-
+    bool addConnection (int personID, int computerID);
 
 private:
     Data _dat;
-  //  Console _con;
+    //Console _con;
 
 };
 

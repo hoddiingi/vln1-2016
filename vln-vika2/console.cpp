@@ -125,7 +125,7 @@ void Console::getInfo()
                     else if (viewInput == "1")
                     {
                         int num1 = getSort();
-                        _pers = _dom.readData(num1);
+                        _pers = _dom.readSciData(num1);
                         display();
                     }
                     else if (viewInput == "2")
@@ -269,7 +269,6 @@ void Console::menu(string& command)
     cout << "Add    - for adding scientist to the list" << endl;
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
-   // cout << "Sort   - for sorting" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
@@ -288,8 +287,10 @@ void Console::add(string& anotherOne)
         cout << endl;
         cout << "Enter 1 to add a scientist" << endl;
         cout << "Enter 2 to add a computer" << endl;
+        cout << "Enter 3 to add a connection" << endl;
         getline(cin, choice);
-        if(choice != "1" && choice != "2")
+
+        if(choice != "1" && choice != "2" && choice != "3")
         {
             validInput();
         }
@@ -333,9 +334,65 @@ void Console::add(string& anotherOne)
                 _dom.addComputer(newDataComp);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
-    }while(choice != "1" && choice != "2");
+        else if(choice == "3")
+        {
+            cout << "Connections" << endl;
+            int personID;
+            int computerID;
+            displaySciIdName();
+            personID = addPersConnection();
+            displayCompIdName();
+            computerID = addCompConnection();
+            //kalla ég í data (dom.addConnections(personID, computerID))
+            _dom.addConnection(personID, computerID);
+        }
+    }while(choice != "1" && choice != "2" && choice != "3");
+}
+int Console::addPersConnection()
+{
+    int input;
+    cout << "Enter ID to connect: ";
+    cin >> input;
+
+    return input;
+}
+int Console::addCompConnection()
+{
+    int input;
+    cout << "Enter ID to connect: ";
+    cin >> input;
+
+    return input;
 }
 
+void Console::displaySciIdName()
+{
+    _pers = _dom.readSciData(1);
+    cout  << endl << "ID:\tNAME: " << endl;
+
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+
+        cout << _pers[i].getId() <<"\t";
+        cout << _pers[i].getName() << endl;
+
+    }
+
+}
+void Console::displayCompIdName()
+{
+    _comp = _dom.readCompData(1);
+    cout  << endl << "ID:\tCOMPUTER NAME: " << endl;
+
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+
+        cout << _comp[i].getId() <<"\t";
+        cout << _comp[i].getName() << endl;
+
+    }
+
+}
 void Console::addName(std::string& name)
 {
     do
@@ -719,13 +776,13 @@ void Console::deleteStuff()
         }
         else if (input == "1")
         {
-            cout << "search i vinnslu" << endl;
+            display();
             QString name = QString::fromStdString(searchScientist());
-            //gera view
             _dom.removePerson(name);
         }
         else if (input == "2")
         {
+            
             _dom.removeAllPersons();
         }
         else if (input == "3")

@@ -11,10 +11,25 @@ Person::Person()
 
 Person::Person(string name, string gender, int birth, int death)
 {
+    _id     = -1;
     _name   = name;
     _gender = gender;
     _birth  = birth;
     _death  = death;
+}
+
+Person::Person(int id, string name, string gender, int birth, int death)
+{
+    _id     = id;
+    _name   = name;
+    _gender = gender;
+    _birth  = birth;
+    _death  = death;
+}
+
+int Person::getId() const
+{
+    return _id;
 }
 
 string Person::getName() const

@@ -17,25 +17,12 @@ public:
    // vector<Computer> readCompData();
 
     void readCompData();
-    vector<Computer> readCompDataNameAsc();
-    vector<Computer> readCompDataNameDesc();
-    vector<Computer> readCompDataYearAsc();
-    vector<Computer> readCompDataYearDesc();
-    vector<Computer> readCompDataTypeAsc();
-    vector<Computer> readCompDataTypeDesc();
-    vector<Computer> readCompDataBuiltAsc();
-    vector<Computer> readCompDataBuiltDesc();
-    vector<Person> readDataNameAsc();
-    vector<Person> readDataNameDesc();
-    vector<Person> readDataGenderAsc();
-    vector<Person> readDataGenderDesc();
-    vector<Person> readDataBirthAsc();
-    vector<Person> readDataBirthDesc();
-    vector<Person> readDataDeathAsc();
-    vector<Person> readDataDeathDesc();
+    vector<Computer> readCompData(string orderBy, bool isAsc);
+    vector<Person> readSciData(string orderBy, bool isAsc);
 
     bool addPerson(Person p);
     bool addComputer(Computer c);
+    bool addConnections(int personID, int computerID);
 
     bool removePerson(QString &name);
     bool removeAllPersons();
