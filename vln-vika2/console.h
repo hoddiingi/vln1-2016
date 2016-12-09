@@ -68,6 +68,15 @@ public:
     int addPersConnection();
     int addCompConnection();
 
+    string getUpdate();
+    string getUpdateName();
+    string getUpdateBirth();
+    string getUpdateDeath();
+    void update();
+
+
+
+
 
 private:
     //Member variables

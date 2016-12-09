@@ -108,6 +108,10 @@ void Console::getInfo()
         {
             deleteStuff();
         }
+        else if((command == "Update") || (command == "update"))
+        {
+            update();
+        }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
                 (command != "Exit") && (command != "exit"))
@@ -227,6 +231,7 @@ void Console::menu(string& command)
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
+    cout << "Update - for update" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -777,4 +782,65 @@ void Console::deleteStuff()
             _dom.removeAllComputers();
         }
     }while(input != "1" && input != "2" && input != "3" && input != "4");
+}
+
+string Console::getUpdate()
+{
+    string name;
+    cout << "Enter name of scientist you want to update: ";
+    getline(cin, name);
+    return name;
+}
+
+string Console::getUpdateName()
+{
+    string update;
+    cout << "Enter new name: ";
+    cin.ignore();
+    getline(cin, update);
+    return update;
+}
+
+string Console::getUpdateBirth()
+{
+    string update;
+    cout << "Enter new year of birth: ";
+    cin >> update;
+    return update;
+}
+
+string Console::getUpdateDeath()
+{
+    string update;
+    cout << "Enter new year of death: ";
+    cin >> update;
+    return update;
+}
+
+void Console::update()
+{
+    QString name = QString::fromStdString(getUpdate());
+    int command;
+
+    cout << "Enter 1 to update name" << endl;
+    cout << "Enter 2 to update year of birth" << endl;
+    cout << "Enter 3 to update year of death" << endl;
+    cin >> command;
+    cout << endl;
+    if(command == 1)
+    {
+        QString newName = QString::fromStdString(getUpdateName());
+        _dom.updateScientistName(name, newName);
+
+    }
+    else if(command == 2)
+    {
+        QString newBirth = QString::fromStdString(getUpdateBirth());
+        _dom.updateScientistBirth(name, newBirth);
+    }
+    else if(command == 3)
+    {
+        QString newDeath = QString::fromStdString(getUpdateDeath());
+        _dom.updateScientistDeath(name, newDeath);
+    }
 }
