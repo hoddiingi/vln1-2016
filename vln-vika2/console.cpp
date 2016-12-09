@@ -316,7 +316,15 @@ int Console::addPersConnection()
     cout << "Enter scientist ID to connect: ";
     cin >> input;
 
-    return input;
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        if(input == _pers[i].getId())
+        {
+            return input;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addPersConnection();
 }
 
 int Console::addCompConnection()
@@ -325,7 +333,15 @@ int Console::addCompConnection()
     cout << "Enter computer ID to connect: ";
     cin >> input;
 
-    return input;
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+        if(input == _comp[i].getId())
+        {
+            return input;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addCompConnection();
 }
 
 void Console::displaySciIdName()
@@ -338,9 +354,7 @@ void Console::displaySciIdName()
 
         cout << _pers[i].getId() <<"\t";
         cout << _pers[i].getName() << endl;
-
     }
-
 }
 
 void Console::displayCompIdName()
@@ -353,16 +367,13 @@ void Console::displayCompIdName()
 
         cout << _comp[i].getId() <<"\t";
         cout << _comp[i].getName() << endl;
-
     }
-
 }
 
 void Console::addName(string& name)
 {
     do
     {
-
         cout << endl << "Enter name of scientist: ";
         getline(cin, name);
 
