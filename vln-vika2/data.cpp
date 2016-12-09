@@ -51,33 +51,6 @@ void Data::close()
     QSqlDatabase::removeDatabase(connection);
 }
 
-vector<Person> Data::readData()
-{
-    //open();
-    vector<Person> vect;
-
-    QSqlQuery query("SELECT * FROM people");
-
-    int id       = query.record().indexOf("ID");
-    int idName   = query.record().indexOf("name");
-    int idGender = query.record().indexOf("gender");
-    int idBirth  = query.record().indexOf("birth");
-    int idDeath  = query.record().indexOf("death");
-
-    while (query.next())
-    {
-        int id1       = query.value(id).toInt();
-        string name   = query.value(idName).toString().toStdString();
-        string gender = query.value(idGender).toString().toStdString();
-        int birth     = query.value(idBirth).toInt();
-        int death     = query.value(idDeath).toInt();
-
-        Person temp(id1, name, gender, birth, death);
-        vect.push_back(temp);
-    }
-    //close();
-    return vect;
-}
 
 vector<Computer> Data::readCompData(string orderBy, bool isAsc)
 {
@@ -301,7 +274,7 @@ bool Data::removeComputer(QString &computername)
     {
         qDebug() << "remove computer failed: computer does not exist";
     }
-    close();
+    //close();
     return success;
 }
 
@@ -356,6 +329,7 @@ vector<Person> Data::searchName(QString &name)
         Person p2(nameFind, genderFind, birthFind, deathFind);
         results.push_back(p2);
     }
+    close();
 
     return results;
 }
