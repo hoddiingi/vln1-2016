@@ -31,47 +31,13 @@ int Domain::findAge(Person& sciAge) const
     }
 }
 
-vector<Person> Domain::search(vector<Person>& p, string name)
+vector<Person> Domain::searchSciId(int &id)
 {
-
-    vector<Person> results;
-    //Search function, we search from out vector and then put the results in another vector so it shows us all results
-    for(unsigned int i = 0; i < p.size(); i++)
-    {
-        string nameFind;
-        string genderFind;
-        int birthFind;
-        int deathFind;
-        nameFind = p[i].getName();
-        std::size_t found = nameFind.find(name);
-
-        if (found!=std::string::npos)
-        {
-            p[i].getName();
-            genderFind = p[i].getGender();
-            birthFind = p[i].getBirth();
-            deathFind = p[i].getDeath();
-            Person p2(nameFind, genderFind, birthFind, deathFind);
-            results.push_back(p2);
-        }
-    }
-
-    return results;
+    return _dat.searchSciId(id);
 }
-
-vector<Person> Domain::searchName(QString &name)
+vector<Computer> Domain::searchCompId(int &id)
 {
-    return _dat.searchName(name);
-}
-
-vector<Computer> Domain::searchComputer(QString &computerName)
-{
-    return _dat.searchComputer(computerName);
-}
-
-void Domain::updateScientistName(QString &name, QString &update)
-{
-    return _dat.updateScientistName(name, update);
+    return _dat.searchCompId(id);
 }
 
 vector<Computer> Domain::readCompData(int sortedBy)
@@ -92,8 +58,8 @@ vector<Computer> Domain::readCompData(int sortedBy)
         return _dat.readCompData("built", true);
     else
         return _dat.readCompData("built", false);
-
 }
+
 vector<Person> Domain::readSciData(int sortedBy)
 {
     if(sortedBy == 1)
@@ -112,54 +78,56 @@ vector<Person> Domain::readSciData(int sortedBy)
         return _dat.readSciData("death", true);
     else
         return _dat.readSciData("death", false);
-
 }
 
-bool Domain::addPerson(Person p)
+vector<int> Domain::readConData()
 {
-    return _dat.addPerson(p);
+    return _dat.readConData();
 }
-bool Domain::addComputer(Computer c)
+vector<Person> Domain::searchName(QString &name)
 {
-    return _dat.addComputer(c);
+    return _dat.searchName(name);
 }
-
-void Domain::open()
+vector<Computer> Domain::searchComputer(QString &computerName)
 {
-    _dat.open();
+    return _dat.searchComputer(computerName);
 }
-
-void Domain::close()
+bool Domain::addPerson(Person p, QSqlError error)
 {
-    _dat.close();
+    return _dat.addPerson(p, error);
 }
-
-bool Domain::removeAllPersons()
+bool Domain::addComputer(Computer c, QSqlError error)
 {
-    return _dat.removeAllPersons();
+    return _dat.addComputer(c, error);
 }
-bool Domain::removeAllComputers()
+bool Domain::removeAllPersons(QSqlError error)
 {
-    return _dat.removeAllComputers();
+    return _dat.removeAllPersons(error);
 }
-bool Domain::removePerson(QString& name)
+bool Domain::removeAllComputers(QSqlError error)
 {
-    return _dat.removePerson(name);
+    return _dat.removeAllComputers(error);
 }
-bool Domain::removeComputer(QString& computername)
+bool Domain::removePerson(QString& name, QSqlError error)
 {
-    return _dat.removeComputer(computername);
+    return _dat.removePerson(name, error);
 }
-bool Domain:: addConnection (int personID, int computerID)
+bool Domain::removeComputer(QString& computername, QSqlError error)
 {
-    return _dat.addConnections(personID, computerID);
+    return _dat.removeComputer(computername, error);
 }
-
+bool Domain::addConnection(int personID, int computerID, QSqlError error)
+{
+    return _dat.addConnections(personID, computerID, error);
+}
+void Domain::updateScientistName(QString &name, QString &update)
+{
+    return _dat.updateScientistName(name, update);
+}
 void Domain::updateScientistBirth(QString &birth, QString &update)
 {
     return _dat.updateScientistBirth(birth, update);
 }
-
 void Domain::updateScientistDeath(QString &name, QString &update)
 {
     return _dat.updateScientistDeath(name, update);

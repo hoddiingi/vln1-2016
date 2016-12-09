@@ -77,11 +77,12 @@ void Console::getInfo()
                 cout << "--------------------------------------------" << endl;
                 cout << "Please enter one of the following commands:" << endl;
                 cout << "1 - view list of scientists" << endl;
-                cout << "2 - view a list of computers" << endl << endl;
+                cout << "2 - view a list of computers" << endl;
+                cout << "3 - view connection" << endl << endl;
 
                 getline(cin, viewInput);
 
-                   if((viewInput != "1" && viewInput != "2"))
+                   if((viewInput != "1" && viewInput != "2" && viewInput != "3"))
                     {
                         validInput();
                     }
@@ -97,7 +98,11 @@ void Console::getInfo()
                         _comp = _dom.readCompData(num);
                         displayComputer();
                     }
-            }while((viewInput != "1" && viewInput != "2"));
+                    else if (viewInput == "3")
+                   {
+                        displayConnections();
+                   }
+            }while((viewInput != "1" && viewInput != "2" && viewInput != "3"));
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -116,7 +121,7 @@ void Console::getInfo()
                 (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
                 (command != "Exit") && (command != "exit"))
         {
-            cout << endl << "Invalid input! Please enter a valid command:" << endl;
+            cout << "Invalid input! Please enter a valid command:" << endl;
         }
     }while((command != "Exit") && (command != "exit"));
 }
@@ -136,7 +141,7 @@ int Console::sortBy()
         cout << "5 - view a list of computers by type - asc" << endl;
         cout << "6 - view a list of computers by type - desc" << endl;
         cout << "7 - view a list of computers by if it was built - asc" << endl;
-        cout << "8 - view a list of computers by if it was builr - desc" << endl;
+        cout << "8 - view a list of computers by if it was builr - desc" << endl << endl;
         getline(cin, res);
 
         if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
@@ -273,7 +278,9 @@ void Console::add(string& anotherOne)
                 cin.ignore();
 
                 Person newData(name, gender, birth, death);
-                _dom.addPerson(newData);
+                QSqlError error;
+                if(_dom.addPerson(newData, error) == false)
+                    qDebug() << "Add person error : " << error << endl;
             }while(anotherOne == "y" || anotherOne == "Y");
         }
         else if(choice == "2")
@@ -293,7 +300,11 @@ void Console::add(string& anotherOne)
                 cin.ignore();
 
                 Computer newDataComp(computerName, year, type, built);
-                _dom.addComputer(newDataComp);
+                QSqlError error;
+                if(_dom.addComputer(newDataComp, error) == false)
+                {
+                    qDebug() << "Add computer error : " << error << endl;
+                }
             }while(anotherOne == "y" || anotherOne == "Y");
         }
         else if(choice == "3")
@@ -307,10 +318,45 @@ void Console::add(string& anotherOne)
             personID = addPersConnection();
             displayCompIdName();
             computerID = addCompConnection();
+
+
             //kalla ég í data (dom.addConnections(personID, computerID))
-            _dom.addConnection(personID, computerID);
+            QSqlError error;
+            if(_dom.addConnection(personID, computerID, error) == false)
+            {
+                qDebug() << "Add connection error : " << error << endl;
+            }
         }
     }while(choice != "1" && choice != "2" && choice != "3");
+}
+void Console::displayConnections()
+{
+    vector<int> j = _dom.readConData();
+    _pers = _dom.readSciData(1);
+    _comp = _dom.readCompData(1);
+
+
+    for(unsigned int i = 0; i < j.size(); i++)
+    {
+        vector<Person> test = searchSciId(j[i]);
+        vector<Computer> test2 = searchCompId(j[i+1]);
+
+        //for(int x = 0; x < test.size(); x++)
+        cout << test[0].getName() << "\t";
+        cout << test2[0].getName() << endl;
+        i++;
+    }
+}
+
+vector<Person> Console::searchSciId(int sciId)
+{
+    int id = sciId;
+    return _dom.searchSciId(id);
+}
+vector<Computer> Console::searchCompId(int compId)
+{
+    int id = compId;
+    return _dom.searchCompId(id);
 }
 
 int Console::addPersConnection()
@@ -552,7 +598,7 @@ void Console::search()
     do
     {
         cout << "Enter 1 to search for a scientist" << endl;
-        cout << "Enter 2 to search for a computer"  << endl;
+        cout << "Enter 2 to search for a computer"  << endl << endl;
         getline(cin, choice);
 
         if(choice != "1" && choice != "2")
@@ -574,7 +620,7 @@ string Console::searchComputer()
 {
     string computerName;
     cout << endl << "Name of computer: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, computerName);
     return computerName;
 }
@@ -583,7 +629,7 @@ string Console::searchScientist()
 {
     string chosenName;
     cout << endl << "Name of scientist: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, chosenName);
     return chosenName;
 }
@@ -762,23 +808,42 @@ void Console::deleteStuff()
         {
             _pers = _dom.readSciData(1);
             display();
+            //cin.ignore();
             QString name = QString::fromStdString(searchScientist());
-            _dom.removePerson(name);
+            QSqlError error;
+            if(_dom.removePerson(name, error) == false)
+            {
+                qDebug() << "Remove person error : " << error << endl;
+            }
         }
         else if (input == "2")
         {
+<<<<<<< HEAD
             _dom.removeAllPersons();
+=======
+            
+            QSqlError error;
+            if(_dom.removeAllPersons(error) == false)
+            {
+                qDebug() << "Add connection error : " << error << endl;
+            }
+>>>>>>> d83d2c3064649a6f2a152ec25e978e04c7e62e35
         }
         else if (input == "3")
         {
             _comp = _dom.readCompData(1);
             displayComputer();
             QString computer = QString::fromStdString(searchComputer());
-            _dom.removeComputer(computer);
+            QSqlError error;
+            _dom.removeComputer(computer, error);
         }
         else if (input == "4")
         {
-            _dom.removeAllComputers();
+            QSqlError error;
+            if(_dom.removeAllComputers(error) == false)
+            {
+                qDebug() << "Remove All computers error : " << error << endl;
+            }
         }
     }while(input != "1" && input != "2" && input != "3" && input != "4");
 }
@@ -786,7 +851,7 @@ void Console::deleteStuff()
 string Console::getUpdate()
 {
     string name;
-    cout << "Enter name of scientist you want to update: ";
+    cout << "Enter full name of scientist you want to update: ";
     getline(cin, name);
     return name;
 }
@@ -795,7 +860,7 @@ string Console::getUpdateName()
 {
     string update;
     cout << "Enter new name: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, update);
     return update;
 }
