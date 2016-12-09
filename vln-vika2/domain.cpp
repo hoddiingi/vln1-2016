@@ -1,12 +1,8 @@
 #include "domain.h"
 #include "person.h"
-//#include <iostream>
 #include <algorithm>
 #include <vector>
 #include "data.h"
-#include "console.h"
-
-//using namespace std;
 
 Domain::Domain()
 {
@@ -131,11 +127,7 @@ void Domain::close()
 {
     _dat.close();
 }
-int Domain::sortBy()
-{
-    Console _con;
-    return _con.sortBy();
-}
+
 bool Domain::removeAllPersons()
 {
     return _dat.removeAllPersons();
