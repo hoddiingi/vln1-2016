@@ -29,7 +29,17 @@ void Data::open()
     {
        qDebug() << "Database: connection ok";
     }
+    foreignKeys();
+
+
 }
+
+void Data::foreignKeys()
+{
+    QSqlQuery query(sqlPrufa);
+    query.exec("PRAGMA foreign_keys=1");
+}
+
 
 void Data::close()
 {
@@ -175,6 +185,7 @@ bool Data::addConnections(int personID, int computerID)
     bool success = false;
 
     QSqlQuery query;
+
 
     query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
     query.bindValue(":scientistID", personID);
