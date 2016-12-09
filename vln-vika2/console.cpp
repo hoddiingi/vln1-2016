@@ -16,44 +16,22 @@ Console::Console()
 
 }
 
-void Console::validInput()
+void Console::menu(string& command)
 {
-    cout << endl << "Please enter a valid number" << endl;
-    cout << "Numbers cant have space before or after them" << endl << endl;
-}
+    cout << endl << "--------------------------------------------" << endl;
+    cout << "Please enter one of the following commands: " << endl << endl;
+    cout << "Add    - for adding scientist to the list" << endl;
+    cout << "View   - for viewing the whole list" << endl;
+    cout << "Search - for searching for names in the list" << endl;
+    cout << "Remove - for removing" << endl;
+    cout << "Update - for updating information" << endl;
+    cout << "Game - for playing TicTacToe" << endl;
+    cout << "Exit   - quits" << endl;
+    cout << "--------------------------------------------" << endl << endl;
 
-bool Console::validName(string n)
-{
-    for (unsigned int i = 0; i < n.size(); i++)
-    {
-        if (isdigit(n[i]))
-        {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-bool Console::validComputerName(string n)
-{
-    if (n == "")
-    {
-        return 0;
-    }
-
-    return 1;
-}
-
-bool Console::validYear(string s)
-{
-    for (unsigned int i = 0; i < s.size(); i++)
-    {
-        if (!isdigit(s[i]))
-        {
-            return 0;
-        }
-    }
-    return 1;
+    cin >> command;
+    cin.ignore();
+    cout << endl;
 }
 
 void Console::getInfo()
@@ -138,6 +116,131 @@ void Console::getInfo()
             cout << "Invalid input! Please enter a valid command:" << endl;
         }
     }while((command != "Exit") && (command != "exit"));
+}
+
+void Console::validInput()
+{
+    cout << endl << "Please enter a valid number" << endl;
+    cout << "Numbers cant have space before or after them" << endl << endl;
+}
+
+bool Console::validName(string n)
+{
+    for (unsigned int i = 0; i < n.size(); i++)
+    {
+        if (isdigit(n[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+bool Console::validComputerName(string n)
+{
+    if (n == "")
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+bool Console::validYear(string s)
+{
+    for (unsigned int i = 0; i < s.size(); i++)
+    {
+        if (!isdigit(s[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void Console::add(string& anotherOne)
+{
+    string choice;
+
+    do
+    {
+        cout << endl;
+        cout << "Enter 1 to add a scientist" << endl;
+        cout << "Enter 2 to add a computer" << endl;
+        cout << "Enter 3 to add a connection" << endl;
+        getline(cin, choice);
+
+        if(choice != "1" && choice != "2" && choice != "3")
+        {
+            validInput();
+        }
+        else if(choice == "1")
+        {
+            do
+            {
+                string name;
+                string gender;
+                int birth = 0;
+                int death = 0;
+
+                addName(name);
+                addGender(gender);
+                addBirth(birth);
+                addDeath(death, birth);
+                addAnother(anotherOne);
+                cin.ignore();
+
+                Person newData(name, gender, birth, death);
+                QSqlError error;
+                if(_dom.addPerson(newData, error) == false)
+                    qDebug() << "Add person error : " << error << endl;
+            }while(anotherOne == "y" || anotherOne == "Y");
+        }
+        else if(choice == "2")
+        {
+            do
+            {
+                string computerName;
+                int year = 0;
+                string type;
+                string built;
+
+                addComputerName(computerName);
+                addYear(year);
+                addType(type);
+                addBuilt(built);
+                addAnother(anotherOne);
+                cin.ignore();
+
+                Computer newDataComp(computerName, year, type, built);
+                QSqlError error;
+                if(_dom.addComputer(newDataComp, error) == false)
+                {
+                    qDebug() << "Add computer error : " << error << endl;
+                }
+            }while(anotherOne == "y" || anotherOne == "Y");
+        }
+        else if(choice == "3")
+        {
+            cout << "Connections" << endl;
+            int personID;
+            int computerID;
+            //Birta töflu ID og nafn hjá People
+
+            displaySciIdName();
+            personID = addPersConnection();
+            displayCompIdName();
+            computerID = addCompConnection();
+
+
+            //kalla ég í data (dom.addConnections(personID, computerID))
+            QSqlError error;
+            if(_dom.addConnection(personID, computerID, error) == false)
+            {
+                qDebug() << "Add connection error : " << error << endl;
+            }
+        }
+    }while(choice != "1" && choice != "2" && choice != "3");
 }
 
 int Console::sortBy()
@@ -242,108 +345,7 @@ void Console::display()
     }
 }
 
-void Console::menu(string& command)
-{
-    cout << endl << "--------------------------------------------" << endl;
-    cout << "Please enter one of the following commands: " << endl << endl;
-    cout << "Add    - for adding scientist to the list" << endl;
-    cout << "View   - for viewing the whole list" << endl;
-    cout << "Search - for searching for names in the list" << endl;
-    cout << "Remove - for removing" << endl;
-    cout << "Update - for updating information" << endl;
-    cout << "Game - for playing TicTacToe" << endl;
-    cout << "Exit   - quits" << endl;
-    cout << "--------------------------------------------" << endl << endl;
 
-    cin >> command;
-    cin.ignore();
-    cout << endl;
-}
-
-void Console::add(string& anotherOne)
-{
-    string choice;
-
-    do
-    {
-        cout << endl;
-        cout << "Enter 1 to add a scientist" << endl;
-        cout << "Enter 2 to add a computer" << endl;
-        cout << "Enter 3 to add a connection" << endl;
-        getline(cin, choice);
-
-        if(choice != "1" && choice != "2" && choice != "3")
-        {
-            validInput();
-        }
-        else if(choice == "1")
-        {
-            do
-            {
-                string name;
-                string gender;
-                int birth = 0;
-                int death = 0;
-
-                addName(name);
-                addGender(gender);
-                addBirth(birth);
-                addDeath(death, birth);
-                addAnother(anotherOne);
-                cin.ignore();
-
-                Person newData(name, gender, birth, death);
-                QSqlError error;
-                if(_dom.addPerson(newData, error) == false)
-                    qDebug() << "Add person error : " << error << endl;
-            }while(anotherOne == "y" || anotherOne == "Y");
-        }
-        else if(choice == "2")
-        {
-            do
-            {
-                string computerName;
-                int year = 0;
-                string type;
-                string built;
-
-                addComputerName(computerName);
-                addYear(year);
-                addType(type);
-                addBuilt(built);
-                addAnother(anotherOne);
-                cin.ignore();
-
-                Computer newDataComp(computerName, year, type, built);
-                QSqlError error;
-                if(_dom.addComputer(newDataComp, error) == false)
-                {
-                    qDebug() << "Add computer error : " << error << endl;
-                }
-            }while(anotherOne == "y" || anotherOne == "Y");
-        }
-        else if(choice == "3")
-        {
-            cout << "Connections" << endl;
-            int personID;
-            int computerID;
-            //Birta töflu ID og nafn hjá People
-
-            displaySciIdName();
-            personID = addPersConnection();
-            displayCompIdName();
-            computerID = addCompConnection();
-
-
-            //kalla ég í data (dom.addConnections(personID, computerID))
-            QSqlError error;
-            if(_dom.addConnection(personID, computerID, error) == false)
-            {
-                qDebug() << "Add connection error : " << error << endl;
-            }
-        }
-    }while(choice != "1" && choice != "2" && choice != "3");
-}
 void Console::displayConnections()
 {
     vector<int> j = _dom.readConData();

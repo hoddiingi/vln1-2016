@@ -14,25 +14,24 @@ class Console
 public:
     Console();
 
+    void menu(string& command);                 //Prints out the menu and ask the user for a choice
+
+    void getInfo();                             //Gets input for info
+
     bool validName(string n);                   //Checks if inputs are valid
     bool validComputerName(string n);
     bool validYear(string s);
     void validInput();
 
-    void getInfo();                             //Gets input for info
-
-    int getSort();                              //Gets input for sort
-
-    void display();                             //Display
-
-    void menu(string& command);                 //Prints out the menu and ask the user for a choice
-
-    void add(char& anotherOne);                 //Adds new info
-    void add(string &anotherOne);
+    void add(string &anotherOne);               //Adds new info
     void addName(string& name);
     void addGender(string& gender);
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
+
+    int getSort();                              //Gets input for sort
+
+    void display();                             //Display
 
     void deleteStuff();                         //Delete name or the entire table
 
