@@ -68,6 +68,12 @@ vector<Computer> Domain::searchComputer(QString &computerName)
 {
     return _dat.searchComputer(computerName);
 }
+
+void Domain::updateScientistName(QString &name, QString &update)
+{
+    return _dat.updateScientistName(name, update);
+}
+
 vector<Computer> Domain::readCompData(int sortedBy)
 {
     if(sortedBy == 1)
@@ -147,4 +153,14 @@ bool Domain::removeComputer(QString& computername)
 bool Domain:: addConnection (int personID, int computerID)
 {
     return _dat.addConnections(personID, computerID);
+}
+
+void Domain::updateScientistBirth(QString &birth, QString &update)
+{
+    return _dat.updateScientistBirth(birth, update);
+}
+
+void Domain::updateScientistDeath(QString &name, QString &update)
+{
+    return _dat.updateScientistDeath(name, update);
 }

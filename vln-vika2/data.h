@@ -33,6 +33,10 @@ public:
     vector<Person> searchName(QString &name);
     vector<Computer> searchComputer(QString &computerName);
 
+    void updateScientistName(QString &name, QString &update);
+    void updateScientistBirth(QString &name, QString &update);
+    void updateScientistDeath(QString &name, QString &update);
+
 private:
     vector<Person> _persons;
     vector<Computer> _computers;

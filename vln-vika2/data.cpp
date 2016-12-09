@@ -393,3 +393,38 @@ vector<Computer> Data::searchComputer(QString &computerName)
     return results;
 }
 
+void Data::updateScientistName(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET name='" +update+ "'"
+             + "WHERE name='" +name+ "'");
+
+    close();
+}
+
+void Data::updateScientistBirth(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET birth='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+
+    close();
+}
+
+void Data::updateScientistDeath(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET death='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+
+    close();
+}
