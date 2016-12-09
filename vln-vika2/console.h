@@ -69,6 +69,22 @@ public:
     string getUpdateDeath();                    //Asks the user for the new year of death
     void update();                              //Updates scientist of choice
 
+
+
+
+
+
+
+    void bord(char matrix[3][3]);
+    void input(char& player, char matrix[3][3]);
+    void changeplayer(char& player);
+    char winner(char matrix[3][3]);
+    int gameplay();
+
+
+
+
+
 private:
     Domain _dom;                                //Private member variables
     Person _p;

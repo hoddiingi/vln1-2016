@@ -116,10 +116,14 @@ void Console::getInfo()
         else if((command == "Update") || (command == "update"))
         {
             update();
-
+        }
+        else if((command == "Game") || (command == "game"))
+        {
+            gameplay();
         }
         else if((command != "Add") && (command != "add") && (command != "View") && (command != "view") &&
-                (command != "Search") && (command != "search") && (command != "Sort") && (command != "sort") &&
+                (command != "Search") && (command != "search") && (command != "Remove") && (command != "remove") &&
+                (command != "Update") && (command != "update") && (command != "Game") && (command != "game") &&
                 (command != "Exit") && (command != "exit"))
         {
             cout << "Invalid input! Please enter a valid command:" << endl;
@@ -238,6 +242,7 @@ void Console::menu(string& command)
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Update - for updating information" << endl;
+    cout << "Game - for playing TicTacToe" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -944,4 +949,220 @@ void Console::update()
         QString newDeath = QString::fromStdString(getUpdateDeath());
         _dom.updateScientistDeath(name, newDeath);
     }
+}
+
+int Console::gameplay()
+{
+    char matrix[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
+    char player = 'X';
+    int n = 0;
+    while(1)
+    {
+        n++;
+        bord(matrix);
+        input(player, matrix);
+        if (winner(matrix) == 'X')
+        {
+            bord(matrix);
+            cout << "Winner is: X" << endl;
+            break;
+        }
+        else if (winner(matrix) == 'O')
+        {
+            bord(matrix);
+            cout << "Winner is: O" << endl;
+            break;
+        }
+        else if (winner(matrix) == '/' && n == 9)
+        {
+            bord(matrix);
+            cout << "Draw!" << endl;
+            break;
+        }
+        changeplayer(player);
+        winner(matrix);
+    }
+    return 0;
+}
+
+void Console::bord(char matrix[3][3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void Console::input(char& player, char matrix[3][3])
+{
+    char a = '0';
+    cout << player <<" position: ";
+    cin >> a;
+    if (a == '1' || a == '2' || a == '3' || a == '4' || a == '5' || a == '6' || a == '7' || a == '8' || a == '9')
+    {
+        if (a == '1')
+            {
+                if (matrix[0][0] == '1')
+                {
+                    matrix[0][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '2')
+            {
+                if (matrix[0][1] == '2')
+                {
+                    matrix[0][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '3')
+            {
+                if (matrix[0][2] == '3')
+                {
+                    matrix[0][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '4')
+            {
+                if (matrix[1][0] == '4')
+                {
+                    matrix[1][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '5')
+            {
+                if (matrix[1][1] == '5')
+                {
+                    matrix[1][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '6')
+            {
+                if (matrix[1][2] == '6')
+                {
+                    matrix[1][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '7')
+            {
+                if (matrix[2][0] == '7')
+                {
+                    matrix[2][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '8')
+            {
+                if (matrix[2][1] == '8')
+                {
+                    matrix[2][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+        if (a == '9')
+            {
+                if (matrix[2][2] == '9')
+                {
+                    matrix[2][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
+            }
+    }
+    else
+    {
+        cout << "Illegal move!" << endl;
+        input(player, matrix);
+    }
+}
+
+void Console::changeplayer(char& player)
+{
+    if (player == 'X')
+        player = 'O';
+    else
+        player = 'X';
+}
+
+char Console::winner(char matrix[3][3])
+{
+    //Player X
+    if (matrix[0][0] == 'X' && matrix[0][1] == 'X' && matrix[0][2] == 'X')
+        return 'X';
+    if (matrix[1][0] == 'X' && matrix[1][1] == 'X' && matrix[1][2] == 'X')
+        return 'X';
+    if (matrix[2][0] == 'X' && matrix[2][1] == 'X' && matrix[2][2] == 'X')
+        return 'X';
+    if (matrix[0][0] == 'X' && matrix[1][0] == 'X' && matrix[2][0] == 'X')
+        return 'X';
+    if (matrix[0][1] == 'X' && matrix[1][1] == 'X' && matrix[2][1] == 'X')
+        return 'X';
+    if (matrix[0][2] == 'X' && matrix[1][2] == 'X' && matrix[2][2] == 'X')
+        return 'X';
+    if (matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X')
+        return 'X';
+    if (matrix[0][2] == 'X' && matrix[1][1] == 'X' && matrix[2][0] == 'X')
+        return 'X';
+    // Player O
+    if (matrix[0][0] == 'O' && matrix[0][1] == 'O' && matrix[0][2] == 'O')
+        return 'O';
+    if (matrix[1][0] == 'O' && matrix[1][1] == 'O' && matrix[1][2] == 'O')
+        return 'O';
+    if (matrix[2][0] == 'O' && matrix[2][1] == 'O' && matrix[2][2] == 'O')
+        return 'O';
+    if (matrix[0][0] == 'O' && matrix[1][0] == 'O' && matrix[2][0] == 'O')
+        return 'O';
+    if (matrix[0][1] == 'O' && matrix[1][1] == 'O' && matrix[2][1] == 'O')
+        return 'O';
+    if (matrix[0][2] == 'O' && matrix[1][2] == 'O' && matrix[2][2] == 'O')
+        return 'O';
+    if (matrix[0][0] == 'O' && matrix[1][1] == 'O' && matrix[2][2] == 'O')
+        return 'O';
+    if (matrix[0][2] == 'O' && matrix[1][1] == 'O' && matrix[2][0] == 'O')
+        return 'O';
+    return '/';
 }
