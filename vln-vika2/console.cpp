@@ -402,11 +402,11 @@ void Console::addName(std::string& name)
         cin.ignore();
         std::getline(std::cin, name);
 
-        if(!validName(name))
+        if(!validComputerName(name) || !validName(name))
         {
-            cout << "Name can not include digits!" << endl;
+            cout << "Invalid input for name!" << endl;
         }
-    }while(!validName(name));
+    }while(!validComputerName(name) || !validName(name));
 }
 
 void Console::addGender(string &gender)
@@ -498,7 +498,7 @@ void Console::addComputerName(string& computerName)
 
         if(!validComputerName(computerName))
         {
-            cout << "Name can not be empty" << endl;
+            cout << "Invalid input for name!" << endl;
         }
     }while(!validComputerName(computerName));
 }
