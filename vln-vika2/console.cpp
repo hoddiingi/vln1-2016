@@ -8,6 +8,7 @@
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
+#include <limits>
 
 using namespace std;
 
@@ -15,6 +16,47 @@ Console::Console()
 {
 
 }
+
+void Console::validInput()
+{
+    cout << endl << "Please enter a valid number" << endl;
+    cout << "Numbers cant have space before or after them" << endl << endl;
+}
+/*
+void Console::removeWhitespace(string& str)
+{
+        cout << "þetta er fall fyrir for loop: " << str << endl;
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+        {
+            str.erase(i, 1);
+            i--;
+        }
+    }
+    cout << "þetta er fall eftir for loop: " << str << endl;
+}
+
+bool Console::validInput(string& input, int min, int max)
+{
+    //while(true)
+   // {
+        //cout << "Enter a number: ";
+        //string s;
+        //getline(cin,s);
+        char *endp = 0;
+        int ret = strtol(input.c_str(),&endp,10);
+        if(endp!=input.c_str() && !*endp && ret >= min && ret <= max)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        //cout << "Invalid input. Allowed range: " << min << "-" << max <<endl;
+    //}
+}*/
 
 bool Console::validName(string n)
 {
@@ -72,12 +114,13 @@ void Console::getInfo()
                 cout << "--------------------------------------------" << endl;
                 cout << "Please enter one of the following commands:" << endl;
                 cout << "1 - view list of scientists" << endl;
-                cout << "2 - view a list of computers" << endl;
-                cin >> viewInput;
+                cout << "2 - view a list of computers" << endl << endl;
 
-                    if((viewInput != "1" && viewInput != "2"))
+                getline(cin, viewInput);
+
+                   if((viewInput != "1" && viewInput != "2"))
                     {
-                        cout << "Please enter a valid number" << endl;
+                        validInput();
                     }
                     else if (viewInput == "1")
                     {
@@ -132,11 +175,11 @@ int Console::sortBy()
         cout << "6 - view a list of computers by type - desc" << endl;
         cout << "7 - view a list of computers by if it was built - asc" << endl;
         cout << "8 - view a list of computers by if it was builr - desc" << endl;
-        cin >> res;
+        getline(cin, res);
 
         if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
         {
-            cout << "Please enter a valid number" << endl;
+            validInput();
         }
     }while(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8");
     ress = atoi(res.c_str());
@@ -160,11 +203,11 @@ int Console::getSort()
         cout << "7 - sort by year of death - asc" << endl;
         cout << "8 - sort by year of death - desc" << endl;
         cout << "-------------------------------------------"  << endl << endl;
-        cin  >> sortInput;
+        getline(cin, sortInput);
 
         if(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8")
         {
-            cout << "Invalid input!" << endl;
+            validInput();
         }
     }while(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8");
 
@@ -232,6 +275,8 @@ void Console::menu(string& command)
     cout << "--------------------------------------------" << endl << endl;
 
     cin >> command;
+    cin.ignore();
+    cout << endl;
 }
 
 void Console::add(string& anotherOne)
@@ -243,10 +288,10 @@ void Console::add(string& anotherOne)
         cout << endl;
         cout << "Enter 1 to add a scientist" << endl;
         cout << "Enter 2 to add a computer" << endl;
-        cin >> choice;
+        getline(cin, choice);
         if(choice != "1" && choice != "2")
         {
-            cout << "Please enter a valid number" << endl;
+            validInput();
         }
         else if(choice == "1")
         {
@@ -475,11 +520,11 @@ void Console::search()
     {
         cout << "Enter 1 to search for a scientist" << endl;
         cout << "Enter 2 to search for a computer"  << endl;
-        cin  >> choice;
+        getline(cin, choice);
 
         if(choice != "1" && choice != "2")
         {
-            cout << "Please enter a valid number" << endl;
+            validInput();
         }
         else if(choice == "1")
         {
@@ -666,11 +711,11 @@ void Console::deleteStuff()
         cout << "3 - remove one computer" << endl;
         cout << "4 - remove all computers" << endl;
 
-        cin >> input;
+        getline(cin, input);
 
         if(input != "1" && input != "2" && input != "3" && input != "4")
         {
-            cout << "Please enter a valid number" << endl;
+            validInput();
         }
         else if (input == "1")
         {
