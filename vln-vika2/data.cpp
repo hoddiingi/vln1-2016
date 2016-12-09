@@ -440,6 +440,18 @@ void Data::updateScientistName(QString &name, QString &update)
     close();
 }
 
+void Data::updateScientistGender(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET gender='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+
+    close();
+}
+
 void Data::updateScientistBirth(QString &name, QString &update)
 {
     open();
@@ -535,3 +547,54 @@ void Data::updateScientistDeath(QString &name, QString &update)
 
     close();
 }
+
+void Data::updateComputerName(QString &computerName, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE Computers SET computername='" +update+ "'"
+             + "WHERE computername='" +computerName+ "'");
+
+    close();
+}
+
+void Data::updateComputerYear(QString &computerName, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE Computers SET year='" +update+ "'"
+             + "WHERE computername='" +computerName+ "'");
+
+    close();
+}
+
+void Data::updateComputerType(QString &computerName, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE Computers SET type='" +update+ "'"
+             + "WHERE computername='" +computerName+ "'");
+
+    close();
+}
+
+void Data::updateComputerBuilt(QString &computerName, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE Computers SET built='" +update+ "'"
+             + "WHERE computername='" +computerName+ "'");
+
+    close();
+}
+
+
+
