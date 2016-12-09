@@ -161,8 +161,7 @@ bool Data::addPerson(Person p)
    }
    else
    {
-        qDebug() << "addPerson error:  "
-                 << query.lastError();
+        qDebug() << "addPerson error:  " << query.lastError();
    }
    close();
 
@@ -187,8 +186,7 @@ bool Data::addConnections(int personID, int computerID)
     }
     else
     {
-         qDebug() << "addConnections error:  "
-                  << query.lastError();
+         qDebug() << "addConnections error:  " << query.lastError();
     }
 
     close();
@@ -217,8 +215,7 @@ bool Data::addComputer(Computer c)
     }
     else
     {
-        qDebug() << "addPerson error:  "
-                 << query.lastError();
+        qDebug() << "addPerson error:  " << query.lastError();
     }
     close();
     return success;
