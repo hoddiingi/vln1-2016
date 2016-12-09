@@ -357,8 +357,8 @@ void Console::addName(std::string& name)
     do
     {
         cout << endl << "Enter name of scientist: ";
-        cin.ignore();
-        std::getline(std::cin, name);
+        //cin.ignore();
+        getline(cin, name);
 
         if(!validComputerName(name) || !validName(name))
         {
