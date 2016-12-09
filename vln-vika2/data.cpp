@@ -1,3 +1,4 @@
+
 #include "person.h"
 #include "data.h"
 #include <fstream>
@@ -42,7 +43,11 @@ void Data::foreignKeys()
 
 void Data::close()
 {
+    QString connection;
+    connection = sqlPrufa.connectionName();
     sqlPrufa.close();
+    sqlPrufa = QSqlDatabase();
+    QSqlDatabase::removeDatabase(connection);
 }
 
 vector<Person> Data::readData()
@@ -212,7 +217,6 @@ bool Data::addComputer(Computer c)
     // you should check if args are ok first...
     QSqlQuery query;
     query.prepare("INSERT INTO Computers (computername, year, type, built) VALUES (:computername, :year, :type, :built)");
-    //query.bindValue(":id",  3);
     query.bindValue(":computername", name);
     query.bindValue(":year", year);
     query.bindValue(":type", type);

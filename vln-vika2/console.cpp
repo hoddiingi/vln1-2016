@@ -4,7 +4,6 @@
 #include <vector>
 #include "person.h"
 #include <algorithm>
-//#include "data.h"
 #include <cctype>
 #include <ctype.h>
 #include "computer.h"
@@ -22,41 +21,6 @@ void Console::validInput()
     cout << endl << "Please enter a valid number" << endl;
     cout << "Numbers cant have space before or after them" << endl << endl;
 }
-/*
-void Console::removeWhitespace(string& str)
-{
-        cout << "þetta er fall fyrir for loop: " << str << endl;
-    for (size_t i = 0; i < str.length(); i++)
-    {
-        if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
-        {
-            str.erase(i, 1);
-            i--;
-        }
-    }
-    cout << "þetta er fall eftir for loop: " << str << endl;
-}
-
-bool Console::validInput(string& input, int min, int max)
-{
-    //while(true)
-   // {
-        //cout << "Enter a number: ";
-        //string s;
-        //getline(cin,s);
-        char *endp = 0;
-        int ret = strtol(input.c_str(),&endp,10);
-        if(endp!=input.c_str() && !*endp && ret >= min && ret <= max)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        //cout << "Invalid input. Allowed range: " << min << "-" << max <<endl;
-    //}
-}*/
 
 bool Console::validName(string n)
 {
@@ -140,12 +104,7 @@ void Console::getInfo()
         {
             search();
         }
-        /*else if((command == "Sort") || (command == "sort"))
-        {
-            _pers        = _dom.readData();
-            int sortType = getSort();
-            displaySort(sortType);
-        }*/
+
         else if ((command == "Remove") || (command == "remove"))
         {
             deleteStuff();
@@ -310,7 +269,6 @@ void Console::add(string& anotherOne)
                 addAnother(anotherOne);
 
                 Person newData(name, gender, birth, death);
-                //_dat.writeData(newData); //Eyða síðar
                 _dom.addPerson(newData);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
@@ -330,7 +288,6 @@ void Console::add(string& anotherOne)
                 addAnother(anotherOne);
 
                 Computer newDataComp(computerName, year, type, built);
-                //_dat.writeCompData(newDataComp);
                 _dom.addComputer(newDataComp);
             }while(anotherOne == "y" || anotherOne == "Y");
         }
@@ -339,6 +296,8 @@ void Console::add(string& anotherOne)
             cout << "Connections" << endl;
             int personID;
             int computerID;
+            //Birta töflu ID og nafn hjá People
+
             displaySciIdName();
             personID = addPersConnection();
             displayCompIdName();
@@ -401,11 +360,11 @@ void Console::addName(std::string& name)
         cin.ignore();
         std::getline(std::cin, name);
 
-        if(!validName(name))
+        if(!validComputerName(name) || !validName(name))
         {
-            cout << "Name can not include digits!" << endl;
+            cout << "Invalid input for name!" << endl;
         }
-    }while(!validName(name));
+    }while(!validComputerName(name) || !validName(name));
 }
 
 void Console::addGender(string &gender)
@@ -487,7 +446,6 @@ void Console::addDeath(int& death, int& birth)
     }while(!(status == "N" || status == "n") && !(status == "Y" || status == "y"));
 }
 
-
 void Console::addComputerName(string& computerName)
 {
     do
@@ -498,7 +456,7 @@ void Console::addComputerName(string& computerName)
 
         if(!validComputerName(computerName))
         {
-            cout << "Name can not be empty" << endl;
+            cout << "Invalid input for name!" << endl;
         }
     }while(!validComputerName(computerName));
 }
@@ -776,6 +734,7 @@ void Console::deleteStuff()
         }
         else if (input == "1")
         {
+            _pers = _dom.readSciData(1);
             display();
             QString name = QString::fromStdString(searchScientist());
             _dom.removePerson(name);
@@ -787,6 +746,8 @@ void Console::deleteStuff()
         }
         else if (input == "3")
         {
+            _comp = _dom.readCompData(1);
+            displayComputer();
             QString computer = QString::fromStdString(searchComputer());
             _dom.removeComputer(computer);
         }
