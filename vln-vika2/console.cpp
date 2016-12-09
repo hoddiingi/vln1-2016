@@ -267,6 +267,7 @@ void Console::add(string& anotherOne)
                 addBirth(birth);
                 addDeath(death, birth);
                 addAnother(anotherOne);
+                cin.ignore();
 
                 Person newData(name, gender, birth, death);
                 _dom.addPerson(newData);
@@ -356,14 +357,16 @@ void Console::addName(std::string& name)
 {
     do
     {
+
         cout << endl << "Enter name of scientist: ";
-        cin.ignore();
+        //cin.ignore();
         std::getline(std::cin, name);
 
         if(!validComputerName(name) || !validName(name))
         {
             cout << "Invalid input for name!" << endl;
         }
+        cout << "getline input: " << name << endl;
     }while(!validComputerName(name) || !validName(name));
 }
 
