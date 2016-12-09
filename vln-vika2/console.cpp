@@ -257,7 +257,7 @@ void Console::add(string& anotherOne)
         {
             do
             {
-                std::string name;
+                string name;
                 string gender;
                 int birth = 0;
                 int death = 0;
@@ -277,9 +277,9 @@ void Console::add(string& anotherOne)
         {
             do
             {
-                std::string computerName;
+                string computerName;
                 int year = 0;
-                std::string type;
+                string type;
                 string built;
 
                 addComputerName(computerName);
@@ -353,14 +353,13 @@ void Console::displayCompIdName()
     }
 
 }
-void Console::addName(std::string& name)
+void Console::addName(string& name)
 {
     do
     {
 
         cout << endl << "Enter name of scientist: ";
-        //cin.ignore();
-        std::getline(std::cin, name);
+        getline(cin, name);
 
         if(!validComputerName(name) || !validName(name))
         {
@@ -455,7 +454,7 @@ void Console::addComputerName(string& computerName)
     {
         cout << endl << "Enter name of computer: ";
         cin.ignore();
-        std::getline(std::cin, computerName);
+        getline(cin, computerName);
 
         if(!validComputerName(computerName))
         {
@@ -560,7 +559,7 @@ string Console::searchComputer()
     string computerName;
     cout << endl << "Name of computer: ";
     cin.ignore();
-    std::getline(std::cin, computerName);
+    getline(cin, computerName);
     return computerName;
 }
 
@@ -569,7 +568,7 @@ string Console::searchScientist()
     string chosenName;
     cout << endl << "Name of scientist: ";
     cin.ignore();
-    std::getline(std::cin, chosenName);
+    getline(cin, chosenName);
     return chosenName;
 }
 
