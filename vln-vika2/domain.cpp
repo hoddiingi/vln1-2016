@@ -72,52 +72,45 @@ vector<Computer> Domain::searchComputer(QString &computerName)
 {
     return _dat.searchComputer(computerName);
 }
-
-/*
-vector<Person> Domain::readData()
-{
-    return _dat.readData();
-}
-*/
-
 vector<Computer> Domain::readCompData(int sortedBy)
 {
     if(sortedBy == 1)
-        return _dat.readCompDataNameAsc();
+        return _dat.readCompData("computername", true);
     else if(sortedBy == 2)
-        return _dat.readCompDataNameDesc();
+        return _dat.readCompData("computername", false);
     else if(sortedBy == 3)
-        return _dat.readCompDataYearAsc();
+        return _dat.readCompData("year", true);
     else if(sortedBy == 4)
-        return _dat.readCompDataYearDesc();
+        return _dat.readCompData("year", false);
     else if(sortedBy == 5)
-        return _dat.readCompDataTypeAsc();
+        return _dat.readCompData("type", true);
     else if(sortedBy == 6)
-        return _dat.readCompDataTypeDesc();
+        return _dat.readCompData("type", false);
     else if(sortedBy == 7)
-        return _dat.readCompDataBuiltAsc();
+        return _dat.readCompData("built", true);
     else
-        return _dat.readCompDataBuiltDesc();
-}
+        return _dat.readCompData("built", false);
 
-vector<Person> Domain::readData(int sortedBy)
+}
+vector<Person> Domain::readSciData(int sortedBy)
 {
     if(sortedBy == 1)
-        return _dat.readDataNameAsc();
+        return _dat.readSciData("name", true);
     else if(sortedBy == 2)
-        return _dat.readDataNameDesc();
+        return _dat.readSciData("name", false);
     else if(sortedBy == 3)
-        return _dat.readDataGenderAsc();
+        return _dat.readSciData("gender", true);
     else if(sortedBy == 4)
-        return _dat.readDataGenderDesc();
+        return _dat.readSciData("gender", false);
     else if(sortedBy == 5)
-        return _dat.readDataBirthAsc();
+        return _dat.readSciData("birth", true);
     else if(sortedBy == 6)
-        return _dat.readDataBirthDesc();
+        return _dat.readSciData("birth", false);
     else if(sortedBy == 7)
-        return _dat.readDataDeathAsc();
+        return _dat.readSciData("death", true);
     else
-        return _dat.readDataDeathDesc();
+        return _dat.readSciData("death", false);
+
 }
 
 bool Domain::addPerson(Person p)

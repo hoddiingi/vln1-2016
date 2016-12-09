@@ -26,6 +26,11 @@ Person::Person(int id, string name, string gender, int birth, int death)
     _death  = death;
 }
 
+int Person::getId() const
+{
+    return _id;
+}
+
 string Person::getName() const
 {
     return _name;
