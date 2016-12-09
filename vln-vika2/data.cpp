@@ -232,7 +232,7 @@ vector<Person> Data::searchName(QString &name)
     vector<Person> results;
 
     //Search function, we search from out vector and then put the results in another vector so it shows us all results
-
+    int idFind;
     string nameFind;
     string genderFind;
     int birthFind;
@@ -249,12 +249,15 @@ vector<Person> Data::searchName(QString &name)
     while(query.next())
     {
         // it exists
+        idFind = query.value("ID").toInt();
         nameFind = query.value("Name").toString().toStdString();
         genderFind = query.value("Gender").toString().toStdString();
         birthFind = query.value("Birth").toInt();
         deathFind = query.value("Death").toInt();
-        Person p2(nameFind, genderFind, birthFind, deathFind);
+
+        Person p2(idFind, nameFind, genderFind, birthFind, deathFind);
         results.push_back(p2);
+        qDebug() << p2.getId() << endl;
     }
     close();
 
@@ -267,7 +270,7 @@ vector<Computer> Data::searchComputer(QString &computerName)
     vector<Computer> results;
 
     //Search function, we search from out vector and then put the results in another vector so it shows us all results
-
+    int idFind;
     string nameFind;
     int yearFind;
     string typeFind;
@@ -282,11 +285,12 @@ vector<Computer> Data::searchComputer(QString &computerName)
     while(query.next())
     {
         // it exists
+        idFind = query.value("ID").toInt();
         nameFind = query.value("computername").toString().toStdString();
         yearFind = query.value("year").toInt();
         typeFind = query.value("type").toString().toStdString();
         builtFind = query.value("built").toString().toStdString();
-        Computer c(nameFind, yearFind, typeFind, builtFind);
+        Computer c(idFind, nameFind, yearFind, typeFind, builtFind);
         results.push_back(c);
     }
 
