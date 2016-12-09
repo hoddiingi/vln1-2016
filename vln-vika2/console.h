@@ -16,6 +16,8 @@ public:
     bool validName(string n);
     bool validComputerName(string n);
     bool validYear(string s);
+    void validInput();
+    void removeWhitespace(string& str);
     void getInfo();
     int getSort();
     void display();
@@ -48,6 +50,8 @@ public:
     void displaySearchComputer();
     void displayComputer();
     void printAllPersons();
+    void displayCompIdName();
+    void displaySciIdName();
     int sortBy();
 
     int addPersConnection();

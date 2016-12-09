@@ -17,6 +17,7 @@ public:
     string getBuilt() const;
     int getNameSize2();
     int getTypeSize();
+    int getId() const;
 
 private:
     int _id;
