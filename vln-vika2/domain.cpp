@@ -35,6 +35,7 @@ vector<Person> Domain::searchSciId(int &id)
 {
     return _dat.searchSciId(id);
 }
+
 vector<Computer> Domain::searchCompId(int &id)
 {
     return _dat.searchCompId(id);
@@ -82,57 +83,68 @@ vector<Person> Domain::readSciData(int sortedBy)
         return _dat.readSciData("death", false);
     else
         return _dat.readSciData("ID", true);
-
 }
 
 vector<int> Domain::readConData()
 {
     return _dat.readConData();
 }
+
 vector<Person> Domain::searchName(QString &name)
 {
     return _dat.searchName(name);
 }
+
 vector<Computer> Domain::searchComputer(QString &computerName)
 {
     return _dat.searchComputer(computerName);
 }
+
 bool Domain::addPerson(Person p, QSqlError error)
 {
     return _dat.addPerson(p, error);
 }
+
 bool Domain::addComputer(Computer c, QSqlError error)
 {
     return _dat.addComputer(c, error);
 }
+
 bool Domain::removeAllPersons(QSqlError error)
 {
     return _dat.removeAllPersons(error);
 }
+
 bool Domain::removeAllComputers(QSqlError error)
 {
     return _dat.removeAllComputers(error);
 }
+
 bool Domain::removePerson(QString& name, QSqlError error)
 {
     return _dat.removePerson(name, error);
 }
+
 bool Domain::removeComputer(QString& computername, QSqlError error)
 {
     return _dat.removeComputer(computername, error);
 }
+
 bool Domain::removeConnection(QString &sciId, QSqlError error)
 {
     return _dat.removeConnection(sciId, error);
 }
+
 bool Domain::removeAllConnections(QSqlError error)
 {
     return _dat.removeAllConnections(error);
 }
+
 bool Domain::addConnection(int personID, int computerID, QSqlError error)
 {
     return _dat.addConnections(personID, computerID, error);
 }
+
 void Domain::updateScientistName(QString &name, QString &update)
 {
     return _dat.updateScientistName(name, update);
@@ -147,6 +159,7 @@ void Domain::updateScientistBirth(QString &name, QString &update)
 {
     return _dat.updateScientistBirth(name, update);
 }
+
 void Domain::updateScientistDeath(QString &name, QString &update)
 {
     return _dat.updateScientistDeath(name, update);

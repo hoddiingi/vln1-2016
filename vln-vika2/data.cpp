@@ -20,14 +20,6 @@ void Data::open()
     sqlPrufa.setDatabaseName(sqlPrufaName);
 
     sqlPrufa.open();
-    if (!sqlPrufa.open())
-    {
-       //qDebug() << "Error: connection with database fail";
-    }
-    else
-    {
-       //qDebug() << "Database: connection ok";
-    }
 
     foreignKeys();
 }
@@ -50,65 +42,64 @@ void Data::close()
     sqlPrufa = QSqlDatabase();
     QSqlDatabase::removeDatabase(connection);
 }
+
 vector<Computer> Data::readCompData(string orderBy, bool isAsc)
 {
-
     vector<Computer> vect2;
 
     open();
     QString queryInput = "SELECT * FROM computers ORDER BY ";
     queryInput += QString::fromStdString(orderBy);
     queryInput += " COLLATE NOCASE";
+
     if(isAsc == true)
         queryInput += " ASC";
     else
         queryInput += " DESC";
 
     QSqlQuery query(queryInput);
-        int idId = query.record().indexOf("ID");
-        int idCompName = query.record().indexOf("computername");
-        int idYear = query.record().indexOf("year");
-        int idType = query.record().indexOf("type");
-        int idBuilt = query.record().indexOf("built");
-        while (query.next())
-        {
-            int id = query.value(idId).toInt();
-            string name = query.value(idCompName).toString().toStdString();
-            int year = query.value(idYear).toInt();
-            string type = query.value(idType).toString().toStdString();
-            string built = query.value(idBuilt).toString().toStdString();
-            Computer temp(id, name, year, type, built);
-            vect2.push_back(temp);
-         }
+    int idId = query.record().indexOf("ID");
+    int idCompName = query.record().indexOf("computername");
+    int idYear = query.record().indexOf("year");
+    int idType = query.record().indexOf("type");
+    int idBuilt = query.record().indexOf("built");
+
+    while (query.next())
+    {
+        int id = query.value(idId).toInt();
+        string name = query.value(idCompName).toString().toStdString();
+        int year = query.value(idYear).toInt();
+        string type = query.value(idType).toString().toStdString();
+        string built = query.value(idBuilt).toString().toStdString();
+        Computer temp(id, name, year, type, built);
+        vect2.push_back(temp);
+    }
     close();
     return vect2;
 }
 
 vector<int> Data::readConData()
 {
-
     vector<int> vect;
-
     open();
 
-
     QSqlQuery query("SELECT * FROM connection");
-        int sciId = query.record().indexOf("scientistid");
-        int compId = query.record().indexOf("computerid");
-        while (query.next())
-        {
-            int sci = query.value(sciId).toInt();
-            vect.push_back(sci);
-            int comp = query.value(compId).toInt();
-            vect.push_back(comp);
-         }
+    int sciId = query.record().indexOf("scientistid");
+    int compId = query.record().indexOf("computerid");
+
+    while (query.next())
+    {
+        int sci = query.value(sciId).toInt();
+        vect.push_back(sci);
+        int comp = query.value(compId).toInt();
+        vect.push_back(comp);
+    }
     close();
     return vect;
 }
 
 vector<Person> Data::readSciData(string orderBy, bool isAsc)
 {
-
     vector<Person> vect;
 
     open();
@@ -121,21 +112,22 @@ vector<Person> Data::readSciData(string orderBy, bool isAsc)
         queryInput += " DESC";
 
     QSqlQuery query(queryInput);
-        int idId = query.record().indexOf("ID");
-        int idName = query.record().indexOf("name");
-        int idGender = query.record().indexOf("gender");
-        int idBirth = query.record().indexOf("birth");
-        int idDeath = query.record().indexOf("death");
-        while (query.next())
-        {
-            int id = query.value(idId).toInt();
-            string name = query.value(idName).toString().toStdString();
-            string gender = query.value(idGender).toString().toStdString();
-            int birth = query.value(idBirth).toInt();
-            int death = query.value(idDeath).toInt();
-            Person temp(id, name, gender, birth, death);
-            vect.push_back(temp);
-         }
+    int idId = query.record().indexOf("ID");
+    int idName = query.record().indexOf("name");
+    int idGender = query.record().indexOf("gender");
+    int idBirth = query.record().indexOf("birth");
+    int idDeath = query.record().indexOf("death");
+
+    while (query.next())
+    {
+        int id = query.value(idId).toInt();
+        string name = query.value(idName).toString().toStdString();
+        string gender = query.value(idGender).toString().toStdString();
+        int birth = query.value(idBirth).toInt();
+        int death = query.value(idDeath).toInt();
+        Person temp(id, name, gender, birth, death);
+        vect.push_back(temp);
+    }
     close();
     return vect;
 }
@@ -149,7 +141,6 @@ bool Data::addPerson(Person p, QSqlError error)
    int birth = p.getBirth();
    int death = p.getDeath();
    bool success = false;
-   // you should check if args are ok first...
 
    QSqlQuery query;
 
@@ -165,12 +156,13 @@ bool Data::addPerson(Person p, QSqlError error)
    }
    else
    {
-        error = query.lastError();
+       error = query.lastError();
    }
    close();
 
    return success;
 }
+
 bool Data::addComputer(Computer c, QSqlError error)
 {
     open();
@@ -205,7 +197,6 @@ bool Data::addConnections(int personID, int computerID, QSqlError error)
     bool success = false;
 
     QSqlQuery query;
-
 
     query.prepare("INSERT INTO Connection (scientistID, computerID) VALUES (:scientistID, :computerID)");
     query.bindValue(":scientistID", personID);
@@ -245,7 +236,6 @@ vector<Person> Data::searchName(QString &name)
 
     while(query.next())
     {
-        // it exists
         idFind = query.value("ID").toInt();
         nameFind = query.value("Name").toString().toStdString();
         genderFind = query.value("Gender").toString().toStdString();
@@ -302,7 +292,6 @@ bool Data::removePerson(QString& name, QSqlError error)
     removeQuery.prepare("DELETE FROM people WHERE name = (:name)");
     removeQuery.bindValue(":name", name);
 
-
     if(removeQuery.exec())
     {
         success = true;
@@ -344,7 +333,6 @@ bool Data::removeComputer(QString &computername, QSqlError error)
     removeQuery.prepare("DELETE FROM computers WHERE ComputerName = (:computername)");
     removeQuery.bindValue(":computername", computername);
 
-
     if(removeQuery.exec())
     {
         success = true;
@@ -385,6 +373,7 @@ bool Data::removeConnection(QString &sciId, QSqlError error)
     QSqlQuery removeQuery;
     removeQuery.prepare("DELETE FROM connection WHERE scientistid = (:scientistid)");
     removeQuery.bindValue(":scientistid", sciId);
+
     if(removeQuery.exec())
     {
         success = true;
@@ -396,6 +385,7 @@ bool Data::removeConnection(QString &sciId, QSqlError error)
     close();
     return success;
 }
+
 bool Data::removeAllConnections(QSqlError error)
 {
     open();
@@ -415,10 +405,10 @@ bool Data::removeAllConnections(QSqlError error)
     close();
     return success;
 }
+
 void Data::updateScientistName(QString &name, QString &update)
 {
     open();
-
     QSqlQuery query(sqlPrufa);
 
     query.exec("UPDATE People SET name='" +update+ "'"
@@ -430,7 +420,6 @@ void Data::updateScientistName(QString &name, QString &update)
 void Data::updateScientistGender(QString &name, QString &update)
 {
     open();
-
     QSqlQuery query(sqlPrufa);
 
     query.exec("UPDATE People SET gender='" +update+ "'"
@@ -442,7 +431,6 @@ void Data::updateScientistGender(QString &name, QString &update)
 void Data::updateScientistBirth(QString &name, QString &update)
 {
     open();
-
     QSqlQuery query(sqlPrufa);
 
     query.exec("UPDATE People SET birth='" +update+ "'"
@@ -523,6 +511,7 @@ vector<Computer> Data::searchCompId(int &id)
     close();
     return results;
 }
+
 void Data::updateScientistDeath(QString &name, QString &update)
 {
     open();
@@ -582,6 +571,3 @@ void Data::updateComputerBuilt(QString &computerName, QString &update)
 
     close();
 }
-
-
-
