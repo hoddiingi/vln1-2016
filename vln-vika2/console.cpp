@@ -776,6 +776,7 @@ void Console::deleteStuff()
         }
         else if (input == "1")
         {
+            _pers = _dom.readSciData(1);
             display();
             QString name = QString::fromStdString(searchScientist());
             _dom.removePerson(name);
@@ -787,6 +788,8 @@ void Console::deleteStuff()
         }
         else if (input == "3")
         {
+            _comp = _dom.readCompData(1);
+            displayComputer();
             QString computer = QString::fromStdString(searchComputer());
             _dom.removeComputer(computer);
         }
