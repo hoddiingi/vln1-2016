@@ -237,7 +237,7 @@ void Console::menu(string& command)
     cout << "View   - for viewing the whole list" << endl;
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
-    cout << "Update - for update" << endl;
+    cout << "Update - for updating information" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
