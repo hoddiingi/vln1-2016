@@ -13,18 +13,17 @@ public:
     Person(int id, string name, string gender, int birth, int death);
     Person(string name, string gender, int birth, int death);
 
-    //Gets private member variables
-    string getName() const;
+
+    string getName() const;             //Gets private member variables
     string getGender() const;
     int getBirth() const;
     int getDeath() const;
     int getId() const;
-    void setDeath(int death);
     int getNameSize();
 
 private:
-    //Member variables
-    int _id;
+
+    int _id;                            //Private member variables
     string _name;
     string _gender;
     int _birth;
