@@ -55,6 +55,7 @@ void Data::close()
 vector<Person> Data::readData()
 {
     //open();
+    foreignKeys();
     vector<Person> vect;
 
     QSqlQuery query("SELECT * FROM people");
