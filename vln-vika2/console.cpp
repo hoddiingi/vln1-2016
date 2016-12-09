@@ -354,7 +354,6 @@ void Console::displayConnections()
     cout << "--------------------------------------------" << endl;
     for(unsigned int i = 0; i < j.size(); i++)
     {
-
         vector<Person> test = searchSciId(j[i]);
         vector<Computer> test2 = searchCompId(j[i+1]);
         cout << test[0].getId() << "\t";
@@ -376,9 +375,6 @@ void Console::displayConnections()
         {
             cout << test[0].getName() << "\t";
         }
-
-        //for(int x = 0; x < test.size(); x++)
-        //cout << test[0].getName() << "\t";
         cout << test2[0].getId() << "\t";
         cout << test2[0].getName() << endl;
         i++;
