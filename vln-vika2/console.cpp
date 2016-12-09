@@ -78,11 +78,12 @@ void Console::getInfo()
                 cout << "--------------------------------------------" << endl;
                 cout << "Please enter one of the following commands:" << endl;
                 cout << "1 - view list of scientists" << endl;
-                cout << "2 - view a list of computers" << endl << endl;
+                cout << "2 - view a list of computers" << endl;
+                cout << "3 - view connection" << endl << endl;
 
                 getline(cin, viewInput);
 
-                   if((viewInput != "1" && viewInput != "2"))
+                   if((viewInput != "1" && viewInput != "2" && viewInput != "3"))
                     {
                         validInput();
                     }
@@ -98,7 +99,11 @@ void Console::getInfo()
                         _comp = _dom.readCompData(num);
                         displayComputer();
                     }
-            }while((viewInput != "1" && viewInput != "2"));
+                    else if (viewInput == "3")
+                   {
+                        displayConnections();
+                   }
+            }while((viewInput != "1" && viewInput != "2" && viewInput != "3"));
         }
         else if((command == "Search") || (command == "search"))
         {
@@ -269,7 +274,9 @@ void Console::add(string& anotherOne)
                 addAnother(anotherOne);
 
                 Person newData(name, gender, birth, death);
-                _dom.addPerson(newData);
+                QSqlError error;
+                if(_dom.addPerson(newData, error) == false)
+                    qDebug() << "Add person error : " << error << endl;
             }while(anotherOne == "y" || anotherOne == "Y");
         }
         else if(choice == "2")
@@ -288,7 +295,11 @@ void Console::add(string& anotherOne)
                 addAnother(anotherOne);
 
                 Computer newDataComp(computerName, year, type, built);
-                _dom.addComputer(newDataComp);
+                QSqlError error;
+                if(_dom.addComputer(newDataComp, error) == false)
+                {
+                    qDebug() << "Add computer error : " << error << endl;
+                }
             }while(anotherOne == "y" || anotherOne == "Y");
         }
         else if(choice == "3")
@@ -302,11 +313,69 @@ void Console::add(string& anotherOne)
             personID = addPersConnection();
             displayCompIdName();
             computerID = addCompConnection();
+
+
             //kalla ég í data (dom.addConnections(personID, computerID))
-            _dom.addConnection(personID, computerID);
+            QSqlError error;
+            if(_dom.addConnection(personID, computerID, error) == false)
+            {
+                qDebug() << "Add connection error : " << error << endl;
+            }
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
+
+void Console::displayConnections()
+{
+    vector<int> j = _dom.readConData();
+    _pers = _dom.readSciData(1);
+    _comp = _dom.readCompData(1);
+
+
+    for(int i = 0; i < j.size(); i++)
+    {
+        vector<Person> test = searchSciId(j[i]);
+        vector<Computer> test2 = searchCompId(j[i+1]);
+
+        //for(int x = 0; x < test.size(); x++)
+        cout << test[0].getName() << "\t";
+        cout << test2[0].getName() << endl;
+        i++;
+
+
+    }
+
+
+
+
+        //cout << per << endl;
+
+   /* for(int g = 0; g < j.size();g++)
+    {
+        for(int i = 0; i < _pers.size();i++ )
+            if(_comp[i].getId() == j[i])
+            {
+                cout << _comp[i].getName() << "\t";
+                //cout << _comp[i].getName() << endl;
+                //for(int h = 0; h < _comp.size();h++)
+                  //  if(_comp[h].getId() == j[h])
+                    //    cout << _comp[h].getId();
+            }
+
+    }*/
+}
+
+vector<Person> Console::searchSciId(int sciId)
+{
+    int id = sciId;
+    return _dom.searchSciId(id);
+}
+vector<Computer> Console::searchCompId(int compId)
+{
+    int id = compId;
+    return _dom.searchCompId(id);
+}
+
 int Console::addPersConnection()
 {
     int input;
@@ -737,23 +806,36 @@ void Console::deleteStuff()
             _pers = _dom.readSciData(1);
             display();
             QString name = QString::fromStdString(searchScientist());
-            _dom.removePerson(name);
+            QSqlError error;
+            if(_dom.removePerson(name, error) == false)
+            {
+                qDebug() << "Remove person error : " << error << endl;
+            }
         }
         else if (input == "2")
         {
             
-            _dom.removeAllPersons();
+            QSqlError error;
+            if(_dom.removeAllPersons(error) == false)
+            {
+                qDebug() << "Add connection error : " << error << endl;
+            }
         }
         else if (input == "3")
         {
             _comp = _dom.readCompData(1);
             displayComputer();
             QString computer = QString::fromStdString(searchComputer());
-            _dom.removeComputer(computer);
+            QSqlError error;
+            _dom.removeComputer(computer, error);
         }
         else if (input == "4")
         {
-            _dom.removeAllComputers();
+            QSqlError error;
+            if(_dom.removeAllComputers(error) == false)
+            {
+                qDebug() << "Remove All computers error : " << error << endl;
+            }
         }
     }while(input != "1" && input != "2" && input != "3" && input != "4");
 }

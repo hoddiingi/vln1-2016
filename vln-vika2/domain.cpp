@@ -67,7 +67,14 @@ vector<Person> Domain::searchName(QString &name)
 {
     return _dat.searchName(name);
 }
-
+vector<Person> Domain::searchSciId(int &id)
+{
+    return _dat.searchSciId(id);
+}
+vector<Computer> Domain::searchCompId(int &id)
+{
+    return _dat.searchCompId(id);
+}
 vector<Computer> Domain::searchComputer(QString &computerName)
 {
     return _dat.searchComputer(computerName);
@@ -113,13 +120,18 @@ vector<Person> Domain::readSciData(int sortedBy)
 
 }
 
-bool Domain::addPerson(Person p)
+vector<int> Domain::readConData()
 {
-    return _dat.addPerson(p);
+    return _dat.readConData();
 }
-bool Domain::addComputer(Computer c)
+
+bool Domain::addPerson(Person p, QSqlError error)
 {
-    return _dat.addComputer(c);
+    return _dat.addPerson(p, error);
+}
+bool Domain::addComputer(Computer c, QSqlError error)
+{
+    return _dat.addComputer(c, error);
 }
 
 void Domain::open()
@@ -136,23 +148,23 @@ int Domain::sortBy()
     Console _con;
     return _con.sortBy();
 }
-bool Domain::removeAllPersons()
+bool Domain::removeAllPersons(QSqlError error)
 {
-    return _dat.removeAllPersons();
+    return _dat.removeAllPersons(error);
 }
-bool Domain::removeAllComputers()
+bool Domain::removeAllComputers(QSqlError error)
 {
-    return _dat.removeAllComputers();
+    return _dat.removeAllComputers(error);
 }
-bool Domain::removePerson(QString& name)
+bool Domain::removePerson(QString& name, QSqlError error)
 {
-    return _dat.removePerson(name);
+    return _dat.removePerson(name, error);
 }
-bool Domain::removeComputer(QString& computername)
+bool Domain::removeComputer(QString& computername, QSqlError error)
 {
-    return _dat.removeComputer(computername);
+    return _dat.removeComputer(computername, error);
 }
-bool Domain:: addConnection (int personID, int computerID)
+bool Domain:: addConnection (int personID, int computerID, QSqlError error)
 {
-    return _dat.addConnections(personID, computerID);
+    return _dat.addConnections(personID, computerID, error);
 }

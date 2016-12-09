@@ -13,25 +13,26 @@ public:
     void open();
     void close();
     void foreignKeys();
-
-    vector<Person> readData();
    // vector<Computer> readCompData();
 
     void readCompData();
     vector<Computer> readCompData(string orderBy, bool isAsc);
     vector<Person> readSciData(string orderBy, bool isAsc);
 
-    bool addPerson(Person p);
-    bool addComputer(Computer c);
-    bool addConnections(int personID, int computerID);
+    bool addPerson(Person p, QSqlError error);
+    bool addComputer(Computer c, QSqlError error);
+    bool addConnections(int personID, int computerID, QSqlError error);
 
-    bool removePerson(QString &name);
-    bool removeAllPersons();
-    bool removeComputer(QString &computername);
-    bool removeAllComputers();
+    bool removePerson(QString &name, QSqlError error);
+    bool removeAllPersons(QSqlError error);
+    bool removeComputer(QString &computername, QSqlError error);
+    bool removeAllComputers(QSqlError error);
 
     vector<Person> searchName(QString &name);
     vector<Computer> searchComputer(QString &computerName);
+    vector<Person> searchSciId(int &id);
+    vector<Computer> searchCompId(int &id);
+    vector<int> readConData();
 
 private:
     vector<Person> _persons;

@@ -27,7 +27,7 @@ void Data::open()
     }
     else
     {
-       qDebug() << "Database: connection ok";
+       //qDebug() << "Database: connection ok";
     }
 
     foreignKeys();
@@ -52,33 +52,6 @@ void Data::close()
     QSqlDatabase::removeDatabase(connection);
 }
 
-vector<Person> Data::readData()
-{
-    //open();
-    vector<Person> vect;
-
-    QSqlQuery query("SELECT * FROM people");
-
-    int id       = query.record().indexOf("ID");
-    int idName   = query.record().indexOf("name");
-    int idGender = query.record().indexOf("gender");
-    int idBirth  = query.record().indexOf("birth");
-    int idDeath  = query.record().indexOf("death");
-
-    while (query.next())
-    {
-        int id1       = query.value(id).toInt();
-        string name   = query.value(idName).toString().toStdString();
-        string gender = query.value(idGender).toString().toStdString();
-        int birth     = query.value(idBirth).toInt();
-        int death     = query.value(idDeath).toInt();
-
-        Person temp(id1, name, gender, birth, death);
-        vect.push_back(temp);
-    }
-    //close();
-    return vect;
-}
 
 vector<Computer> Data::readCompData(string orderBy, bool isAsc)
 {
@@ -112,6 +85,28 @@ vector<Computer> Data::readCompData(string orderBy, bool isAsc)
          }
     close();
     return vect2;
+}
+
+vector<int> Data::readConData()
+{
+
+    vector<int> vect;
+
+    open();
+
+
+    QSqlQuery query("SELECT * FROM connection");
+        int sciId = query.record().indexOf("scientistid");
+        int compId = query.record().indexOf("computerid");
+        while (query.next())
+        {
+            int sci = query.value(sciId).toInt();
+            vect.push_back(sci);
+            int comp = query.value(compId).toInt();
+            vect.push_back(comp);
+         }
+    close();
+    return vect;
 }
 
 vector<Person> Data::readSciData(string orderBy, bool isAsc)
@@ -148,7 +143,7 @@ vector<Person> Data::readSciData(string orderBy, bool isAsc)
     return vect;
 }
 
-bool Data::addPerson(Person p)
+bool Data::addPerson(Person p, QSqlError error)
 {
    open();
 
@@ -173,14 +168,15 @@ bool Data::addPerson(Person p)
    }
    else
    {
-        qDebug() << "addPerson error:  " << query.lastError();
+       // qDebug() << "addPerson error:  " << query.lastError();
+        error = query.lastError();
    }
    close();
 
    return success;
 }
 
-bool Data::addConnections(int personID, int computerID)
+bool Data::addConnections(int personID, int computerID, QSqlError error)
 {
     open();
     bool success = false;
@@ -198,14 +194,15 @@ bool Data::addConnections(int personID, int computerID)
     }
     else
     {
-         qDebug() << "addConnections error:  " << query.lastError();
+         //qDebug() << "addConnections error:  " << query.lastError();
+        error = query.lastError();
     }
 
     close();
     return success;
 }
 
-bool Data::addComputer(Computer c)
+bool Data::addComputer(Computer c, QSqlError error)
 {
     open();
     QString name = QString::fromStdString(c.getName());
@@ -227,13 +224,14 @@ bool Data::addComputer(Computer c)
     }
     else
     {
-        qDebug() << "addPerson error:  " << query.lastError();
+        //qDebug() << "addPerson error:  " << query.lastError();
+        error = query.lastError();
     }
     close();
     return success;
 }
 
-bool Data::removePerson(QString& name)
+bool Data::removePerson(QString& name, QSqlError error)
 {
     open();
     bool success = false;
@@ -248,7 +246,8 @@ bool Data::removePerson(QString& name)
 
         if(!success)
         {
-            qDebug() << "remove person failed: " << queryDelete.lastError();
+            //qDebug() << "remove person failed: " << queryDelete.lastError();
+            error = queryDelete.lastError();
         }
     }
     else
@@ -260,7 +259,7 @@ bool Data::removePerson(QString& name)
 
 }
 
-bool Data::removeAllPersons()
+bool Data::removeAllPersons(QSqlError error)
 {
     open();
     bool success = false;
@@ -274,13 +273,14 @@ bool Data::removeAllPersons()
     }
     else
     {
-        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+        //qDebug() << "remove all persons failed: " << removeQuery.lastError();
+        error = removeQuery.lastError();
     }
     close();
     return success;
 }
 
-bool Data::removeComputer(QString &computername)
+bool Data::removeComputer(QString &computername, QSqlError error)
 {
     open();
     bool success = false;
@@ -295,7 +295,8 @@ bool Data::removeComputer(QString &computername)
 
         if(!success)
         {
-            qDebug() << "remove computer failed: " << queryDelete.lastError();
+            //qDebug() << "remove computer failed: " << queryDelete.lastError();
+            error = queryDelete.lastError();
         }
     }
     else
@@ -306,7 +307,7 @@ bool Data::removeComputer(QString &computername)
     return success;
 }
 
-bool Data::removeAllComputers()
+bool Data::removeAllComputers(QSqlError error)
 {
     open();
     bool success = false;
@@ -320,7 +321,8 @@ bool Data::removeAllComputers()
     }
     else
     {
-        qDebug() << "remove all computers failed: " << removeQuery.lastError();
+        //qDebug() << "remove all computers failed: " << removeQuery.lastError();
+        error = removeQuery.lastError();
     }
     close();
     return success;
@@ -361,6 +363,79 @@ vector<Person> Data::searchName(QString &name)
     return results;
 }
 
+vector<Person> Data::searchSciId(int &id)
+{
+    open();
+    vector<Person> results;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    QString idCheck = QString::number(id);
+    int idFind;
+    string nameFind;
+    string genderFind;
+    int birthFind;
+    int deathFind;
+
+    QSqlQuery query(sqlPrufa);
+
+    QString search = "SELECT * FROM people WHERE id LIKE " + idCheck;
+
+    query.prepare(search);
+
+    query.exec();
+
+    while(query.next())
+    {
+        // it exists
+        idFind = query.value("ID").toInt();
+        nameFind = query.value("Name").toString().toStdString();
+        genderFind = query.value("Gender").toString().toStdString();
+        birthFind = query.value("Birth").toInt();
+        deathFind = query.value("Death").toInt();
+        Person p2(idFind, nameFind, genderFind, birthFind, deathFind);
+        results.push_back(p2);
+    }
+    close();
+    return results;
+}
+
+vector<Computer> Data::searchCompId(int &id)
+{
+    open();
+    vector<Computer> results;
+
+    //Search function, we search from out vector and then put the results in another vector so it shows us all results
+
+    QString idCheck = QString::number(id);
+    int idFind;
+    string nameFind;
+    int yearFind;
+    string typeFind;
+    string builtFind;
+
+    QSqlQuery query(sqlPrufa);
+
+    QString search = "SELECT * FROM computers WHERE id LIKE " + idCheck;
+
+    query.prepare(search);
+
+    query.exec();
+
+    while(query.next())
+    {
+        // it exists
+        idFind = query.value("ID").toInt();
+        nameFind = query.value("computername").toString().toStdString();
+        yearFind = query.value("year").toInt();
+        typeFind = query.value("type").toString().toStdString();
+        builtFind = query.value("built").toString().toStdString();
+        Computer c(idFind, nameFind, yearFind, typeFind, builtFind);
+        results.push_back(c);
+    }
+    close();
+    return results;
+}
 vector<Computer> Data::searchComputer(QString &computerName)
 {
     open();

@@ -46,9 +46,12 @@ public:
     void search();
     string searchScientist();
     string searchComputer();
+    vector<Person> searchSciId(int sciId);
+    vector<Computer> searchCompId(int compId);
     void displaySearchScientist();
     void displaySearchComputer();
     void displayComputer();
+    void displayConnections();
     void printAllPersons();
     void displayCompIdName();
     void displaySciIdName();
