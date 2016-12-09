@@ -309,21 +309,39 @@ void Console::add(string& anotherOne)
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
+
 int Console::addPersConnection()
 {
     int input;
     cout << "Enter scientist ID to connect: ";
     cin >> input;
 
-    return input;
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        if(input == _pers[i].getId())
+        {
+            return input;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addPersConnection();
 }
+
 int Console::addCompConnection()
 {
     int input;
     cout << "Enter computer ID to connect: ";
     cin >> input;
 
-    return input;
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+        if(input == _comp[i].getId())
+        {
+            return input;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addCompConnection();
 }
 
 void Console::displaySciIdName()
@@ -336,10 +354,9 @@ void Console::displaySciIdName()
 
         cout << _pers[i].getId() <<"\t";
         cout << _pers[i].getName() << endl;
-
     }
-
 }
+
 void Console::displayCompIdName()
 {
     _comp = _dom.readCompData(1);
@@ -350,15 +367,13 @@ void Console::displayCompIdName()
 
         cout << _comp[i].getId() <<"\t";
         cout << _comp[i].getName() << endl;
-
     }
-
 }
+
 void Console::addName(string& name)
 {
     do
     {
-
         cout << endl << "Enter name of scientist: ";
         getline(cin, name);
 
@@ -698,6 +713,7 @@ void Console::displayComputer()
 
         cout << _comp[i].getYear() << "\t";
 
+
         int typeSize = _comp[i].getTypeSize();
 
         if(typeSize >= 0 && typeSize <= 7)
@@ -712,7 +728,16 @@ void Console::displayComputer()
         {
             cout << _comp[i].getType() << "\t";
         }
-        cout << _comp[i].getBuilt() << endl;
+
+
+        if (_comp[i].getBuilt() == "y"  || _comp[i].getBuilt() == "Y")
+        {
+            cout << "Yes" << endl;
+        }
+        else if (_comp[i].getBuilt() == "n"  || _comp[i].getBuilt() == "N")
+        {
+            cout << "No" << endl;
+        }
     }
 }
 
