@@ -66,8 +66,7 @@ public:
     void update();                              //Updates scientist of choice
 
 private:
-    //Member variables
-    Domain _dom;
+    Domain _dom;                                //Private member variables
     Person _p;
     Computer _c;
     vector<Person> _pers;

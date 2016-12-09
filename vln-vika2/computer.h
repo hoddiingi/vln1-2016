@@ -22,8 +22,7 @@ public:
     int getId() const;
 
 private:
-
-    int _id;                                  //Member variables
+    int _id;                                  //Private member variables
     string _name;
     int _year;
     string _type;

@@ -11,7 +11,7 @@ class Domain
 public:
     Domain();
 
-    int findAge(Person& sciAge) const;                  //Calculates the age of a scientist
+    int findAge(Person& sciAge) const;  //Calculates the age of a scientist
 
     vector<Person> readSciData(int sortedBy);
     vector<Computer> readCompData(int sortedBy);
@@ -40,12 +40,8 @@ public:
     void updateScientistBirth(QString &birth, QString &update);
     void updateScientistDeath(QString &name, QString &update);
 
-    int sortBy();
-
-
-
 private:
-    Data _dat;
+    Data _dat;          //Private member variables
 };
 
 #endif // DOMAIN_H

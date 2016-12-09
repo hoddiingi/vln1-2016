@@ -37,7 +37,7 @@ public:
 
 private:
 
-    vector<Person> _persons;          //Member variables
+    vector<Person> _persons;          //Private member variables
     vector<Computer> _computers;
     QSqlDatabase sqlPrufa;
 };

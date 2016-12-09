@@ -23,7 +23,7 @@ public:
 
 private:
 
-    int _id;                            //Member variables
+    int _id;                            //Private member variables
     string _name;
     string _gender;
     int _birth;
