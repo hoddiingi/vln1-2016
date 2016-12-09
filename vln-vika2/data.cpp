@@ -247,7 +247,6 @@ bool Data::removePerson(QString& name)
         queryDelete.prepare("DELETE FROM people WHERE name = (:name)");
         queryDelete.bindValue(":name", name);
         success = queryDelete.exec();
-        cout << "Person was removed successfully";
 
         if(!success)
         {
@@ -299,10 +298,6 @@ bool Data::removeComputer(QString &computername)
         if(!success)
         {
             qDebug() << "remove computer failed: " << queryDelete.lastError();
-        }
-        else if (success)
-        {
-            cout << "Computer was removed successfully";
         }
     }
     else
