@@ -29,17 +29,19 @@ void Data::open()
     {
        qDebug() << "Database: connection ok";
     }
+
     foreignKeys();
-
-
 }
 
 void Data::foreignKeys()
 {
     QSqlQuery query(sqlPrufa);
-    query.exec("PRAGMA foreign_keys=1");
-}
 
+    if((query.exec("PRAGMA foreign_keys;")) == 0)
+    {
+        query.exec("PRAGMA foreign_keys=1");
+    }
+}
 
 void Data::close()
 {
@@ -177,11 +179,10 @@ bool Data::addPerson(Person p)
 
    return success;
 }
+
 bool Data::addConnections(int personID, int computerID)
 {
     open();
-    //int persID = personID;
-    //int compID = computerID;
     bool success = false;
 
     QSqlQuery query;
