@@ -574,7 +574,7 @@ string Console::searchComputer()
 {
     string computerName;
     cout << endl << "Name of computer: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, computerName);
     return computerName;
 }
@@ -583,7 +583,7 @@ string Console::searchScientist()
 {
     string chosenName;
     cout << endl << "Name of scientist: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, chosenName);
     return chosenName;
 }
@@ -762,7 +762,9 @@ void Console::deleteStuff()
         {
             _pers = _dom.readSciData(1);
             display();
+            //cin.ignore();
             QString name = QString::fromStdString(searchScientist());
+
             _dom.removePerson(name);
         }
         else if (input == "2")
@@ -796,7 +798,7 @@ string Console::getUpdateName()
 {
     string update;
     cout << "Enter new name: ";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, update);
     return update;
 }

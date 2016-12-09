@@ -208,6 +208,26 @@ bool Data::removePerson(QString& name)
 {
     open();
     bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM people WHERE name = (:name)");
+    qDebug() << name << endl;
+    removeQuery.bindValue(":name", name);
+
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    }
+    close();
+    return success;
+/*
+    open();
+    bool success = false;
     vector<Person> result = searchName(name);
 
     if(result.size() > 0)
@@ -227,8 +247,7 @@ bool Data::removePerson(QString& name)
         qDebug() << "remove person failed: person does not exist";
     }
     close();
-    return success;
-
+    return success;*/
 }
 
 bool Data::removeAllPersons()
@@ -255,6 +274,25 @@ bool Data::removeComputer(QString &computername)
 {
     open();
     bool success = false;
+
+    QSqlQuery removeQuery;
+    removeQuery.prepare("DELETE FROM computers WHERE ComputerName = (:computername)");
+    qDebug() << computername << endl;
+    removeQuery.bindValue(":computername", computername);
+
+
+    if(removeQuery.exec())
+    {
+        success = true;
+    }
+    else
+    {
+        qDebug() << "remove all persons failed: " << removeQuery.lastError();
+    }
+    close();
+    return success;
+    /*open();
+    bool success = false;
     vector<Computer> result = searchComputer(computername);
 
     if(result.size() > 0)
@@ -273,8 +311,8 @@ bool Data::removeComputer(QString &computername)
     {
         qDebug() << "remove computer failed: computer does not exist";
     }
-    //close();
-    return success;
+    close();
+    return success;*/
 }
 
 bool Data::removeAllComputers()
