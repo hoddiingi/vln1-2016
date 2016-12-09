@@ -787,7 +787,7 @@ void Console::deleteStuff()
 string Console::getUpdate()
 {
     string name;
-    cout << "Enter name of scientist you want to update: ";
+    cout << "Enter full name of scientist you want to update: ";
     getline(cin, name);
     return name;
 }

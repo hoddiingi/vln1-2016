@@ -10,38 +10,34 @@ class Data
 {
 public:
     Data();
-    //Open and close SQLite
-    void open();
-    void close();
-    //Checks for foreign keys
-    void foreignKeys();
 
-    //Reads info from table in SQLite and stores it in vector
-    vector<Computer> readCompData(string orderBy, bool isAsc);
+    void open();                                                //Open and close SQLite
+    void close();
+
+    void foreignKeys();                                         //Checks for foreign keys
+
+    vector<Computer> readCompData(string orderBy, bool isAsc);  //Reads info from table in SQLite and stores it in vector
     vector<Person> readSciData(string orderBy, bool isAsc);
 
-    //Add info to table in SQLite
-    bool addPerson(Person p);
+    bool addPerson(Person p);                                   //Add info to table in SQLite
     bool addComputer(Computer c);
     bool addConnections(int personID, int computerID);
 
-    //Remove from table in SQLite
-    bool removePerson(QString &name);
+    vector<Person> searchName(QString &name);                   //Search in vector for name or computer
+    vector<Computer> searchComputer(QString &computerName);
+
+    bool removePerson(QString &name);                           //Remove from table in SQLite
     bool removeAllPersons();
     bool removeComputer(QString &computername);
     bool removeAllComputers();
 
-    //Search in vector for name or computer
-    vector<Person> searchName(QString &name);
-    vector<Computer> searchComputer(QString &computerName);
-
-    void updateScientistName(QString &name, QString &update);
+    void updateScientistName(QString &name, QString &update);   //Updates info
     void updateScientistBirth(QString &name, QString &update);
     void updateScientistDeath(QString &name, QString &update);
 
 private:
-    //Member variables
-    vector<Person> _persons;
+
+    vector<Person> _persons;          //Member variables
     vector<Computer> _computers;
     QSqlDatabase sqlPrufa;
 };
