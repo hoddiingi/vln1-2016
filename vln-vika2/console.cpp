@@ -36,7 +36,6 @@ bool Console::validName(string n)
 
 bool Console::validComputerName(string n)
 {
-
     if (n == "")
     {
         return 0;
@@ -218,7 +217,6 @@ void Console::display()
         }  
         cout << _dom.findAge(_pers[i]) << endl;
     }
-
 }
 
 void Console::menu(string& command)
@@ -351,7 +349,6 @@ void Console::displaySciIdName()
 
     for(unsigned int i = 0; i < _pers.size(); i++)
     {
-
         cout << _pers[i].getId() <<"\t";
         cout << _pers[i].getName() << endl;
     }
@@ -364,7 +361,6 @@ void Console::displayCompIdName()
 
     for(unsigned int i = 0; i < _comp.size(); i++)
     {
-
         cout << _comp[i].getId() <<"\t";
         cout << _comp[i].getName() << endl;
     }
@@ -534,6 +530,7 @@ void Console::addAnother(string& anotherOne)
 {
     do
     {
+        cout << endl;
         cout << "Add another? (Y/N): ";
         cin >> anotherOne;
 
@@ -634,7 +631,6 @@ void Console::displaySearchScientist()
         }
         cout << _dom.findAge(k[i]) << endl;
     }
-
 }
 
 void Console::displaySearchComputer()
@@ -686,7 +682,6 @@ void Console::displaySearchComputer()
 
 void Console::displayComputer()
 {
-
     cout  << endl << "COMPUTER NAME:\t\t\tYEAR:\tTYPE:\t\t\tBUILT:" << endl;
     cout << "----------------------------------------------------------------------" << endl;
 
