@@ -287,6 +287,7 @@ void Console::add(string& anotherOne)
                 addType(type);
                 addBuilt(built);
                 addAnother(anotherOne);
+                cin.ignore();
 
                 Computer newDataComp(computerName, year, type, built);
                 _dom.addComputer(newDataComp);
@@ -453,13 +454,14 @@ void Console::addComputerName(string& computerName)
     do
     {
         cout << endl << "Enter name of computer: ";
-        cin.ignore();
+        //cin.ignore();
         getline(cin, computerName);
 
         if(!validComputerName(computerName))
         {
             cout << "Invalid input for name!" << endl;
         }
+        cout << "getline input: " << computerName << endl;
     }while(!validComputerName(computerName));
 }
 
