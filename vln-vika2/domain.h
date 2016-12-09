@@ -2,7 +2,6 @@
 #define DOMAIN_H
 #include <vector>
 #include <QtSql>
-//#include "console.h"
 #include "person.h"
 #include "data.h"
 
@@ -11,12 +10,12 @@ class Domain
 {
 public:
     Domain();
+   //We use all these to connect from data to console
     void ageSorting(vector<Person>& ageSort);
     void alphabeticSort(vector<Person>& alphaSort);
     void sortingAge(vector<Person>& ageSort);
     void maleFemaleSort(vector<Person>& mfsort);
     void deathSorting(vector<Person>& deathSort);
-    //Sorting functions
     void search();
     vector<Person> searchName(QString &name);
     vector<Computer> searchComputer(QString &computerName);
@@ -41,8 +40,6 @@ public:
 
 private:
     Data _dat;
-    //Console _con;
-
 };
 
 #endif // DOMAIN_H
