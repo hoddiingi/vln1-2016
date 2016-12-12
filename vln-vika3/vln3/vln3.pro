@@ -15,14 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
-    console.cpp \
     data.cpp \
     domain.cpp \
     person.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
-    console.h \
     data.h \
     domain.h \
     person.h
@@ -55,12 +53,10 @@ SOURCES += main.cpp \
     person.cpp \
     domain.cpp \
     data.cpp \
-    console.cpp \
     computer.cpp
 
 HEADERS += \
     person.h \
     domain.h \
     data.h \
-    console.h \
     computer.h
