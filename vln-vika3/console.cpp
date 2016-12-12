@@ -16,22 +16,44 @@ Console::Console()
 
 }
 
-void Console::menu(string& command)
+void Console::validInput()
 {
-    cout << endl << "--------------------------------------------" << endl;
-    cout << "Please enter one of the following commands: " << endl << endl;
-    cout << "Add    - for adding scientist to the list" << endl;
-    cout << "View   - for viewing the whole list" << endl;
-    cout << "Search - for searching for names in the list" << endl;
-    cout << "Remove - for removing" << endl;
-    cout << "Update - for updating information" << endl;
-    cout << "Game - for playing TicTacToe" << endl;
-    cout << "Exit   - quits" << endl;
-    cout << "--------------------------------------------" << endl << endl;
+    cout << endl << "Please enter a valid number" << endl;
+    cout << "Numbers cant have space before or after them" << endl << endl;
+}
 
-    cin >> command;
-    cin.ignore();
-    cout << endl;
+bool Console::validName(string n)
+{
+    for (unsigned int i = 0; i < n.size(); i++)
+    {
+        if (isdigit(n[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+bool Console::validComputerName(string n)
+{
+    if (n == "")
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+bool Console::validYear(string s)
+{
+    for (unsigned int i = 0; i < s.size(); i++)
+    {
+        if (!isdigit(s[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
 }
 
 void Console::getInfo()
@@ -60,26 +82,26 @@ void Console::getInfo()
 
                 getline(cin, viewInput);
 
-                if((viewInput != "1" && viewInput != "2" && viewInput != "3"))
-                {
-                    validInput();
-                }
-                else if (viewInput == "1")
-                {
-                    int num1 = getSort();
-                    _pers = _dom.readSciData(num1);
-                    display();
-                }
-                else if (viewInput == "2")
-                {
-                    int num = sortBy();
-                    _comp = _dom.readCompData(num);
-                    displayComputer();
-                }
-                else if (viewInput == "3")
-                {
-                    displayConnections();
-                }
+                   if((viewInput != "1" && viewInput != "2" && viewInput != "3"))
+                    {
+                        validInput();
+                    }
+                    else if (viewInput == "1")
+                    {
+                        int num1 = getSort();
+                        _pers = _dom.readSciData(num1);
+                        display();
+                    }
+                    else if (viewInput == "2")
+                    {
+                        int num = sortBy();
+                        _comp = _dom.readCompData(num);
+                        displayComputer();
+                    }
+                    else if (viewInput == "3")
+                   {
+                        displayConnections();
+                   }
             }while((viewInput != "1" && viewInput != "2" && viewInput != "3"));
         }
         else if((command == "Search") || (command == "search"))
@@ -118,44 +140,106 @@ void Console::getInfo()
     }while((command != "Exit") && (command != "exit"));
 }
 
-void Console::validInput()
+int Console::sortBy()
 {
-    cout << endl << "Please enter a valid number" << endl;
-    cout << "Numbers cant have space before or after them" << endl << endl;
-}
-
-bool Console::validName(string n)
-{
-    for (unsigned int i = 0; i < n.size(); i++)
+    string res;
+    int ress;
+    do
     {
-        if (isdigit(n[i]))
+        cout << endl;
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "1 - view a list of computers by name - asc" << endl;
+        cout << "2 - view a list of computers by name - desc" << endl;
+        cout << "3 - view a list of computers by year - asc" << endl;
+        cout << "4 - view a list of computers by year - desc" << endl;
+        cout << "5 - view a list of computers by type - asc" << endl;
+        cout << "6 - view a list of computers by type - desc" << endl;
+        cout << "7 - view a list of computers by if it was built - asc" << endl;
+        cout << "8 - view a list of computers by if it was builr - desc" << endl << endl;
+        getline(cin, res);
+
+        if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
         {
-            return 0;
+            validInput();
         }
-    }
-    return 1;
+    }while(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8");
+    ress = atoi(res.c_str());
+    return ress;
 }
 
-bool Console::validComputerName(string n)
+int Console::getSort()
 {
-    if (n == "")
+    int sort;
+    string sortInput;
+    do
     {
-        return 0;
-    }
+        cout << endl << "-------------------------------------------"  << endl;
+        cout << "Please enter one of the following commands: " << endl << endl;
+        cout << "1 - sort by alphabetical order - asc" << endl;
+        cout << "2 - sort by alphabetical order - desc" << endl;
+        cout << "3 - sort by gender - asc" << endl;
+        cout << "4 - sort by gender - desc" << endl;
+        cout << "5 - sort by year of birth - asc" << endl;
+        cout << "6 - sort by year of birth - desc" << endl;
+        cout << "7 - sort by year of death - asc" << endl;
+        cout << "8 - sort by year of death - desc" << endl;
+        cout << "-------------------------------------------"  << endl << endl;
+        getline(cin, sortInput);
 
-    return 1;
-}
-
-bool Console::validYear(string s)
-{
-    for (unsigned int i = 0; i < s.size(); i++)
-    {
-        if (!isdigit(s[i]))
+        if(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8")
         {
-            return 0;
+            validInput();
         }
+    }while(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8");
+
+    sort = atoi(sortInput.c_str());
+    return sort;
+}
+
+void Console::display()
+{
+    cout  << endl << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:" << endl;
+
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        int nameSize = _pers[i].getNameSize();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << _pers[i].getName() << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << _pers[i].getName() << "\t\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << _pers[i].getName() << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << _pers[i].getName() << "\t";
+        }
+        if(_pers[i].getGender() == "m" || _pers[i].getGender() == "M")
+        {
+            cout << "Male\t";
+        }
+        else if(_pers[i].getGender() == "f" || _pers[i].getGender() == "F")
+        {
+            cout << "Female\t";
+        }
+        cout << _pers[i].getBirth() << "\t";
+
+        if(_pers[i].getDeath() == 0)
+        {
+            cout << "N/A\t";
+        }
+        else
+        {
+            cout << _pers[i].getDeath() << "\t";
+        }  
+        cout << _dom.findAge(_pers[i]) << endl;
     }
-<<<<<<< HEAD
 }
 
 void Console::menu(string& command)
@@ -167,16 +251,13 @@ void Console::menu(string& command)
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Update - for updating information" << endl;
-    cout << "Game   - for playing TicTacToe" << endl;
+    cout << "Game - for playing TicTacToe" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
     cin >> command;
     cin.ignore();
     cout << endl;
-=======
-    return 1;
->>>>>>> cb0bd59a4b2436e4ba4e04cd6174fffc5a4a78f2
 }
 
 void Console::add(string& anotherOne)
@@ -263,7 +344,130 @@ void Console::add(string& anotherOne)
         }
     }while(choice != "1" && choice != "2" && choice != "3");
 }
+void Console::displayConnections()
+{
+    vector<int> j = _dom.readConData();
+    _pers = _dom.readSciData(9);
+    _comp = _dom.readCompData(9);
 
+    cout << "ID\tName\t\t\t\t" << "ID\tComputer" << endl;
+    cout << "--------------------------------------------" << endl;
+    for(unsigned int i = 0; i < j.size(); i++)
+    {
+        vector<Person> test = searchSciId(j[i]);
+        vector<Computer> test2 = searchCompId(j[i+1]);
+        cout << test[0].getId() << "\t";
+        int nameSize = test[0].getNameSize();
+
+        if(nameSize >= 0 && nameSize <= 7)
+        {
+            cout << test[0].getName() << "\t\t\t\t";
+        }
+        else if(nameSize >= 8  && nameSize <= 15)
+        {
+            cout << test[0].getName() << "\t\t\t";
+        }
+        else if(nameSize >= 16  && nameSize <= 23)
+        {
+            cout << test[0].getName() << "\t\t";
+        }
+        else if(nameSize >= 24  && nameSize <= 31)
+        {
+            cout << test[0].getName() << "\t";
+        }
+        cout << test2[0].getId() << "\t";
+        cout << test2[0].getName() << endl;
+        i++;
+    }
+    cout << endl;
+}
+
+vector<Person> Console::searchSciId(int sciId)
+{
+    int id = sciId;
+    return _dom.searchSciId(id);
+}
+
+vector<Computer> Console::searchCompId(int compId)
+{
+    int id = compId;
+    return _dom.searchCompId(id);
+}
+
+int Console::addPersConnection()
+{
+    string input;
+    do
+    {
+        cout << "Enter scientist ID to connect: ";
+        cin >> input;
+        if(!validYear(input))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }while(validYear(input) == false);
+    int idNumber = atoi(input.c_str());
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        if(idNumber == _pers[i].getId())
+        {
+            return idNumber;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addPersConnection();
+}
+
+int Console::addCompConnection()
+{
+    string input;
+    //cin >> input;
+    do
+    {
+        cout << "Enter computer ID to connect: ";
+        cin >> input;
+        if(!validYear(input))
+        {
+            cout << "Invalid input!" <<endl;
+        }
+    }
+    while(validYear(input) == false);
+    int idNumber = atoi(input.c_str());
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+        if(idNumber == _comp[i].getId())
+        {
+            return idNumber;
+        }
+    }
+    cout << "ID did not match, try again" << endl;
+    return addCompConnection();
+
+}
+
+void Console::displaySciIdName()
+{
+    _pers = _dom.readSciData(9);
+    cout  << endl << "ID:\tNAME: " << endl;
+
+    for(unsigned int i = 0; i < _pers.size(); i++)
+    {
+        cout << _pers[i].getId() <<"\t";
+        cout << _pers[i].getName() << endl;
+    }
+}
+
+void Console::displayCompIdName()
+{
+    _comp = _dom.readCompData(9);
+    cout  << endl << "ID:\tCOMPUTER NAME: " << endl;
+
+    for(unsigned int i = 0; i < _comp.size(); i++)
+    {
+        cout << _comp[i].getId() <<"\t";
+        cout << _comp[i].getName() << endl;
+    }
+}
 
 void Console::addName(string& name)
 {
@@ -310,7 +514,7 @@ void Console::addBirth(int& birth)
         if(!validYear(birthInput))
         {
             cout << "Invalid input!" <<endl;
-        }
+        }        
         else if(atoi(birthInput.c_str()) > 2016)
         {
             cout << "The scientist is not born yet.." << endl;
@@ -344,11 +548,11 @@ void Console::addDeath(int& death, int& birth)
                 if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
                 {
                     cout << "Invalid input!" <<endl;
-                }
+                } 
                 else if(atoi(deathInput.c_str()) > 2016)
                 {
                     cout << "So you think you know the future?" << endl;
-                }
+                } 
             }while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth) || (atoi(deathInput.c_str()) > 2016));
 
             death = atoi(deathInput.c_str());
@@ -440,233 +644,6 @@ void Console::addAnother(string& anotherOne)
     }while(!(anotherOne == "N" || anotherOne == "n") && !(anotherOne == "Y" || anotherOne == "y"));
 }
 
-int Console::addPersConnection()
-{
-    string input;
-    do
-    {
-        cout << "Enter scientist ID to connect: ";
-        cin >> input;
-        if(!validYear(input))
-        {
-            cout << "Invalid input!" <<endl;
-        }
-    }while(validYear(input) == false);
-    int idNumber = atoi(input.c_str());
-    for(unsigned int i = 0; i < _pers.size(); i++)
-    {
-        if(idNumber == _pers[i].getId())
-        {
-            return idNumber;
-        }
-    }
-    cout << "ID did not match, try again" << endl;
-    return addPersConnection();
-}
-
-int Console::addCompConnection()
-{
-    string input;
-    //cin >> input;
-    do
-    {
-        cout << "Enter computer ID to connect: ";
-        cin >> input;
-        if(!validYear(input))
-        {
-            cout << "Invalid input!" <<endl;
-        }
-    }
-    while(validYear(input) == false);
-    int idNumber = atoi(input.c_str());
-    for(unsigned int i = 0; i < _comp.size(); i++)
-    {
-        if(idNumber == _comp[i].getId())
-        {
-            return idNumber;
-        }
-    }
-    cout << "ID did not match, try again" << endl;
-    return addCompConnection();
-}
-
-int Console::getSort()
-{
-    int sort;
-    string sortInput;
-    do
-    {
-        cout << endl << "-------------------------------------------"  << endl;
-        cout << "Please enter one of the following commands: " << endl << endl;
-        cout << "1 - sort by alphabetical order - asc" << endl;
-        cout << "2 - sort by alphabetical order - desc" << endl;
-        cout << "3 - sort by gender - asc" << endl;
-        cout << "4 - sort by gender - desc" << endl;
-        cout << "5 - sort by year of birth - asc" << endl;
-        cout << "6 - sort by year of birth - desc" << endl;
-        cout << "7 - sort by year of death - asc" << endl;
-        cout << "8 - sort by year of death - desc" << endl;
-        cout << "-------------------------------------------"  << endl << endl;
-        getline(cin, sortInput);
-
-        if(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8")
-        {
-            validInput();
-        }
-    }while(sortInput != "1" && sortInput != "2" && sortInput != "3" && sortInput != "4" && sortInput != "5" && sortInput != "6" && sortInput != "7" && sortInput != "8");
-
-    sort = atoi(sortInput.c_str());
-    return sort;
-}
-
-int Console::sortBy()
-{
-    string res;
-    int ress;
-    do
-    {
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "1 - view a list of computers by name - asc" << endl;
-        cout << "2 - view a list of computers by name - desc" << endl;
-        cout << "3 - view a list of computers by year - asc" << endl;
-        cout << "4 - view a list of computers by year - desc" << endl;
-        cout << "5 - view a list of computers by type - asc" << endl;
-        cout << "6 - view a list of computers by type - desc" << endl;
-        cout << "7 - view a list of computers by if it was built - asc" << endl;
-        cout << "8 - view a list of computers by if it was builr - desc" << endl << endl;
-        getline(cin, res);
-
-        if(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8")
-        {
-            validInput();
-        }
-    }while(res != "1" && res != "2" && res != "3" && res != "4" && res != "5" && res != "6" && res != "7" && res != "8");
-
-    ress = atoi(res.c_str());
-    return ress;
-}
-
-void Console::display()
-{
-    cout  << endl << "NAME:\t\t\t\tGENDER:\tBORN:\tDIED:\tAGE:" << endl;
-
-    for(unsigned int i = 0; i < _pers.size(); i++)
-    {
-        int nameSize = _pers[i].getNameSize();
-
-        if(nameSize >= 0 && nameSize <= 7)
-        {
-            cout << _pers[i].getName() << "\t\t\t\t";
-        }
-        else if(nameSize >= 8  && nameSize <= 15)
-        {
-            cout << _pers[i].getName() << "\t\t\t";
-        }
-        else if(nameSize >= 16  && nameSize <= 23)
-        {
-            cout << _pers[i].getName() << "\t\t";
-        }
-        else if(nameSize >= 24  && nameSize <= 31)
-        {
-            cout << _pers[i].getName() << "\t";
-        }
-        if(_pers[i].getGender() == "m" || _pers[i].getGender() == "M")
-        {
-            cout << "Male\t";
-        }
-        else if(_pers[i].getGender() == "f" || _pers[i].getGender() == "F")
-        {
-            cout << "Female\t";
-        }
-        cout << _pers[i].getBirth() << "\t";
-
-        if(_pers[i].getDeath() == 0)
-        {
-            cout << "N/A\t";
-        }
-        else
-        {
-            cout << _pers[i].getDeath() << "\t";
-        }  
-        cout << _dom.findAge(_pers[i]) << endl;
-    }
-}
-
-void Console::displayConnections()
-{
-    vector<int> j = _dom.readConData();
-    _pers = _dom.readSciData(9);
-    _comp = _dom.readCompData(9);
-
-    cout << "ID\tName\t\t\t\t" << "ID\tComputer" << endl;
-    cout << "--------------------------------------------" << endl;
-    for(unsigned int i = 0; i < j.size(); i++)
-    {
-        vector<Person> test = searchSciId(j[i]);
-        vector<Computer> test2 = searchCompId(j[i+1]);
-        cout << test[0].getId() << "\t";
-        int nameSize = test[0].getNameSize();
-
-        if(nameSize >= 0 && nameSize <= 7)
-        {
-            cout << test[0].getName() << "\t\t\t\t";
-        }
-        else if(nameSize >= 8  && nameSize <= 15)
-        {
-            cout << test[0].getName() << "\t\t\t";
-        }
-        else if(nameSize >= 16  && nameSize <= 23)
-        {
-            cout << test[0].getName() << "\t\t";
-        }
-        else if(nameSize >= 24  && nameSize <= 31)
-        {
-            cout << test[0].getName() << "\t";
-        }
-        cout << test2[0].getId() << "\t";
-        cout << test2[0].getName() << endl;
-        i++;
-    }
-    cout << endl;
-}
-
-void Console::displaySciIdName()
-{
-    _pers = _dom.readSciData(9);
-    cout  << endl << "ID:\tNAME: " << endl;
-
-    for(unsigned int i = 0; i < _pers.size(); i++)
-    {
-        cout << _pers[i].getId() <<"\t";
-        cout << _pers[i].getName() << endl;
-    }
-}
-
-void Console::displayCompIdName()
-{
-    _comp = _dom.readCompData(9);
-    cout  << endl << "ID:\tCOMPUTER NAME: " << endl;
-
-    for(unsigned int i = 0; i < _comp.size(); i++)
-    {
-        cout << _comp[i].getId() <<"\t";
-        cout << _comp[i].getName() << endl;
-    }
-}
-
-vector<Person> Console::searchSciId(int sciId)
-{
-    int id = sciId;
-    return _dom.searchSciId(id);
-}
-
-vector<Computer> Console::searchCompId(int compId)
-{
-    int id = compId;
-    return _dom.searchCompId(id);
-}
-
 void Console::search()
 {
     string choice;
@@ -708,7 +685,6 @@ string Console::searchConnection()
     getline(cin, computerName);
     return computerName;
 }
-
 string Console::searchScientist()
 {
     string chosenName;
@@ -840,7 +816,10 @@ void Console::displayComputer()
         {
             cout << _comp[i].getName() << "\t";
         }
+
         cout << _comp[i].getYear() << "\t";
+
+
         int typeSize = _comp[i].getTypeSize();
 
         if(typeSize >= 0 && typeSize <= 7)
@@ -855,6 +834,8 @@ void Console::displayComputer()
         {
             cout << _comp[i].getType() << "\t";
         }
+
+
         if (_comp[i].getBuilt() == "y"  || _comp[i].getBuilt() == "Y")
         {
             cout << "Yes" << endl;
@@ -1125,7 +1106,6 @@ int Console::gameplay()
         n++;
         bord(matrix);
         input(player, matrix);
-
         if (winner(matrix) == 'X')
         {
             bord(matrix);
@@ -1170,113 +1150,113 @@ void Console::input(char& player, char matrix[3][3])
     if (a == '1' || a == '2' || a == '3' || a == '4' || a == '5' || a == '6' || a == '7' || a == '8' || a == '9')
     {
         if (a == '1')
-        {
-            if (matrix[0][0] == '1')
             {
-                matrix[0][0] = player;
+                if (matrix[0][0] == '1')
+                {
+                    matrix[0][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '2')
-        {
-            if (matrix[0][1] == '2')
             {
-                matrix[0][1] = player;
+                if (matrix[0][1] == '2')
+                {
+                    matrix[0][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '3')
-        {
-            if (matrix[0][2] == '3')
             {
-                matrix[0][2] = player;
+                if (matrix[0][2] == '3')
+                {
+                    matrix[0][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '4')
-        {
-            if (matrix[1][0] == '4')
             {
-                matrix[1][0] = player;
+                if (matrix[1][0] == '4')
+                {
+                    matrix[1][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '5')
-        {
-            if (matrix[1][1] == '5')
             {
-                matrix[1][1] = player;
+                if (matrix[1][1] == '5')
+                {
+                    matrix[1][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '6')
-        {
-            if (matrix[1][2] == '6')
             {
-                matrix[1][2] = player;
+                if (matrix[1][2] == '6')
+                {
+                    matrix[1][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '7')
-        {
-            if (matrix[2][0] == '7')
             {
-                matrix[2][0] = player;
+                if (matrix[2][0] == '7')
+                {
+                    matrix[2][0] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '8')
-        {
-            if (matrix[2][1] == '8')
             {
-                matrix[2][1] = player;
+                if (matrix[2][1] == '8')
+                {
+                    matrix[2][1] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
         if (a == '9')
-        {
-            if (matrix[2][2] == '9')
             {
-                matrix[2][2] = player;
+                if (matrix[2][2] == '9')
+                {
+                    matrix[2][2] = player;
+                }
+                else
+                {
+                    cout << "Illegal move!" << endl;
+                    input(player, matrix);
+                }
             }
-            else
-            {
-                cout << "Illegal move!" << endl;
-                input(player, matrix);
-            }
-        }
     }
     else
     {

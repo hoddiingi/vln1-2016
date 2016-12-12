@@ -14,20 +14,27 @@ class Console
 public:
     Console();
 
-    void menu(string& command);                 //Prints out the menu and ask the user for a choice
-
-    void getInfo();                             //Gets input for info
-
     bool validName(string n);                   //Checks if inputs are valid
     bool validComputerName(string n);
     bool validYear(string s);
     void validInput();
 
-    void add(string &anotherOne);               //Adds new info
+    void getInfo();                             //Gets input for info
+
+    int getSort();                              //Gets input for sort
+
+    void display();                             //Display
+
+    void menu(string& command);                 //Prints out the menu and ask the user for a choice
+
+    void add(char& anotherOne);                 //Adds new info
+    void add(string &anotherOne);
     void addName(string& name);
     void addGender(string& gender);
     void addBirth(int& birth);
     void addDeath(int& death, int& birth);
+
+    void deleteStuff();                         //Delete name or the entire table
 
     void addComputerName(string& computerName); //Adds new info
     void addYear(int& year);
@@ -35,16 +42,6 @@ public:
     void addType(string& type);
     void addAnother(char& anotherOne);          //Adds a new scientist's year of death if applicable
     void addAnother(string& anotherOne);        //Asks the user if he/she wants to add another scientist
-
-    int addPersConnection();                    //Ask user to add connections by ID
-    int addCompConnection();
-
-    int getSort();                              //Gets input for sort
-    int sortBy();                               //Gets input from user to sort
-
-    void display();                             //Display
-
-    void deleteStuff();                         //Delete name or the entire table
 
     void search();                              //Checks what the user wants to search for
     string searchScientist();
@@ -62,7 +59,11 @@ public:
     void displayCompIdName();
     void displaySciIdName();
 
+    int sortBy();                               //Gets input from user to sort
     int updateBy();                             //Asks user if he wants to update scientists or computers
+
+    int addPersConnection();                    //Ask user to add connections by ID
+    int addCompConnection();
 
     string getUpdate();                         //Asks the user which scientist he/she wants to update
     string getUpdateName();                     //Asks the user for the new name
@@ -77,11 +78,21 @@ public:
     string getUpdateComputerBuilt();            //Asks the user if it was built
     void updateComputer();                      //Updates computer of choice
 
+
+
+
+
+
+
     void bord(char matrix[3][3]);
     void input(char& player, char matrix[3][3]);
     void changeplayer(char& player);
     char winner(char matrix[3][3]);
     int gameplay();
+
+
+
+
 
 private:
     Domain _dom;                                //Private member variables
