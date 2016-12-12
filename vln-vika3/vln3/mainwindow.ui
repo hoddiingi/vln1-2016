@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>378</width>
+    <height>402</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,61 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
+     <widget class="QLineEdit" name="input_filter_scientists">
+      <property name="placeholderText">
+       <string>Filter scientists...</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QListWidget" name="listScientist"/>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_add_scientist">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:x-large; font-weight:600; color:#ff11e0;&quot;&gt;Add a new scientist&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_scientist_name">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="input_scientist_name"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_scientist_gender">
+      <property name="text">
+       <string>Gender</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="input_scientist_gender"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushBotton">
+      <property name="text">
+       <string>Add scientist</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -25,7 +79,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>378</width>
      <height>21</height>
     </rect>
    </property>

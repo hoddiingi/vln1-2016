@@ -140,7 +140,7 @@ vector<Person> Data::readSciData(string orderBy, bool isAsc)
     return vect;
 }
 
-bool Data::addPerson(Person p, QSqlError error)
+bool Data::addPerson(Person p)
 {
    open();
 
@@ -163,10 +163,10 @@ bool Data::addPerson(Person p, QSqlError error)
    {
        success = true;
    }
-   else
-   {
-        error = query.lastError();
-   }
+   //else
+   //{
+   //     error = query.lastError();
+   //}
    close();
 
    return success;

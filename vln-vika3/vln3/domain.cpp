@@ -97,9 +97,9 @@ vector<Computer> Domain::searchComputer(QString &computerName)
 {
     return _dat.searchComputer(computerName);
 }
-bool Domain::addPerson(Person p, QSqlError error)
+bool Domain::addPerson(Person p)
 {
-    return _dat.addPerson(p, error);
+    return _dat.addPerson(p);
 }
 bool Domain::addComputer(Computer c, QSqlError error)
 {

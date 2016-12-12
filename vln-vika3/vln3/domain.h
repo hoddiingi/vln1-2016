@@ -19,7 +19,7 @@ public:
 
     //We use all these functions to connect from data to console
 
-    bool addPerson(Person p, QSqlError error);
+    bool addPerson(Person p);
     bool addComputer(Computer c, QSqlError error);
     bool addConnection (int personID, int computerID);
 

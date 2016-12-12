@@ -18,6 +18,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_input_filter_scientists_textChanged(const QString &arg1);
+
+    void on_pushBotton_clicked();
+
 private:
     void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);

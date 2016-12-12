@@ -18,7 +18,7 @@ public:
     vector<Computer> readCompData(string orderBy, bool isAsc);  //Reads info from table in SQLite and stores it in vector
     vector<Person> readSciData(string orderBy, bool isAsc);
 
-    bool addPerson(Person p, QSqlError error);                  //Add info to table in SQLite
+    bool addPerson(Person p);                  //Add info to table in SQLite
     bool addComputer(Computer c, QSqlError error);
     bool addConnections(int personID, int computerID, QSqlError error);
 
