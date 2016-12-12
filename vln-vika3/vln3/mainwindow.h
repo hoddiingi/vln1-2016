@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "person.h"
+#include "data.h"
+#include <vector>
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +19,11 @@ public:
     ~MainWindow();
 
 private:
+    void displayAllScientists();
+    void displayScientists(std::vector<Person> scientists);
+
+    Person _persons;
+    Data _data;
     Ui::MainWindow *ui;
 };
 
