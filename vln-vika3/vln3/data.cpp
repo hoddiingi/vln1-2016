@@ -308,7 +308,7 @@ bool Data::removePerson(QString& name, QSqlError error)
         success = true;
     }
     else
-    {  
+    {
         error = removeQuery.lastError();
     }
     close();

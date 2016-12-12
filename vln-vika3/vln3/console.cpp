@@ -237,7 +237,7 @@ void Console::display()
         else
         {
             cout << _pers[i].getDeath() << "\t";
-        }  
+        }
         cout << _dom.findAge(_pers[i]) << endl;
     }
 }
@@ -514,7 +514,7 @@ void Console::addBirth(int& birth)
         if(!validYear(birthInput))
         {
             cout << "Invalid input!" <<endl;
-        }        
+        }
         else if(atoi(birthInput.c_str()) > 2016)
         {
             cout << "The scientist is not born yet.." << endl;
@@ -548,11 +548,11 @@ void Console::addDeath(int& death, int& birth)
                 if((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth))
                 {
                     cout << "Invalid input!" <<endl;
-                } 
+                }
                 else if(atoi(deathInput.c_str()) > 2016)
                 {
                     cout << "So you think you know the future?" << endl;
-                } 
+                }
             }while((!validYear(deathInput)) || (atoi(deathInput.c_str()) < birth) || (atoi(deathInput.c_str()) > 2016));
 
             death = atoi(deathInput.c_str());
@@ -880,7 +880,7 @@ void Console::deleteStuff()
         }
         else if (input == "2")
         {
-            
+
             QSqlError error;
             if(_dom.removeAllPersons(error) == false)
             {
