@@ -47,8 +47,8 @@ void MainWindow::on_pushBotton_clicked()
 {
     QString name = ui->input_scientist_name->text();
     QString gender = ui->input_scientist_gender->text();
-    int birth = 1985;
-    int death = 0;
+    QString birth = ui->input_scientist_birth->text();
+    QString death = ui->input_scientist_death->text();
 
     if(name.isEmpty())
     {
@@ -60,7 +60,7 @@ void MainWindow::on_pushBotton_clicked()
         //do nothing
         return;
     }
-    bool success =_data.addPerson(Person(name.toStdString(), gender.toStdString(), birth, death));
+    bool success =_data.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
     if(success)
     {
         ui->input_filter_scientists->setText("");
@@ -68,7 +68,8 @@ void MainWindow::on_pushBotton_clicked()
 
         ui->input_scientist_name->setText("");
         ui->input_scientist_gender->setText("");
-
+        ui->input_scientist_birth->setText("");
+        ui->input_scientist_death->setText("");
     }
     else
     {

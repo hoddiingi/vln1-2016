@@ -20,7 +20,6 @@ public:
 
 private slots:
     void on_input_filter_scientists_textChanged(const QString &arg1);
-
     void on_pushBotton_clicked();
 
 private:
