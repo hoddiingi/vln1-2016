@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
-    <height>197</height>
+    <width>384</width>
+    <height>190</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -105,23 +105,22 @@
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="deathYesButton">
+        <widget class="QCheckBox" name="deathYesButton">
+         <property name="contextMenuPolicy">
+          <enum>Qt::DefaultContextMenu</enum>
+         </property>
          <property name="text">
           <string>Yes</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="deathNoButton">
-         <property name="text">
-          <string>No</string>
+        <widget class="QLabel" name="whatYearDeadText">
+         <property name="enabled">
+          <bool>false</bool>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>If yes enter year</string>
+          <string>What year ?</string>
          </property>
         </widget>
        </item>

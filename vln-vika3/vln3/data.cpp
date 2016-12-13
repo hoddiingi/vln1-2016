@@ -591,5 +591,78 @@ void Data::updateConnectionCompId(QString &computerId, QString &update)
     close();
 }
 
+bool Data::updateScientists()
+{
+    open();
+    bool success = false;
+    QSqlQuery query(sqlPrufa);
 
 
+    QString name;// = QString::fromStdString(p.getName());
+    QString gender;// = QString::fromStdString(p.getGender());
+    int birth;// = p.getBirth();
+    int death;// = p.getDeath();
+   /* query.exec("UPDATE People SET name='" +update+ "'"
+             + "WHERE name='" +name+ "'");
+    query.exec("UPDATE People SET gender='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+    query.exec("UPDATE People SET birth='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+    query.exec("UPDATE People SET death='" +update+ "'"
+              +"WHERE name='" +name+ "'");*/
+
+    query.prepare("update INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
+    query.bindValue(":name", name);
+    query.bindValue(":gender", gender);
+    query.bindValue(":birth", birth);
+    query.bindValue(":death", death);
+
+    if(query.exec())
+    {
+        success = true;
+    }
+
+    close();
+    return success;
+
+
+
+}
+
+/*
+void Data::updateScientistName(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET name='" +update+ "'"
+             + "WHERE name='" +name+ "'");
+
+    close();
+}
+
+void Data::updateScientistGender(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET gender='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+
+    close();
+}
+
+void Data::updateScientistBirth(QString &name, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE People SET birth='" +update+ "'"
+              +"WHERE name='" +name+ "'");
+
+    close();
+}
+*/

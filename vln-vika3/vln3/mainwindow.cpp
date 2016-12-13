@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
+#include "editscientistsdialog.h"
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -168,8 +170,19 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
 
 void MainWindow::on_button_edit_scientist_clicked()
 {
+    editscientistsdialog edit;
+    int editScientists = edit.exec();
 
+    if(editScientists == 0)
+    {
+        displayAllScientists();
+    }
+    else
+    {
+
+    }
 }
+
 void MainWindow::on_button_remove_computer_clicked()
 {
     int currentSelectedComputerIndex = ui->table_computers->currentIndex().row();
