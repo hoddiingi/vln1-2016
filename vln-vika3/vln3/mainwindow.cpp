@@ -21,11 +21,7 @@ void MainWindow::displayAllScientists()
 {
     vector<Person> scientists = _data.readSciData("name", true);
     displayScientists(scientists);
-<<<<<<< HEAD
-}*/
-=======
 }
->>>>>>> f522156128cbea2290e5b7010569a2b25376a4b0
 
 void MainWindow::displayScientists(std::vector<Person> scientists)
 {
@@ -45,10 +41,7 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 2, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(death));
     }
-<<<<<<< HEAD
-=======
       //QTableView::resizeColumnsToContents();
->>>>>>> f522156128cbea2290e5b7010569a2b25376a4b0
 }
 /*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
