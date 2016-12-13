@@ -105,13 +105,13 @@ bool Domain::addComputer(Computer c, QSqlError error)
 {
     return _dat.addComputer(c, error);
 }
-bool Domain::removeAllPersons(QSqlError error)
+bool Domain::removeAllPersons()
 {
-    return _dat.removeAllPersons(error);
+    return _dat.removeAllPersons();
 }
-bool Domain::removeAllComputers(QSqlError error)
+bool Domain::removeAllComputers()
 {
-    return _dat.removeAllComputers(error);
+    return _dat.removeAllComputers();
 }
 bool Domain::removePerson(QString& name)
 {

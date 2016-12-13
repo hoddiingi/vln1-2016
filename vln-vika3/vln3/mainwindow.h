@@ -44,6 +44,10 @@ private slots:
     void on_tableWidget_activated(const QModelIndex &index);
     void on_button_add_computer_clicked();
 
+    void on_button_removeAll_computers_clicked();
+
+    void on_button_removeAll_scientists_clicked();
+
 private:
     //void displayAllScientists();
     //void displayScientists(std::vector<Person> scientists);
