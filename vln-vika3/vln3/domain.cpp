@@ -113,13 +113,13 @@ bool Domain::removeAllComputers(QSqlError error)
 {
     return _dat.removeAllComputers(error);
 }
-bool Domain::removePerson(QString& name, QSqlError error)
+bool Domain::removePerson(QString& name)
 {
-    return _dat.removePerson(name, error);
+    return _dat.removePerson(name);
 }
-bool Domain::removeComputer(QString& computername, QSqlError error)
+bool Domain::removeComputer(QString& computername)
 {
-    return _dat.removeComputer(computername, error);
+    return _dat.removeComputer(computername);
 }
 bool Domain::removeConnection(QString &sciId, QSqlError error)
 {

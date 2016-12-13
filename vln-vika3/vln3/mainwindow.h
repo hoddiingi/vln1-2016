@@ -27,6 +27,10 @@ private slots:
     void on_input_filter_scientist_textChanged(const QString &arg1);
     void on_input_filter_computers_textChanged(const QString &arg1);
 
+    void on_button_remove_computer_clicked();
+
+    void on_button_remove_scientist_clicked();
+
 private:
     //void displayAllScientists();
     //void displayScientists(std::vector<Person> scientists);
@@ -35,6 +39,8 @@ private:
     void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);
 
+    vector<Computer> _currentlyDisplayedComputer;
+    vector<Person> _currentlyDisplayedScientist;
     Person _persons;
     Data _data;
     Ui::MainWindow *ui;
