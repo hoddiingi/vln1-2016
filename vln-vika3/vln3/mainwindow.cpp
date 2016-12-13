@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "addscientistdialog.h"
+#include "addcomputerdialog.h"
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -132,6 +133,20 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
     ui->button_edit_scientist->setEnabled(true);
 }
 
+void MainWindow::on_button_add_scientist_clicked()
+{
+    addScientistDialog addNew;
+    int addedScientist = addNew.exec();
+
+    if(addedScientist == 0)
+    {
+        displayAllScientists();
+    }
+    else
+    {
+
+    }
+}
 void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
 {
     QString userInput = ui->input_filter_scientist->text();
@@ -192,5 +207,20 @@ void MainWindow::on_button_remove_scientist_clicked()
     else
     {
         //display error
+    }
+}
+
+void MainWindow::on_button_add_computer_clicked()
+{
+    addComputerDialog addNewComp;
+    int addedComputer = addNewComp.exec();
+
+    if(addedComputer == 0)
+    {
+        displayAllComputers();
+    }
+    else
+    {
+
     }
 }
