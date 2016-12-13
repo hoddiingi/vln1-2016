@@ -40,6 +40,8 @@ private slots:
 
     void on_genderOtherText_textChanged(const QString &arg1);
 
+    void on_deathYesButton_toggled(bool checked);
+
 private:
     Ui::addScientistDialog *ui;
     Person _persons;

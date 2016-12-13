@@ -14,11 +14,6 @@ addScientistDialog::~addScientistDialog()
     delete ui;
 }
 
-void addScientistDialog::on_nameAdd_textChanged(const QString &arg1)
-{
-
-}
-
 bool addScientistDialog::on_genderFemaleButton_clicked()
 {
     ui->genderOtherText->setEnabled(false);
@@ -34,11 +29,6 @@ bool addScientistDialog::on_genderOtherButton_clicked()
     ui->genderOtherText->setEnabled(true);
 }
 
-void addScientistDialog::on_addBirth_textChanged(const QString &arg1)
-{
-
-}
-
 void addScientistDialog::on_deathYesButton_clicked()
 {
     ui->addDeath->setEnabled(true);
@@ -47,11 +37,6 @@ void addScientistDialog::on_deathYesButton_clicked()
 void addScientistDialog::on_deathNoButton_clicked()
 {
     ui->addDeath->setEnabled(false);
-}
-
-void addScientistDialog::on_addDeath_textChanged(const QString &arg1)
-{
-
 }
 
 void addScientistDialog::on_buttonAdd_accepted()
@@ -94,7 +79,7 @@ void addScientistDialog::on_buttonAdd_rejected()
 
 }
 
-void addScientistDialog::on_genderOtherText_textChanged(const QString &arg1)
+void addScientistDialog::on_deathYesButton_toggled(bool checked)
 {
-
+    ui->whatYearDeadText->setEnabled(true);
 }
