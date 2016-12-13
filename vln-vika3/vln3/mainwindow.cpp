@@ -135,8 +135,8 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
 
 void MainWindow::on_button_add_scientist_clicked()
 {
-    addScientist addScientist;
-    int addedScientist = addScientist.exec();
+    addScientist addNew;
+    int addedScientist = addNew.exec();
 
     if(addedScientist == 0)
     {
