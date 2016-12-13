@@ -86,3 +86,9 @@ void MainWindow::on_pushBotton_clicked()
         //error
     }
 }*/
+
+void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
+{
+    ui->button_remove_scientist->setEnabled(true);
+    ui->button_edit_scientist->setEnabled(true);
+}
