@@ -31,7 +31,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelNameComp">
          <property name="text">
           <string>Name:</string>
          </property>
@@ -45,62 +45,42 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="labelYearComp">
          <property name="text">
-          <string>Gender:</string>
+          <string>Year: </string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="title">
-          <string/>
-         </property>
-         <widget class="QLineEdit" name="addType">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="geometry">
-           <rect>
-            <x>226</x>
-            <y>15</y>
-            <width>62</width>
-            <height>20</height>
-           </rect>
-          </property>
-         </widget>
-        </widget>
+        <widget class="QLineEdit" name="addYear"/>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="labelTypeComp">
          <property name="text">
-          <string>Year born:</string>
+          <string>Type:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="addBirth"/>
+        <widget class="QLineEdit" name="addType"/>
        </item>
       </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="labelBuiltComp">
          <property name="text">
-          <string>Is the scientist dead?</string>
+          <string>Was is built ?</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="deathYesButton">
+        <widget class="QRadioButton" name="builtYesButton">
          <property name="contextMenuPolicy">
           <enum>Qt::DefaultContextMenu</enum>
          </property>
@@ -110,23 +90,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QRadioButton" name="deathNoButton">
+        <widget class="QRadioButton" name="builtNoButton">
          <property name="text">
           <string>No</string>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>If yes enter year</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="addDeath">
-         <property name="enabled">
-          <bool>false</bool>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

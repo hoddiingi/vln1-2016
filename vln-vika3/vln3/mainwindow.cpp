@@ -255,6 +255,6 @@ void MainWindow::on_button_add_computer_clicked()
     }
     else
     {
-
+        //error
     }
 }
