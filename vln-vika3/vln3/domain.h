@@ -38,8 +38,8 @@ public:
     void close();
     int sortBy();
 
-    bool removeAllPersons(QSqlError error);
-    bool removeAllComputers(QSqlError error);
+    bool removeAllPersons();
+    bool removeAllComputers();
     bool removePerson(QString& name);
     bool removeComputer(QString& computername);
     bool removeConnection(QString &sciId, QSqlError error);

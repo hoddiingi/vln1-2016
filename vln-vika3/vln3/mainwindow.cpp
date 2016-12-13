@@ -194,3 +194,29 @@ void MainWindow::on_button_remove_scientist_clicked()
         //display error
     }
 }
+
+void MainWindow::on_button_removeAll_computers_clicked()
+{
+    vector<Computer> computer = _currentlyDisplayedComputer;
+
+
+    ui->table_computers->clearSelection();
+    ui->table_computers->disconnect();
+    ui->table_computers->clearContents();
+    ui->table_computers->setRowCount(0);
+
+    _dom.removeAllComputers();
+}
+
+void MainWindow::on_button_removeAll_scientists_clicked()
+{
+    vector<Person> scientist = _currentlyDisplayedScientist;
+
+
+    ui->table_scientists->clearSelection();
+    ui->table_scientists->disconnect();
+    ui->table_scientists->clearContents();
+    ui->table_scientists->setRowCount(0);
+
+    _dom.removeAllPersons();
+}
