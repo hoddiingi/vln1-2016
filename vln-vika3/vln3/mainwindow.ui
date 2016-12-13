@@ -27,7 +27,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <attribute name="title">
@@ -112,6 +112,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="button_removeAll_scientists">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Remove all</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_computers">
@@ -188,6 +198,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="button_removeAll_computers">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Remove all</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_connections">
@@ -203,7 +223,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="table_connections">
           <property name="columnCount">
            <number>2</number>
           </property>
@@ -261,6 +281,13 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="button_removeAll_connections">
+          <property name="text">
+           <string>Remove all connections</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -273,7 +300,7 @@
      <x>0</x>
      <y>0</y>
      <width>630</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
