@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>462</width>
-    <height>378</height>
+    <width>630</width>
+    <height>611</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <attribute name="title">
@@ -256,8 +256,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>462</width>
-     <height>21</height>
+     <width>630</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
