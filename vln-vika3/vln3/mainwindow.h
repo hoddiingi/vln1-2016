@@ -24,7 +24,7 @@ private slots:
 
 private:
     //void displayAllScientists();
-    //void displayScientists(std::vector<Person> scientists);
+    void displayScientists(std::vector<Person> scientists);
 
     Person _persons;
     Data _data;

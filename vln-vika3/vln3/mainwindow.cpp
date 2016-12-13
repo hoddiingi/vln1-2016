@@ -21,20 +21,28 @@ MainWindow::~MainWindow()
 {
     vector<Person> scientists = _data.readSciData("name", true);
     displayScientists(scientists);
-}
-
+}*/
+/*
 void MainWindow::displayScientists(std::vector<Person> scientists)
 {
-    ui->listScientist->clear();
+    ui->table_scientists->clearContents();
+    ui->table_scientists->setRowCount(scientists.size());
 
-    for (unsigned int i = 0; i < scientists.size(); i++)
-    {
-        Person currentScientist = scientists[i];
+      for (unsigned int row = 0; row < scientists.size(); row++)
+      {
+        Person currentScientist = scientists[row];
+        QString name = QString::fromStdString(currentScientist.getName());
+        QString gender = QString::fromStdString(currentScientist.getGender());
+        QString yearBorn = QString::number(currentScientist.getBirth());
+        QString death = QString::number(currentScientist.getDeath());
 
-        ui->listScientist->addItem(QString::fromStdString(currentScientist.getName()));
+        ui->table_scientists->setItem(row, 0, new QTableWidgetItem(name));
+        ui->table_scientists->setItem(row, 1, new QTableWidgetItem(gender));
+        ui->table_scientists->setItem(row, 2, new QTableWidgetItem(yearBorn));
+        ui->table_scientists->setItem(row, 3, new QTableWidgetItem(death));
     }
-}
-
+}*/
+/*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
 {
     QString userInput = ui->input_filter_scientists->text();
