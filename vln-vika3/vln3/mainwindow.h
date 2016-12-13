@@ -24,12 +24,14 @@ private slots:
     void on_table_computers_clicked(const QModelIndex &index);
     void on_table_scientists_clicked(const QModelIndex &index);
 
+    void on_button_add_scientist_clicked();
+    void displayAllScientists();
 private:
     //void displayAllScientists();
     //void displayScientists(std::vector<Person> scientists);
     void displayAllComputers();
     void displayComputers(std::vector<Computer> computers); 
-    void displayAllScientists();
+
     void displayScientists(std::vector<Person> scientists);
 
     Person _persons;

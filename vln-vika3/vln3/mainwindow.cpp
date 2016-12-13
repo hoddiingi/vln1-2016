@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "addscientist.h"
 
 using namespace std;
 
@@ -123,4 +124,19 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
 {
     ui->button_remove_scientist->setEnabled(true);
     ui->button_edit_scientist->setEnabled(true);
+}
+
+void MainWindow::on_button_add_scientist_clicked()
+{
+    addScientist addScientist;
+    int addedScientist = addScientist.exec();
+
+    if(addedScientist == 0)
+    {
+        displayAllScientists();
+    }
+    else
+    {
+
+    }
 }

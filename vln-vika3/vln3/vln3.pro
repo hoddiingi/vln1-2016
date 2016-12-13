@@ -17,15 +17,18 @@ SOURCES += main.cpp\
     computer.cpp \
     data.cpp \
     domain.cpp \
-    person.cpp
+    person.cpp \
+    addscientist.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
     data.h \
     domain.h \
-    person.h
+    person.h \
+    addscientist.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addscientist.ui
 
 
 
