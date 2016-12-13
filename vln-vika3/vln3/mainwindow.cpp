@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //displayAllScientists();
+    displayAllScientists();
 }
 
 MainWindow::~MainWindow()
@@ -17,12 +17,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/*void MainWindow::displayAllScientists()
+void MainWindow::displayAllScientists()
 {
     vector<Person> scientists = _data.readSciData("name", true);
     displayScientists(scientists);
-}*/
-/*
+}
+
 void MainWindow::displayScientists(std::vector<Person> scientists)
 {
     ui->table_scientists->clearContents();
@@ -41,7 +41,8 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 2, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(death));
     }
-}*/
+      //QTableView::resizeColumnsToContents();
+}
 /*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
 {

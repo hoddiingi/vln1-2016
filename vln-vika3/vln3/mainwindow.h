@@ -25,7 +25,7 @@ private slots:
     void on_table_scientists_clicked(const QModelIndex &index);
 
 private:
-    //void displayAllScientists();
+    void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);
 
     Person _persons;
