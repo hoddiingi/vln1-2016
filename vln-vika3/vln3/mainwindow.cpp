@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     displayAllComputers();
+    displayAllScientists();
 }
 
 MainWindow::~MainWindow()
@@ -43,12 +44,12 @@ void MainWindow::displayComputers(std::vector<Computer> computers)
     }
 }
 
-/*void MainWindow::displayAllScientists()
+void MainWindow::displayAllScientists()
 {
     vector<Person> scientists = _data.readSciData("name", true);
     displayScientists(scientists);
-}*/
-/*
+}
+
 void MainWindow::displayScientists(std::vector<Person> scientists)
 {
     ui->table_scientists->clearContents();
@@ -67,7 +68,8 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 2, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(death));
     }
-}*/
+      //QTableView::resizeColumnsToContents();
+}
 /*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
 {
@@ -112,10 +114,13 @@ void MainWindow::on_pushBotton_clicked()
     }
 }*/
 
-
-
 void MainWindow::on_table_computers_clicked(const QModelIndex &index)
 {
     ui->button_remove_computer->setEnabled(true);
     ui->button_edit_computer->setEnabled(true);
+}
+void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
+{
+    ui->button_remove_scientist->setEnabled(true);
+    ui->button_edit_scientist->setEnabled(true);
 }
