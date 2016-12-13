@@ -23,7 +23,7 @@ private slots:
     //void on_pushBotton_clicked();
 
 private:
-    //void displayAllScientists();
+    void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);
 
     Person _persons;
