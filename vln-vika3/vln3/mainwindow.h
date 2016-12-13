@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "person.h"
-#include "data.h"
+#include "domain.h"
 #include <vector>
 
 namespace Ui {
@@ -33,6 +33,12 @@ private slots:
 
     void on_button_remove_scientist_clicked();
 
+    void on_button_remove_connections_clicked();
+
+    void on_table_computers_activated(const QModelIndex &index);
+
+    void on_tableWidget_activated(const QModelIndex &index);
+
 private:
     //void displayAllScientists();
     //void displayScientists(std::vector<Person> scientists);
@@ -44,7 +50,7 @@ private:
     vector<Computer> _currentlyDisplayedComputer;
     vector<Person> _currentlyDisplayedScientist;
     Person _persons;
-    Data _data;
+    Domain _dom;
     Ui::MainWindow *ui;
 };
 

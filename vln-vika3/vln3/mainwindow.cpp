@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::displayAllComputers()
 {
-    vector<Computer> computers = _data.readCompData("computername", true);
+    vector<Computer> computers = _dom.readCompData(1);
     displayComputers(computers);
 }
 
@@ -50,7 +50,7 @@ void MainWindow::displayComputers(std::vector<Computer> computers)
 
 void MainWindow::displayAllScientists()
 {
-    vector<Person> scientists = _data.readSciData("name", true);
+    vector<Person> scientists = _dom.readSciData(1);
     displayScientists(scientists);
 }
 
@@ -136,7 +136,7 @@ void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
 {
     QString userInput = ui->input_filter_scientist->text();
 
-    vector<Person> scientists = _data.searchName(userInput);
+    vector<Person> scientists = _dom.searchName(userInput);
     displayScientists(scientists);
 }
 
@@ -144,7 +144,7 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
 {
     QString userInput = ui->input_filter_computers->text();
 
-    vector<Computer> computers = _data.searchComputer(userInput);
+    vector<Computer> computers = _dom.searchComputer(userInput);
     displayComputers(computers);
 }
 
@@ -160,7 +160,7 @@ void MainWindow::on_button_remove_computer_clicked()
     int currentSelectedComputerIndex = ui->table_computers->currentIndex().row();
     Computer currentSelectedComputer = _currentlyDisplayedComputer.at(currentSelectedComputerIndex);
     QString name = QString::fromStdString(currentSelectedComputer.getName());
-    bool success = _data.removeComputer(name);
+    bool success = _dom.removeComputer(name);
 
     if(success)
     {
@@ -180,7 +180,7 @@ void MainWindow::on_button_remove_scientist_clicked()
     int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
     Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
     QString name = QString::fromStdString(currentSelectedScientist.getName());
-    bool success = _data.removePerson(name);
+    bool success = _dom.removePerson(name);
 
     if(success)
     {
