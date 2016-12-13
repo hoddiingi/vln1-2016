@@ -22,9 +22,13 @@ private slots:
     //void on_input_filter_scientists_textChanged(const QString &arg1);
     //void on_pushBotton_clicked();
 
+    void on_table_computers_clicked(const QModelIndex &index);
+
 private:
     //void displayAllScientists();
-    void displayScientists(std::vector<Person> scientists);
+    //void displayScientists(std::vector<Person> scientists);
+    void displayAllComputers();
+    void displayComputers(std::vector<Computer> computers);
 
     Person _persons;
     Data _data;
