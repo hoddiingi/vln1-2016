@@ -24,6 +24,10 @@ private slots:
     void on_table_computers_clicked(const QModelIndex &index);
     void on_table_scientists_clicked(const QModelIndex &index);
 
+
+    void on_button_add_scientist_clicked();
+
+
     void on_input_filter_scientist_textChanged(const QString &arg1);
     void on_input_filter_computers_textChanged(const QString &arg1);
 
@@ -38,6 +42,7 @@ private slots:
     void on_table_computers_activated(const QModelIndex &index);
 
     void on_tableWidget_activated(const QModelIndex &index);
+    void on_button_add_computer_clicked();
 
 private:
     //void displayAllScientists();
