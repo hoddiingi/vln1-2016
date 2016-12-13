@@ -1,60 +1,60 @@
-#include "addscientist.h"
-#include "ui_addscientist.h"
+#include "addscientistdialog.h"
+#include "ui_addscientistdialog.h"
 
 
-addScientist::addScientist(QWidget *parent) :
+addScientistDialog::addScientistDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::addScientist)
+    ui(new Ui::addScientistDialog)
 {
     ui->setupUi(this);
 }
 
-addScientist::~addScientist()
+addScientistDialog::~addScientistDialog()
 {
     delete ui;
 }
 
-void addScientist::on_nameAdd_textChanged(const QString &arg1)
+void addScientistDialog::on_nameAdd_textChanged(const QString &arg1)
 {
 
 }
 
-bool addScientist::on_genderFemaleButton_clicked()
-{
-    ui->genderOtherText->setEnabled(false);
-}
-
-bool addScientist::on_genderMaleButton_clicked()
+bool addScientistDialog::on_genderFemaleButton_clicked()
 {
     ui->genderOtherText->setEnabled(false);
 }
 
-bool addScientist::on_genderOtherButton_clicked()
+bool addScientistDialog::on_genderMaleButton_clicked()
+{
+    ui->genderOtherText->setEnabled(false);
+}
+
+bool addScientistDialog::on_genderOtherButton_clicked()
 {
     ui->genderOtherText->setEnabled(true);
 }
 
-void addScientist::on_addBirth_textChanged(const QString &arg1)
+void addScientistDialog::on_addBirth_textChanged(const QString &arg1)
 {
 
 }
 
-void addScientist::on_deathYesButton_clicked()
+void addScientistDialog::on_deathYesButton_clicked()
 {
     ui->addDeath->setEnabled(true);
 }
 
-void addScientist::on_deathNoButton_clicked()
+void addScientistDialog::on_deathNoButton_clicked()
 {
     ui->addDeath->setEnabled(false);
 }
 
-void addScientist::on_addDeath_textChanged(const QString &arg1)
+void addScientistDialog::on_addDeath_textChanged(const QString &arg1)
 {
 
 }
 
-void addScientist::on_buttonAdd_accepted()
+void addScientistDialog::on_buttonAdd_accepted()
 {
     QString name = ui->nameAdd->text();
     QString birth = ui->addBirth->text();
@@ -89,12 +89,12 @@ void addScientist::on_buttonAdd_accepted()
 
 }
 
-void addScientist::on_buttonAdd_rejected()
+void addScientistDialog::on_buttonAdd_rejected()
 {
 
 }
 
-void addScientist::on_genderOtherText_textChanged(const QString &arg1)
+void addScientistDialog::on_genderOtherText_textChanged(const QString &arg1)
 {
 
 }

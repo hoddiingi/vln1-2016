@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "addscientist.h"
-
+#include "addscientistdialog.h"
+#include "addcomputerdialog.h"
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -135,7 +135,7 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
 
 void MainWindow::on_button_add_scientist_clicked()
 {
-    addScientist addNew;
+    addScientistDialog addNew;
     int addedScientist = addNew.exec();
 
     if(addedScientist == 0)
@@ -207,5 +207,20 @@ void MainWindow::on_button_remove_scientist_clicked()
     else
     {
         //display error
+    }
+}
+
+void MainWindow::on_button_add_computer_clicked()
+{
+    addComputerDialog addNewComp;
+    int addedComputer = addNewComp.exec();
+
+    if(addedComputer == 0)
+    {
+        displayAllComputers();
+    }
+    else
+    {
+
     }
 }
