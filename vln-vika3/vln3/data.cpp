@@ -311,7 +311,7 @@ bool Data::removePerson(QString& name)
     return success;
 }
 
-bool Data::removeAllPersons(QSqlError error)
+bool Data::removeAllPersons()
 {
     open();
     bool success = false;
@@ -322,10 +322,6 @@ bool Data::removeAllPersons(QSqlError error)
     if(removeQuery.exec())
     {
         success = true;
-    }
-    else
-    {
-        error = removeQuery.lastError();
     }
     close();
     return success;
@@ -349,7 +345,7 @@ bool Data::removeComputer(QString &computername)
     return success;
 }
 
-bool Data::removeAllComputers(QSqlError error)
+bool Data::removeAllComputers()
 {
     open();
     bool success = false;
@@ -360,10 +356,6 @@ bool Data::removeAllComputers(QSqlError error)
     if(removeQuery.exec())
     {
         success = true;
-    }
-    else
-    {
-        error = removeQuery.lastError();
     }
     close();
     return success;
