@@ -197,9 +197,6 @@ void MainWindow::on_button_remove_scientist_clicked()
 
 void MainWindow::on_button_removeAll_computers_clicked()
 {
-    vector<Computer> computer = _currentlyDisplayedComputer;
-
-
     ui->table_computers->clearSelection();
     ui->table_computers->disconnect();
     ui->table_computers->clearContents();
@@ -210,9 +207,6 @@ void MainWindow::on_button_removeAll_computers_clicked()
 
 void MainWindow::on_button_removeAll_scientists_clicked()
 {
-    vector<Person> scientist = _currentlyDisplayedScientist;
-
-
     ui->table_scientists->clearSelection();
     ui->table_scientists->disconnect();
     ui->table_scientists->clearContents();
