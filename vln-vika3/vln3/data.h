@@ -43,6 +43,9 @@ public:
     void updateComputerYear(QString &computerName, QString &update);
     void updateComputerType(QString &computerName, QString &update);
     void updateComputerBuilt(QString &computerName, QString &update);
+    void updateConnectionSciId(QString &scientistId, QString &update);
+    void updateConnectionCompId(QString &computerId, QString &update);
+
 
 private:
 

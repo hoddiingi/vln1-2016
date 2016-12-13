@@ -583,5 +583,29 @@ void Data::updateComputerBuilt(QString &computerName, QString &update)
     close();
 }
 
+void Data::updateConnectionSciId(QString &scientistId, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE Connections SET scientistID='" +update+ "'"
+             + "WHERE scientistID='" +scientistId+ "'");
+
+    close();
+}
+
+void Data::updateConnectionCompId(QString &computerId, QString &update)
+{
+    open();
+
+    QSqlQuery query(sqlPrufa);
+
+    query.exec("UPDATE Connections SET computerID='" +update+ "'"
+             + "WHERE computerID='" +computerId+ "'");
+
+    close();
+}
+
 
 

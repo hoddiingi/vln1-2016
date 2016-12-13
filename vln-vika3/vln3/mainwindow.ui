@@ -6,8 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
     <width>604</width>
     <height>653</height>
+=======
+    <width>630</width>
+    <height>611</height>
+>>>>>>> d3522aac51af389009085b4ba27b566806d16013
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +26,11 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
+<<<<<<< HEAD
        <number>0</number>
+=======
+       <number>1</number>
+>>>>>>> d3522aac51af389009085b4ba27b566806d16013
       </property>
       <widget class="QWidget" name="tab_scientists">
        <attribute name="title">
@@ -256,8 +265,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
+<<<<<<< HEAD
      <width>604</width>
      <height>22</height>
+=======
+     <width>630</width>
+     <height>26</height>
+>>>>>>> d3522aac51af389009085b4ba27b566806d16013
     </rect>
    </property>
   </widget>
