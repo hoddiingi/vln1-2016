@@ -22,9 +22,9 @@ public:
     bool addComputer(Computer c, QSqlError error);
     bool addConnections(int personID, int computerID, QSqlError error);
 
-    bool removePerson(QString &name, QSqlError error);           //Remove from table in SQLite
+    bool removePerson(QString &name);           //Remove from table in SQLite
     bool removeAllPersons(QSqlError error);
-    bool removeComputer(QString &computername, QSqlError error);
+    bool removeComputer(QString &computername);
     bool removeAllComputers(QSqlError error);
     bool removeConnection(QString &sciId, QSqlError error);
     bool removeAllConnections(QSqlError error);

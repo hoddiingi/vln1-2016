@@ -60,6 +60,11 @@
           </attribute>
           <column>
            <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
             <string>Name</string>
            </property>
           </column>
@@ -132,6 +137,11 @@
           <column>
            <property name="text">
             <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>ID</string>
            </property>
           </column>
           <column>
@@ -263,7 +273,7 @@
      <x>0</x>
      <y>0</y>
      <width>630</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

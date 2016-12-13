@@ -32,16 +32,20 @@ void MainWindow::displayComputers(std::vector<Computer> computers)
     for(unsigned int i = 0; i < computers.size(); i++)
     {
         Computer currentComputer = computers[i];
+        QString id = QString::number(currentComputer.getId());
         QString name = QString::fromStdString(currentComputer.getName());
         QString year = QString::number(currentComputer.getYear());
         QString type = QString::fromStdString(currentComputer.getType());
         QString built = QString::fromStdString(currentComputer.getBuilt());
 
-        ui->table_computers->setItem(i, 0, new QTableWidgetItem(name));
-        ui->table_computers->setItem(i, 1, new QTableWidgetItem(year));
-        ui->table_computers->setItem(i, 2, new QTableWidgetItem(type));
-        ui->table_computers->setItem(i, 3, new QTableWidgetItem(built));
+        ui->table_computers->setItem(i, 0, new QTableWidgetItem(id));
+        ui->table_computers->setItem(i, 1, new QTableWidgetItem(name));
+        ui->table_computers->setItem(i, 2, new QTableWidgetItem(year));
+        ui->table_computers->setItem(i, 3, new QTableWidgetItem(type));
+        ui->table_computers->setItem(i, 4, new QTableWidgetItem(built));
     }
+
+    _currentlyDisplayedComputer = computers;
 }
 
 void MainWindow::displayAllScientists()
@@ -58,17 +62,20 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
       for (unsigned int row = 0; row < scientists.size(); row++)
       {
         Person currentScientist = scientists[row];
+        QString id = QString::number(currentScientist.getId());
         QString name = QString::fromStdString(currentScientist.getName());
         QString gender = QString::fromStdString(currentScientist.getGender());
         QString yearBorn = QString::number(currentScientist.getBirth());
         QString death = QString::number(currentScientist.getDeath());
 
-        ui->table_scientists->setItem(row, 0, new QTableWidgetItem(name));
-        ui->table_scientists->setItem(row, 1, new QTableWidgetItem(gender));
-        ui->table_scientists->setItem(row, 2, new QTableWidgetItem(yearBorn));
-        ui->table_scientists->setItem(row, 3, new QTableWidgetItem(death));
+        ui->table_scientists->setItem(row, 0, new QTableWidgetItem(id));
+        ui->table_scientists->setItem(row, 1, new QTableWidgetItem(name));
+        ui->table_scientists->setItem(row, 2, new QTableWidgetItem(gender));
+        ui->table_scientists->setItem(row, 3, new QTableWidgetItem(yearBorn));
+        ui->table_scientists->setItem(row, 4, new QTableWidgetItem(death));
     }
       //QTableView::resizeColumnsToContents();
+        _currentlyDisplayedScientist = scientists;
 }
 /*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
@@ -142,3 +149,48 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
 }
 
 
+
+
+void MainWindow::on_button_edit_scientist_clicked()
+{
+
+}
+void MainWindow::on_button_remove_computer_clicked()
+{
+    int currentSelectedComputerIndex = ui->table_computers->currentIndex().row();
+    Computer currentSelectedComputer = _currentlyDisplayedComputer.at(currentSelectedComputerIndex);
+    QString name = QString::fromStdString(currentSelectedComputer.getName());
+    bool success = _data.removeComputer(name);
+
+    if(success)
+    {
+        ui->input_filter_computers->setText("");
+        displayAllComputers();
+
+        ui->button_remove_computer->setEnabled(false);
+    }
+    else
+    {
+        //display error
+    }
+}
+
+void MainWindow::on_button_remove_scientist_clicked()
+{
+    int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
+    Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
+    QString name = QString::fromStdString(currentSelectedScientist.getName());
+    bool success = _data.removePerson(name);
+
+    if(success)
+    {
+        ui->input_filter_scientist->setText("");
+        displayAllScientists();
+
+        ui->button_remove_scientist->setEnabled(false);
+    }
+    else
+    {
+        //display error
+    }
+}
