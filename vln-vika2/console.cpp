@@ -25,7 +25,7 @@ void Console::menu(string& command)
     cout << "Search - for searching for names in the list" << endl;
     cout << "Remove - for removing" << endl;
     cout << "Update - for updating information" << endl;
-    cout << "Game - for playing TicTacToe" << endl;
+    cout << "Game   - for playing TicTacToe" << endl;
     cout << "Exit   - quits" << endl;
     cout << "--------------------------------------------" << endl << endl;
 
@@ -155,28 +155,6 @@ bool Console::validYear(string s)
             return 0;
         }
     }
-<<<<<<< HEAD
-}
-
-void Console::menu(string& command)
-{
-    cout << endl << "--------------------------------------------" << endl;
-    cout << "Please enter one of the following commands: " << endl << endl;
-    cout << "Add    - for adding scientist to the list" << endl;
-    cout << "View   - for viewing the whole list" << endl;
-    cout << "Search - for searching for names in the list" << endl;
-    cout << "Remove - for removing" << endl;
-    cout << "Update - for updating information" << endl;
-    cout << "Game   - for playing TicTacToe" << endl;
-    cout << "Exit   - quits" << endl;
-    cout << "--------------------------------------------" << endl << endl;
-
-    cin >> command;
-    cin.ignore();
-    cout << endl;
-=======
-    return 1;
->>>>>>> cb0bd59a4b2436e4ba4e04cd6174fffc5a4a78f2
 }
 
 void Console::add(string& anotherOne)

@@ -293,7 +293,7 @@ vector<Computer> Data::searchComputer(QString &computerName)
     return results;
 }
 
-bool Data::removePerson(QString& name, QSqlError error)
+bool Data::removePerson(QString& name)
 {
     open();
     bool success = false;
@@ -306,10 +306,6 @@ bool Data::removePerson(QString& name, QSqlError error)
     if(removeQuery.exec())
     {
         success = true;
-    }
-    else
-    {
-        error = removeQuery.lastError();
     }
     close();
     return success;
@@ -335,7 +331,7 @@ bool Data::removeAllPersons(QSqlError error)
     return success;
 }
 
-bool Data::removeComputer(QString &computername, QSqlError error)
+bool Data::removeComputer(QString &computername)
 {
     open();
     bool success = false;
@@ -348,10 +344,6 @@ bool Data::removeComputer(QString &computername, QSqlError error)
     if(removeQuery.exec())
     {
         success = true;
-    }
-    else
-    {
-        error = removeQuery.lastError();
     }
     close();
     return success;

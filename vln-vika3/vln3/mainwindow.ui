@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,6 +15,9 @@
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -50,8 +56,13 @@
            <bool>true</bool>
           </attribute>
           <attribute name="verticalHeaderStretchLastSection">
-           <bool>true</bool>
+           <bool>false</bool>
           </attribute>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>Name</string>
@@ -101,6 +112,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="button_removeAll_scientists">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Remove all</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_computers">
@@ -126,6 +147,11 @@
           <column>
            <property name="text">
             <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>ID</string>
            </property>
           </column>
           <column>
@@ -172,6 +198,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="button_removeAll_computers">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Remove all</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_connections">
@@ -187,7 +223,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="table_connections">
           <property name="columnCount">
            <number>2</number>
           </property>
@@ -242,6 +278,13 @@
           </property>
           <property name="text">
            <string>Remove connections</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="button_removeAll_connections">
+          <property name="text">
+           <string>Remove all connections</string>
           </property>
          </widget>
         </item>
