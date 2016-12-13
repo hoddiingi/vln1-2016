@@ -17,6 +17,7 @@ public:
 
     vector<Computer> readCompData(string orderBy, bool isAsc);  //Reads info from table in SQLite and stores it in vector
     vector<Person> readSciData(string orderBy, bool isAsc);
+    vector<int> readConData();
 
     bool addPerson(Person p);                  //Add info to table in SQLite
     bool addComputer(Computer c, QSqlError error);
@@ -33,7 +34,7 @@ public:
     vector<Computer> searchComputer(QString &computerName);
     vector<Person> searchSciId(int &id);
     vector<Computer> searchCompId(int &id);
-    vector<int> readConData();
+
 
     void updateScientistName(QString &name, QString &update);   //Updates info
     void updateScientistBirth(QString &name, QString &update);
