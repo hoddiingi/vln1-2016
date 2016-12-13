@@ -17,15 +17,21 @@ SOURCES += main.cpp\
     computer.cpp \
     data.cpp \
     domain.cpp \
-    person.cpp
+    person.cpp \
+    addscientistdialog.cpp \
+    addcomputerdialog.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
     data.h \
     domain.h \
-    person.h
+    person.h \
+    addscientistdialog.h \
+    addcomputerdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addscientistdialog.ui \
+    addcomputerdialog.ui
 
 
 
