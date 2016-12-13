@@ -124,3 +124,21 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
     ui->button_remove_scientist->setEnabled(true);
     ui->button_edit_scientist->setEnabled(true);
 }
+
+void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
+{
+    QString userInput = ui->input_filter_scientist->text();
+
+    vector<Person> scientists = _data.searchName(userInput);
+    displayScientists(scientists);
+}
+
+void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
+{
+    QString userInput = ui->input_filter_computers->text();
+
+    vector<Computer> computers = _data.searchComputer(userInput);
+    displayComputers(computers);
+}
+
+
