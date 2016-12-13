@@ -6,13 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-<<<<<<< HEAD
-    <width>646</width>
-    <height>581</height>
-=======
-    <width>462</width>
-    <height>378</height>
->>>>>>> 5748315e5490a1a3532e61fdf69c1b64feec277c
+    <width>604</width>
+    <height>653</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,18 +16,12 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-<<<<<<< HEAD
-     <widget class="QTableWidget" name="tableWidget"/>
-    </item>
-   </layout>
-  </widget>
-=======
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <attribute name="title">
@@ -267,12 +256,11 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>462</width>
-     <height>21</height>
+     <width>604</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
->>>>>>> 5748315e5490a1a3532e61fdf69c1b64feec277c
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
