@@ -236,6 +236,9 @@
         </item>
         <item>
          <widget class="QTableWidget" name="table_connections">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="columnCount">
            <number>2</number>
           </property>
@@ -295,6 +298,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="button_removeAll_connections">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="text">
            <string>Remove all</string>
           </property>

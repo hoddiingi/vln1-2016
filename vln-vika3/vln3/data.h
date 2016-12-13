@@ -24,9 +24,9 @@ public:
     bool addConnections(int personID, int computerID, QSqlError error);
 
     bool removePerson(QString &name);           //Remove from table in SQLite
-    bool removeAllPersons(QSqlError error);
+    bool removeAllPersons();
     bool removeComputer(QString &computername);
-    bool removeAllComputers(QSqlError error);
+    bool removeAllComputers();
     bool removeConnection(QString &sciId, QSqlError error);
     bool removeAllConnections(QSqlError error);
 
