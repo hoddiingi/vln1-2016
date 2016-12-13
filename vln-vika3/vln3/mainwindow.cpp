@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    displayAllScientists();
+    //displayAllScientists();
 }
 
 MainWindow::~MainWindow()
@@ -17,7 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::displayAllScientists()
+/*void MainWindow::displayAllScientists()
 {
     vector<Person> scientists = _data.readSciData("name", true);
     displayScientists(scientists);
@@ -53,6 +53,7 @@ void MainWindow::on_pushBotton_clicked()
     if(name.isEmpty())
     {
         //do nothing, show error
+        //ui->label_error_scientist_name->text("Name cannot be empty");
         return;
     }
     if(gender.isEmpty())
@@ -75,4 +76,4 @@ void MainWindow::on_pushBotton_clicked()
     {
         //error
     }
-}
+}*/

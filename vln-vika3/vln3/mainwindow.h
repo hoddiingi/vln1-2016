@@ -19,12 +19,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_input_filter_scientists_textChanged(const QString &arg1);
-    void on_pushBotton_clicked();
+    //void on_input_filter_scientists_textChanged(const QString &arg1);
+    //void on_pushBotton_clicked();
 
 private:
-    void displayAllScientists();
-    void displayScientists(std::vector<Person> scientists);
+    //void displayAllScientists();
+    //void displayScientists(std::vector<Person> scientists);
 
     Person _persons;
     Data _data;
