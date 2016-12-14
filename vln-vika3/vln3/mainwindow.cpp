@@ -114,50 +114,6 @@ void MainWindow::displayConnections(std::vector<int> connections)
     }
 }
 
-/*
-void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
-{
-    QString userInput = ui->input_filter_scientists->text();
-
-    vector<Person> scientists = _data.searchName(userInput);
-    displayScientists(scientists);
-}
-
-void MainWindow::on_pushBotton_clicked()
-{
-    QString name = ui->input_scientist_name->text();
-    QString gender = ui->input_scientist_gender->text();
-    QString birth = ui->input_scientist_birth->text();
-    QString death = ui->input_scientist_death->text();
-
-    if(name.isEmpty())
-    {
-        //do nothing, show error
-        //ui->label_error_scientist_name->text("Name cannot be empty");
-        return;
-    }
-    if(gender.isEmpty())
-    {
-        //do nothing
-        return;
-    }
-    bool success =_data.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
-    if(success)
-    {
-        ui->input_filter_scientists->setText("");
-        displayAllScientists();
-
-        ui->input_scientist_name->setText("");
-        ui->input_scientist_gender->setText("");
-        ui->input_scientist_birth->setText("");
-        ui->input_scientist_death->setText("");
-    }
-    else
-    {
-        //error
-    }
-}*/
-
 void MainWindow::on_table_computers_clicked(const QModelIndex &index)
 {
     ui->button_remove_computer->setEnabled(true);
@@ -206,7 +162,16 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
     vector<Computer> computers = _dom.searchComputer(userInput);
     displayComputers(computers);
 }
+void MainWindow::on_input_filter_connections_textChanged(const QString &arg1)
+{
+    QString userInput = ui->input_filter_computers->text();
 
+    vector<Person> ID = _dom.searchName(userInput);
+    displayAllConnections();
+    //Person p = ID[0];
+    //QString scientistName = QString::fromStdString(p.getName());
+
+}
 
 void MainWindow::on_button_edit_scientist_clicked()
 {
