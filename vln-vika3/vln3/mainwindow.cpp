@@ -88,26 +88,25 @@ void MainWindow::displayAllConnections()
 void MainWindow::displayConnections(std::vector<int> connections)
 {
     ui->table_connections->clearContents();
-    ui->table_connections->setRowCount(connections.size());
+    ui->table_connections->setRowCount(connections.size()/2);
 
     vector<Person> getScientists = _dom.readSciData(1);
     vector<Computer> getComputers = _dom.readCompData(1);
 
     int row = 0;
-
-    for(unsigned int i = 0; i < connections.size(); i+=2)
+    for(unsigned int main = 0; main < connections.size(); main+=2) //Table that holds together
     {
-        for(unsigned int j = 0; j < getScientists.size(); j++)
+        for(unsigned int sTable = 0; sTable < getScientists.size(); sTable++) //Goes through scientist vect and check if there is a hit
         {
-            int k = connections[i];
-            if(k == getScientists[j].getId())
-                ui->table_connections->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(getScientists[j].getName())));
+            int hitS = connections[main];
+            if(hitS == getScientists[sTable].getId())
+                ui->table_connections->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(getScientists[sTable].getName())));
         }
-        for (unsigned int j = 0; j < getComputers.size(); j++)
+        for (unsigned int cTable = 0; cTable < getComputers.size(); cTable++)//Goes through computer vect and check if there is a hit
         {
-            int k = connections[i+1];
-            if(k == getComputers[j].getId())
-                ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[j].getName())));
+            int hitC = connections[main+1];
+            if(hitC == getComputers[cTable].getId())
+                ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[cTable].getName())));
         }
         row++;
     }
