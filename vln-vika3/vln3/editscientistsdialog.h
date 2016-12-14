@@ -27,8 +27,6 @@ private slots:
 
     bool on_editOther_clicked();
 
-    void on_checkBox_clicked();
-
     void on_clickDeadYes_clicked(bool checked);
 
 private:
