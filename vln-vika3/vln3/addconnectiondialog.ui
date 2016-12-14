@@ -41,6 +41,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QTableWidget" name="tableConnectionScientist">
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>Name</string>
@@ -63,6 +66,9 @@
      </item>
      <item>
       <widget class="QTableWidget" name="tableConnectionComputer">
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
        <column>
         <property name="text">
          <string>Name</string>
