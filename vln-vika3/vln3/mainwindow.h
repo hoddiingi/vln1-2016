@@ -23,24 +23,19 @@ private slots:
     //void on_pushBotton_clicked();
     void on_table_computers_clicked(const QModelIndex &index);
     void on_table_scientists_clicked(const QModelIndex &index);
-
-
     void on_button_add_scientist_clicked();
-
-
     void on_input_filter_scientist_textChanged(const QString &arg1);
     void on_input_filter_computers_textChanged(const QString &arg1);
-
     void on_button_edit_scientist_clicked();
-
     void on_button_remove_computer_clicked();
-
     void on_button_remove_scientist_clicked();
+<<<<<<< HEAD
 
+=======
+    void on_button_remove_connections_clicked();
+>>>>>>> 2b7c09ba652afb429f0431defaaaaa9e065622a3
     void on_button_add_computer_clicked();
-
     void on_button_removeAll_computers_clicked();
-
     void on_button_removeAll_scientists_clicked();
 
 private:
@@ -50,6 +45,8 @@ private:
     void displayComputers(std::vector<Computer> computers); 
     void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);
+    void displayAllConnections();
+    void displayConnections(std::vector<int> connections);
 
     vector<Computer> _currentlyDisplayedComputer;
     vector<Person> _currentlyDisplayedScientist;

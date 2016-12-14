@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     displayAllComputers();
     displayAllScientists();
+    displayAllConnections();
 }
 
 MainWindow::~MainWindow()
@@ -78,6 +79,40 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
       //QTableView::resizeColumnsToContents();
         _currentlyDisplayedScientist = scientists;
 }
+void MainWindow::displayAllConnections()
+{
+    vector<int> connections = _dom.readConData();
+    displayConnections(connections);
+}
+
+void MainWindow::displayConnections(std::vector<int> connections)
+{
+    ui->table_connections->clearContents();
+    ui->table_connections->setRowCount(connections.size());
+
+    vector<Person> getScientists = _dom.readSciData(1);
+    vector<Computer> getComputers = _dom.readCompData(1);
+
+    int row = 0;
+
+    for(unsigned int i = 0; i < connections.size(); i+=2)
+    {
+        for(unsigned int j = 0; j < getScientists.size(); j++)
+        {
+            int k = connections[i];
+            if(k == getScientists[j].getId())
+                ui->table_connections->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(getScientists[j].getName())));
+        }
+        for (unsigned int j = 0; j < getComputers.size(); j++)
+        {
+            int k = connections[i+1];
+            if(k == getComputers[j].getId())
+                ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[j].getName())));
+        }
+        row++;
+    }
+}
+
 /*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
 {
