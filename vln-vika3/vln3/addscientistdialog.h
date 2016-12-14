@@ -35,6 +35,8 @@ private slots:
 
     bool validName(QString n);
 
+    bool validYear(QString n);
+
 private:
     Ui::addScientistDialog *ui;
     Person _persons;

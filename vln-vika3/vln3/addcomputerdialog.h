@@ -20,6 +20,8 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
+    bool validYear(QString n);
+
 private:
     Ui::addComputerDialog *ui;
     Domain _dom;
