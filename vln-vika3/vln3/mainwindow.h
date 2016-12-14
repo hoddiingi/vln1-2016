@@ -37,11 +37,6 @@ private slots:
 
     void on_button_remove_scientist_clicked();
 
-    void on_button_remove_connections_clicked();
-
-    void on_table_computers_activated(const QModelIndex &index);
-
-    void on_tableWidget_activated(const QModelIndex &index);
     void on_button_add_computer_clicked();
 
     void on_button_removeAll_computers_clicked();
