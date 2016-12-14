@@ -28,10 +28,6 @@ private slots:
 
     void on_addBirth_textChanged(const QString &arg1);
 
-    void on_deathYesButton_clicked();
-
-    void on_deathNoButton_clicked();
-
     void on_addDeath_textChanged(const QString &arg1);
 
     void on_buttonAdd_accepted();
@@ -39,6 +35,10 @@ private slots:
     void on_buttonAdd_rejected();
 
     void on_genderOtherText_textChanged(const QString &arg1);
+
+    void on_deathYesButton_toggled(bool checked);
+
+    bool validName(QString n);
 
 private:
     Ui::addScientistDialog *ui;
