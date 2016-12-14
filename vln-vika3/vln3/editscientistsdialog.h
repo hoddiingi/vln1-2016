@@ -4,7 +4,6 @@
 #include "mainwindow.h"
 #include "person.h"
 #include <QDialog>
-#include <QSqlQuery>
 
 namespace Ui {
 class editscientistsdialog;
@@ -17,6 +16,7 @@ class editscientistsdialog : public QDialog
 public:
     explicit editscientistsdialog(QWidget *parent = 0);
     ~editscientistsdialog();
+    void prepareEdit(QString& id, QString& name, QString& gender, QString& birth, QString& death);
 
 private slots:
     void on_buttonBox_accepted();
@@ -29,11 +29,16 @@ private slots:
 
     void on_checkBox_clicked();
 
-    void on_clickDeadYes_clicked();
+    void on_clickDeadYes_clicked(bool checked);
 
 private:
+    vector<Computer> _currentlyDisplayedComputer;
+    vector<Person> _currentlyDisplayedScientist;
+    Person _persons;
+    Domain _dom;
     Ui::editscientistsdialog *ui;
     Data _data;
+    int currentID;
 };
 
 #endif // EDITSCIENTISTSDIALOG_H

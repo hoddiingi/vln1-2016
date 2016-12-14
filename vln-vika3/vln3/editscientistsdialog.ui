@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>410</width>
-    <height>217</height>
+    <width>433</width>
+    <height>207</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>180</y>
+     <x>50</x>
+     <y>150</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -32,20 +32,13 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>30</x>
      <y>10</y>
-     <width>361</width>
-     <height>171</height>
+     <width>371</width>
+     <height>131</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QLineEdit" name="editID"/>
-      </item>
-     </layout>
-    </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
@@ -133,12 +126,23 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="editDeath"/>
+       <widget class="QLineEdit" name="editDeath">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
+  <zorder>buttonBox</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>label_4</zorder>
+  <zorder>clickDeadYes</zorder>
+  <zorder>label_4</zorder>
+  <zorder>editDeath</zorder>
+  <zorder>label_3</zorder>
  </widget>
  <resources/>
  <connections>

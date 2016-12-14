@@ -47,7 +47,7 @@ public:
     void updateConnectionSciId(QString &scientistId, QString &update);
     void updateConnectionCompId(QString &computerId, QString &update);
 
-    bool updateScientists();
+    bool updateScientists(QString &id, QString &name, QString &gender, QString &birth, QString &death);
 
 private:
 

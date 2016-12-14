@@ -170,7 +170,33 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
 
 void MainWindow::on_button_edit_scientist_clicked()
 {
+    Person selectedScientist;
+
+    //int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
+    //Person selectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
+
+    int row = ui->table_scientists->currentIndex().row();
+    int id = ui->table_scientists->model()->data(ui->table_scientists->model()->index(row,0)).toInt();
+
+    for(unsigned int i = 0; i < _currentlyDisplayedScientist.size(); i++)
+    {
+        if(_currentlyDisplayedScientist[i].getId() == id)
+        {
+            selectedScientist = _currentlyDisplayedScientist[i];
+            break;
+        }
+    }
+
+    QString sciId = QString::number(selectedScientist.getId());
+    QString name = QString::fromStdString(selectedScientist.getName());
+    QString gender = QString::fromStdString(selectedScientist.getGender());
+    QString birth = QString::number(selectedScientist.getBirth());
+    QString death = QString::number(selectedScientist.getDeath());
+
+
     editscientistsdialog edit;
+    edit.prepareEdit(sciId, name, gender, birth, death);
+
     int editScientists = edit.exec();
 
     if(editScientists == 0)
@@ -258,3 +284,4 @@ void MainWindow::on_button_add_computer_clicked()
         //error
     }
 }
+

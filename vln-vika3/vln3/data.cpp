@@ -591,17 +591,19 @@ void Data::updateConnectionCompId(QString &computerId, QString &update)
     close();
 }
 
-bool Data::updateScientists()
+bool Data::updateScientists(QString& id, QString& name, QString& gender, QString& birth, QString& death)
 {
     open();
     bool success = false;
     QSqlQuery query(sqlPrufa);
 
 
-    QString name;// = QString::fromStdString(p.getName());
-    QString gender;// = QString::fromStdString(p.getGender());
-    int birth;// = p.getBirth();
-    int death;// = p.getDeath();
+//    QString id;
+//    QString name;// = QString::fromStdString(p.getName());
+//    QString gender;// = QString::fromStdString(p.getGender());
+//    QString birth;// = p.getBirth();
+//    QString death;// = p.getDeath();
+
    /* query.exec("UPDATE People SET name='" +update+ "'"
              + "WHERE name='" +name+ "'");
     query.exec("UPDATE People SET gender='" +update+ "'"
@@ -610,12 +612,12 @@ bool Data::updateScientists()
               +"WHERE name='" +name+ "'");
     query.exec("UPDATE People SET death='" +update+ "'"
               +"WHERE name='" +name+ "'");*/
-
-    query.prepare("update INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
-    query.bindValue(":name", name);
-    query.bindValue(":gender", gender);
-    query.bindValue(":birth", birth);
-    query.bindValue(":death", death);
+      query.prepare("UPDATE People set ID='"+id+"', Name = '"+name+"', Gender = '"+gender+"', Birth = '"+birth+"', Death = '"+death+"' where ID = '"+id+"'");
+//    query.prepare("update INTO People (name, gender, birth, death) VALUES (:name, :gender, :birth, :death)");
+//    query.bindValue(":name", name);
+//    query.bindValue(":gender", gender);
+//    query.bindValue(":birth", birth);
+//    query.bindValue(":death", death);
 
     if(query.exec())
     {
@@ -629,40 +631,3 @@ bool Data::updateScientists()
 
 }
 
-/*
-void Data::updateScientistName(QString &name, QString &update)
-{
-    open();
-
-    QSqlQuery query(sqlPrufa);
-
-    query.exec("UPDATE People SET name='" +update+ "'"
-             + "WHERE name='" +name+ "'");
-
-    close();
-}
-
-void Data::updateScientistGender(QString &name, QString &update)
-{
-    open();
-
-    QSqlQuery query(sqlPrufa);
-
-    query.exec("UPDATE People SET gender='" +update+ "'"
-              +"WHERE name='" +name+ "'");
-
-    close();
-}
-
-void Data::updateScientistBirth(QString &name, QString &update)
-{
-    open();
-
-    QSqlQuery query(sqlPrufa);
-
-    query.exec("UPDATE People SET birth='" +update+ "'"
-              +"WHERE name='" +name+ "'");
-
-    close();
-}
-*/

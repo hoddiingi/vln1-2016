@@ -29,17 +29,25 @@ bool editscientistsdialog::on_editOther_clicked()
     ui->editGender->setEnabled(true);
 }
 
-void editscientistsdialog::on_clickDeadYes_clicked()
+void editscientistsdialog::on_clickDeadYes_clicked(bool checked)
 {
     ui->clickDeadYes->setEnabled(true);
+
+    if(checked)
+    {
+        ui->editDeath->setEnabled(true);
+        //ui->addDeath->setEnabled(true);
+    }
+    else
+    {
+        ui->editDeath->setEnabled(false);
+        //ui->addDeath->setEnabled(false);
+    }
 }
 
 void editscientistsdialog::on_buttonBox_accepted()
 {
-    _data.open();
-     QSqlQuery query;
-
-    QString id = ui->editID->text();
+    QString id = QString::number(currentID);
     QString name = ui->editName->text();
     QString birth = ui->editBorn->text();
     QString death = ui->editDeath->text();
@@ -51,28 +59,37 @@ void editscientistsdialog::on_buttonBox_accepted()
     else if(ui->editOther->isChecked())
        gender = ui->editGender->text();
 
-    query.prepare("UPDATE People set ID='"+id+"', Name = '"+name+"', Gender = '"+gender+"', Birth = '"+birth+"', Death = '"+death+"' where ID = '"+id+"'");
+    bool success = _data.updateScientists(id,name,gender,birth,death);
 
-    if(query.exec())
-    {
-        this->done(0);
-
-    }
-    //bool success =_data.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
-    //bool success =_data.updateScientists();//(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
-    /*if(success)
+    if(success)
     {
        this->done(0);
-       //MainWindow ui;
-       //ui.displayAllScientists();
-
     }
     else
     {
        this->done(-1);
        //error
-    }*/
-            _data.close();
+    }
+}
+
+void editscientistsdialog::prepareEdit(QString& id, QString& name, QString& gender, QString& birth, QString& death)
+{
+     //ui->editID->setText(id);
+
+     ui->editName->setText(name);
+     ui->editBorn->setText(birth);
+     ui->editDeath->setText(death);
+
+     if(gender == "Male")
+        ui->editMale->setChecked(true);
+     else if(gender == "Female")
+        ui->editFemale->setChecked(true);
+     else
+     {
+        ui->editOther->setChecked(true);
+        ui->editGender->setText(gender);
+     }
+     currentID = id.toInt();
 }
 
 
