@@ -77,8 +77,7 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 4, new QTableWidgetItem(death));
         ui->table_scientists->resizeColumnsToContents();
-
-    }
+      }
         _currentlyDisplayedScientist = scientists;
 }
 void MainWindow::displayAllConnections()
