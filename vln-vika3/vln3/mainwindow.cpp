@@ -2,7 +2,9 @@
 #include "ui_mainwindow.h"
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
+#include "editscientistsdialog.h"
 #include "addconnectiondialog.h"
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -114,50 +116,6 @@ void MainWindow::displayConnections(std::vector<int> connections)
     }
 }
 
-/*
-void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
-{
-    QString userInput = ui->input_filter_scientists->text();
-
-    vector<Person> scientists = _data.searchName(userInput);
-    displayScientists(scientists);
-}
-
-void MainWindow::on_pushBotton_clicked()
-{
-    QString name = ui->input_scientist_name->text();
-    QString gender = ui->input_scientist_gender->text();
-    QString birth = ui->input_scientist_birth->text();
-    QString death = ui->input_scientist_death->text();
-
-    if(name.isEmpty())
-    {
-        //do nothing, show error
-        //ui->label_error_scientist_name->text("Name cannot be empty");
-        return;
-    }
-    if(gender.isEmpty())
-    {
-        //do nothing
-        return;
-    }
-    bool success =_data.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
-    if(success)
-    {
-        ui->input_filter_scientists->setText("");
-        displayAllScientists();
-
-        ui->input_scientist_name->setText("");
-        ui->input_scientist_gender->setText("");
-        ui->input_scientist_birth->setText("");
-        ui->input_scientist_death->setText("");
-    }
-    else
-    {
-        //error
-    }
-}*/
-
 void MainWindow::on_table_computers_clicked(const QModelIndex &index)
 {
     ui->button_remove_computer->setEnabled(true);
@@ -206,11 +164,53 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
     vector<Computer> computers = _dom.searchComputer(userInput);
     displayComputers(computers);
 }
+void MainWindow::on_input_filter_connections_textChanged(const QString &arg1)
+{
+    QString userInput = ui->input_filter_computers->text();
 
+    vector<Person> ID = _dom.searchName(userInput);
+    displayAllConnections();
+    //Person p = ID[0];
+    //QString scientistName = QString::fromStdString(p.getName());
+
+}
 
 void MainWindow::on_button_edit_scientist_clicked()
 {
+    Person selectedScientist;
 
+    int row = ui->table_scientists->currentIndex().row();
+    int id = ui->table_scientists->model()->data(ui->table_scientists->model()->index(row,0)).toInt();
+
+    for(unsigned int i = 0; i < _currentlyDisplayedScientist.size(); i++)
+    {
+        if(_currentlyDisplayedScientist[i].getId() == id)
+        {
+            selectedScientist = _currentlyDisplayedScientist[i];
+            break;
+        }
+    }
+
+    QString sciId = QString::number(selectedScientist.getId());
+    QString name = QString::fromStdString(selectedScientist.getName());
+    QString gender = QString::fromStdString(selectedScientist.getGender());
+    QString birth = QString::number(selectedScientist.getBirth());
+    QString death = QString::number(selectedScientist.getDeath());
+
+
+    editscientistsdialog edit;
+    edit.prepareEdit(sciId, name, gender, birth, death);
+
+    int editScientists = edit.exec();
+
+    if(editScientists == 0)
+    {
+        displayAllScientists();
+    }
+    else
+    {
+
+    }
 }
 
 void MainWindow::on_button_remove_computer_clicked()
@@ -325,5 +325,43 @@ void MainWindow::on_button_add_connections_clicked()
     else
     {
         //error
+    }
+}
+
+void MainWindow::on_button_edit_computer_clicked()
+{
+    Computer selectedComputer;
+
+    int row = ui->table_computers->currentIndex().row();
+    int id = ui->table_computers->model()->data(ui->table_computers->model()->index(row,0)).toInt();
+
+    for(unsigned int i = 0; i < _currentlyDisplayedComputer.size(); i++)
+    {
+        if(_currentlyDisplayedComputer[i].getId() == id)
+        {
+            selectedComputer = _currentlyDisplayedComputer[i];
+            break;
+        }
+    }
+
+    QString cpuId = QString::number(selectedComputer.getId());
+    QString name = QString::fromStdString(selectedComputer.getName());
+    QString year = QString::number(selectedComputer.getYear());
+    QString type = QString::fromStdString(selectedComputer.getType());
+    QString built = QString::fromStdString(selectedComputer.getBuilt());
+
+    editcomputersdialog edit;
+
+    edit.prepareEdit(cpuId, name, year, type, built);
+
+    int editComputers = edit.exec();
+
+    if(editComputers == 0)
+    {
+        displayAllComputers();
+    }
+    else
+    {
+
     }
 }

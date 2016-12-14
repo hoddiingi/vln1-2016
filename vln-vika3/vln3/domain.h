@@ -55,6 +55,7 @@ public:
     void updateComputerType(QString &computerName, QString &update);
     void updateComputerBuilt(QString &computerName, QString &update);
 
+
 private:
     Data _dat;          //Private member variables
 };

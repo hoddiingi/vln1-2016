@@ -582,5 +582,42 @@ void Data::updateConnectionCompId(QString &computerId, QString &update)
     close();
 }
 
+bool Data::updateScientists(QString& id, QString& name, QString& gender, QString& birth, QString& death)
+{
+    open();
+    bool success = false;
+    QSqlQuery query(sqlPrufa);
+
+    query.prepare("UPDATE People set ID='"+id+"', Name = '"+name+"', Gender = '"+gender+"', Birth = '"+birth+"', Death = '"+death+"' where ID = '"+id+"'");
+
+    if(query.exec())
+    {
+        success = true;
+    }
+
+    close();
+    return success;
 
 
+
+}
+
+bool Data::updateComputers(QString& id, QString& name, QString& year, QString& type, QString& built)
+{
+    open();
+    bool success = false;
+    QSqlQuery query(sqlPrufa);
+
+    query.prepare("UPDATE Computers set ID='"+id+"', ComputerName = '"+name+"', Year = '"+year+"', Type = '"+type+"', Built = '"+built+"' where ID = '"+id+"'");
+
+    if(query.exec())
+    {
+        success = true;
+    }
+
+    close();
+    return success;
+
+
+
+}

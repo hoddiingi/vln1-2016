@@ -96,11 +96,21 @@ void Console::getInfo()
             int input = updateBy();
             if(input == 1)
             {
+                _pers = _dom.readSciData(1);
+                display();
+                cout << endl;
                 update();
+                _pers = _dom.readSciData(1);
+                display();
             }
             else if(input == 2)
             {
+                _comp = _dom.readCompData(1);
+                displayComputer();
+                cout << endl;
                 updateComputer();
+                _comp = _dom.readCompData(1);
+                displayComputer();
             }
             update();
         }
@@ -155,6 +165,7 @@ bool Console::validYear(string s)
             return 0;
         }
     }
+    return 1;
 }
 
 void Console::add(string& anotherOne)
