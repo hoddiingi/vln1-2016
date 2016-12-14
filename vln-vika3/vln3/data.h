@@ -48,6 +48,7 @@ public:
     void updateConnectionCompId(QString &computerId, QString &update);
 
     bool updateScientists(QString &id, QString &name, QString &gender, QString &birth, QString &death);
+    bool updateComputers(QString& id, QString& name, QString& year, QString& type, QString& built);
 
 private:
 

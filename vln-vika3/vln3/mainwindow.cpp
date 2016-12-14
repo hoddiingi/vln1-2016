@@ -214,9 +214,6 @@ void MainWindow::on_button_edit_scientist_clicked()
 {
     Person selectedScientist;
 
-    //int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
-    //Person selectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
-
     int row = ui->table_scientists->currentIndex().row();
     int id = ui->table_scientists->model()->data(ui->table_scientists->model()->index(row,0)).toInt();
 
@@ -366,3 +363,40 @@ void MainWindow::on_button_add_connections_clicked()
     }
 }
 
+void MainWindow::on_button_edit_computer_clicked()
+{
+    Computer selectedComputer;
+
+    int row = ui->table_computers->currentIndex().row();
+    int id = ui->table_computers->model()->data(ui->table_computers->model()->index(row,0)).toInt();
+
+    for(unsigned int i = 0; i < _currentlyDisplayedComputer.size(); i++)
+    {
+        if(_currentlyDisplayedComputer[i].getId() == id)
+        {
+            selectedComputer = _currentlyDisplayedComputer[i];
+            break;
+        }
+    }
+
+    QString cpuId = QString::number(selectedComputer.getId());
+    QString name = QString::fromStdString(selectedComputer.getName());
+    QString year = QString::number(selectedComputer.getYear());
+    QString type = QString::fromStdString(selectedComputer.getType());
+    QString built = QString::fromStdString(selectedComputer.getBuilt());
+
+    editcomputersdialog edit;
+
+    edit.prepareEdit(cpuId, name, year, type, built);
+
+    int editComputers = edit.exec();
+
+    if(editComputers == 0)
+    {
+        displayAllComputers();
+    }
+    else
+    {
+
+    }
+}
