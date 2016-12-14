@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "person.h"
 #include "domain.h"
+#include "data.h"
+#include "editscientistsdialog.h"
 #include <vector>
 
 namespace Ui {
@@ -56,6 +58,8 @@ private:
     vector<Person> _currentlyDisplayedScientist;
     Person _persons;
     Domain _dom;
+    Data _dat;
+    //editscientistsdialog _editSci;
     Ui::MainWindow *ui;
 };
 

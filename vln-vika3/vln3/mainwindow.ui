@@ -119,7 +119,7 @@
         <item>
          <widget class="QPushButton" name="button_edit_scientist">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="text">
            <string>Edit scientist</string>
