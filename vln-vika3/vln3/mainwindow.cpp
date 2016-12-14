@@ -65,8 +65,8 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
     ui->table_scientists->clearContents();
     ui->table_scientists->setRowCount(scientists.size());
 
-      for (unsigned int row = 0; row < scientists.size(); row++)
-      {
+    for (unsigned int row = 0; row < scientists.size(); row++)
+    {
         Person currentScientist = scientists[row];
         QString id = QString::number(currentScientist.getId());
         QString name = QString::fromStdString(currentScientist.getName());
@@ -80,17 +80,52 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 4, new QTableWidgetItem(death));
         ui->table_scientists->resizeColumnsToContents();
-      }
-        _currentlyDisplayedScientist = scientists;
+    }
+    _currentlyDisplayedScientist = scientists;
 }
+
 void MainWindow::displayAllConnections()
 {
-    vector<int> connections = _dom.readConData();
+    vector<Connection> connections = _dom.readConData();
     displayConnections(connections);
 }
 
-void MainWindow::displayConnections(std::vector<int> connections)
+void MainWindow::displayConnections(std::vector<Connection> connections)
 {
+    ui->table_connections->clearContents();
+    ui->table_connections->setRowCount(connections.size());
+
+    vector<Person> getScientists = _dom.readSciData(1);
+    vector<Computer> getComputers = _dom.readCompData(1);
+
+    for (unsigned int row = 0; row < connections.size(); row++)
+    {
+        Connection currentConnection = connections[row];
+        int scientistId = currentConnection.getScientistId();
+        int computerId  = currentConnection.getComputerId();
+
+        for(unsigned int i = 0; i < getScientists.size(); i++)
+        {
+            if(scientistId == getScientists[i].getId())
+            {
+                Person p = getScientists[i];
+                QString sciName  = QString::fromStdString(p.getName());
+                ui->table_connections->setItem(row, 0, new QTableWidgetItem(sciName));
+            }
+        }
+        for(unsigned int j = 0; j < getComputers.size(); j++)
+        {
+            if(computerId == getComputers[j].getId())
+            {
+                Computer c = getComputers[j];
+                QString compName = QString::fromStdString(c.getName());
+                ui->table_connections->setItem(row, 1, new QTableWidgetItem(compName));
+            }
+        }
+        ui->table_connections->resizeColumnsToContents();
+        _currentlyDisplayedConnection = connections;
+    }
+    /*
     ui->table_connections->clearContents();
     ui->table_connections->setRowCount(connections.size()/2);
 
@@ -113,7 +148,8 @@ void MainWindow::displayConnections(std::vector<int> connections)
                 ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[cTable].getName())));
         }
         row++;
-    }
+    }*/
+
 }
 
 void MainWindow::on_table_computers_clicked(const QModelIndex &index)
@@ -132,7 +168,6 @@ void MainWindow::on_table_connections_clicked(const QModelIndex &index)
     ui->button_remove_connections->setEnabled(true);
     ui->button_edit_connections->setEnabled(true);
 }
-
 
 void MainWindow::on_button_add_scientist_clicked()
 {
@@ -200,7 +235,6 @@ void MainWindow::on_button_edit_scientist_clicked()
     QString birth = QString::number(selectedScientist.getBirth());
     QString death = QString::number(selectedScientist.getDeath());
 
-
     editscientistsdialog edit;
     edit.prepareEdit(sciId, name, gender, birth, death);
 
@@ -259,13 +293,13 @@ void MainWindow::on_button_remove_scientist_clicked()
 void MainWindow::on_button_remove_connections_clicked()
 {
     int currentSelectedConnectionIndex = ui->table_connections->currentIndex().row();
-    Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedConnectionIndex);
-    int name = currentSelectedScientist.getId();
-    vector<Person> ID = (_dom.searchSciId(name));
-    currentSelectedScientist = ID[0];
-    QString scientistId = QString::number(currentSelectedScientist.getId());
+    qDebug() << currentSelectedConnectionIndex << endl;
+    Connection currentSelectedConnection = _currentlyDisplayedConnection.at(currentSelectedConnectionIndex);
 
-    bool success = _dom.removeConnection(scientistId);
+    QString scientistId = QString::number(currentSelectedConnection.getScientistId());
+    QString computerId  = QString::number(currentSelectedConnection.getComputerId());
+
+    bool success = _dom.removeConnection(scientistId, computerId);
 
     if(success)
     {

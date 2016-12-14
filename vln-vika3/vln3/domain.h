@@ -15,7 +15,7 @@ public:
 
     vector<Person> readSciData(int sortedBy);
     vector<Computer> readCompData(int sortedBy);
-    vector<int> readConData();
+    vector<Connection> readConData();
 
     //We use all these functions to connect from data to console
 
@@ -42,7 +42,7 @@ public:
     bool removeAllComputers();
     bool removePerson(QString& name);
     bool removeComputer(QString& computername);
-    bool removeConnection(QString &sciId);
+    bool removeConnection(QString &sciId, QString &compId);
     bool removeAllConnections();
     bool addConnection(int personID, int computerID, QSqlError error);
 

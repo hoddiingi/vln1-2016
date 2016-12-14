@@ -5,6 +5,7 @@
 #include <QtSql>
 #include "person.h"
 #include "computer.h"
+#include "connection.h"
 
 class Data
 {
@@ -17,7 +18,7 @@ public:
 
     vector<Computer> readCompData(string orderBy, bool isAsc);  //Reads info from table in SQLite and stores it in vector
     vector<Person> readSciData(string orderBy, bool isAsc);
-    vector<int> readConData();
+    vector<Connection> readConData();
 
     bool addPerson(Person p);                  //Add info to table in SQLite
     bool addComputer(Computer c, QSqlError error);
@@ -27,13 +28,14 @@ public:
     bool removeAllPersons();
     bool removeComputer(QString &computername);
     bool removeAllComputers();
-    bool removeConnection(QString &sciId);
+    bool removeConnection(QString &sciId, QString &compId);
     bool removeAllConnections();
 
     vector<Person> searchName(QString &name);                   //Search in vector for name or computer
     vector<Computer> searchComputer(QString &computerName);
     vector<Person> searchSciId(int &id);
     vector<Computer> searchCompId(int &id);
+    vector<Connection> searchConnId(int &connId);
 
 
     void updateScientistName(QString &name, QString &update);   //Updates info

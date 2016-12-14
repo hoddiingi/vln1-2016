@@ -52,10 +52,11 @@ private:
     void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);
     void displayAllConnections();
-    void displayConnections(std::vector<int> connections);
+    void displayConnections(std::vector<Connection> connections);
 
     vector<Computer> _currentlyDisplayedComputer;
     vector<Person> _currentlyDisplayedScientist;
+    vector<Connection> _currentlyDisplayedConnection;
     Person _persons;
     Domain _dom;
     Data _dat;

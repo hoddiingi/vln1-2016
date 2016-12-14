@@ -22,6 +22,7 @@ SOURCES += main.cpp\
     addcomputerdialog.cpp \
     editscientistsdialog.cpp \
     addconnectiondialog.cpp \
+    connection.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -32,6 +33,7 @@ HEADERS  += mainwindow.h \
     addcomputerdialog.h \
     editscientistsdialog.h \
     addconnectiondialog.h \
+    connection.h
 
 FORMS    += mainwindow.ui \
     addscientistdialog.ui \
