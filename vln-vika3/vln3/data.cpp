@@ -360,7 +360,7 @@ bool Data::removeAllComputers()
     return success;
 }
 
-bool Data::removeConnection(QString &sciId, QSqlError error)
+bool Data::removeConnection(QString &sciId)
 {
     open();
     bool success = false;
@@ -372,14 +372,10 @@ bool Data::removeConnection(QString &sciId, QSqlError error)
     {
         success = true;
     }
-    else
-    {
-        error = removeQuery.lastError();
-    }
     close();
     return success;
 }
-bool Data::removeAllConnections(QSqlError error)
+bool Data::removeAllConnections()
 {
     open();
     bool success = false;
@@ -390,10 +386,6 @@ bool Data::removeAllConnections(QSqlError error)
     if(removeQuery.exec())
     {
         success = true;
-    }
-    else
-    {
-        error = removeQuery.lastError();
     }
     close();
     return success;
