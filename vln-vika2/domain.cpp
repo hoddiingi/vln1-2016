@@ -125,9 +125,9 @@ bool Domain::removePerson(QString& name, QSqlError error)
     return _dat.removePerson(name, error);
 }
 
-bool Domain::removeComputer(QString& computername)
+bool Domain::removeComputer(QString& computername, QSqlError error)
 {
-    return _dat.removeComputer(computername);
+    return _dat.removeComputer(computername, error);
 }
 
 bool Domain::removeConnection(QString &sciId, QSqlError error)
