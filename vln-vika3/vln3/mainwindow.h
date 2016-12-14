@@ -39,6 +39,9 @@ private slots:
 
     void on_table_connections_clicked(const QModelIndex &index);
 
+    void on_button_add_connections_clicked();
+
+
 private:
 
     void displayAllComputers();
