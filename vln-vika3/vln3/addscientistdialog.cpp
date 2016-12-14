@@ -34,8 +34,8 @@ bool addScientistDialog::on_genderOtherButton_clicked()
 void addScientistDialog::on_buttonAdd_accepted()
 {
     QString name = ui->nameAdd->text();
-    //if(!validName(name))
-      //  qErrnoWarning("Name can't include letters", ui->nameAdd->text());
+    if(!validName(name))
+        qErrnoWarning("Name can't include letters", ui->nameAdd->text());
     QString birth = ui->addBirth->text();
     QString death = ui->addDeath->text();
     QString gender;
@@ -49,7 +49,7 @@ void addScientistDialog::on_buttonAdd_accepted()
     if(name.isEmpty())
     {
         //do nothing, show error
-        //ui->label_error_scientist_name->text("Name cannot be empty");
+        //ui->label_error_scientist_name->text("Name cannot be empty", );
         return;
     }
     bool success =_data.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
