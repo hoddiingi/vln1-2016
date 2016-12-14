@@ -45,6 +45,7 @@ void MainWindow::displayComputers(std::vector<Computer> computers)
         ui->table_computers->setItem(i, 2, new QTableWidgetItem(year));
         ui->table_computers->setItem(i, 3, new QTableWidgetItem(type));
         ui->table_computers->setItem(i, 4, new QTableWidgetItem(built));
+        ui->table_computers->resizeColumnsToContents();
     }
 
     _currentlyDisplayedComputer = computers;
@@ -75,8 +76,9 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 2, new QTableWidgetItem(gender));
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 4, new QTableWidgetItem(death));
+        ui->table_scientists->resizeColumnsToContents();
+
     }
-      //QTableView::resizeColumnsToContents();
         _currentlyDisplayedScientist = scientists;
 }
 void MainWindow::displayAllConnections()
@@ -108,6 +110,8 @@ void MainWindow::displayConnections(std::vector<int> connections)
             int k = connections[i+1];
             if(k == getComputers[j].getId())
                 ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[j].getName())));
+                ui->table_connections->resizeColumnsToContents();
+
         }
         row++;
     }
