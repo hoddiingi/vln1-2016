@@ -91,17 +91,16 @@ vector<int> Data::readConData()
 
     open();
 
-
     QSqlQuery query("SELECT * FROM connection");
-        int sciId = query.record().indexOf("scientistid");
-        int compId = query.record().indexOf("computerid");
-        while (query.next())
-        {
-            int sci = query.value(sciId).toInt();
-            vect.push_back(sci);
-            int comp = query.value(compId).toInt();
-            vect.push_back(comp);
-         }
+    int sciId = query.record().indexOf("scientistid");
+    int compId = query.record().indexOf("computerid");
+    while (query.next())
+    {
+        int sci = query.value(sciId).toInt();
+        vect.push_back(sci);
+        int comp = query.value(compId).toInt();
+        vect.push_back(comp);
+    }
     close();
     return vect;
 }
@@ -121,21 +120,21 @@ vector<Person> Data::readSciData(string orderBy, bool isAsc)
         queryInput += " DESC";
 
     QSqlQuery query(queryInput);
-        int idId = query.record().indexOf("ID");
-        int idName = query.record().indexOf("name");
-        int idGender = query.record().indexOf("gender");
-        int idBirth = query.record().indexOf("birth");
-        int idDeath = query.record().indexOf("death");
-        while (query.next())
-        {
-            int id = query.value(idId).toInt();
-            string name = query.value(idName).toString().toStdString();
-            string gender = query.value(idGender).toString().toStdString();
-            int birth = query.value(idBirth).toInt();
-            int death = query.value(idDeath).toInt();
-            Person temp(id, name, gender, birth, death);
-            vect.push_back(temp);
-         }
+    int idId = query.record().indexOf("ID");
+    int idName = query.record().indexOf("name");
+    int idGender = query.record().indexOf("gender");
+    int idBirth = query.record().indexOf("birth");
+    int idDeath = query.record().indexOf("death");
+    while (query.next())
+    {
+        int id = query.value(idId).toInt();
+        string name = query.value(idName).toString().toStdString();
+        string gender = query.value(idGender).toString().toStdString();
+        int birth = query.value(idBirth).toInt();
+        int death = query.value(idDeath).toInt();
+        Person temp(id, name, gender, birth, death);
+        vect.push_back(temp);
+    }
     close();
     return vect;
 }
@@ -361,7 +360,7 @@ bool Data::removeAllComputers()
     return success;
 }
 
-bool Data::removeConnection(QString &sciId, QSqlError error)
+bool Data::removeConnection(QString &sciId)
 {
     open();
     bool success = false;
@@ -373,14 +372,10 @@ bool Data::removeConnection(QString &sciId, QSqlError error)
     {
         success = true;
     }
-    else
-    {
-        error = removeQuery.lastError();
-    }
     close();
     return success;
 }
-bool Data::removeAllConnections(QSqlError error)
+bool Data::removeAllConnections()
 {
     open();
     bool success = false;
@@ -391,10 +386,6 @@ bool Data::removeAllConnections(QSqlError error)
     if(removeQuery.exec())
     {
         success = true;
-    }
-    else
-    {
-        error = removeQuery.lastError();
     }
     close();
     return success;

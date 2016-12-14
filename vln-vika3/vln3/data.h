@@ -27,8 +27,8 @@ public:
     bool removeAllPersons();
     bool removeComputer(QString &computername);
     bool removeAllComputers();
-    bool removeConnection(QString &sciId, QSqlError error);
-    bool removeAllConnections(QSqlError error);
+    bool removeConnection(QString &sciId);
+    bool removeAllConnections();
 
     vector<Person> searchName(QString &name);                   //Search in vector for name or computer
     vector<Computer> searchComputer(QString &computerName);

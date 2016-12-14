@@ -34,8 +34,8 @@ bool addScientistDialog::on_genderOtherButton_clicked()
 void addScientistDialog::on_buttonAdd_accepted()
 {
     QString name = ui->nameAdd->text();
-    if(!validName(name))
-        qErrnoWarning("Name can't include letters", ui->nameAdd->text());
+    //if(!validName(name))
+      //  qErrnoWarning("Name can't include letters", ui->nameAdd->text());
     QString birth = ui->addBirth->text();
     QString death = ui->addDeath->text();
     QString gender;
@@ -91,7 +91,7 @@ void addScientistDialog::on_deathYesButton_toggled(bool checked)
 bool addScientistDialog::validName(QString n)
 {
     std::string number = n.toStdString();
-    for (unsigned int i = 0; i < n.size(); i++)
+    for (int i = 0; i < n.size(); i++)
     {
         if (isdigit(number[i]))
         {

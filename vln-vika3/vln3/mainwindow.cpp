@@ -3,6 +3,7 @@
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
 #include "editscientistsdialog.h"
+#include "addconnectiondialog.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     displayAllComputers();
     displayAllScientists();
+    displayAllConnections();
 }
 
 MainWindow::~MainWindow()
@@ -46,6 +48,7 @@ void MainWindow::displayComputers(std::vector<Computer> computers)
         ui->table_computers->setItem(i, 2, new QTableWidgetItem(year));
         ui->table_computers->setItem(i, 3, new QTableWidgetItem(type));
         ui->table_computers->setItem(i, 4, new QTableWidgetItem(built));
+        ui->table_computers->resizeColumnsToContents();
     }
 
     _currentlyDisplayedComputer = computers;
@@ -76,10 +79,43 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->setItem(row, 2, new QTableWidgetItem(gender));
         ui->table_scientists->setItem(row, 3, new QTableWidgetItem(yearBorn));
         ui->table_scientists->setItem(row, 4, new QTableWidgetItem(death));
-    }
-      //QTableView::resizeColumnsToContents();
+        ui->table_scientists->resizeColumnsToContents();
+      }
         _currentlyDisplayedScientist = scientists;
 }
+void MainWindow::displayAllConnections()
+{
+    vector<int> connections = _dom.readConData();
+    displayConnections(connections);
+}
+
+void MainWindow::displayConnections(std::vector<int> connections)
+{
+    ui->table_connections->clearContents();
+    ui->table_connections->setRowCount(connections.size()/2);
+
+    vector<Person> getScientists = _dom.readSciData(1);
+    vector<Computer> getComputers = _dom.readCompData(1);
+
+    int row = 0;
+    for(unsigned int main = 0; main < connections.size(); main+=2) //Table that holds together
+    {
+        for(unsigned int sTable = 0; sTable < getScientists.size(); sTable++) //Goes through scientist vect and check if there is a hit
+        {
+            int hitS = connections[main];
+            if(hitS == getScientists[sTable].getId())
+                ui->table_connections->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(getScientists[sTable].getName())));
+        }
+        for (unsigned int cTable = 0; cTable < getComputers.size(); cTable++)//Goes through computer vect and check if there is a hit
+        {
+            int hitC = connections[main+1];
+            if(hitC == getComputers[cTable].getId())
+                ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[cTable].getName())));
+        }
+        row++;
+    }
+}
+
 /*
 void MainWindow::on_input_filter_scientists_textChanged(const QString &arg1)
 {
@@ -135,6 +171,13 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
     ui->button_edit_scientist->setEnabled(true);
 }
 
+void MainWindow::on_table_connections_clicked(const QModelIndex &index)
+{
+    ui->button_remove_connections->setEnabled(true);
+    ui->button_edit_connections->setEnabled(true);
+}
+
+
 void MainWindow::on_button_add_scientist_clicked()
 {
     addScientistDialog addNew;
@@ -149,6 +192,7 @@ void MainWindow::on_button_add_scientist_clicked()
 
     }
 }
+
 void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
 {
     QString userInput = ui->input_filter_scientist->text();
@@ -164,8 +208,6 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
     vector<Computer> computers = _dom.searchComputer(userInput);
     displayComputers(computers);
 }
-
-
 
 
 void MainWindow::on_button_edit_scientist_clicked()
@@ -249,6 +291,30 @@ void MainWindow::on_button_remove_scientist_clicked()
     }
 }
 
+void MainWindow::on_button_remove_connections_clicked()
+{
+    int currentSelectedConnectionIndex = ui->table_connections->currentIndex().row();
+    Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedConnectionIndex);
+    int name = currentSelectedScientist.getId();
+    vector<Person> ID = (_dom.searchSciId(name));
+    currentSelectedScientist = ID[0];
+    QString scientistId = QString::number(currentSelectedScientist.getId());
+
+    bool success = _dom.removeConnection(scientistId);
+
+    if(success)
+    {
+        ui->input_filter_connections->setText("");
+        displayAllConnections();
+
+        ui->button_remove_connections->setEnabled(false);
+    }
+    else
+    {
+        //display error
+    }
+}
+
 
 void MainWindow::on_button_removeAll_computers_clicked()
 {
@@ -278,6 +344,21 @@ void MainWindow::on_button_add_computer_clicked()
     if(addedComputer == 0)
     {
         displayAllComputers();
+    }
+    else
+    {
+        //error
+    }
+}
+
+void MainWindow::on_button_add_connections_clicked()
+{
+    addConnectionDialog addNewConn;
+    int addedConnection = addNewConn.exec();
+
+    if(addedConnection == 0)
+    {
+        displayAllConnections();
     }
     else
     {

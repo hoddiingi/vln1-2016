@@ -121,13 +121,13 @@ bool Domain::removeComputer(QString& computername)
 {
     return _dat.removeComputer(computername);
 }
-bool Domain::removeConnection(QString &sciId, QSqlError error)
+bool Domain::removeConnection(QString &sciId)
 {
-    return _dat.removeConnection(sciId, error);
+    return _dat.removeConnection(sciId);
 }
-bool Domain::removeAllConnections(QSqlError error)
+bool Domain::removeAllConnections()
 {
-    return _dat.removeAllConnections(error);
+    return _dat.removeAllConnections();
 }
 bool Domain::addConnection(int personID, int computerID, QSqlError error)
 {
