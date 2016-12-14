@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     domain.cpp \
     person.cpp \
     addscientistdialog.cpp \
-    addcomputerdialog.cpp
+    addcomputerdialog.cpp \
+    addconnectiondialog.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -27,11 +28,13 @@ HEADERS  += mainwindow.h \
     domain.h \
     person.h \
     addscientistdialog.h \
-    addcomputerdialog.h
+    addcomputerdialog.h \
+    addconnectiondialog.h
 
 FORMS    += mainwindow.ui \
     addscientistdialog.ui \
-    addcomputerdialog.ui
+    addcomputerdialog.ui \
+    addconnectiondialog.ui
 
 
 
