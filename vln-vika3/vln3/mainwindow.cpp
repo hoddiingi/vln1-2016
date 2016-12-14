@@ -290,7 +290,6 @@ void MainWindow::on_button_remove_scientist_clicked()
 void MainWindow::on_button_remove_connections_clicked()
 {
     int currentSelectedConnectionIndex = ui->table_connections->currentIndex().row();
-    qDebug() << currentSelectedConnectionIndex << endl;
     Connection currentSelectedConnection = _currentlyDisplayedConnection.at(currentSelectedConnectionIndex);
 
     QString scientistId = QString::number(currentSelectedConnection.getScientistId());
