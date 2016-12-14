@@ -29,7 +29,7 @@ private slots:
     void on_button_edit_scientist_clicked();
     void on_button_remove_computer_clicked();
     void on_button_remove_scientist_clicked();
-    void on_button_remove_connections_clicked();
+
     void on_button_add_computer_clicked();
     void on_button_removeAll_computers_clicked();
     void on_button_removeAll_scientists_clicked();
