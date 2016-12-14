@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "addscientistdialog.h"
 #include "addcomputerdialog.h"
+#include "addconnectiondialog.h"
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -274,6 +275,21 @@ void MainWindow::on_button_add_computer_clicked()
     if(addedComputer == 0)
     {
         displayAllComputers();
+    }
+    else
+    {
+        //error
+    }
+}
+
+void MainWindow::on_button_add_connections_clicked()
+{
+    addConnectionDialog addNewConn;
+    int addedConnection = addNewConn.exec();
+
+    if(addedConnection == 0)
+    {
+        displayAllConnections();
     }
     else
     {

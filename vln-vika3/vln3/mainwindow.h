@@ -34,6 +34,8 @@ private slots:
     void on_button_removeAll_computers_clicked();
     void on_button_removeAll_scientists_clicked();
 
+    void on_button_add_connections_clicked();
+
 private:
     //void displayAllScientists();
     //void displayScientists(std::vector<Person> scientists);
