@@ -1,5 +1,7 @@
 #include "addscientistdialog.h"
 #include "ui_addscientistdialog.h"
+#include <cctype>
+#include <ctype.h>
 
 
 addScientistDialog::addScientistDialog(QWidget *parent) :
@@ -12,11 +14,6 @@ addScientistDialog::addScientistDialog(QWidget *parent) :
 addScientistDialog::~addScientistDialog()
 {
     delete ui;
-}
-
-void addScientistDialog::on_nameAdd_textChanged(const QString &arg1)
-{
-
 }
 
 bool addScientistDialog::on_genderFemaleButton_clicked()
@@ -34,29 +31,11 @@ bool addScientistDialog::on_genderOtherButton_clicked()
     ui->genderOtherText->setEnabled(true);
 }
 
-void addScientistDialog::on_addBirth_textChanged(const QString &arg1)
-{
-
-}
-
-void addScientistDialog::on_deathYesButton_clicked()
-{
-    ui->addDeath->setEnabled(true);
-}
-
-void addScientistDialog::on_deathNoButton_clicked()
-{
-    ui->addDeath->setEnabled(false);
-}
-
-void addScientistDialog::on_addDeath_textChanged(const QString &arg1)
-{
-
-}
-
 void addScientistDialog::on_buttonAdd_accepted()
 {
     QString name = ui->nameAdd->text();
+    if(!validName(name))
+        qErrnoWarning("Name can't include letters", ui->nameAdd->text());
     QString birth = ui->addBirth->text();
     QString death = ui->addDeath->text();
     QString gender;
@@ -94,7 +73,30 @@ void addScientistDialog::on_buttonAdd_rejected()
 
 }
 
-void addScientistDialog::on_genderOtherText_textChanged(const QString &arg1)
+void addScientistDialog::on_deathYesButton_toggled(bool checked)
 {
+    if(checked)
+    {
+        ui->whatYearDeadText->setEnabled(true);
+        ui->addDeath->setEnabled(true);
+    }
+    else
+    {
+        ui->whatYearDeadText->setEnabled(false);
+        ui->addDeath->setEnabled(false);
+    }
 
+}
+
+bool addScientistDialog::validName(QString n)
+{
+    std::string number = n.toStdString();
+    for (unsigned int i = 0; i < n.size(); i++)
+    {
+        if (isdigit(number[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
 }
