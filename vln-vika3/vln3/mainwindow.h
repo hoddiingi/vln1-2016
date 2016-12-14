@@ -3,9 +3,11 @@
 
 #include <QMainWindow>
 #include "person.h"
+#include "computer.h"
 #include "domain.h"
 #include "data.h"
 #include "editscientistsdialog.h"
+#include "editcomputersdialog.h"
 #include <vector>
 
 namespace Ui {
@@ -44,6 +46,8 @@ private slots:
     void on_button_add_connections_clicked();
 
     void on_input_filter_connections_textChanged(const QString &arg1);
+
+    void on_button_edit_computer_clicked();
 
 private:
 
