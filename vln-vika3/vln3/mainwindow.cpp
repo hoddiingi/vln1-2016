@@ -169,6 +169,13 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
     ui->button_edit_scientist->setEnabled(true);
 }
 
+void MainWindow::on_table_connections_clicked(const QModelIndex &index)
+{
+    ui->button_remove_connections->setEnabled(true);
+    ui->button_edit_connections->setEnabled(true);
+}
+
+
 void MainWindow::on_button_add_scientist_clicked()
 {
     addScientistDialog addNew;
@@ -183,6 +190,7 @@ void MainWindow::on_button_add_scientist_clicked()
 
     }
 }
+
 void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
 {
     QString userInput = ui->input_filter_scientist->text();
@@ -200,12 +208,11 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
 }
 
 
-
-
 void MainWindow::on_button_edit_scientist_clicked()
 {
 
 }
+
 void MainWindow::on_button_remove_computer_clicked()
 {
     int currentSelectedComputerIndex = ui->table_computers->currentIndex().row();
@@ -239,6 +246,30 @@ void MainWindow::on_button_remove_scientist_clicked()
         displayAllScientists();
 
         ui->button_remove_scientist->setEnabled(false);
+    }
+    else
+    {
+        //display error
+    }
+}
+
+void MainWindow::on_button_remove_connections_clicked()
+{
+    int currentSelectedConnectionIndex = ui->table_connections->currentIndex().row();
+    Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedConnectionIndex);
+    int name = currentSelectedScientist.getId();
+    vector<Person> ID = (_dom.searchSciId(name));
+    currentSelectedScientist = ID[0];
+    QString scientistId = QString::number(currentSelectedScientist.getId());
+
+    bool success = _dom.removeConnection(scientistId);
+
+    if(success)
+    {
+        ui->input_filter_connections->setText("");
+        displayAllConnections();
+
+        ui->button_remove_connections->setEnabled(false);
     }
     else
     {

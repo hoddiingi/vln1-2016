@@ -91,7 +91,7 @@ void addScientistDialog::on_deathYesButton_toggled(bool checked)
 bool addScientistDialog::validName(QString n)
 {
     std::string number = n.toStdString();
-    for (unsigned int i = 0; i < n.size(); i++)
+    for (int i = 0; i < n.size(); i++)
     {
         if (isdigit(number[i]))
         {
