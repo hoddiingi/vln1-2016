@@ -18,7 +18,7 @@ public:
     ~addScientistDialog();
 
 private slots:
-    void on_nameAdd_textChanged(const QString &arg1);
+    //void on_nameAdd_textChanged(const QString &arg1);
 
     bool on_genderFemaleButton_clicked();
 
@@ -26,15 +26,15 @@ private slots:
 
     bool on_genderOtherButton_clicked();
 
-    void on_addBirth_textChanged(const QString &arg1);
+    //void on_addBirth_textChanged(const QString &arg1);
 
-    void on_addDeath_textChanged(const QString &arg1);
+    //void on_addDeath_textChanged(const QString &arg1);
 
     void on_buttonAdd_accepted();
 
     void on_buttonAdd_rejected();
 
-    void on_genderOtherText_textChanged(const QString &arg1);
+    //void on_genderOtherText_textChanged(const QString &arg1);
 
     void on_deathYesButton_toggled(bool checked);
 
