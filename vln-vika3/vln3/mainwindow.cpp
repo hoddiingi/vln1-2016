@@ -130,19 +130,19 @@ void MainWindow::displayConnections(std::vector<Connection> connections)
     }
 }
 
-void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
+void MainWindow::on_table_scientists_clicked()
 {
     ui->button_remove_scientist->setEnabled(true);
     ui->button_edit_scientist->setEnabled(true);
 }
 
-void MainWindow::on_table_computers_clicked(const QModelIndex &index)
+void MainWindow::on_table_computers_clicked()
 {
     ui->button_remove_computer->setEnabled(true);
     ui->button_edit_computer->setEnabled(true);
 }
 
-void MainWindow::on_table_connections_clicked(const QModelIndex &index)
+void MainWindow::on_table_connections_clicked()
 {
     ui->button_remove_connections->setEnabled(true);
 }
@@ -192,7 +192,7 @@ void MainWindow::on_button_add_connections_clicked()
     }
 }
 
-void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
+void MainWindow::on_input_filter_scientist_textChanged()
 {
     QString userInput = ui->input_filter_scientist->text();
 
@@ -200,7 +200,7 @@ void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
     displayScientists(scientists);
 }
 
-void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
+void MainWindow::on_input_filter_computers_textChanged()
 {
     QString userInput = ui->input_filter_computers->text();
 
