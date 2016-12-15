@@ -145,7 +145,6 @@ void MainWindow::on_table_scientists_clicked(const QModelIndex &index)
 void MainWindow::on_table_connections_clicked(const QModelIndex &index)
 {
     ui->button_remove_connections->setEnabled(true);
-    ui->button_edit_connections->setEnabled(true);
 }
 
 void MainWindow::on_button_add_scientist_clicked()
