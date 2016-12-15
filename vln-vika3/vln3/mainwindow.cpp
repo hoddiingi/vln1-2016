@@ -310,7 +310,6 @@ void MainWindow::on_button_remove_connections_clicked()
     }
 }
 
-
 void MainWindow::on_button_removeAll_computers_clicked()
 {
     ui->table_computers->clearSelection();

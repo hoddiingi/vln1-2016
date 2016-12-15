@@ -112,7 +112,7 @@ void Console::getInfo()
                 _comp = _dom.readCompData(1);
                 displayComputer();
             }
-            update();
+            //update();
         }
         else if((command == "Game") || (command == "game"))
         {
@@ -903,7 +903,7 @@ void Console::deleteStuff()
             QSqlError error;
             if(_dom.removeComputer(computer, error))
             {
-                qDebug() << "Remove computer error : " << error << endl;
+                //qDebug() << "Remove computer error : " << error << endl;
             }
         }
         else if (input == "4")
