@@ -14,12 +14,12 @@ public:
     Person(string name, string gender, int birth, int death);
 
 
-    string getName() const;             //Gets private member variables
-    string getGender() const;
-    int getBirth() const;
-    int getDeath() const;
-    int getId() const;
-    int getNameSize();
+    string getName() const;             //Gets private member variables for scientist name
+    string getGender() const;           //Gets private member variables for scientist gender, f/m
+    int getBirth() const;               //Gets private member variables for scientist birth
+    int getDeath() const;               //Gets private member variables for scientist death
+    int getId() const;                  //Gets private member variables for scientist Id
+    int getNameSize();                  //Gets letter count for name size (Only used for table in display)
 
 private:
 
