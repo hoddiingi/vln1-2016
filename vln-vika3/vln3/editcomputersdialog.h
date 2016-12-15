@@ -28,11 +28,7 @@ private slots:
 
 private:
     Ui::editcomputersdialog *ui;
-<<<<<<< HEAD
     Domain _dom;
-=======
-    Data _dat;
->>>>>>> 66e090237d478bcc70fddf9a23c8ebe47b9b979d
     int currentID;
 };
 

@@ -60,11 +60,6 @@ void editscientistsdialog::on_buttonBox_accepted()
     else if(ui->editOther->isChecked())
        gender = ui->editGender->text();
 
-<<<<<<< HEAD
-    bool success = _dom.updateScientists(id,name,gender,birth,death);
-
-    if(success)
-=======
     if((!validName(name)) || name.isEmpty())
     {
         //do nothing, show error
@@ -88,14 +83,13 @@ void editscientistsdialog::on_buttonBox_accepted()
         this->done(-1);
     }
     else if(death > "2016")
->>>>>>> 66e090237d478bcc70fddf9a23c8ebe47b9b979d
     {
         QMessageBox::warning(this, "Error in death year", "Can you tell the future?");
         this->done(-1);
     }
     else
     {
-        _dat.updateScientists(id,name,gender,birth,death);
+        _dom.updateScientists(id,name,gender,birth,death);
         this->done(0);
     }
 

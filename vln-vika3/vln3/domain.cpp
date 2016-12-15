@@ -178,11 +178,8 @@ bool Domain::updateScientists(QString &id, QString &name, QString &gender, QStri
     return _dat.updateScientists(id,name,gender,birth,death);
 }
 
-<<<<<<< HEAD
 bool Domain::updateComputers(QString& id, QString& name, QString& year, QString& type, QString& built)
 {
     return _dat.updateComputers(id,name,year,type,built);
 }
-=======
 
->>>>>>> 66e090237d478bcc70fddf9a23c8ebe47b9b979d

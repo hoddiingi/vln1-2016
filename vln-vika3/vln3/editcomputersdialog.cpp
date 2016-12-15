@@ -36,14 +36,8 @@ void editcomputersdialog::on_buttonBox_accepted()
        built = "Yes";
     else if(ui->editNo->isChecked())
        built = "No";
-<<<<<<< HEAD
 
-    bool success = _dom.updateComputers(id, name, year, type, built);
-
-    if(success)
-=======
     if(name.isEmpty())
->>>>>>> 66e090237d478bcc70fddf9a23c8ebe47b9b979d
     {
         QMessageBox::warning(this, "Error in name", "Invalid input, name can not be blank.");
         this->done(-1);
@@ -65,7 +59,7 @@ void editcomputersdialog::on_buttonBox_accepted()
     }
     else
     {
-         _dat.updateComputers(id, name, year, type, built);
+         _dom.updateComputers(id, name, year, type, built);
         this->done(0);
     }
 }

@@ -37,7 +37,7 @@ private:
     vector<Computer> _currentlyDisplayedComputer;
     vector<Person> _currentlyDisplayedScientist;
     Person _persons;
-    Data _dat;
+    Domain _dom;
     Ui::editscientistsdialog *ui;
     int currentID;
 };
