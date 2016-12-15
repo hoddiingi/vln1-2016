@@ -21,11 +21,11 @@ public:
 
 private slots:
 
-    bool on_genderFemaleButton_clicked();
+    void on_genderFemaleButton_clicked();
 
-    bool on_genderMaleButton_clicked();
+    void on_genderMaleButton_clicked();
 
-    bool on_genderOtherButton_clicked();
+    void on_genderOtherButton_clicked();
 
     void on_buttonAdd_accepted();
 

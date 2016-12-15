@@ -20,11 +20,13 @@ public:
 private slots:
     void on_buttonConnect_clicked();
 
+    void on_buttonCancel_clicked();
+
     void displayScientists();
 
     void displayComputers();
 
-    void on_buttonCancel_clicked();
+
 
 private:
     Ui::addConnectionDialog *ui;

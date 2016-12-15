@@ -17,7 +17,7 @@
    <string>Database</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/icons/Images/Database.png</normaloff>:/icons/Images/Database.png</iconset>
   </property>
   <property name="animated">
@@ -364,8 +364,25 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <tabstops>
+  <tabstop>input_filter_scientist</tabstop>
+  <tabstop>button_add_scientist</tabstop>
+  <tabstop>button_edit_scientist</tabstop>
+  <tabstop>button_remove_scientist</tabstop>
+  <tabstop>button_removeAll_scientists</tabstop>
+  <tabstop>table_scientists</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>input_filter_computers</tabstop>
+  <tabstop>button_add_computer</tabstop>
+  <tabstop>button_edit_computer</tabstop>
+  <tabstop>button_remove_computer</tabstop>
+  <tabstop>button_removeAll_computers</tabstop>
+  <tabstop>table_computers</tabstop>
+  <tabstop>button_add_connections</tabstop>
+  <tabstop>button_remove_connections</tabstop>
+  <tabstop>button_removeAll_connections</tabstop>
+  <tabstop>table_connections</tabstop>
+ </tabstops>
+ <resources/>
  <connections/>
 </ui>
