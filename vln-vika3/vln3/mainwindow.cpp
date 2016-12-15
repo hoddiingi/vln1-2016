@@ -157,10 +157,6 @@ void MainWindow::on_button_add_scientist_clicked()
     {
         displayAllScientists();
     }
-    else
-    {
-
-    }
 }
 
 void MainWindow::on_button_add_computer_clicked()
@@ -172,10 +168,6 @@ void MainWindow::on_button_add_computer_clicked()
     {
         displayAllComputers();
     }
-    else
-    {
-        //error
-    }
 }
 
 void MainWindow::on_button_add_connections_clicked()
@@ -186,10 +178,6 @@ void MainWindow::on_button_add_connections_clicked()
     if(addedConnection == 0)
     {
         displayAllConnections();
-    }
-    else
-    {
-        //error
     }
 }
 
@@ -313,10 +301,6 @@ void MainWindow::on_button_remove_scientist_clicked()
 
         ui->button_remove_scientist->setEnabled(false);
     }
-    else
-    {
-        //display error
-    }
 }
 
 void MainWindow::on_button_remove_computer_clicked()
@@ -348,10 +332,6 @@ void MainWindow::on_button_remove_computer_clicked()
 
         ui->button_remove_computer->setEnabled(false);
     }
-    else
-    {
-
-    }
 }
 
 void MainWindow::on_button_remove_connections_clicked()
@@ -369,10 +349,6 @@ void MainWindow::on_button_remove_connections_clicked()
         displayAllConnections();
 
         ui->button_remove_connections->setEnabled(false);
-    }
-    else
-    {
-        //display error
     }
 }
 

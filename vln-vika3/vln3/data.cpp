@@ -166,6 +166,7 @@ bool Data::addPerson(Person p)
 
    return success;
 }
+
 bool Data::addComputer(Computer c, QSqlError error)
 {
     open();
@@ -420,6 +421,7 @@ void Data::updateScientistBirth(QString &name, QString &update)
 
     close();
 }
+
 vector<Person> Data::searchSciId(int &id)
 {
     open();

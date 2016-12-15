@@ -18,7 +18,7 @@ public:
     ~imagedialog();
 
 private slots:
-    void on_imageBrowse_clicked();
+    void on_imageBrowse_clicked();                  //Opnar glugga til að leita að mynd til að displaya
 
 
 private:

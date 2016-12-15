@@ -18,9 +18,8 @@ public:
     ~addComputerDialog();
 
 private slots:
-    void on_buttonBox_accepted();
-
-    bool validYear(QString n);
+    void on_buttonBox_accepted();                       //Virkni fyrir staðfestingatakka þegar bætt er við tölvu
+    bool validYear(QString n);                          //Villutékkar innslátt fyrir add
 
 private:
     Ui::addComputerDialog *ui;

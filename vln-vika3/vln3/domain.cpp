@@ -160,6 +160,7 @@ void Domain::updateScientistBirth(QString &name, QString &update)
 {
     return _dat.updateScientistBirth(name, update);
 }
+
 void Domain::updateScientistDeath(QString &name, QString &update)
 {
     return _dat.updateScientistDeath(name, update);

@@ -17,14 +17,8 @@ public:
     void prepareEdit(QString& id, QString& name, QString& year, QString& type, QString& built);
 
 private slots:
-
-    void on_editYes_clicked();
-
-    void on_editNo_clicked();
-
-    void on_buttonBox_accepted();
-
-    bool validYear(QString n);
+    void on_buttonBox_accepted();                   //Edit samþykkt
+    bool validYear(QString n);                      //Villutékk á ártal
 
 private:
     Ui::editcomputersdialog *ui;

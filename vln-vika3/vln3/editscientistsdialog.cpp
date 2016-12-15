@@ -37,12 +37,10 @@ void editscientistsdialog::on_clickDeadYes_clicked(bool checked)
     if(checked)
     {
         ui->editDeath->setEnabled(true);
-        //ui->addDeath->setEnabled(true);
     }
     else
     {
         ui->editDeath->setEnabled(false);
-        //ui->addDeath->setEnabled(false);
     }
 }
 
@@ -53,6 +51,7 @@ void editscientistsdialog::on_buttonBox_accepted()
     QString birth = ui->editBorn->text();
     QString death = ui->editDeath->text();
     QString gender;
+
     if(ui->editMale->isChecked())
        gender = "Male";
     else if(ui->editFemale->isChecked())

@@ -14,16 +14,6 @@ editcomputersdialog::~editcomputersdialog()
     delete ui;
 }
 
-void editcomputersdialog::on_editYes_clicked()
-{
-
-}
-
-void editcomputersdialog::on_editNo_clicked()
-{
-
-}
-
 void editcomputersdialog::on_buttonBox_accepted()
 {
     QString id = QString::number(currentID);

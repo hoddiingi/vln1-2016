@@ -18,13 +18,10 @@ public:
     ~addConnectionDialog();
 
 private slots:
-    void on_buttonConnect_clicked();
-
-    void on_buttonCancel_clicked();
-
-    void displayScientists();
-
-    void displayComputers();
+    void on_buttonConnect_clicked();                    //Staðfestir valda tengingu
+    void on_buttonCancel_clicked();                     //Hættir við valda tengingu
+    void displayScientists();                           //Sýnir uppfærðan lista scientist eftir add
+    void displayComputers();                            //Sýnir uppfærðan lista computer eftir add
 
 
 

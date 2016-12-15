@@ -19,19 +19,13 @@ public:
     void prepareEdit(QString& id, QString& name, QString& gender, QString& birth, QString& death);
 
 private slots:
-    void on_buttonBox_accepted();
-
-    void on_editFemale_clicked();
-
-    void on_editMale_clicked();
-
-    void on_editOther_clicked();
-
-    void on_clickDeadYes_clicked(bool checked);
-
-    bool validName(QString n);
-
-    bool validYear(QString n);
+    void on_buttonBox_accepted();                       //Edit innsláttur samþykktur
+    void on_editFemale_clicked();                       //Female valið
+    void on_editMale_clicked();                         //Male valið
+    void on_editOther_clicked();                        //Annað kyn valið og boðið upp á innslátt
+    void on_clickDeadYes_clicked(bool checked);         //Hvort að scientist sé dáinn
+    bool validName(QString n);                          //Villutékk fyrir nafn
+    bool validYear(QString n);                          //Villutékk fyrir ártal
 
 private:
     vector<Computer> _currentlyDisplayedComputer;

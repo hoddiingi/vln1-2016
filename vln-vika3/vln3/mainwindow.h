@@ -40,10 +40,8 @@ private slots:
     void on_button_removeAll_scientists_clicked();                          //For remove all scientists
     void on_button_removeAll_computers_clicked();                           //For remove all computer
     void on_button_removeAll_connections_clicked();                         //For remove all connections
-
-    void on_scientistImage_clicked();
-
-    void on_computerImage_clicked();
+    void on_scientistImage_clicked();                                       //Opens image view window
+    void on_computerImage_clicked();                                        //Opens image view window
 
 private:
 
