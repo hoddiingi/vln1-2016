@@ -252,6 +252,13 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
+         <widget class="QLineEdit" name="input_filter_connections">
+          <property name="placeholderText">
+           <string>Search connections...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QTableWidget" name="table_connections">
           <property name="enabled">
            <bool>true</bool>

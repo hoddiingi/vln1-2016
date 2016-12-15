@@ -199,6 +199,16 @@ void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
     vector<Computer> computers = _dom.searchComputer(userInput);
     displayComputers(computers);
 }
+void MainWindow::on_input_filter_connections_textChanged(const QString &arg1)
+{
+    QString userInput = ui->input_filter_computers->text();
+
+    vector<Person> ID = _dom.searchName(userInput);
+    displayAllConnections();
+    //Person p = ID[0];
+    //QString scientistName = QString::fromStdString(p.getName());
+
+}
 
 void MainWindow::on_button_edit_scientist_clicked()
 {
