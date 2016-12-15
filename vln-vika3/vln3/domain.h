@@ -11,13 +11,12 @@ class Domain
 public:
     Domain();
 
-    int findAge(Person& sciAge) const;  //Calculates the age of a scientist
+    int findAge(Person& sciAge) const;                  //Calculates the age of a scientist
 
+    //We use all these functions to connect from data to console, more information is in data.h
     vector<Person> readSciData(int sortedBy);
     vector<Computer> readCompData(int sortedBy);
     vector<Connection> readConData();
-
-    //We use all these functions to connect from data to console
 
     bool addPerson(Person p);
     bool addComputer(Computer c, QSqlError error);

@@ -125,31 +125,6 @@ void MainWindow::displayConnections(std::vector<Connection> connections)
         ui->table_connections->resizeColumnsToContents();
         _currentlyDisplayedConnection = connections;
     }
-    /*
-    ui->table_connections->clearContents();
-    ui->table_connections->setRowCount(connections.size()/2);
-
-    vector<Person> getScientists = _dom.readSciData(1);
-    vector<Computer> getComputers = _dom.readCompData(1);
-
-    int row = 0;
-    for(unsigned int main = 0; main < connections.size(); main+=2) //Table that holds together
-    {
-        for(unsigned int sTable = 0; sTable < getScientists.size(); sTable++) //Goes through scientist vect and check if there is a hit
-        {
-            int hitS = connections[main];
-            if(hitS == getScientists[sTable].getId())
-                ui->table_connections->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(getScientists[sTable].getName())));
-        }
-        for (unsigned int cTable = 0; cTable < getComputers.size(); cTable++)//Goes through computer vect and check if there is a hit
-        {
-            int hitC = connections[main+1];
-            if(hitC == getComputers[cTable].getId())
-                ui->table_connections->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(getComputers[cTable].getName())));
-        }
-        row++;
-    }*/
-
 }
 
 void MainWindow::on_table_computers_clicked(const QModelIndex &index)
