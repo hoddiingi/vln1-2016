@@ -15,17 +15,17 @@ editscientistsdialog::~editscientistsdialog()
     delete ui;
 }
 
-bool editscientistsdialog::on_editFemale_clicked()
+void editscientistsdialog::on_editFemale_clicked()
 {
     ui->editGender->setEnabled(false);
 }
 
-bool editscientistsdialog::on_editMale_clicked()
+void editscientistsdialog::on_editMale_clicked()
 {
     ui->editGender->setEnabled(false);
 }
 
-bool editscientistsdialog::on_editOther_clicked()
+void editscientistsdialog::on_editOther_clicked()
 {
     ui->editGender->setEnabled(true);
 }

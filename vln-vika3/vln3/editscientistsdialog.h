@@ -21,11 +21,11 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
-    bool on_editFemale_clicked();
+    void on_editFemale_clicked();
 
-    bool on_editMale_clicked();
+    void on_editMale_clicked();
 
-    bool on_editOther_clicked();
+    void on_editOther_clicked();
 
     void on_clickDeadYes_clicked(bool checked);
 
