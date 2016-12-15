@@ -1,5 +1,6 @@
 #include "editcomputersdialog.h"
 #include "ui_editcomputersdialog.h"
+#include <QMessageBox>
 
 editcomputersdialog::editcomputersdialog(QWidget *parent) :
     QDialog(parent),
@@ -35,19 +36,44 @@ void editcomputersdialog::on_buttonBox_accepted()
        built = "Yes";
     else if(ui->editNo->isChecked())
        built = "No";
+<<<<<<< HEAD
 
     bool success = _dom.updateComputers(id, name, year, type, built);
 
     if(success)
+=======
+    if(name.isEmpty())
+>>>>>>> 66e090237d478bcc70fddf9a23c8ebe47b9b979d
     {
-       this->done(0);
+        QMessageBox::warning(this, "Error in name", "Invalid input, name can not be blank.");
+        this->done(-1);
+    }
+    else if(!validYear(year) || year.isEmpty())
+    {
+        QMessageBox::warning(this, "Error in year", "Invalid input, year can not be blank and only include numbers");
+        this->done(-1);
+    }
+    else if(type.isEmpty())
+    {
+        QMessageBox::warning(this, "Error in type", "Invalid input, type can not be empty.");
+        this->done(-1);
+    }
+    else if(year > "2016")
+    {
+        QMessageBox::warning(this, "Error in year", "This year is in the future");
+        this->done(-1);
     }
     else
     {
-       this->done(-1);
-       //error
+         _dat.updateComputers(id, name, year, type, built);
+        this->done(0);
     }
 }
+
+
+
+
+
 
 void editcomputersdialog::prepareEdit(QString& id, QString& name, QString& year, QString& type, QString& built)
 {
@@ -61,4 +87,17 @@ void editcomputersdialog::prepareEdit(QString& id, QString& name, QString& year,
         ui->editNo->setChecked(true);
 
      currentID = id.toInt();
+}
+
+bool editcomputersdialog::validYear(QString n)
+{
+    std::string number = n.toStdString();
+    for (int i = 0; i < n.size(); i++)
+    {
+        if (!isdigit(number[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
 }

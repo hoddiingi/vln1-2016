@@ -36,10 +36,12 @@ private slots:
 
     bool validName(QString n);
 
+    bool validYear(QString n);
+
 private:
     Ui::addScientistDialog *ui;
     Person _persons;
-    Data _data;
+    Domain _dom;
 };
 
 #endif // ADDSCIENTISTDIALOG_H

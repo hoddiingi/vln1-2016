@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
-    <height>530</height>
+    <width>695</width>
+    <height>652</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,11 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
+<<<<<<< HEAD
        <number>0</number>
+=======
+       <number>1</number>
+>>>>>>> 66e090237d478bcc70fddf9a23c8ebe47b9b979d
       </property>
       <widget class="QWidget" name="tab_scientists">
        <attribute name="title">
@@ -178,7 +182,7 @@
            <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderStretchLastSection">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <column>
            <property name="text">

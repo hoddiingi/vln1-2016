@@ -1,5 +1,6 @@
 #include "addcomputerdialog.h"
 #include "ui_addcomputerdialog.h"
+#include <QMessageBox>
 
 addComputerDialog::addComputerDialog(QWidget *parent) :
     QDialog(parent),
@@ -26,22 +27,45 @@ void addComputerDialog::on_buttonBox_accepted()
 
     if(name.isEmpty())
     {
-        //do nothing, show error
-        //ui->label_error_scientist_name->text("Name cannot be empty");
-        return;
+        QMessageBox::warning(this, "Error in name", "Invalid input, name can not be blank.");
+        addComputerDialog retry;
+        retry.exec();
     }
-    bool success =_dom.addComputer(Computer(name.toStdString(), year.toInt(), type.toStdString(), built.toStdString()), QSqlError());
-    if(success)
+    else if(!validYear(year) || year.isEmpty())
     {
-        this->done(0);
-        //MainWindow ui;
-        //ui.displayAllScientists();
-
+        QMessageBox::warning(this, "Error in year", "Invalid input, year can not be blank and only include numbers");
+        addComputerDialog retry;
+        retry.exec();
+    }
+    else if(type.isEmpty())
+    {
+        QMessageBox::warning(this, "Error in type", "Invalid input, type can not be empty.");
+        addComputerDialog retry;
+        retry.exec();
+    }
+    else if(year > "2016")
+    {
+        QMessageBox::warning(this, "Error in year", "This year is in the future");
+        addComputerDialog retry;
+        retry.exec();
     }
     else
     {
-        this->done(-1);
-        //error
+        _dom.addComputer(Computer(name.toStdString(), year.toInt(), type.toStdString(), built.toStdString()), QSqlError());
+        this->done(0);
     }
 
+}
+
+bool addComputerDialog::validYear(QString n)
+{
+    std::string number = n.toStdString();
+    for (int i = 0; i < n.size(); i++)
+    {
+        if (!isdigit(number[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
 }
