@@ -1,6 +1,7 @@
 #ifndef ADDSCIENTISTDIALOG_H
 #define ADDSCIENTISTDIALOG_H
 #include "data.h"
+#include "domain.h"
 #include "mainwindow.h"
 #include "person.h"
 #include <QDialog>

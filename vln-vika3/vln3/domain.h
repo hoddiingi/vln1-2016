@@ -4,7 +4,7 @@
 #include <QtSql>
 #include "person.h"
 #include "data.h"
-
+#include <string>
 
 class Domain
 {
@@ -55,6 +55,8 @@ public:
     void updateComputerType(QString &computerName, QString &update);
     void updateComputerBuilt(QString &computerName, QString &update);
 
+    bool updateScientists(QString &id, QString &name, QString &gender, QString &birth, QString &death);
+    bool updateComputers(QString& id, QString& name, QString& year, QString& type, QString& built);
 
 private:
     Data _dat;          //Private member variables

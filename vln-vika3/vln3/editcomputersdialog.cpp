@@ -36,7 +36,7 @@ void editcomputersdialog::on_buttonBox_accepted()
     else if(ui->editNo->isChecked())
        built = "No";
 
-    bool success = _data.updateComputers(id, name, year, type, built);
+    bool success = _dom.updateComputers(id, name, year, type, built);
 
     if(success)
     {

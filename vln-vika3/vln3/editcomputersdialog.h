@@ -1,6 +1,6 @@
 #ifndef EDITCOMPUTERSDIALOG_H
 #define EDITCOMPUTERSDIALOG_H
-#include "data.h"
+#include "domain.h"
 #include <QDialog>
 
 namespace Ui {
@@ -26,7 +26,7 @@ private slots:
 
 private:
     Ui::editcomputersdialog *ui;
-    Data _data;
+    Domain _dom;
     int currentID;
 };
 

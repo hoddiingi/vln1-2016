@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include "data.h"
+#include <string>
 
 Domain::Domain()
 {
@@ -172,4 +173,12 @@ void Domain::updateComputerBuilt(QString &computerName, QString &update)
     return _dat.updateComputerBuilt(computerName, update);
 }
 
+bool Domain::updateScientists(QString &id, QString &name, QString &gender, QString &birth, QString &death)
+{
+    return _dat.updateScientists(id,name,gender,birth,death);
+}
 
+bool Domain::updateComputers(QString& id, QString& name, QString& year, QString& type, QString& built)
+{
+    return _dat.updateComputers(id,name,year,type,built);
+}

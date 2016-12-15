@@ -1,6 +1,6 @@
 #ifndef EDITSCIENTISTSDIALOG_H
 #define EDITSCIENTISTSDIALOG_H
-#include "data.h"
+#include "domain.h"
 #include "mainwindow.h"
 #include "person.h"
 #include <QDialog>
@@ -35,7 +35,6 @@ private:
     Person _persons;
     Domain _dom;
     Ui::editscientistsdialog *ui;
-    Data _data;
     int currentID;
 };
 

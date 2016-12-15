@@ -27,7 +27,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_scientists">
        <attribute name="title">
@@ -74,7 +74,7 @@
            <bool>true</bool>
           </property>
           <attribute name="horizontalHeaderStretchLastSection">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <attribute name="verticalHeaderCascadingSectionResizes">
            <bool>false</bool>
@@ -359,7 +359,7 @@
      <x>0</x>
      <y>0</y>
      <width>646</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

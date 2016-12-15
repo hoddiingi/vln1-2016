@@ -59,7 +59,7 @@ void editscientistsdialog::on_buttonBox_accepted()
     else if(ui->editOther->isChecked())
        gender = ui->editGender->text();
 
-    bool success = _data.updateScientists(id,name,gender,birth,death);
+    bool success = _dom.updateScientists(id,name,gender,birth,death);
 
     if(success)
     {
