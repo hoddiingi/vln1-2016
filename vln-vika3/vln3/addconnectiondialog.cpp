@@ -18,9 +18,6 @@ addConnectionDialog::~addConnectionDialog()
 
 void addConnectionDialog::on_buttonConnect_clicked()
 {
-    //int personID = ui->tableConnectionScientist->currentIndex().row;
-    //int compID = ui->tableConnectionComputer->currentIndex().row;
-
     int currentSelectedScientistIndex = ui->tableConnectionScientist->currentIndex().row();
     Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
     QString personID = QString::number(currentSelectedScientist.getId());
@@ -29,24 +26,16 @@ void addConnectionDialog::on_buttonConnect_clicked()
     Computer currentSelectedComputer = _currentlyDisplayedComputer.at(currentSelectedComputerIndex);
     QString compID = QString::number(currentSelectedComputer.getId());
 
-
-
     bool success =_dom.addConnection(personID.toInt(), compID.toInt(), QSqlError());
     if(success)
     {
         this->done(0);
-        //MainWindow ui;
-        //ui.displayAllScientists();
-
     }
     else
     {
         this->done(-1);
-        //error
     }
-
 }
-
 
 void addConnectionDialog::displayScientists()
 {
@@ -54,15 +43,13 @@ void addConnectionDialog::displayScientists()
     ui->tableConnectionScientist->clearContents();
     ui->tableConnectionScientist->setRowCount(scientists.size());
 
-      for (unsigned int row = 0; row < scientists.size(); row++)
-      {
+    for (unsigned int row = 0; row < scientists.size(); row++)
+    {
         Person currentScientist = scientists[row];
         QString name = QString::fromStdString(currentScientist.getName());
         ui->tableConnectionScientist->setItem(row, 0, new QTableWidgetItem(name));
-
     }
-      //QTableView::resizeColumnsToContents();
-       _currentlyDisplayedScientist = scientists;
+    _currentlyDisplayedScientist = scientists;
 }
 
 void addConnectionDialog::displayComputers()
@@ -78,7 +65,6 @@ void addConnectionDialog::displayComputers()
         QString name = QString::fromStdString(currentComputer.getName());
         ui->tableConnectionComputer->setItem(i, 0, new QTableWidgetItem(name));
     }
-
     _currentlyDisplayedComputer = computers;
 }
 

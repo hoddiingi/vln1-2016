@@ -92,13 +92,10 @@ void editscientistsdialog::on_buttonBox_accepted()
         _dom.updateScientists(id,name,gender,birth,death);
         this->done(0);
     }
-
 }
 
 void editscientistsdialog::prepareEdit(QString& id, QString& name, QString& gender, QString& birth, QString& death)
 {
-     //ui->editID->setText(id);
-
      ui->editName->setText(name);
      ui->editBorn->setText(birth);
      ui->editDeath->setText(death);
@@ -140,6 +137,3 @@ bool editscientistsdialog::validYear(QString n)
     }
     return 1;
 }
-
-
-

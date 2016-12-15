@@ -37,7 +37,6 @@ public:
     vector<Computer> searchCompId(int &id);                             //Search in vector for computer Id
     vector<Connection> searchConnId(int &connId);                       //Search in vector for connections Id
 
-
     void updateScientistName(QString &name, QString &update);           //Updates info for scientist name
     void updateScientistBirth(QString &name, QString &update);          //Updates info for scientist birth
     void updateScientistGender(QString &name, QString &update);         //Updates info for scientist gender
