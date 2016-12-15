@@ -23,37 +23,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::displayAllComputers()
-{
-    vector<Computer> computers = _dom.readCompData(1);
-    displayComputers(computers);
-}
-
-void MainWindow::displayComputers(std::vector<Computer> computers)
-{
-    ui->table_computers->clearContents();
-    ui->table_computers->setRowCount(computers.size());
-
-    for(unsigned int i = 0; i < computers.size(); i++)
-    {
-        Computer currentComputer = computers[i];
-        QString id = QString::number(currentComputer.getId());
-        QString name = QString::fromStdString(currentComputer.getName());
-        QString year = QString::number(currentComputer.getYear());
-        QString type = QString::fromStdString(currentComputer.getType());
-        QString built = QString::fromStdString(currentComputer.getBuilt());
-
-        ui->table_computers->setItem(i, 0, new QTableWidgetItem(id));
-        ui->table_computers->setItem(i, 1, new QTableWidgetItem(name));
-        ui->table_computers->setItem(i, 2, new QTableWidgetItem(year));
-        ui->table_computers->setItem(i, 3, new QTableWidgetItem(type));
-        ui->table_computers->setItem(i, 4, new QTableWidgetItem(built));
-        ui->table_computers->resizeColumnsToContents();
-    }
-
-    _currentlyDisplayedComputer = computers;
-}
-
 void MainWindow::displayAllScientists()
 {
     vector<Person> scientists = _dom.readSciData(1);
@@ -86,6 +55,36 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         ui->table_scientists->resizeColumnsToContents();
     }
     _currentlyDisplayedScientist = scientists;
+}
+
+void MainWindow::displayAllComputers()
+{
+    vector<Computer> computers = _dom.readCompData(1);
+    displayComputers(computers);
+}
+
+void MainWindow::displayComputers(std::vector<Computer> computers)
+{
+    ui->table_computers->clearContents();
+    ui->table_computers->setRowCount(computers.size());
+
+    for(unsigned int i = 0; i < computers.size(); i++)
+    {
+        Computer currentComputer = computers[i];
+        QString id = QString::number(currentComputer.getId());
+        QString name = QString::fromStdString(currentComputer.getName());
+        QString year = QString::number(currentComputer.getYear());
+        QString type = QString::fromStdString(currentComputer.getType());
+        QString built = QString::fromStdString(currentComputer.getBuilt());
+
+        ui->table_computers->setItem(i, 0, new QTableWidgetItem(id));
+        ui->table_computers->setItem(i, 1, new QTableWidgetItem(name));
+        ui->table_computers->setItem(i, 2, new QTableWidgetItem(year));
+        ui->table_computers->setItem(i, 3, new QTableWidgetItem(type));
+        ui->table_computers->setItem(i, 4, new QTableWidgetItem(built));
+        ui->table_computers->resizeColumnsToContents();
+    }
+    _currentlyDisplayedComputer = computers;
 }
 
 void MainWindow::displayAllConnections()
@@ -131,16 +130,16 @@ void MainWindow::displayConnections(std::vector<Connection> connections)
     }
 }
 
+void MainWindow::on_table_scientists_clicked()
+{
+    ui->button_remove_scientist->setEnabled(true);
+    ui->button_edit_scientist->setEnabled(true);
+}
+
 void MainWindow::on_table_computers_clicked()
 {
     ui->button_remove_computer->setEnabled(true);
     ui->button_edit_computer->setEnabled(true);
-}
-void MainWindow::on_table_scientists_clicked()
-{
-
-    ui->button_remove_scientist->setEnabled(true);
-    ui->button_edit_scientist->setEnabled(true);
 }
 
 void MainWindow::on_table_connections_clicked()
@@ -163,7 +162,37 @@ void MainWindow::on_button_add_scientist_clicked()
     }
 }
 
-void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
+void MainWindow::on_button_add_computer_clicked()
+{
+    addComputerDialog addNewComp;
+    int addedComputer = addNewComp.exec();
+
+    if(addedComputer == 0)
+    {
+        displayAllComputers();
+    }
+    else
+    {
+        //error
+    }
+}
+
+void MainWindow::on_button_add_connections_clicked()
+{
+    addConnectionDialog addNewConn;
+    int addedConnection = addNewConn.exec();
+
+    if(addedConnection == 0)
+    {
+        displayAllConnections();
+    }
+    else
+    {
+        //error
+    }
+}
+
+void MainWindow::on_input_filter_scientist_textChanged()
 {
     QString userInput = ui->input_filter_scientist->text();
 
@@ -171,7 +200,7 @@ void MainWindow::on_input_filter_scientist_textChanged(const QString &arg1)
     displayScientists(scientists);
 }
 
-void MainWindow::on_input_filter_computers_textChanged(const QString &arg1)
+void MainWindow::on_input_filter_computers_textChanged()
 {
     QString userInput = ui->input_filter_computers->text();
 
@@ -218,157 +247,6 @@ void MainWindow::on_button_edit_scientist_clicked()
     }
 }
 
-void MainWindow::on_button_remove_computer_clicked()
-{
-    int currentSelectedComputerIndex = ui->table_computers->currentIndex().row();
-    Computer currentSelectedComputer = _currentlyDisplayedComputer.at(currentSelectedComputerIndex);
-    QString name = QString::fromStdString(currentSelectedComputer.getName());
-    bool success = _dom.removeComputer(name);
-
-    for(int i = 0; i < _currentlyDisplayedConnection.size(); i++)
-    {
-        if(currentSelectedComputer.getId() == _currentlyDisplayedConnection[i].getComputerId())
-        {
-
-            QString scientistId = QString::number(_currentlyDisplayedConnection[i].getScientistId());
-            QString computerId  = QString::number(_currentlyDisplayedConnection[i].getComputerId());
-            _dom.removeConnection(scientistId, computerId);
-        }
-    }
-
-    if(success)
-    {
-        ui->input_filter_computers->setText("");
-        displayAllComputers();
-        displayAllConnections();
-
-        ui->button_remove_computer->setEnabled(false);
-    }
-    else
-    {
-
-    }
-}
-
-void MainWindow::on_button_remove_scientist_clicked()
-{
-    //Connection currentConnection;
-    int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
-    Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
-    QString name = QString::fromStdString(currentSelectedScientist.getName());
-    bool success = _dom.removePerson(name);
-
-    for(int i = 0; i < _currentlyDisplayedConnection.size(); i++)
-    {
-        if(currentSelectedScientist.getId() == _currentlyDisplayedConnection[i].getScientistId())
-        {
-
-            QString scientistId = QString::number(_currentlyDisplayedConnection[i].getScientistId());
-            QString computerId  = QString::number(_currentlyDisplayedConnection[i].getComputerId());
-            _dom.removeConnection(scientistId, computerId);
-        }
-    }
-
-
-
-    if(success)
-    {
-        ui->input_filter_scientist->setText("");
-        displayAllScientists();
-        displayAllConnections();
-
-        ui->button_remove_scientist->setEnabled(false);
-    }
-    else
-    {
-        //display error
-    }
-}
-
-void MainWindow::on_button_remove_connections_clicked()
-{
-    int currentSelectedConnectionIndex = ui->table_connections->currentIndex().row();
-    Connection currentSelectedConnection = _currentlyDisplayedConnection.at(currentSelectedConnectionIndex);
-
-    QString scientistId = QString::number(currentSelectedConnection.getScientistId());
-    QString computerId  = QString::number(currentSelectedConnection.getComputerId());
-
-    bool success = _dom.removeConnection(scientistId, computerId);
-
-    if(success)
-    {
-        displayAllConnections();
-
-        ui->button_remove_connections->setEnabled(false);
-    }
-    else
-    {
-        //display error
-    }
-}
-
-void MainWindow::on_button_removeAll_computers_clicked()
-{
-    ui->table_computers->clearSelection();
-    ui->table_computers->disconnect();
-    ui->table_computers->clearContents();
-    ui->table_computers->setRowCount(0);
-
-    _dom.removeAllComputers();
-    on_button_removeAll_connections_clicked();
-}
-
-void MainWindow::on_button_removeAll_scientists_clicked()
-{
-    ui->table_scientists->clearSelection();
-    ui->table_scientists->disconnect();
-    ui->table_scientists->clearContents();
-    ui->table_scientists->setRowCount(0);
-
-    _dom.removeAllPersons();
-    on_button_removeAll_connections_clicked();
-}
-
-void MainWindow::on_button_removeAll_connections_clicked()
-{
-    ui->table_connections->clearSelection();
-    ui->table_connections->disconnect();
-    ui->table_connections->clearContents();
-    ui->table_connections->setRowCount(0);
-
-    _dom.removeAllConnections();
-}
-
-void MainWindow::on_button_add_computer_clicked()
-{
-    addComputerDialog addNewComp;
-    int addedComputer = addNewComp.exec();
-
-    if(addedComputer == 0)
-    {
-        displayAllComputers();
-    }
-    else
-    {
-        //error
-    }
-}
-
-void MainWindow::on_button_add_connections_clicked()
-{
-    addConnectionDialog addNewConn;
-    int addedConnection = addNewConn.exec();
-
-    if(addedConnection == 0)
-    {
-        displayAllConnections();
-    }
-    else
-    {
-        //error
-    }
-}
-
 void MainWindow::on_button_edit_computer_clicked()
 {
     Computer selectedComputer;
@@ -407,4 +285,134 @@ void MainWindow::on_button_edit_computer_clicked()
         edit.prepareEdit(cpuId, name, year, type, built);
         editComputers = edit.exec();
     }
+}
+
+void MainWindow::on_button_remove_scientist_clicked()
+{
+    int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
+    Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
+    QString name = QString::fromStdString(currentSelectedScientist.getName());
+    bool success = _dom.removePerson(name);
+
+    for(unsigned int i = 0; i < _currentlyDisplayedConnection.size(); i++)
+    {
+        if(currentSelectedScientist.getId() == _currentlyDisplayedConnection[i].getScientistId())
+        {
+
+            QString scientistId = QString::number(_currentlyDisplayedConnection[i].getScientistId());
+            QString computerId  = QString::number(_currentlyDisplayedConnection[i].getComputerId());
+            _dom.removeConnection(scientistId, computerId);
+        }
+    }
+    if(success)
+    {
+        ui->input_filter_scientist->setText("");
+        displayAllScientists();
+        displayAllConnections();
+
+        ui->button_remove_scientist->setEnabled(false);
+    }
+    else
+    {
+        //display error
+    }
+}
+
+void MainWindow::on_button_remove_computer_clicked()
+{
+    int currentSelectedComputerIndex = ui->table_computers->currentIndex().row();
+    Computer currentSelectedComputer = _currentlyDisplayedComputer.at(currentSelectedComputerIndex);
+    QString name = QString::fromStdString(currentSelectedComputer.getName());
+    bool success = _dom.removeComputer(name);
+    for(unsigned int i = 0; i < _currentlyDisplayedConnection.size(); i++)
+    {
+        if(currentSelectedComputer.getId() == _currentlyDisplayedConnection[i].getComputerId())
+        {
+
+            QString scientistId = QString::number(_currentlyDisplayedConnection[i].getScientistId());
+            QString computerId  = QString::number(_currentlyDisplayedConnection[i].getComputerId());
+            _dom.removeConnection(scientistId, computerId);
+        }
+    }
+    if(success)
+    {
+        ui->input_filter_computers->setText("");
+        displayAllComputers();
+        displayAllConnections();
+    }
+    if(success)
+    {
+        ui->input_filter_computers->setText("");
+        displayAllComputers();
+
+        ui->button_remove_computer->setEnabled(false);
+    }
+    else
+    {
+
+    }
+}
+
+void MainWindow::on_button_remove_connections_clicked()
+{
+    int currentSelectedConnectionIndex = ui->table_connections->currentIndex().row();
+    Connection currentSelectedConnection = _currentlyDisplayedConnection.at(currentSelectedConnectionIndex);
+
+    QString scientistId = QString::number(currentSelectedConnection.getScientistId());
+    QString computerId  = QString::number(currentSelectedConnection.getComputerId());
+
+    bool success = _dom.removeConnection(scientistId, computerId);
+
+    if(success)
+    {
+        displayAllConnections();
+
+        ui->button_remove_connections->setEnabled(false);
+    }
+    else
+    {
+        //display error
+    }
+}
+
+void MainWindow::on_button_removeAll_scientists_clicked()
+{
+    ui->table_scientists->clearSelection();
+    ui->table_scientists->disconnect();
+    ui->table_scientists->clearContents();
+    ui->table_scientists->setRowCount(0);
+
+    _dom.removeAllPersons();
+    on_button_removeAll_connections_clicked();
+}
+
+void MainWindow::on_button_removeAll_computers_clicked()
+{
+    ui->table_computers->clearSelection();
+    ui->table_computers->disconnect();
+    ui->table_computers->clearContents();
+    ui->table_computers->setRowCount(0);
+
+    _dom.removeAllComputers();
+    on_button_removeAll_connections_clicked();
+}
+
+void MainWindow::on_button_removeAll_connections_clicked()
+{
+    ui->table_connections->clearSelection();
+    ui->table_connections->disconnect();
+    ui->table_connections->clearContents();
+    ui->table_connections->setRowCount(0);
+
+    _dom.removeAllConnections();
+}
+
+void MainWindow::on_pushButton_2_clicked(bool checked)
+{
+
+}
+
+void MainWindow::on_pushButton_clicked(bool checked)
+{
+
 }

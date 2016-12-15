@@ -9,15 +9,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>695</width>
-    <height>652</height>
+    <width>731</width>
+    <height>637</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Database</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/icons/Images/Database.png</normaloff>:/icons/Images/Database.png</iconset>
   </property>
   <property name="animated">
@@ -131,6 +131,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Edit/View Image</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="button_remove_scientist">
           <property name="enabled">
            <bool>false</bool>
@@ -225,6 +232,13 @@
           </property>
           <property name="text">
            <string>Edit  computer</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Edit/View Image</string>
           </property>
          </widget>
         </item>
@@ -350,8 +364,25 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <tabstops>
+  <tabstop>input_filter_scientist</tabstop>
+  <tabstop>button_add_scientist</tabstop>
+  <tabstop>button_edit_scientist</tabstop>
+  <tabstop>button_remove_scientist</tabstop>
+  <tabstop>button_removeAll_scientists</tabstop>
+  <tabstop>table_scientists</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>input_filter_computers</tabstop>
+  <tabstop>button_add_computer</tabstop>
+  <tabstop>button_edit_computer</tabstop>
+  <tabstop>button_remove_computer</tabstop>
+  <tabstop>button_removeAll_computers</tabstop>
+  <tabstop>table_computers</tabstop>
+  <tabstop>button_add_connections</tabstop>
+  <tabstop>button_remove_connections</tabstop>
+  <tabstop>button_removeAll_connections</tabstop>
+  <tabstop>table_connections</tabstop>
+ </tabstops>
+ <resources/>
  <connections/>
 </ui>

@@ -37,6 +37,11 @@ void addConnectionDialog::on_buttonConnect_clicked()
     }
 }
 
+void addConnectionDialog::on_buttonCancel_clicked()
+{
+    this->done(0);
+}
+
 void addConnectionDialog::displayScientists()
 {
     vector<Person> scientists = _dom.readSciData(1);
@@ -68,7 +73,3 @@ void addConnectionDialog::displayComputers()
     _currentlyDisplayedComputer = computers;
 }
 
-void addConnectionDialog::on_buttonCancel_clicked()
-{
-    this->done(0);
-}
