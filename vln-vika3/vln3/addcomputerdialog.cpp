@@ -54,7 +54,6 @@ void addComputerDialog::on_buttonBox_accepted()
         _dom.addComputer(Computer(name.toStdString(), year.toInt(), type.toStdString(), built.toStdString()), QSqlError());
         this->done(0);
     }
-
 }
 
 bool addComputerDialog::validYear(QString n)
