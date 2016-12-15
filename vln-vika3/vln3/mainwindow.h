@@ -45,9 +45,9 @@ private slots:
 
     void on_button_add_connections_clicked();
 
-    void on_input_filter_connections_textChanged(const QString &arg1);
-
     void on_button_edit_computer_clicked();
+
+    void on_button_removeAll_connections_clicked();
 
 private:
 
@@ -56,10 +56,11 @@ private:
     void displayAllScientists();
     void displayScientists(std::vector<Person> scientists);
     void displayAllConnections();
-    void displayConnections(std::vector<int> connections);
+    void displayConnections(std::vector<Connection> connections);
 
     vector<Computer> _currentlyDisplayedComputer;
     vector<Person> _currentlyDisplayedScientist;
+    vector<Connection> _currentlyDisplayedConnection;
     Person _persons;
     Domain _dom;
     Data _dat;

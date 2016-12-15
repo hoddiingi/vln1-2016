@@ -84,10 +84,10 @@ vector<Computer> Data::readCompData(string orderBy, bool isAsc)
     return vect2;
 }
 
-vector<int> Data::readConData()
+vector<Connection> Data::readConData()
 {
 
-    vector<int> vect;
+    vector<Connection> vect;
 
     open();
 
@@ -96,10 +96,13 @@ vector<int> Data::readConData()
     int compId = query.record().indexOf("computerid");
     while (query.next())
     {
+
         int sci = query.value(sciId).toInt();
-        vect.push_back(sci);
+        //vect.push_back(sci);
         int comp = query.value(compId).toInt();
-        vect.push_back(comp);
+        //vect.push_back(comp);
+        Connection c(sci, comp);
+        vect.push_back(c);
     }
     close();
     return vect;
@@ -360,14 +363,16 @@ bool Data::removeAllComputers()
     return success;
 }
 
-bool Data::removeConnection(QString &sciId)
+bool Data::removeConnection(QString &sciId, QString &compId)
 {
     open();
     bool success = false;
 
     QSqlQuery removeQuery;
-    removeQuery.prepare("DELETE FROM connection WHERE scientistid = (:scientistid)");
+    removeQuery.prepare("DELETE FROM connection WHERE scientistid = (:scientistid)"
+                        "AND computerid = (:computerid)");
     removeQuery.bindValue(":scientistid", sciId);
+    removeQuery.bindValue(":computerid", compId);
     if(removeQuery.exec())
     {
         success = true;
@@ -375,6 +380,7 @@ bool Data::removeConnection(QString &sciId)
     close();
     return success;
 }
+
 bool Data::removeAllConnections()
 {
     open();
@@ -390,6 +396,7 @@ bool Data::removeAllConnections()
     close();
     return success;
 }
+
 void Data::updateScientistName(QString &name, QString &update)
 {
     open();
@@ -498,6 +505,37 @@ vector<Computer> Data::searchCompId(int &id)
     close();
     return results;
 }
+
+vector<Connection> Data::searchConnId(int &connId)
+{
+    open();
+    vector<Connection> results;
+
+    QString idCheck = QString::number(connId);
+
+    int scientistId;
+    int computerId;
+
+    QSqlQuery query(sqlPrufa);
+
+    QString search = "SELECT * FROM connection WHERE rowid LIKE " + connId;
+
+    query.prepare(search);
+
+    query.exec();
+
+    while(query.next())
+    {
+        // it exists
+        scientistId = query.value("scientistId").toInt();
+        computerId  = query.value("computerId").toInt();
+        Connection c(scientistId, computerId);
+        results.push_back(c);
+    }
+    close();
+    return results;
+}
+
 void Data::updateScientistDeath(QString &name, QString &update)
 {
     open();

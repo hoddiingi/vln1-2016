@@ -85,7 +85,7 @@ vector<Person> Domain::readSciData(int sortedBy)
 
 }
 
-vector<int> Domain::readConData()
+vector<Connection> Domain::readConData()
 {
     return _dat.readConData();
 }
@@ -121,9 +121,9 @@ bool Domain::removeComputer(QString& computername)
 {
     return _dat.removeComputer(computername);
 }
-bool Domain::removeConnection(QString &sciId)
+bool Domain::removeConnection(QString &sciId, QString &compId)
 {
-    return _dat.removeConnection(sciId);
+    return _dat.removeConnection(sciId, compId);
 }
 bool Domain::removeAllConnections()
 {
