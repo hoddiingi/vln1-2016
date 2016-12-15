@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edit scientist</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/Images/edit.png</normaloff>:/icons/Images/edit.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -136,15 +140,10 @@
     </item>
    </layout>
   </widget>
-  <zorder>buttonBox</zorder>
-  <zorder>verticalLayoutWidget</zorder>
-  <zorder>label_4</zorder>
-  <zorder>clickDeadYes</zorder>
-  <zorder>label_4</zorder>
-  <zorder>editDeath</zorder>
-  <zorder>label_3</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

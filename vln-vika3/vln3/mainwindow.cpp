@@ -146,7 +146,6 @@ void MainWindow::on_table_scientists_clicked()
 void MainWindow::on_table_connections_clicked()
 {
     ui->button_remove_connections->setEnabled(true);
-    ui->button_edit_connections->setEnabled(true);
 }
 
 void MainWindow::on_button_add_scientist_clicked()

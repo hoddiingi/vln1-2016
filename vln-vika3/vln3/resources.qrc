@@ -3,5 +3,8 @@
         <file>Images/add-user.png</file>
         <file>Images/add-computer.png</file>
         <file>Images/add-connection.ico</file>
+        <file>Images/edit.png</file>
+        <file>Images/edit-computer.png</file>
+        <file>Images/Database.png</file>
     </qresource>
 </RCC>

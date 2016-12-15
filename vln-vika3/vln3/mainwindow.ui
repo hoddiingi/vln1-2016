@@ -14,7 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Database</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/Images/Database.png</normaloff>:/icons/Images/Database.png</iconset>
   </property>
   <property name="animated">
    <bool>true</bool>
@@ -293,7 +297,7 @@
            <number>37</number>
           </attribute>
           <attribute name="horizontalHeaderStretchLastSection">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <attribute name="verticalHeaderCascadingSectionResizes">
            <bool>false</bool>
@@ -314,16 +318,6 @@
          <widget class="QPushButton" name="button_add_connections">
           <property name="text">
            <string>Add connections</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="button_edit_connections">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Edit connections</string>
           </property>
          </widget>
         </item>
@@ -374,6 +368,8 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
