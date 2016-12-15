@@ -208,6 +208,7 @@ void MainWindow::on_button_edit_scientist_clicked()
     if(editScientists == 0)
     {
         displayAllScientists();
+        ui->button_edit_scientist->setEnabled(false);
     }
     else
     {
@@ -232,7 +233,7 @@ void MainWindow::on_button_remove_computer_clicked()
     }
     else
     {
-        //display error
+
     }
 }
 
@@ -369,6 +370,7 @@ void MainWindow::on_button_edit_computer_clicked()
     if(editComputers == 0)
     {
         displayAllComputers();
+        ui->button_edit_computer->setEnabled(false);
     }
     else
     {
