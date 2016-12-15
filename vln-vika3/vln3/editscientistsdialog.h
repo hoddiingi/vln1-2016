@@ -1,6 +1,6 @@
 #ifndef EDITSCIENTISTSDIALOG_H
 #define EDITSCIENTISTSDIALOG_H
-#include "data.h"
+#include "domain.h"
 #include "mainwindow.h"
 #include "person.h"
 #include <QDialog>
@@ -29,13 +29,16 @@ private slots:
 
     void on_clickDeadYes_clicked(bool checked);
 
+    bool validName(QString n);
+
+    bool validYear(QString n);
+
 private:
     vector<Computer> _currentlyDisplayedComputer;
     vector<Person> _currentlyDisplayedScientist;
     Person _persons;
-    Domain _dom;
+    Data _dat;
     Ui::editscientistsdialog *ui;
-    Data _data;
     int currentID;
 };
 
