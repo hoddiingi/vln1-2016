@@ -225,10 +225,22 @@ void MainWindow::on_button_remove_computer_clicked()
     QString name = QString::fromStdString(currentSelectedComputer.getName());
     bool success = _dom.removeComputer(name);
 
+    for(int i = 0; i < _currentlyDisplayedConnection.size(); i++)
+    {
+        if(currentSelectedComputer.getId() == _currentlyDisplayedConnection[i].getComputerId())
+        {
+
+            QString scientistId = QString::number(_currentlyDisplayedConnection[i].getScientistId());
+            QString computerId  = QString::number(_currentlyDisplayedConnection[i].getComputerId());
+            _dom.removeConnection(scientistId, computerId);
+        }
+    }
+
     if(success)
     {
         ui->input_filter_computers->setText("");
         displayAllComputers();
+        displayAllConnections();
 
         ui->button_remove_computer->setEnabled(false);
     }
@@ -240,15 +252,30 @@ void MainWindow::on_button_remove_computer_clicked()
 
 void MainWindow::on_button_remove_scientist_clicked()
 {
+    //Connection currentConnection;
     int currentSelectedScientistIndex = ui->table_scientists->currentIndex().row();
     Person currentSelectedScientist = _currentlyDisplayedScientist.at(currentSelectedScientistIndex);
     QString name = QString::fromStdString(currentSelectedScientist.getName());
     bool success = _dom.removePerson(name);
 
+    for(int i = 0; i < _currentlyDisplayedConnection.size(); i++)
+    {
+        if(currentSelectedScientist.getId() == _currentlyDisplayedConnection[i].getScientistId())
+        {
+
+            QString scientistId = QString::number(_currentlyDisplayedConnection[i].getScientistId());
+            QString computerId  = QString::number(_currentlyDisplayedConnection[i].getComputerId());
+            _dom.removeConnection(scientistId, computerId);
+        }
+    }
+
+
+
     if(success)
     {
         ui->input_filter_scientist->setText("");
         displayAllScientists();
+        displayAllConnections();
 
         ui->button_remove_scientist->setEnabled(false);
     }
@@ -288,6 +315,7 @@ void MainWindow::on_button_removeAll_computers_clicked()
     ui->table_computers->setRowCount(0);
 
     _dom.removeAllComputers();
+    on_button_removeAll_connections_clicked();
 }
 
 void MainWindow::on_button_removeAll_scientists_clicked()
@@ -298,6 +326,7 @@ void MainWindow::on_button_removeAll_scientists_clicked()
     ui->table_scientists->setRowCount(0);
 
     _dom.removeAllPersons();
+    on_button_removeAll_connections_clicked();
 }
 
 void MainWindow::on_button_removeAll_connections_clicked()
