@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>695</width>
-    <height>652</height>
+    <width>731</width>
+    <height>637</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -131,6 +131,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Edit/View Image</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="button_remove_scientist">
           <property name="enabled">
            <bool>false</bool>
@@ -225,6 +232,13 @@
           </property>
           <property name="text">
            <string>Edit  computer</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Edit/View Image</string>
           </property>
          </widget>
         </item>

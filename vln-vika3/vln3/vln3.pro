@@ -67,4 +67,4 @@ CONFIG += console
 CONFIG -= app_bundle
 
 RESOURCES += \
-    resources.qrc
+    resources.qrc \

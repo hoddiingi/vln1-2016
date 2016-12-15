@@ -40,6 +40,10 @@ private slots:
     void on_button_edit_computer_clicked();                                 //For edit a computer
     void on_button_removeAll_connections_clicked();                         //For remove all connections
 
+    void on_pushButton_2_clicked(bool checked);
+
+    void on_pushButton_clicked(bool checked);
+
 private:
 
     void displayAllComputers();                                     //Display all computers from SQLite
