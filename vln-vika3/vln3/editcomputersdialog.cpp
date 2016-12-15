@@ -51,6 +51,11 @@ void editcomputersdialog::on_buttonBox_accepted()
         QMessageBox::warning(this, "Error in type", "Invalid input, type can not be empty.");
         this->done(-1);
     }
+    else if(year > "2016")
+    {
+        QMessageBox::warning(this, "Error in year", "This year is in the future");
+        this->done(-1);
+    }
     else
     {
          _dat.updateComputers(id, name, year, type, built);

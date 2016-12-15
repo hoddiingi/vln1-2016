@@ -77,6 +77,16 @@ void editscientistsdialog::on_buttonBox_accepted()
         QMessageBox::warning(this, "Error in death year", "Invalid input, years can only include numbers");
         this->done(-1);
     }
+    else if(birth > "2016")
+    {
+        QMessageBox::warning(this, "Error in birth year", "Scientist not born yet");
+        this->done(-1);
+    }
+    else if(death > "2016")
+    {
+        QMessageBox::warning(this, "Error in death year", "Can you tell the future?");
+        this->done(-1);
+    }
     else
     {
         _dat.updateScientists(id,name,gender,birth,death);

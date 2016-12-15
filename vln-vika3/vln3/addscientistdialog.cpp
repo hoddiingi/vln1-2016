@@ -65,6 +65,18 @@ void addScientistDialog::on_buttonAdd_accepted()
         addScientistDialog retry;
         retry.exec();
     }
+    else if(birth > "2016")
+    {
+        QMessageBox::warning(this, "Error in birth year", "Scientist not born yet");
+        addScientistDialog retry;
+        retry.exec();
+    }
+    else if(death > "2016")
+    {
+        QMessageBox::warning(this, "Error in death year", "Can you tell the future?");
+        addScientistDialog retry;
+        retry.exec();
+    }
     else
     {
         _dom.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));

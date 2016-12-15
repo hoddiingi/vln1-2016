@@ -43,6 +43,12 @@ void addComputerDialog::on_buttonBox_accepted()
         addComputerDialog retry;
         retry.exec();
     }
+    else if(year > "2016")
+    {
+        QMessageBox::warning(this, "Error in year", "This year is in the future");
+        addComputerDialog retry;
+        retry.exec();
+    }
     else
     {
         _dom.addComputer(Computer(name.toStdString(), year.toInt(), type.toStdString(), built.toStdString()), QSqlError());
