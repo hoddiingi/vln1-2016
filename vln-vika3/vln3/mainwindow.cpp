@@ -331,6 +331,16 @@ void MainWindow::on_button_removeAll_scientists_clicked()
     _dom.removeAllPersons();
 }
 
+void MainWindow::on_button_removeAll_connections_clicked()
+{
+    ui->table_connections->clearSelection();
+    ui->table_connections->disconnect();
+    ui->table_connections->clearContents();
+    ui->table_connections->setRowCount(0);
+
+    _dom.removeAllConnections();
+}
+
 void MainWindow::on_button_add_computer_clicked()
 {
     addComputerDialog addNewComp;
@@ -383,18 +393,19 @@ void MainWindow::on_button_edit_computer_clicked()
     QString type = QString::fromStdString(selectedComputer.getType());
     QString built = QString::fromStdString(selectedComputer.getBuilt());
 
-//    //editcomputersdialog edit;
+    editcomputersdialog edit;
 
-//    //edit.prepareEdit(cpuId, name, year, type, built);
+    edit.prepareEdit(cpuId, name, year, type, built);
 
-//    //int editComputers = edit.exec();
+    int editComputers = edit.exec();
 
-//    if(editComputers == 0)
-//    {
-//        displayAllComputers();
-//    }
-//    else
-//    {
+    if(editComputers == 0)
+    {
+        displayAllComputers();
+    }
+    else
+    {
 
-//    }
+    }
 }
+

@@ -49,6 +49,8 @@ private slots:
 
     void on_button_edit_computer_clicked();
 
+    void on_button_removeAll_connections_clicked();
+
 private:
 
     void displayAllComputers();
