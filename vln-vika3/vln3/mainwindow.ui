@@ -131,13 +131,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>Edit/View Image</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="button_remove_scientist">
           <property name="enabled">
            <bool>false</bool>
@@ -154,6 +147,13 @@
           </property>
           <property name="text">
            <string>Remove all</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="scientistImage">
+          <property name="text">
+           <string>Display image</string>
           </property>
          </widget>
         </item>
@@ -236,13 +236,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>Edit/View Image</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="button_remove_computer">
           <property name="enabled">
            <bool>false</bool>
@@ -259,6 +252,13 @@
           </property>
           <property name="text">
            <string>Remove all</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="computerImage">
+          <property name="text">
+           <string>Display image</string>
           </property>
          </widget>
         </item>

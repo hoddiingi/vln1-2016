@@ -641,3 +641,4 @@ bool Data::updateComputers(QString& id, QString& name, QString& year, QString& t
     close();
     return success;
 }
+

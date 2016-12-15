@@ -8,6 +8,7 @@
 #include "data.h"
 #include "editscientistsdialog.h"
 #include "editcomputersdialog.h"
+#include "imagedialog.h"
 #include <vector>
 
 namespace Ui {
@@ -40,9 +41,11 @@ private slots:
     void on_button_edit_computer_clicked();                                 //For edit a computer
     void on_button_removeAll_connections_clicked();                         //For remove all connections
 
-    void on_pushButton_2_clicked(bool checked);
 
-    void on_pushButton_clicked(bool checked);
+
+    void on_scientistImage_clicked();
+
+    void on_computerImage_clicked();
 
 private:
 
