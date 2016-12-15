@@ -12,7 +12,6 @@ Connection::Connection(int scientistId, int computerId)
     _computerId  = computerId;
 }
 
-
 int Connection::getScientistId() const
 {
     return _scientistId;

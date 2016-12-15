@@ -82,9 +82,7 @@ void addScientistDialog::on_buttonAdd_accepted()
         _dom.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
         this->done(0);
     }
-
 }
-
 
 void addScientistDialog::on_buttonAdd_rejected()
 {

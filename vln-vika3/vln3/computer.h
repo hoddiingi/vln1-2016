@@ -12,7 +12,6 @@ public:
     Computer(string name, int year, string type, string built);
     Computer(int id, string name, int year, string type, string built);
 
-
     string getName() const;                   //Gets private member variables for computer name
     int getYear() const;                      //Gets private member variables for computer year
     string getType() const;                   //Gets private member variables for computer type

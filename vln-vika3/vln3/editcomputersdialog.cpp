@@ -14,7 +14,6 @@ editcomputersdialog::~editcomputersdialog()
     delete ui;
 }
 
-
 void editcomputersdialog::on_editYes_clicked()
 {
 
@@ -63,11 +62,6 @@ void editcomputersdialog::on_buttonBox_accepted()
         this->done(0);
     }
 }
-
-
-
-
-
 
 void editcomputersdialog::prepareEdit(QString& id, QString& name, QString& year, QString& type, QString& built)
 {

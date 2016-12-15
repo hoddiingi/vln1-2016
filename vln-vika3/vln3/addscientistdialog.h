@@ -21,7 +21,6 @@ public:
 
 private slots:
 
-
     bool on_genderFemaleButton_clicked();
 
     bool on_genderMaleButton_clicked();

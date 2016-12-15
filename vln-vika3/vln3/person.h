@@ -13,7 +13,6 @@ public:
     Person(int id, string name, string gender, int birth, int death);
     Person(string name, string gender, int birth, int death);
 
-
     string getName() const;             //Gets private member variables for scientist name
     string getGender() const;           //Gets private member variables for scientist gender, f/m
     int getBirth() const;               //Gets private member variables for scientist birth

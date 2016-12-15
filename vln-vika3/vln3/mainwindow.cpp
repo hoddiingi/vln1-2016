@@ -379,3 +379,13 @@ void MainWindow::on_button_edit_computer_clicked()
     }
 }
 
+
+void MainWindow::on_pushButton_2_clicked(bool checked)
+{
+
+}
+
+void MainWindow::on_pushButton_clicked(bool checked)
+{
+
+}
