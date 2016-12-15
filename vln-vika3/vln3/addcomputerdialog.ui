@@ -11,23 +11,15 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Add computer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/Images/add-computer.png</normaloff>:/icons/Images/add-computer.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Add Computer</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
@@ -114,11 +106,10 @@
     </widget>
    </item>
   </layout>
-  <zorder>buttonBox</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>label_6</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

@@ -7,27 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>384</width>
-    <height>190</height>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Add scientist</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/Images/add-user.png</normaloff>:/icons/Images/add-user.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label_6">
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Add Scientist</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
@@ -150,7 +142,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonAdd</sender>

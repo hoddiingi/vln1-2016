@@ -65,3 +65,6 @@ CONFIG += c++11
 TARGET = vln
 CONFIG += console
 CONFIG -= app_bundle
+
+RESOURCES += \
+    resources.qrc

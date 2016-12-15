@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>Images/add-user.png</file>
+        <file>Images/add-computer.png</file>
+        <file>Images/add-connection.ico</file>
+    </qresource>
+</RCC>
