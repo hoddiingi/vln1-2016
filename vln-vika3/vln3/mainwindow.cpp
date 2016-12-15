@@ -72,7 +72,11 @@ void MainWindow::displayScientists(std::vector<Person> scientists)
         QString name = QString::fromStdString(currentScientist.getName());
         QString gender = QString::fromStdString(currentScientist.getGender());
         QString yearBorn = QString::number(currentScientist.getBirth());
-        QString death = QString::number(currentScientist.getDeath());
+        QString death;
+        if(currentScientist.getDeath() == 0)
+            death = "N/A";
+        else
+            death = QString::number(currentScientist.getDeath());
 
         ui->table_scientists->setItem(row, 0, new QTableWidgetItem(id));
         ui->table_scientists->setItem(row, 1, new QTableWidgetItem(name));
@@ -233,7 +237,8 @@ void MainWindow::on_button_edit_scientist_clicked()
     }
     else
     {
-
+        edit.prepareEdit(sciId, name, gender, birth, death);
+        editScientists = edit.exec();
     }
 }
 
@@ -394,7 +399,8 @@ void MainWindow::on_button_edit_computer_clicked()
     }
     else
     {
-
+        edit.prepareEdit(cpuId, name, year, type, built);
+        editComputers = edit.exec();
     }
 }
 

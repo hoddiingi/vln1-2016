@@ -1,6 +1,7 @@
 #include "editscientistsdialog.h"
 #include "ui_editscientistsdialog.h"
 #include <QSqlQuery>
+#include "QMessageBox"
 
 editscientistsdialog::editscientistsdialog(QWidget *parent) :
     QDialog(parent),
@@ -59,17 +60,29 @@ void editscientistsdialog::on_buttonBox_accepted()
     else if(ui->editOther->isChecked())
        gender = ui->editGender->text();
 
-    bool success = _data.updateScientists(id,name,gender,birth,death);
-
-    if(success)
+    if((!validName(name)) || name.isEmpty())
     {
-       this->done(0);
+        //do nothing, show error
+        //ui->label_error_scientist_name->text("Name cannot be empty", );
+        QMessageBox::warning(this, "Error in name", "Invalid input, name can not be blank or include numbers.");
+        this->done(-1);
+    }
+    else if(!validYear(birth) || birth.isEmpty())
+    {
+        QMessageBox::warning(this, "Error in birth year", "Invalid input, birth year can not be blank and only include numbers");
+        this->done(-1);
+    }
+    else if(!validYear(death))
+    {
+        QMessageBox::warning(this, "Error in death year", "Invalid input, years can only include numbers");
+        this->done(-1);
     }
     else
     {
-       this->done(-1);
-       //error
+        _dat.updateScientists(id,name,gender,birth,death);
+        this->done(0);
     }
+
 }
 
 void editscientistsdialog::prepareEdit(QString& id, QString& name, QString& gender, QString& birth, QString& death)
@@ -92,7 +105,31 @@ void editscientistsdialog::prepareEdit(QString& id, QString& name, QString& gend
      currentID = id.toInt();
 }
 
+bool editscientistsdialog::validName(QString n)
+{
+    std::string number = n.toStdString();
+    for (int i = 0; i < n.size(); i++)
+    {
+        if (isdigit(number[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
 
+bool editscientistsdialog::validYear(QString n)
+{
+    std::string number = n.toStdString();
+    for (int i = 0; i < n.size(); i++)
+    {
+        if (!isdigit(number[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 
 

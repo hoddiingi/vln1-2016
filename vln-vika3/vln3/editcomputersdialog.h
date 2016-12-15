@@ -24,9 +24,11 @@ private slots:
 
     void on_buttonBox_accepted();
 
+    bool validYear(QString n);
+
 private:
     Ui::editcomputersdialog *ui;
-    Data _data;
+    Data _dat;
     int currentID;
 };
 

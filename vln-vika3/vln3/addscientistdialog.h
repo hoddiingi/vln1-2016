@@ -40,7 +40,7 @@ private slots:
 private:
     Ui::addScientistDialog *ui;
     Person _persons;
-    Data _data;
+    Domain _dom;
 };
 
 #endif // ADDSCIENTISTDIALOG_H

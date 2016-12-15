@@ -36,6 +36,7 @@ void addScientistDialog::on_buttonAdd_accepted()
 {
     QString name = ui->nameAdd->text();
     QString birth = ui->addBirth->text();
+    QString deathInput = ui->addDeath->text();
     QString death = ui->addDeath->text();
     QString gender;
     if(ui->genderMaleButton->isChecked())
@@ -58,7 +59,7 @@ void addScientistDialog::on_buttonAdd_accepted()
         addScientistDialog retry;
         retry.exec();
     }
-    else if(!validYear(death))
+    else if(!validYear(deathInput))
     {
         QMessageBox::warning(this, "Error in death year", "Invalid input, years can only include numbers");
         addScientistDialog retry;
@@ -66,7 +67,7 @@ void addScientistDialog::on_buttonAdd_accepted()
     }
     else
     {
-        _data.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
+        _dom.addPerson(Person(name.toStdString(), gender.toStdString(), birth.toInt(), death.toInt()));
         this->done(0);
     }
 
